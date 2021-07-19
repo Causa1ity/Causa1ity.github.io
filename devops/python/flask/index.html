@@ -1,0 +1,324 @@
+<!doctype html><html lang=zh><head><meta http-equiv=content-type content="text/html" charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=stylesheet href=/css/tailwind.min.b39a406edef2cbbd2ccee2cbd368a787bfad3ac016440c2b37558902050cf85d.css integrity=sha256-s5pAbt7yy70szuLL02inh7+tOsAWRAwrN1WJAgUM+F0=><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Lora&display=swap" rel=stylesheet><script src=https://kit.fontawesome.com/9cc9e9e3f3.js crossorigin=anonymous></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/docsearch.js@2.6.3/dist/cdn/docsearch.min.css><title>Flask</title></head><body class="flex flex-col"><header class="flex fixed bg-white w-full p-4 font-title text-xl border-b"><div class="logo flex-1"><a href=/ class=font-title>Forgotten Land</a></div><nav class="flex-initial ml-4"><div id=归档 class=inline><a href=/metapages/archive/ class="mx-2 hover:text-blue-200">归档</a></div><div id=分类 class=inline><a href=/categories/ class="mx-2 hover:text-blue-200">分类</a><div class=absolute></div></div><div id=标签 class=inline><a href=/tags/ class="mx-2 hover:text-blue-200">标签</a></div><div id=关于 class=inline><a href=/metapages/about/ class="mx-2 hover:text-blue-200">关于</a></div></nav></header><div class="flex-grow mt-24"><div class=flex><div class="md:w-4/5 lg:w-2/3 max-w-screen-lg mx-auto p-4 shadow-2xl"><h1 class="font-title text-4xl text-center mb-4">Flask</h1><div class="flex justify-center font-mono"><div class="mr-6 flex-none"><i class="fas fa-calendar mr-1"></i>
+<span>2021-03-25</span></div><div class="mr-6 flex-none"><i class="fas fa-clock mr-1"></i>
+<span>阅读时长约 10 分钟</span></div></div><article class=content><h2 id=before-use>Before Use</h2><h3 id=环境配置>环境配置</h3><p>和django不同，flask设计上没有使用类似<code>flask create</code>这样的命令来创建一个项目，因此项目结构又很大的自由性，但是也因此需要自己来注意合理对项目进行布局。官方文档中在Qucikstart中使用单个文件作为Web应用，Tutorial中也给出了一种将应用作为一个包的布局参考：</p><pre><code>/home/user/Projects/flask-tutorial
+├── flaskr/
+│   ├── __init__.py
+│   ├── db.py
+│   ├── schema.sql
+│   ├── auth.py
+│   ├── blog.py
+│   ├── templates/
+│   │   ├── base.html
+│   │   ├── auth/
+│   │   │   ├── login.html
+│   │   │   └── register.html
+│   │   └── blog/
+│   │       ├── create.html
+│   │       ├── index.html
+│   │       └── update.html
+│   └── static/
+│       └── style.css
+├── tests/
+│   ├── conftest.py
+│   ├── data.sql
+│   ├── test_factory.py
+│   ├── test_db.py
+│   ├── test_auth.py
+│   └── test_blog.py
+├── venv/
+├── setup.py
+└── MANIFEST.in
+</code></pre><p>推荐使用 PyCharm 作为开发工具，PyCharm 虽然不能做到完全开箱即用，但是如果对Python有一定了解，经过个人的配置后用起来十分舒服。</p><p>而针对flask的配置主要有以下几点：</p><ul><li><p>venv：flask 文档中也推荐使用 venv 环境作为开发甚至生产环境，使用 Pycharm 在创建新 flask 项目时会要求选择开发环境，可以选择已有的环境或者创建一个新的虚拟环境:</p><p><img src=https://causality-blog.oss-cn-hangzhou.aliyuncs.com/hugo/notes/frame/flask/image-20210406234643594.png alt=image-20210406234643594></p></li><li><p>使用pycharm创建的flask项目默认使用的布局包含/static、/templates 和 app.py 三个部分，当然也可以根据需要进行修改，但是需要注意修改后要同时修改项目的配置，点击右上角的配置打开对 flask 项目的配置：</p><p><img src=https://causality-blog.oss-cn-hangzhou.aliyuncs.com/hugo/notes/frame/flask/image-20210406235119738.png alt=image-20210406235119738></p><p><img src=https://causality-blog.oss-cn-hangzhou.aliyuncs.com/hugo/notes/frame/flask/image-20210406235525896.png alt=image-20210406235525896></p><p>虽然不修改这些也可以通过命令行来启动应用，但是为了能够更加方便的使用pycharm进行调试工作，还是需要进行必要的修改。</p><p>此时就可以直接点击运行或调试运行这个应用了。</p></li></ul><h2 id=初窥>初窥</h2><h3 id=flask-对象>flask 对象</h3><p>一个flask应用可以认为是一个Flask对象，因此创建一个应用的方法很简单：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>from</span> flask <span style=color:#f92672>import</span> Flask
+
+app <span style=color:#f92672>=</span> Flask(__name__)
+</code></pre></div><p>第一个参数是应用所在的模块或包的名字，一般来说可以使用<code>__name__</code>来代替，这会影响到Flask到哪里寻找templates、static文件等等。</p><p>尽管可以这样简单的在全局创建一个实例，但是这会在某些情况下遇到一些问题，因此更加推荐在函数中创建，也就是所谓的<em>application factory</em>。这种情况下需要在这个函数中设置配置、注册等设置，然后将这个应用作为返回值返回：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>from</span> flask <span style=color:#f92672>import</span> Flask
+
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>create_app</span>():
+    app <span style=color:#f92672>=</span> Flask(__name__)
+    <span style=color:#75715e># some config</span>
+
+    <span style=color:#66d9ef>return</span> app
+</code></pre></div><p>可以为app进行一些设置，这些设置一般是通过app.config的各种方法实现的：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python>    app<span style=color:#f92672>.</span>config<span style=color:#f92672>.</span>from_mapping(
+        SECRET_KEY<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;dev&#39;</span>,
+        DATABASE<span style=color:#f92672>=</span>os<span style=color:#f92672>.</span>path<span style=color:#f92672>.</span>join(app<span style=color:#f92672>.</span>instance_path, <span style=color:#e6db74>&#39;flaskr.sqlite&#39;</span>),
+    )
+ 		app<span style=color:#f92672>.</span>config<span style=color:#f92672>.</span>from_pyfile(<span style=color:#e6db74>&#39;config.py&#39;</span>, silent<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>)
+</code></pre></div><p>这里有两种设置方法，一种是直接通过字典进行设置，另一种则是通过配置文件来设置。</p><p>运行flask应用之前需要先设置环境，至少要设置<code>FLASK_APP</code>的值，如果是一个单独的文件，将其设置为文件名即可，而如果以包的形式设计flask应用，并且在<code>__init__.py</code>中设置了工厂方法的话，直接将其设置为包名即可。</p><p>如果使用PyCharm作为开发环境的话，如前面所说在flask server配置中将Target按照同样的规则设置即可。</p><h3 id=route-方法>route 方法</h3><p>flask使用route装饰器作为路由机制，一般的语法为：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#a6e22e>@app</span><span style=color:#f92672>.</span>route(<span style=color:#e6db74>&#39;/&#39;</span>)
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>index</span>():
+    <span style=color:#66d9ef>return</span>
+</code></pre></div><p>对于这个路由，如果客户端请求<code>/</code>的话，这个请求就会交给 <code>index()</code>函数处理和返回。</p><p>需要注意的是，一个路由的最后是否带有斜线的表现不同的，如果包含斜线时会匹配带斜线和不带斜线两种URL，而不带斜线的路由则只匹配不带斜线的URL，例如：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#a6e22e>@app</span><span style=color:#f92672>.</span>route(<span style=color:#e6db74>&#39;/slash/&#39;</span>)
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>slash</span>():
+    <span style=color:#66d9ef>return</span>
+
+<span style=color:#a6e22e>@app</span><span style=color:#f92672>.</span>route(<span style=color:#e6db74>&#39;/noslash&#39;</span>)
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>noslash</span>():
+    <span style=color:#66d9ef>return</span>
+</code></pre></div><p>如果访问<code>http://locahost:5000/slash</code>和<code>http://locahost:5000/slash/</code>都将返回slash，而如果访问<code>http://locahost:5000/noslash/</code>则会返回404错误。</p><p>可以在路由中定义接受的请求方式，使用一个数据来表示：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#a6e22e>@app</span><span style=color:#f92672>.</span>route(<span style=color:#e6db74>&#39;/login&#39;</span>, methods<span style=color:#f92672>=</span>[<span style=color:#e6db74>&#39;GET&#39;</span>, <span style=color:#e6db74>&#39;POST&#39;</span>])
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>login</span>():
+    <span style=color:#66d9ef>return</span>
+</code></pre></div><p>可以在路由中定义变量，变量使用尖括号包围，然后在对用的方法里将变量作为参数传递，就可以在方法中使用这个变量：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#a6e22e>@app</span><span style=color:#f92672>.</span>route(<span style=color:#e6db74>&#39;/user/&lt;int:id&gt;&#39;</span>)
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>user</span>(id):
+    <span style=color:#66d9ef>return</span>
+</code></pre></div><p>参数类型可以为以下几种：</p><table><thead><tr><th>type</th><th>description</th></tr></thead><tbody><tr><td>string（default）</td><td>不包含斜线的文本</td></tr><tr><td>int</td><td>正整数</td></tr><tr><td>float</td><td>正浮点数</td></tr><tr><td>path</td><td>可以包含斜线的文本</td></tr><tr><td>uuid</td><td>uuid字符串</td></tr></tbody></table><h3 id=url_for-构造路由>url_for 构造路由</h3><p>在实践中，为了降低耦合度，或者为了一些其他目的经常需要根据函数名构造路由，这个时候就可以使用<code>url_for()</code>方法，这个方法接受函数名作为参数，还可以接受更多参数来构造URL：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>from</span> flask <span style=color:#f92672>import</span> Flask, url_for
+<span style=color:#f92672>from</span> markupsafe <span style=color:#f92672>import</span> escape
+
+app <span style=color:#f92672>=</span> Flask(__name__)
+
+<span style=color:#a6e22e>@app</span><span style=color:#f92672>.</span>route(<span style=color:#e6db74>&#39;/&#39;</span>)
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>index</span>():
+    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#39;index&#39;</span>
+
+<span style=color:#a6e22e>@app</span><span style=color:#f92672>.</span>route(<span style=color:#e6db74>&#39;/login&#39;</span>)
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>login</span>():
+    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#39;login&#39;</span>
+
+<span style=color:#a6e22e>@app</span><span style=color:#f92672>.</span>route(<span style=color:#e6db74>&#39;/user/&lt;username&gt;&#39;</span>)
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>profile</span>(username):
+    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#39;</span><span style=color:#e6db74>{}</span><span style=color:#ae81ff>\&#39;</span><span style=color:#e6db74>s profile&#39;</span><span style=color:#f92672>.</span>format(escape(username))
+
+<span style=color:#66d9ef>with</span> app<span style=color:#f92672>.</span>test_request_context():
+    print(url_for(<span style=color:#e6db74>&#39;index&#39;</span>))
+    print(url_for(<span style=color:#e6db74>&#39;login&#39;</span>))
+    print(url_for(<span style=color:#e6db74>&#39;login&#39;</span>, next<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;/&#39;</span>))
+    print(url_for(<span style=color:#e6db74>&#39;profile&#39;</span>, username<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;John Doe&#39;</span>))
+</code></pre></div><pre><code>/
+/login
+/login?next=/
+/user/John%20Doe
+</code></pre><p>这个例子可以看出url的很多优势：</p><ul><li>login 被构造为 <code>/login</code>可以避免出现 404 错误</li><li>接收参数时，如果存在这个参数构造的URL，则会将其构造到URL中：<code>/user/&lt;username></code>；相对的，如果不存在使用这个参数构造的URL，则会将其作为参数传递：<code>/login?next=/</code></li><li>生成的路径总是绝对路径，避免了使用相对路径可能出现的错误</li></ul><p>除了为方法定义路由，还可以使用<code>url_for()</code>为静态文件定义路由，这种情况下，需要将<code>static</code>目录放在包内或模块边，并且使用<code>static</code>作为端点名：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python>url_for(<span style=color:#e6db74>&#39;static&#39;</span>, filename<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;style.css&#39;</span>)
+</code></pre></div><p>这种情况下文件会存储在<code>static/style.css</code>。</p><h3 id=request-对象>request 对象</h3><p>flask使用request作为请求对象，flask有一些特殊的全局对象，关于这些对象暂时不需要深入了解。就现在而言，我们可以简单认为对于一个请求，我们可以直接在方法中使用这个request，他会自己根据上下文确定一个请求。</p><p>使用请求对象之前需要先导入：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>from</span> flask <span style=color:#f92672>import</span> request
+</code></pre></div><p>一次请求中的request对象包含有请求相关的所有信息，除此之外我们通常需要关注以下几个属性和方法：</p><ul><li><p>request.method：请求使用的方法，如&rsquo;POST'、&lsquo;GET&rsquo;等</p></li><li><p>request.form{}：请求包含的表单数据，如果不存在对应参数抛出 KeyError，响应返回 Bad Request</p></li><li><p>request.args{}：请求中URL包含的参数，需要注意的是推荐使用 request.args.get(&lsquo;key&rsquo;) 方法来获取参数的值，在错误处理中捕获 KeyError。</p></li><li><p>request.files{}：请求中的文件会以字典形式存储在files中，在接收到后可以向普通文件一样使用，但是为了防止攻击，在使用是要谨慎对待文件，一般要对文件名使用secure_filename()方法：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#a6e22e>@app</span><span style=color:#f92672>.</span>route(<span style=color:#e6db74>&#39;/upload&#39;</span>, methods<span style=color:#f92672>=</span>[<span style=color:#e6db74>&#39;GET&#39;</span>, <span style=color:#e6db74>&#39;POST&#39;</span>])
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>upload_file</span>():
+    <span style=color:#66d9ef>if</span> request<span style=color:#f92672>.</span>method <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;POST&#39;</span>:
+        f <span style=color:#f92672>=</span> request<span style=color:#f92672>.</span>files[<span style=color:#e6db74>&#39;the_file&#39;</span>]
+        f<span style=color:#f92672>.</span>save(<span style=color:#e6db74>&#39;/var/www/uploads/&#39;</span> <span style=color:#f92672>+</span> secure_filename(f<span style=color:#f92672>.</span>filename))
+</code></pre></div></li><li><p>request.cookie{}：请求包含的cookie，同样推荐使用get方法获取值</p></li></ul><h3 id=response-对象>response 对象</h3><p>一个视图函数的返回值会被默认转换成一个response对象，如果返回值是字符串类型的将会把字符串作为响应的body部分，同时包含一个<strong>200 OK</strong>的状态码和<em>text/html</em> mimetype；如果返回值是字典，则会调用**jsonfy()**方法来生成一个响应。此外，可以使用元组形式的返回来设置状态码和headers，但要求返回是以下形式：(response, status)、(response, headers)、(response, status, headers)</p><p>此外，如果需要更多对response的定制，可以使用<strong>make_response()</strong></p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#a6e22e>@app</span><span style=color:#f92672>.</span>errorhandler(<span style=color:#ae81ff>404</span>)
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>not_found</span>(error):
+    resp <span style=color:#f92672>=</span> make_response(render_template(<span style=color:#e6db74>&#39;error.html&#39;</span>), <span style=color:#ae81ff>404</span>)
+    resp<span style=color:#f92672>.</span>set_cookie(<span style=color:#e6db74>&#39;username&#39;</span>, <span style=color:#e6db74>&#39;the username&#39;</span>)
+    resp<span style=color:#f92672>.</span>headers[<span style=color:#e6db74>&#39;X-Something&#39;</span>] <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;A value&#39;</span>
+    <span style=color:#66d9ef>return</span> resp
+</code></pre></div><h3 id=sessions-机制>Sessions 机制</h3><p>除了request对象之外，还有一个session对象（如果导入的话）；session 机制允许在同一个用户的多个请求之间存储某些信息。</p><p>想要使用 session，首先需要导入session，同时为应用设置 secure_key：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>from</span> flask <span style=color:#f92672>import</span> Flask, session, redirect, url_for, request
+<span style=color:#f92672>from</span> markupsafe <span style=color:#f92672>import</span> escape
+
+app <span style=color:#f92672>=</span> Flask(__name__)
+app<span style=color:#f92672>.</span>secret_key <span style=color:#f92672>=</span> <span style=color:#e6db74>b</span><span style=color:#e6db74>&#39;_5#y2L&#34;F4Q8z</span><span style=color:#ae81ff>\n\xec</span><span style=color:#e6db74>]/&#39;</span>
+
+<span style=color:#a6e22e>@app</span><span style=color:#f92672>.</span>route(<span style=color:#e6db74>&#39;/&#39;</span>)
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>index</span>():
+    <span style=color:#66d9ef>if</span> <span style=color:#e6db74>&#39;username&#39;</span> <span style=color:#f92672>in</span> session:
+        <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#39;Logged in as </span><span style=color:#e6db74>%s</span><span style=color:#e6db74>&#39;</span> <span style=color:#f92672>%</span> escape(session[<span style=color:#e6db74>&#39;username&#39;</span>])
+    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#39;You are not logged in&#39;</span>
+
+<span style=color:#a6e22e>@app</span><span style=color:#f92672>.</span>route(<span style=color:#e6db74>&#39;/login&#39;</span>, methods<span style=color:#f92672>=</span>[<span style=color:#e6db74>&#39;GET&#39;</span>, <span style=color:#e6db74>&#39;POST&#39;</span>])
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>login</span>():
+    <span style=color:#66d9ef>if</span> request<span style=color:#f92672>.</span>method <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;POST&#39;</span>:
+        session[<span style=color:#e6db74>&#39;username&#39;</span>] <span style=color:#f92672>=</span> request<span style=color:#f92672>.</span>form[<span style=color:#e6db74>&#39;username&#39;</span>]
+        <span style=color:#66d9ef>return</span> redirect(url_for(<span style=color:#e6db74>&#39;index&#39;</span>))
+    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#39;&#39;&#39;
+</span><span style=color:#e6db74>        &lt;form method=&#34;post&#34;&gt;
+</span><span style=color:#e6db74>            &lt;p&gt;&lt;input type=text name=username&gt;
+</span><span style=color:#e6db74>            &lt;p&gt;&lt;input type=submit value=Login&gt;
+</span><span style=color:#e6db74>        &lt;/form&gt;
+</span><span style=color:#e6db74>    &#39;&#39;&#39;</span>
+
+<span style=color:#a6e22e>@app</span><span style=color:#f92672>.</span>route(<span style=color:#e6db74>&#39;/logout&#39;</span>)
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>logout</span>():
+    <span style=color:#75715e># remove the username from the session if it&#39;s there</span>
+    session<span style=color:#f92672>.</span>pop(<span style=color:#e6db74>&#39;username&#39;</span>, <span style=color:#66d9ef>None</span>)
+    <span style=color:#66d9ef>return</span> redirect(url_for(<span style=color:#e6db74>&#39;index&#39;</span>))
+</code></pre></div><p>flask使用基于cookies的session，Flask会将放入session序列中的值进行序列化操作，然后放入到cookies中，因此使用的secret_key需要务必保密，否则可能很容易受到攻击：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python>cookies <span style=color:#f92672>=</span> ImmutableMultiDict([(<span style=color:#e6db74>&#39;session&#39;</span>, <span style=color:#e6db74>&#39;eyJ1c2VybmFtZSI6InVzZXJuYW1lIn0.YG6Lmw.6pVJTDTG3Ei6CHEM4c_lrc_zsXo&#39;</span>)])
+</code></pre></div><p>可以使用os来生成随机数：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>import</span> os; app<span style=color:#f92672>.</span>secret_key<span style=color:#f92672>=</span>os<span style=color:#f92672>.</span>urandom(<span style=color:#ae81ff>16</span>))
+</code></pre></div><h3 id=database-使用>database 使用</h3><p>使用数据库之前自然先连接到数据库，在一个web应用中，与数据库的连接通常与request绑定在一起，因此一般会在处理请求的某个点创建连接，而在发送响应后断开这个连接。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>import</span> sqlite3
+<span style=color:#f92672>from</span> flask <span style=color:#f92672>import</span> current_app, g
+
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get_db</span>():
+    <span style=color:#66d9ef>if</span> <span style=color:#e6db74>&#39;db&#39;</span> <span style=color:#f92672>not</span> <span style=color:#f92672>in</span> g:
+        g<span style=color:#f92672>.</span>db <span style=color:#f92672>=</span> sqlite3<span style=color:#f92672>.</span>connect(
+            current_app<span style=color:#f92672>.</span>config[<span style=color:#e6db74>&#39;DATABASE&#39;</span>],
+            detect_types<span style=color:#f92672>=</span>sqlite3<span style=color:#f92672>.</span>PARSE_DECLTYPES
+        )
+        g<span style=color:#f92672>.</span>db<span style=color:#f92672>.</span>row_factory <span style=color:#f92672>=</span> sqlite3<span style=color:#f92672>.</span>Row
+
+    <span style=color:#66d9ef>return</span> g<span style=color:#f92672>.</span>db
+
+
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>close_db</span>(e<span style=color:#f92672>=</span><span style=color:#66d9ef>None</span>):
+    db <span style=color:#f92672>=</span> g<span style=color:#f92672>.</span>pop(<span style=color:#e6db74>&#39;db&#39;</span>, <span style=color:#66d9ef>None</span>)
+
+    <span style=color:#66d9ef>if</span> db <span style=color:#f92672>is</span> <span style=color:#f92672>not</span> <span style=color:#66d9ef>None</span>:
+        db<span style=color:#f92672>.</span>close()
+</code></pre></div><p>这里的g同样是一个特殊的对象，它对每个请求都是唯一的，用于存储在请求过程中可能被多个函数访问的数据。如果在同一个请求中第二次调用get_db，那么连接将被存储和重用，而不是创建一个新的连接。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>init_db</span>():
+    db <span style=color:#f92672>=</span> get_db()
+
+    <span style=color:#66d9ef>with</span> current_app<span style=color:#f92672>.</span>open_resource(<span style=color:#e6db74>&#39;schema.sql&#39;</span>) <span style=color:#66d9ef>as</span> f:
+        db<span style=color:#f92672>.</span>executescript(f<span style=color:#f92672>.</span>read()<span style=color:#f92672>.</span>decode(<span style=color:#e6db74>&#39;utf8&#39;</span>))
+
+<span style=color:#a6e22e>@click</span><span style=color:#f92672>.</span>command(<span style=color:#e6db74>&#39;init-db&#39;</span>)
+<span style=color:#a6e22e>@with_appcontext</span>
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>init_db_command</span>():
+    <span style=color:#e6db74>&#34;&#34;&#34;Clear the existing data and create new tables.&#34;&#34;&#34;</span>
+    init_db()
+    click<span style=color:#f92672>.</span>echo(<span style=color:#e6db74>&#39;Initialized the database.&#39;</span>)
+</code></pre></div><p>close_db通过检查g.db是否被设置来检查是否建立了连接，如果连接存在，就会被关闭。进一步来说，可以在工厂方法里设置close_db来实现在每一个请求之后执行这个方法。</p><p>由于使用了工厂方法来创建应用，在编写方法时这个应用时不能使用的；事实上，应该编写一个方法将应用作为参数传递，然后再在工厂中注册。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#75715e># db.py</span>
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>init_app</span>(app):
+    app<span style=color:#f92672>.</span>teardown_appcontext(close_db)
+    app<span style=color:#f92672>.</span>cli<span style=color:#f92672>.</span>add_command(init_db_command)
+</code></pre></div><p><strong>app.teardown_appcontext()</strong> 会告诉Flask每次当每次返回请求后在执行清理操作时调用这个方法。</p><p>**@click.command()**定义了一个命令行命令<em>init-db</em>，这个命令会调用init_db()方法，然后输出一个信息。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>create_app</span>():
+    app <span style=color:#f92672>=</span> <span style=color:#f92672>...</span>
+    <span style=color:#75715e># existing code omitted</span>
+
+    <span style=color:#f92672>from</span> . <span style=color:#f92672>import</span> db
+    db<span style=color:#f92672>.</span>init_app(app)
+
+    <span style=color:#66d9ef>return</span> app
+</code></pre></div><p>注册完毕后就可以使用flask命令行来执行操作，来进行数据库的设置。</p><p>连接到数据库之后可以进行一些对数据的操作：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#a6e22e>@bp</span><span style=color:#f92672>.</span>route(<span style=color:#e6db74>&#39;/register&#39;</span>, methods<span style=color:#f92672>=</span>(<span style=color:#e6db74>&#39;GET&#39;</span>, <span style=color:#e6db74>&#39;POST&#39;</span>))
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>register</span>():
+    <span style=color:#66d9ef>if</span> request<span style=color:#f92672>.</span>method <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;POST&#39;</span>:
+        username <span style=color:#f92672>=</span> request<span style=color:#f92672>.</span>form[<span style=color:#e6db74>&#39;username&#39;</span>]
+        password <span style=color:#f92672>=</span> request<span style=color:#f92672>.</span>form[<span style=color:#e6db74>&#39;password&#39;</span>]
+        db <span style=color:#f92672>=</span> get_db()
+        error <span style=color:#f92672>=</span> <span style=color:#66d9ef>None</span>
+
+        <span style=color:#66d9ef>if</span> <span style=color:#f92672>not</span> username:
+            error <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;Username is required.&#39;</span>
+        <span style=color:#66d9ef>elif</span> <span style=color:#f92672>not</span> password:
+            error <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;Password is required.&#39;</span>
+        <span style=color:#66d9ef>elif</span> db<span style=color:#f92672>.</span>execute(
+            <span style=color:#e6db74>&#39;SELECT id FROM user WHERE username = ?&#39;</span>, (username,)
+        )<span style=color:#f92672>.</span>fetchone() <span style=color:#f92672>is</span> <span style=color:#f92672>not</span> <span style=color:#66d9ef>None</span>:
+            error <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;User </span><span style=color:#e6db74>{}</span><span style=color:#e6db74> is already registered.&#39;</span><span style=color:#f92672>.</span>format(username)
+
+        <span style=color:#66d9ef>if</span> error <span style=color:#f92672>is</span> <span style=color:#66d9ef>None</span>:
+            db<span style=color:#f92672>.</span>execute(
+                <span style=color:#e6db74>&#39;INSERT INTO user (username, password) VALUES (?, ?)&#39;</span>,
+                (username, generate_password_hash(password))
+            )
+            db<span style=color:#f92672>.</span>commit()
+            <span style=color:#66d9ef>return</span> redirect(url_for(<span style=color:#e6db74>&#39;auth.login&#39;</span>))
+
+        flash(error)
+
+    <span style=color:#66d9ef>return</span> render_template(<span style=color:#e6db74>&#39;auth/register.html&#39;</span>)
+</code></pre></div><ul><li>在请求处理的开始阶段，使用 db=get_db() 创建一个连接</li><li>db.execute()执行一个sql语句</li><li>db.fetchone()返回查询的第一个结果，若为没有结果则为None；</li><li>db.commit()保存对数据库的更改</li></ul><p>除此之外还有一些方法：</p><ul><li>db.fetchall()则返回查询结果的列表</li></ul><h3 id=bluepring-使用>Bluepring 使用</h3><p>很多时候我们会为应用设计一些列相关的视图方法，或者为一个应用设计一个子模块，flask提供了Blueprint机制来管理一组视图和其他相关代码。在这种情况下，视图有蓝图来注册，然后再工厂方法里注册这个蓝图：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#75715e># auth.py</span>
+<span style=color:#f92672>from</span> flask <span style=color:#f92672>import</span> Blueprint
+
+au <span style=color:#f92672>=</span> Blueprint(<span style=color:#e6db74>&#39;auth&#39;</span>, __name__, url_prefix<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;/auth&#39;</span>)
+
+<span style=color:#a6e22e>@au</span><span style=color:#f92672>.</span>route(<span style=color:#e6db74>&#39;/&#39;</span>)
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>auth</span>():
+    <span style=color:#66d9ef>return</span>
+</code></pre></div><p>然后再工厂中注册这个蓝图：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>create_app</span>():
+    app <span style=color:#f92672>=</span> <span style=color:#f92672>...</span>
+
+    <span style=color:#f92672>from</span> . <span style=color:#f92672>import</span> auth
+    app<span style=color:#f92672>.</span>register_blueprint(auth<span style=color:#f92672>.</span>bp)
+
+    <span style=color:#66d9ef>return</span> app
+</code></pre></div><p>此时如果访问<code>localhost:5000/auth/</code>请求就会有auth处理。</p><h3 id=templates-使用>Templates 使用</h3><p>为了降低耦合度，通常会将HTML和逻辑操作分离开，flask也是这样做的。flask默认使用Jinja模板引擎，再flask使用模板同样很简单，只需要使用render_template()然后传入相关的参数即可：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>from</span> flask <span style=color:#f92672>import</span> render_template
+
+<span style=color:#a6e22e>@app</span><span style=color:#f92672>.</span>route(<span style=color:#e6db74>&#39;/&#39;</span>)
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>index</span>():
+    params <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;Param&#39;</span>
+    <span style=color:#66d9ef>return</span> render_template(<span style=color:#e6db74>&#39;index.html&#39;</span>, params<span style=color:#f92672>=</span>params)
+</code></pre></div><p>这回使Flask到templates目录下寻找index.html，然后使用这个文件作为模板，同时将params作为参数传递。</p><p>Jinja2 主要使用两种方法插入内容，然和再<code>{{ }}</code>之间的内容会被视为表达式并执行，然后将结果输出，这意味可以在其中使用类似<code>{{ url_for('auth.login') }}</code>和<code>{{ params }}</code>这样的表达式和变量；另一种方法是使用<code>{% %}</code>作为控制流，主要有block、if、for等。</p><h3 id=more-apis>more apis</h3><ul><li>@app.before_app_request</li></ul><h2 id=再上层楼>再上层楼</h2><ul><li>secure_filename()</li><li>session secret_key</li></ul><h2 id=更进一步>更进一步</h2><ul><li>源码分析</li></ul><h2 id=行百里路>行百里路</h2><p>刚好布置了作业，拿来练练flask：</p><h3 id=字符串解析提取网页内容>字符串解析+提取网页内容</h3><p>两个作业，一个是解析字符串，提取出前缀、后缀、子集等，另一个是获取一个网页解析文本内容，都比较简单，拿来练练手。</p><p>简单想了以下，这次打算做成一个包，两次作业分别设计为两个蓝图，主页暂时就起一个导航作用，那么结构大概就是这个样子：</p><pre><code>|---app/
+	|---__init__.py
+	|---stringParse.py
+	|---contextExtract.py
+	|---tempaltes/
+	|---static/
+</code></pre><p><strong>__init__.py</strong></p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>from</span> flask <span style=color:#f92672>import</span> Flask, render_template
+<span style=color:#f92672>from</span> . <span style=color:#f92672>import</span> contextExtract, stringParse
+
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>create_app</span>():
+    app <span style=color:#f92672>=</span> Flask(__name__)
+    bps <span style=color:#f92672>=</span> [
+        contextExtract<span style=color:#f92672>.</span>ce,
+        stringParse<span style=color:#f92672>.</span>sp
+    ]
+
+    <span style=color:#66d9ef>for</span> bp <span style=color:#f92672>in</span> bps:
+        app<span style=color:#f92672>.</span>register_blueprint(bp)
+
+    <span style=color:#a6e22e>@app</span><span style=color:#f92672>.</span>route(<span style=color:#e6db74>&#39;/&#39;</span>)
+    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>index</span>():
+        <span style=color:#66d9ef>return</span> render_template(<span style=color:#e6db74>&#39;index.html&#39;</span>)
+
+    <span style=color:#66d9ef>return</span> app
+</code></pre></div><p><strong>stringParse.py</strong></p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>from</span> flask <span style=color:#f92672>import</span> Blueprint, render_template, request
+
+sp <span style=color:#f92672>=</span> Blueprint(<span style=color:#e6db74>&#39;sp&#39;</span>, __name__, url_prefix<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;/stringParse&#39;</span>)
+
+<span style=color:#a6e22e>@sp</span><span style=color:#f92672>.</span>route(<span style=color:#e6db74>&#39;/&#39;</span>)
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>index</span>():
+    <span style=color:#66d9ef>return</span> render_template(<span style=color:#e6db74>&#34;stringParse/index.html&#34;</span>)
+
+<span style=color:#a6e22e>@sp</span><span style=color:#f92672>.</span>route(<span style=color:#e6db74>&#39;/result&#39;</span>, methods<span style=color:#f92672>=</span>[<span style=color:#e6db74>&#34;Post&#34;</span>])
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>result</span>():
+    stri <span style=color:#f92672>=</span> request<span style=color:#f92672>.</span>form[<span style=color:#e6db74>&#39;stri&#39;</span>]
+    data <span style=color:#f92672>=</span> {}
+    data[<span style=color:#e6db74>&#39;stri&#39;</span>] <span style=color:#f92672>=</span> stri
+    data[<span style=color:#e6db74>&#39;pn&#39;</span>], data[<span style=color:#e6db74>&#39;p&#39;</span>] <span style=color:#f92672>=</span> getPrefix(stri)
+    data[<span style=color:#e6db74>&#39;sn&#39;</span>], data[<span style=color:#e6db74>&#39;s&#39;</span>] <span style=color:#f92672>=</span> getSuffix(stri)
+    data[<span style=color:#e6db74>&#39;sbn&#39;</span>], data[<span style=color:#e6db74>&#39;sb&#39;</span>] <span style=color:#f92672>=</span> getSubset(stri)
+    data[<span style=color:#e6db74>&#39;sen&#39;</span>], data[<span style=color:#e6db74>&#39;se&#39;</span>] <span style=color:#f92672>=</span> getSubsetExcept(stri)
+    <span style=color:#66d9ef>return</span> render_template(<span style=color:#e6db74>&#34;stringParse/result.html&#34;</span>, data <span style=color:#f92672>=</span> data)
+
+
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>getPrefix</span>(stri):
+    prefix_nums <span style=color:#f92672>=</span> len(stri) <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>
+    stri_prefix <span style=color:#f92672>=</span> []
+    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(prefix_nums):
+        stri_prefix<span style=color:#f92672>.</span>append(stri[<span style=color:#ae81ff>0</span>:i])
+    <span style=color:#66d9ef>return</span> prefix_nums, stri_prefix
+
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>getSuffix</span>(stri):
+    suffix_nums <span style=color:#f92672>=</span> len(stri) <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>
+    stri_suffix <span style=color:#f92672>=</span> []
+    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(suffix_nums):
+        stri_suffix<span style=color:#f92672>.</span>append(stri[i:])
+    stri_suffix <span style=color:#f92672>=</span> sorted(stri_suffix, key <span style=color:#f92672>=</span> <span style=color:#66d9ef>lambda</span> i:len(i))
+    <span style=color:#66d9ef>return</span> suffix_nums, stri_suffix
+
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>getSubset</span>(stri):
+    subset_nums <span style=color:#f92672>=</span> len(stri) <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>
+    stri_subset <span style=color:#f92672>=</span> []
+    <span style=color:#66d9ef>for</span> x <span style=color:#f92672>in</span> range(subset_nums):
+        <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(x, subset_nums):
+            stri_subset<span style=color:#f92672>.</span>append(stri[x:i])
+    stri_subset <span style=color:#f92672>=</span> list(set(stri_subset))
+    stri_subset <span style=color:#f92672>=</span> sorted(stri_subset, key <span style=color:#f92672>=</span> <span style=color:#66d9ef>lambda</span> i:len(i))
+    <span style=color:#66d9ef>return</span> len(stri_subset), stri_subset
+
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>getSubsetExcept</span>(stri):
+    stri_prefix <span style=color:#f92672>=</span> getPrefix(stri)[<span style=color:#ae81ff>1</span>]
+    stri_suffix <span style=color:#f92672>=</span> getSuffix(stri)[<span style=color:#ae81ff>1</span>]
+    stri_subset <span style=color:#f92672>=</span> getSubset(stri)[<span style=color:#ae81ff>1</span>]
+    stri_subset <span style=color:#f92672>=</span> [x <span style=color:#66d9ef>for</span> x <span style=color:#f92672>in</span> stri_subset <span style=color:#66d9ef>if</span> x <span style=color:#f92672>not</span> <span style=color:#f92672>in</span> stri_prefix <span style=color:#f92672>and</span> x <span style=color:#f92672>not</span> <span style=color:#f92672>in</span> stri_suffix]
+    <span style=color:#66d9ef>return</span> len(stri_subset), stri_subset
+</code></pre></div><p><strong>contextExtract.py</strong></p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>from</span> flask <span style=color:#f92672>import</span> Blueprint, render_template, request
+
+ce <span style=color:#f92672>=</span> Blueprint(<span style=color:#e6db74>&#39;ce&#39;</span>, __name__, url_prefix<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;/contextExtract&#39;</span>)
+
+<span style=color:#a6e22e>@ce</span><span style=color:#f92672>.</span>route(<span style=color:#e6db74>&#39;/&#39;</span>)
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>index</span>():
+    <span style=color:#66d9ef>return</span> render_template(<span style=color:#e6db74>&#34;contextExtract/index.html&#34;</span>)
+
+<span style=color:#a6e22e>@ce</span><span style=color:#f92672>.</span>route(<span style=color:#e6db74>&#39;/result/&#39;</span>, methods<span style=color:#f92672>=</span>[<span style=color:#e6db74>&#39;Post&#39;</span>])
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>result</span>():
+    html <span style=color:#f92672>=</span> getPage(request<span style=color:#f92672>.</span>form[<span style=color:#e6db74>&#39;url&#39;</span>])
+    content <span style=color:#f92672>=</span> extract(html)
+    <span style=color:#66d9ef>return</span> render_template(<span style=color:#e6db74>&#34;contextExtract/result.html&#34;</span>, html<span style=color:#f92672>=</span>html, content<span style=color:#f92672>=</span>content)
+
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>getPage</span>(url):
+    <span style=color:#f92672>import</span> requests
+    reg <span style=color:#f92672>=</span> requests<span style=color:#f92672>.</span>get(url)
+    <span style=color:#66d9ef>if</span> reg<span style=color:#f92672>.</span>ok:
+        <span style=color:#66d9ef>return</span> reg<span style=color:#f92672>.</span>text
+    <span style=color:#66d9ef>else</span>:
+        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>None</span>
+
+<span style=color:#66d9ef>def</span> <span style=color:#a6e22e>extract</span>(page):
+    content <span style=color:#f92672>=</span> page
+    <span style=color:#66d9ef>return</span> content
+</code></pre></div></article><link rel=stylesheet href=https://unpkg.com/gitalk/dist/gitalk.css><script src=https://unpkg.com/gitalk/dist/gitalk.min.js></script><div id=gitalk></div><script>var gitalk=new Gitalk({clientID:'9a04c6b451fbce76511d',clientSecret:'430c540c77ecd6b59749c60f0341c057bd5320a0',repo:'Causa1ity.github.io',owner:'Causa1ity',admin:'Causa1ity',id:'devops/python/flask',distractionFreeMode:!1});gitalk.render('gitalk')</script></div><div class="flex-initial hidden lg:block lg:w-40 xl:w-60 2xl:w-80"><div class=fixed><h2 class="font-title text-2xl mb-4">Flask</h2><div class="font-mono text-xl"><nav id=TableOfContents><ul><li><a href=#before-use>Before Use</a><ul><li><a href=#环境配置>环境配置</a></li></ul></li><li><a href=#初窥>初窥</a><ul><li><a href=#flask-对象>flask 对象</a></li><li><a href=#route-方法>route 方法</a></li><li><a href=#url_for-构造路由>url_for 构造路由</a></li><li><a href=#request-对象>request 对象</a></li><li><a href=#response-对象>response 对象</a></li><li><a href=#sessions-机制>Sessions 机制</a></li><li><a href=#database-使用>database 使用</a></li><li><a href=#bluepring-使用>Bluepring 使用</a></li><li><a href=#templates-使用>Templates 使用</a></li><li><a href=#more-apis>more apis</a></li></ul></li><li><a href=#再上层楼>再上层楼</a></li><li><a href=#更进一步>更进一步</a></li><li><a href=#行百里路>行百里路</a><ul><li><a href=#字符串解析提取网页内容>字符串解析+提取网页内容</a></li></ul></li></ul></nav></div></div></div></div></div><footer class=flex-auto><div class="font-title text-center my-4"><p class=text-lg>Powered By <a href=https://gohugo.io>Hugo</a></p></div></footer></body></html>

