@@ -47,7 +47,6 @@
 <article id=content class="content mb-4 p-4">
 <blockquote>
 <p>Hugo Web Series 是记录使用 Hugo 搭建一个 Web 网站的记录系列，目标是记录下使用 Hugo + TailwindCSS + Vue 搭建网站的各种构思、问题。</p>
-<p>文章基于 Windows 编写，Shell 主要为 PowerShell。</p>
 <p>这是本系列的第二篇，内容为创建一个简单的主页。</p>
 </blockquote>
 <h2 id=基本结构>基本结构</h2>
@@ -95,7 +94,7 @@ PS&gt; ni .\layouts\partials\basic\footer.html
 <span style=color:#75715e># url = &#34;/dirpath/&#34;</span>
 <span style=color:#75715e># weight = -1</span>
 </code></pre></div><p>其中 weight 决定了现实的先后顺序，值越大越靠后；如果是使用单独的配置文件，则要将这些内容放到 [Menus] 中。我这里添加了 5 个选项，所以现在网站是这个样子：</p>
-<p><img src=D:%5CWorkSpace%5CWebStorm%5CBlog%5Ccontent%5Cdevops%5CWeb%5Chugo%5Chome.assets%5Cimage-20210715092100303.png alt=image-20210715092100303></p>
+<p><img src=https://causality-blog.oss-cn-hangzhou.aliyuncs.com/hugo/devops/web/hugo/home/image-20210715092100303.png alt=image-20210715092100303></p>
 <p>当然需要相应的目录存在点击才有效果，现在点击只会404。</p>
 <p>然后看是 footer，这个的话显示一些基本信息就行：</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html>&lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;font-title text-center my-4&#34;</span>&gt;
@@ -106,7 +105,7 @@ PS&gt; ni .\layouts\partials\basic\footer.html
         Powered By &lt;<span style=color:#f92672>a</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;https://gohugo.io&#34;</span>&gt;Hugo&lt;/<span style=color:#f92672>a</span>&gt;
     &lt;/<span style=color:#f92672>p</span>&gt;
 &lt;/<span style=color:#f92672>div</span>&gt;
-</code></pre></div><p><img src=D:%5CWorkSpace%5CWebStorm%5CBlog%5Ccontent%5Cdevops%5CWeb%5Chugo%5Chome.assets%5Cimage-20210715092456783.png alt=image-20210715092456783></p>
+</code></pre></div><p><img src=https://causality-blog.oss-cn-hangzhou.aliyuncs.com/hugo/devops/web/hugo/home/image-20210715092456783.png alt=image-20210715092456783></p>
 <h2 id=主体部分>主体部分</h2>
 <p>主题部分由所有两栏构成，所有首先确定结构如下：</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html>{{ define &#34;main&#34; }}
@@ -151,7 +150,7 @@ PS&gt; ni .\layouts\partials\basic\footer.html
 <span style=color:#a6e22e>numPostsIndex</span> = <span style=color:#ae81ff>5</span>
 </code></pre></div><p>然后将 5 替换为<code>.Site.Params.numPostsIndex</code> 即可。</p>
 <p>默认来讲，如果没事自行设置，.Summary 会选取文章的前 70 个词作为摘要，但是使用时就会发现，如果使用中文，实际长度远远超过 70 词。</p>
-<p><img src=D:%5CWorkSpace%5CWebStorm%5CBlog%5Ccontent%5Cdevops%5CWeb%5Chugo%5Chome.assets%5Cimage-20210715101313422.png alt=image-20210715101313422></p>
+<p><img src=https://causality-blog.oss-cn-hangzhou.aliyuncs.com/hugo/devops/web/hugo/home/image-20210715101313422.png alt=image-20210715101313422></p>
 <p>同参考文档<a href=https://gohugo.io/content-management/summaries/>Content Summaries | Hugo (gohugo.io)</a> 可以知道原因，主要是这里使用了中文，而对于中文的话分词就会不正确，如果想要对中文进行摘要，需要在设置里设置<code>hasCJKLanguage</code>选项为<code>true</code>。我这里顺便设置摘要为100个词，结果就是这个样子：</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-toml data-lang=toml><span style=color:#a6e22e>baseURL</span> = <span style=color:#e6db74>&#34;https://causality.top/&#34;</span>
 <span style=color:#a6e22e>languageCode</span> = <span style=color:#e6db74>&#34;zh-cn&#34;</span>
@@ -159,9 +158,9 @@ PS&gt; ni .\layouts\partials\basic\footer.html
 
 <span style=color:#a6e22e>summaryLength</span> = <span style=color:#ae81ff>100</span>
 <span style=color:#a6e22e>hasCJKLanguage</span> = <span style=color:#66d9ef>true</span>
-</code></pre></div><p><img src=D:%5CWorkSpace%5CWebStorm%5CBlog%5Ccontent%5Cdevops%5CWeb%5Chugo%5Chome.assets%5Cimage-20210715101607489.png alt=image-20210715101607489></p>
+</code></pre></div><p><img src=https://causality-blog.oss-cn-hangzhou.aliyuncs.com/hugo/devops/web/hugo/home/image-20210715101607489.png alt=image-20210715101607489></p>
 <p>那这边就差不多了，接下来就是 widget，这个也是全凭个人喜好，我最终的结果是这个样子：</p>
-<p><img src=D:%5CWorkSpace%5CWebStorm%5CBlog%5Ccontent%5Cdevops%5CWeb%5Chugo%5Chome.assets%5Cimage-20210715103421687.png alt=image-20210715103421687></p>
+<p><img src=https://causality-blog.oss-cn-hangzhou.aliyuncs.com/hugo/devops/web/hugo/home/image-20210715103421687.png alt=image-20210715103421687></p>
 <p>只是显示了基本的信息，源码如下：</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html>&lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;w-3/4 max-w-80 mx-auto&#34;</span>&gt;
     <span style=color:#75715e>&lt;!-- info card --&gt;</span>
@@ -198,7 +197,7 @@ PS&gt; ni .\layouts\partials\basic\footer.html
 <p>然后一些需要注意的内容是，<code>resources.Get</code>会在资源目录下寻找对应的文件，默认是static，而我这里存到了assets 中，所以需要在配置文件中进行修改：</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-toml data-lang=toml><span style=color:#a6e22e>staticDir</span> = [<span style=color:#e6db74>&#34;assets&#34;</span>]
 </code></pre></div><p>所以现在一个基本的主页就成型了：</p>
-<p><img src=D:%5CWorkSpace%5CWebStorm%5CBlog%5Ccontent%5Cdevops%5CWeb%5Chugo%5Chome.assets%5Cimage-20210715103836535.png alt=image-20210715103836535></p>
+<p><img src=https://causality-blog.oss-cn-hangzhou.aliyuncs.com/hugo/devops/web/hugo/home/image-20210715103836535.png alt=image-20210715103836535></p>
 </article>
 <div class="flex justify-between mt-12 mx-8 font-title text-xl">
 <div class=flex-initial>

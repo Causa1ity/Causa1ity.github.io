@@ -47,7 +47,6 @@
 <article id=content class="content mb-4 p-4">
 <blockquote>
 <p>Hugo Web Series 是记录使用 Hugo 搭建一个 Web 网站的记录系列，目标是记录下使用 Hugo + TailwindCSS + Vue 搭建网站的各种构思、问题。</p>
-<p>文章基于 Windows 编写，Shell 主要为 PowerShell。</p>
 <p>这是本系列的第三篇，内容为 archetypes 介绍及其相关页面的创建。</p>
 </blockquote>
 <h2 id=archetypes>Archetypes</h2>
@@ -69,7 +68,7 @@
 |- Volume
 ...
 </code></pre><p>根据这个结构，我需要创建两个目录和一个文件，我这里是直接指定了 default 为 post，所以最终的结果如下：</p>
-<p><img src=D:%5CWorkSpace%5CWebStorm%5CBlog%5Ccontent%5Cdevops%5CWeb%5Chugo%5Carchetypes.assets%5Cimage-20210715110045242.png alt=image-20210715110045242></p>
+<p><img src=https://causality-blog.oss-cn-hangzhou.aliyuncs.com/hugo/devops/web/hugo/archetypes/image-20210715110045242.png alt=image-20210715110045242></p>
 <p>这里 <code>_index.md</code> 的含义是表示这个目录是一个 section，这是 hugo 组织目录的一种结构，这同时意味着该目录在渲染是将会寻找 list.html 等相关模板；与之相对的是 <code>index.md</code>，如果目录下是 <code>index.md</code>，则意味着这个目录在渲染是会使用 single.html 等模板。还有很多其他影响，具体可以参考<a href=https://gohugo.io/content-management/organization/>Content Organization | Hugo (gohugo.io)</a>。</p>
 <p>然后是这几个文件的内容：</p>
 <pre><code>---
@@ -96,7 +95,7 @@ Something About This Volume.
 PS&gt; hugo new -k chapter web
 PS&gt; hugo new devops/web/hugo.md
 </code></pre></div><p>我这里实际还创建了一个 hugo 目录，然后将每篇文章放到这个目录里。</p>
-<p><img src=D:%5CWorkSpace%5CWebStorm%5CBlog%5Ccontent%5Cdevops%5CWeb%5Chugo%5Carchetypes.assets%5Cimage-20210715111820300.png alt=image-20210715111820300></p>
+<p><img src=https://causality-blog.oss-cn-hangzhou.aliyuncs.com/hugo/devops/web/hugo/archetypes/image-20210715111820300.png alt=image-20210715111820300></p>
 <h2 id=layouts>Layouts</h2>
 <p>创建了这些目录和文件之后，还有创建对应的模板文件，否则这些文件的内容就无法被渲染到网页上。content 下的每一个文件在渲染时都会寻找对应的模板，模板分为两个部分，一个是基础模板，另一个则是内容模板。具体的寻找方式可以参考<a href=https://gohugo.io/templates/lookup-order/>Hugo&rsquo;s Lookup Order | Hugo (gohugo.io)</a>，这里只简单介绍一下。</p>
 <p>基础模板，即 baseof，页面会寻找和自己位置最接近的 baseof.html，如果找不到就会使用 _default 下的baseof.html；这里暂时不区分的太细，所以只使用<code> _default/baseof.html</code> 。有需求的情况下，可以创建不同的 baseof 模板。</p>
@@ -140,7 +139,7 @@ PS&gt; hugo new devops/web/hugo.md
     {{ end }}
 &lt;/<span style=color:#f92672>div</span>&gt;
 {{ end }}
-</code></pre></div><p><img src=D:%5CWorkSpace%5CWebStorm%5CBlog%5Ccontent%5Cdevops%5CWeb%5Chugo%5Carchetypes.assets%5Cimage-20210715142606841.png alt=image-20210715142606841></p>
+</code></pre></div><p><img src=https://causality-blog.oss-cn-hangzhou.aliyuncs.com/hugo/devops/web/hugo/archetypes/image-20210715142606841.png alt=image-20210715142606841></p>
 <h3 id=chapterhtml>chapter.html</h3>
 <p>chapter 与 volume 类似，可以直接套用相同的模板，或者我这里直接显示所有的文章：</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html>{{ define &#34;main&#34; }}
@@ -179,7 +178,7 @@ PS&gt; hugo new devops/web/hugo.md
     &lt;/<span style=color:#f92672>div</span>&gt;
 &lt;/<span style=color:#f92672>div</span>&gt;
 {{ end }}
-</code></pre></div><p><img src=D:%5CWorkSpace%5CWebStorm%5CBlog%5Ccontent%5Cdevops%5CWeb%5Chugo%5Carchetypes.assets%5Cimage-20210715163713558.png alt=image-20210715163713558></p>
+</code></pre></div><p><img src=https://causality-blog.oss-cn-hangzhou.aliyuncs.com/hugo/devops/web/hugo/archetypes/image-20210715163713558.png alt=image-20210715163713558></p>
 <h2 id=小结>小结</h2>
 <p>到这里，一个基本的网站就建成了，最基本的东西就都有了。接下来就是对这个网站进行完善，主要为两个方面：一个是UI的完善，例如一些响应式设计、夜间模式等；另一方面是功能的完善，如搜索、归档、标签、分页等等。</p>
 </article>

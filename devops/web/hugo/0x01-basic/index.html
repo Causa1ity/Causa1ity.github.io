@@ -47,14 +47,16 @@
 <article id=content class="content mb-4 p-4">
 <blockquote>
 <p>Hugo Web Series 是记录使用 Hugo 搭建一个 Web 网站的记录系列，目标是记录下使用 Hugo + TailwindCSS + Vue 搭建网站的各种构思、问题。</p>
-<p>文章基于 Windows 编写，Shell 主要为 PowerShell。</p>
 <p>这是本系列的第一篇，主要内容为使用 Hugo + TailwindCSS 搭建一个简单的框架。</p>
 </blockquote>
 <h2 id=目录结构>目录结构</h2>
 <p>由于是使用Hugo来生成一个网站，因此实际牵扯到的目录结构有两个：一个是Hugo站点本身的目录结构，一个是Hugo生成的静态网站的目录。这里讨论的主要是前者。</p>
 <p>网站的目录由一个基本的 Hugo Site 略作修改而来，这里没有使用主题的方式来渲染网页，而是直接将主题的内容搬到了Site下，原因是主题使用 postcss 时需要全局安装，但是我不想这么做（😜），但是如果是直接合起来就不需要这样，因此采用了这样的方式来组织目录（事实上只要将content目录去掉，这个站点也很容易当作主题使用。</p>
+<blockquote>
+<p>PS: 后来又将主题和网站分开，主题已经放到GitHub上了：https://github.com/Causa1ity/hugo-theme-noth.git</p>
+</blockquote>
 <p>OK，现在看看具体的目录，大概长这样：</p>
-<p><img src=D:%5CWorkSpace%5CWebStorm%5CBlog%5Ccontent%5Cdevops%5CWeb%5Chugo%5Cbasic.assets%5Cimage-20210714231207695.png alt=image-20210714231207695></p>
+<p><img src=https://causality-blog.oss-cn-hangzhou.aliyuncs.com/hugo/devops/web/hugo/basic/image-20210714231207695.png alt=image-20210714231207695></p>
 <p>没有什么需要特别说明的地方，接下来介绍一下怎么生成这样一个目录结构。</p>
 <p>首先是需要有一个基本的站点结构，因此首先需要使用 Hugo 来新建一个 Site：</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-powershell data-lang=powershell>PS&gt; hugo new site Hugo-Web
@@ -69,7 +71,7 @@ PS&gt; npx tailwind init -p
 </code></pre><p>执行完上面的命令，目录结构就差不多成型了。当然这里还有一个resouces目录，这个目录是一个缓存目录，会在使用 hugo 生成网站时自动创建，这里暂时不必在意。</p>
 <h2 id=基本配置>基本配置</h2>
 <p>参考前面的步骤，得到的目录应该是下面这个样子：</p>
-<p><img src=D:%5CWorkSpace%5CWebStorm%5CBlog%5Ccontent%5Cdevops%5CWeb%5Chugo%5Cbasic.assets%5Cimage-20210714234814796.png alt=image-20210714234814796></p>
+<p><img src=https://causality-blog.oss-cn-hangzhou.aliyuncs.com/hugo/devops/web/hugo/basic/image-20210714234814796.png alt=image-20210714234814796></p>
 <p>虽然已经有了基本的目录结构，但是也只是徒有其表罢了，所以接下来就是要让其变得可用。这样，按照顺序来，首先看看archetypes这个目录。这个目录的作用是决定创建新文件时的默认内容，一般就是指定文件的frontmatter。在使用 <code>hugo new</code> 新建一个目录或文件时，可以使用 <code>-k</code> 来指定类型，hugo会根据指定的类型在这个目录下查找模板来生成文件。</p>
 <p>默认情况下，这个目录会有一个default.md，如果不指定<code>-k</code>就会使用这个文件。本节的目标只是创建主页和文章页，因此暂时不需要进行修改。</p>
 <p>接下来是 assets，这里自然是用来存放资源文件的了。这个目录是手动创建的，所以目前还没有内容，接下来就需要在其中创建一个目录和两个文件：</p>
@@ -171,7 +173,7 @@ PS&gt; ni .\layouts\partials\baisc\head.html
 &lt;/<span style=color:#f92672>h1</span>&gt;
 {{ end }}
 </code></pre></div><p>然后运行<code>hugo server</code>，在浏览器访问对应的页面：</p>
-<p><img src=D:%5CWorkSpace%5CWebStorm%5CBlog%5Ccontent%5Cdevops%5CWeb%5Chugo%5Cbasic.assets%5Cimage-20210715084501395.png alt=image-20210715084501395></p>
+<p><img src=https://causality-blog.oss-cn-hangzhou.aliyuncs.com/hugo/devops/web/hugo/basic/image-20210715084501395.png alt=image-20210715084501395></p>
 <p>到此一个基本的框架就搭建好了。</p>
 </article>
 <div class="flex justify-between mt-12 mx-8 font-title text-xl">
