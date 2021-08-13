@@ -1,0 +1,148 @@
+<!doctype html><html lang=zh>
+<head><meta http-equiv=content-type content="text/html" charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge,chrome=1">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel=stylesheet href=/css/tailwind.min.b39a406edef2cbbd2ccee2cbd368a787bfad3ac016440c2b37558902050cf85d.css integrity=sha256-s5pAbt7yy70szuLL02inh7+tOsAWRAwrN1WJAgUM+F0=>
+<link rel=preconnect href=https://fonts.googleapis.com>
+<link rel=preconnect href=https://fonts.gstatic.com crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Lora&display=swap" rel=stylesheet>
+<script src=https://kit.fontawesome.com/9cc9e9e3f3.js crossorigin=anonymous></script>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/docsearch.js@2.6.3/dist/cdn/docsearch.min.css><title>Hugo Web 0x06: Gitalk 评论系统</title>
+</head>
+<body class="flex flex-col">
+<header class="flex fixed bg-white w-full p-4 font-title text-xl border-b"><div class="logo flex-1">
+<a href=/ class=font-title>Forgotten Land</a>
+</div>
+<nav class="flex-initial ml-4">
+<div id=归档 class=inline>
+<a href=/metapages/archive/ class="mx-2 hover:text-blue-200">归档</a>
+</div>
+<div id=分类 class=inline>
+<a href=/categories/ class="mx-2 hover:text-blue-200">分类</a>
+<div class=absolute>
+</div>
+</div>
+<div id=标签 class=inline>
+<a href=/tags/ class="mx-2 hover:text-blue-200">标签</a>
+</div>
+<div id=关于 class=inline>
+<a href=/metapages/about/ class="mx-2 hover:text-blue-200">关于</a>
+</div>
+</nav>
+</header>
+<div class="flex-grow mt-24">
+<div class=flex>
+<div class="md:w-4/5 lg:w-2/3 max-w-screen-lg mx-auto lg:mr-0 p-4 shadow-2xl">
+<h1 class="font-title text-4xl text-center mb-4">Hugo Web 0x06: Gitalk 评论系统</h1>
+<div class="flex justify-center font-mono">
+<div class="mr-6 flex-none">
+<i class="fas fa-calendar mr-1"></i>
+<span>2021-07-18</span>
+</div>
+<div class="mr-6 flex-none">
+<i class="fas fa-clock mr-1"></i>
+<span>阅读时长约 3 分钟</span>
+</div>
+</div>
+<article id=content class="content mb-4 p-4">
+<blockquote>
+<p>Hugo Web Series 是记录使用 Hugo 搭建一个 Web 网站的记录系列，目标是记录下使用 Hugo + TailwindCSS + Vue 搭建网站的各种构思、问题。</p>
+<p>文章基于 Windows 编写，Shell 主要为 PowerShell。</p>
+<p>这是本系列的第五篇，内容为为网站增加 gitalk 评论系统。</p>
+</blockquote>
+<h2 id=gitalk评论系统>Gitalk评论系统</h2>
+<p>Gitalk 是一个基于 GitHub Issue 和 Preact 开发的评论插件，其托管在 GitHub 上，地址为<a href=https://github.com/gitalk/gitalk/blob/master/readme-cn.md>gitalk/readme-cn.md at master · gitalk/gitalk (github.com)</a>。其特征有使用 github 登录，支持多语言等等。</p>
+<p>使用 gitalk 的好处是可以直接配置起来很简单，而且是借助 GitHub Issue 实现的，除了需要创建一个 GitHub Application 外，不需要额外的服务。</p>
+<h2 id=为-hugo-web-添加-gitalk>为 Hugo-Web 添加 gitalk</h2>
+<p>前面说了，使用 gitalk 十分简单，实际上只需要两个步骤，分别是在 github 上新建一个 application，然后在模板中引入相关的代码即可。</p>
+<h3 id=创建-application>创建 Application</h3>
+<p>首先需要在<a href=https://github.com/settings/applications/new>New OAuth Application (github.com)</a>创建一个Application：</p>
+<p><img src=https://causality-blog.oss-cn-hangzhou.aliyuncs.com/hugo/devops/web/hugo/gitalk/image-20210718223921999.png alt=image-20210718223921999></p>
+<p>唯一需要注意的是 callback URL 必须是网站的域名，例如我这里是https://causality.top。创建之后会转到应用的页面，在这里会得到一个 Client ID 和 Client secrets，后者需要生成，这两个就是后面需要用到的东西。</p>
+<p>这里创建完之后就可以在模板中添加相应内容。</p>
+<h3 id=添加模板>添加模板</h3>
+<p>首先在 partials 目录下的适当位置添加一个文件，我把它放到了 <em>layouts/partials/components/gitalk.html</em> 中，在其中添加以下内容：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html>&lt;<span style=color:#f92672>link</span> <span style=color:#a6e22e>rel</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;stylesheet&#34;</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;https://unpkg.com/gitalk/dist/gitalk.css&#34;</span>&gt;
+&lt;<span style=color:#f92672>script</span> <span style=color:#a6e22e>src</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;https://unpkg.com/gitalk/dist/gitalk.min.js&#34;</span>&gt;&lt;/<span style=color:#f92672>script</span>&gt;
+&lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>id</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;gitalk&#34;</span>&gt;&lt;/<span style=color:#f92672>div</span>&gt;
+&lt;<span style=color:#f92672>script</span>&gt;
+    <span style=color:#66d9ef>var</span> <span style=color:#a6e22e>gitalk</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>Gitalk</span>({
+        <span style=color:#a6e22e>clientID</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;{{ .Site.Params.gitalk.clientID }}&#39;</span>,
+        <span style=color:#a6e22e>clientSecret</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;{{ .Site.Params.gitalk.clientSecret }}&#39;</span>,
+        <span style=color:#a6e22e>repo</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;{{ .Site.Params.gitalk.repo }}&#39;</span>,
+        <span style=color:#a6e22e>owner</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;{{ .Site.Params.gitalk.owner }}&#39;</span>,
+        <span style=color:#a6e22e>admin</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;{{ .Site.Params.gitalk.admin }}&#39;</span>,
+        <span style=color:#a6e22e>id</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;{{ .Permalink }}&#39;</span>,
+        <span style=color:#a6e22e>distractionFreeMode</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>false</span>
+    })
+
+    <span style=color:#a6e22e>gitalk</span>.<span style=color:#a6e22e>render</span>(<span style=color:#e6db74>&#39;gitalk&#39;</span>)
+&lt;/<span style=color:#f92672>script</span>&gt;
+</code></pre></div><p>前面两行为引入 gitalk 相关的文件，然后是容器，其 id 需要和后面的脚本中的一致，用来渲染评论区。然后是脚本，其中 clientID 和 clientSecret 分别就是前面申请的 application 的 Client ID 和 Client secrets，然后 repo 为用来提供 Issue 的仓库，owner 和 admin 一般就是自己的用户名，id 与 文章对应，一般取链接之类即可。</p>
+<p>我这里是将各个参数通过站点参数的方式给出了，如果只是自己用的话，直接硬编码也没什么问题。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-toml data-lang=toml><span style=color:#75715e># params.toml</span>
+[<span style=color:#a6e22e>gitalk</span>]
+<span style=color:#a6e22e>clientID</span> = <span style=color:#e6db74>&#39;9a04c6b451fbce76511d&#39;</span>
+<span style=color:#a6e22e>clientSecret</span> = <span style=color:#e6db74>&#39;430c540c77ecd6b59749c60f0341c057bd5320a0&#39;</span>
+<span style=color:#a6e22e>repo</span> = <span style=color:#e6db74>&#39;Causa1ity.github.io&#39;</span>
+<span style=color:#a6e22e>owner</span> = <span style=color:#e6db74>&#39;Causa1ity&#39;</span>
+<span style=color:#a6e22e>admin</span> = <span style=color:#e6db74>&#39;Causa1ity&#39;</span>
+</code></pre></div><p>这里模板配置后之后，在需要的地方引入就行了：</p>
+<pre><code>...
+{{ if .Params.gitalk }}
+&lt;div&gt;
+	{{ partial &quot;components/gitalk.html&quot; . }}
+&lt;/div&gt;
+{{ end }}
+...
+</code></pre><p>这里加了一个简单判断条件，就是当文章的 front matter 中 gitalk 参数为 true 的时候才会包含评论页面。</p>
+<h2 id=后记一些问题>后记：一些问题</h2>
+<h3 id=error-validation-failed>Error: Validation Failed.</h3>
+<p>这个问题一般是由于 id 的长度查过了 50 导致的，之所以会这样的原因在于这个 id 会被作为 Issue 的 label，而这个 label 就不能超过 50 个字母，所以会出现这个错误。</p>
+<p>所以，妥协的办法是将连接改短一点，或者不适用链接作为 id。</p>
+<h3 id=安全性问题>安全性问题</h3>
+<p>可以看出这里的 client secret 是直接暴露在前端的，所以就需要考虑这是否会出现一些安全性问题，不过这个问题有人研究过了，可以参考：<a href=https://carl-zk.github.io/blog/2020/03/03/gitalk-%E8%BF%90%E4%BD%9C%E5%8E%9F%E7%90%86/>Gitalk 运作原理 | 一叶轻舟渡万江 (carl-zk.github.io)</a></p>
+</article>
+<div class="flex justify-between mt-12 mx-8 font-title text-xl">
+<div class=flex-initial>
+<a href=https://causality.top/devops/web/hugo/0x05-deploy/ class=hover:text-blue-200>上一篇：Hugo Web 0x05 Deploy</a>
+</div>
+</div>
+<link rel=stylesheet href=https://unpkg.com/gitalk/dist/gitalk.css>
+<script src=https://unpkg.com/gitalk/dist/gitalk.min.js></script>
+<div id=gitalk></div>
+<script>var gitalk=new Gitalk({clientID:'9a04c6b451fbce76511d',clientSecret:'430c540c77ecd6b59749c60f0341c057bd5320a0',repo:'Causa1ity.github.io',owner:'Causa1ity',admin:'Causa1ity',id:'devops/web/hugo/0x06 gitalk',distractionFreeMode:!1});gitalk.render('gitalk')</script>
+</div>
+<div class="flex-initial hidden lg:block ml-4 mr-auto">
+<div class=fixed>
+<div class=font-serif>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#gitalk评论系统>Gitalk评论系统</a></li>
+<li><a href=#为-hugo-web-添加-gitalk>为 Hugo-Web 添加 gitalk</a>
+<ul>
+<li><a href=#创建-application>创建 Application</a></li>
+<li><a href=#添加模板>添加模板</a></li>
+</ul>
+</li>
+<li><a href=#后记一些问题>后记：一些问题</a>
+<ul>
+<li><a href=#error-validation-failed>Error: Validation Failed.</a></li>
+<li><a href=#安全性问题>安全性问题</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+</div>
+</div>
+<footer class=flex-auto><div class="font-title text-center my-4">
+<p class=text-lg>
+Powered By <a href=https://gohugo.io>Hugo</a>
+</p>
+</div>
+</footer>
+</body>
+</html>
