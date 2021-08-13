@@ -1,13 +1,80 @@
-<!doctype html><html lang=zh><head><meta http-equiv=content-type content="text/html" charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=stylesheet href=/css/tailwind.min.b39a406edef2cbbd2ccee2cbd368a787bfad3ac016440c2b37558902050cf85d.css integrity=sha256-s5pAbt7yy70szuLL02inh7+tOsAWRAwrN1WJAgUM+F0=><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Lora&display=swap" rel=stylesheet><script src=https://kit.fontawesome.com/9cc9e9e3f3.js crossorigin=anonymous></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/docsearch.js@2.6.3/dist/cdn/docsearch.min.css><title>Reflection</title></head><body class="flex flex-col"><header class="flex fixed bg-white w-full p-4 font-title text-xl border-b"><div class="logo flex-1"><a href=/ class=font-title>Forgotten Land</a></div><nav class="flex-initial ml-4"><div id=归档 class=inline><a href=/metapages/archive/ class="mx-2 hover:text-blue-200">归档</a></div><div id=分类 class=inline><a href=/categories/ class="mx-2 hover:text-blue-200">分类</a><div class=absolute></div></div><div id=标签 class=inline><a href=/tags/ class="mx-2 hover:text-blue-200">标签</a></div><div id=关于 class=inline><a href=/metapages/about/ class="mx-2 hover:text-blue-200">关于</a></div></nav></header><div class="flex-grow mt-24"><div class=flex><div class="md:w-4/5 lg:w-2/3 max-w-screen-lg mx-auto p-4 shadow-2xl"><h1 class="font-title text-4xl text-center mb-4">Reflection</h1><div class="flex justify-center font-mono"><div class="mr-6 flex-none"><i class="fas fa-calendar mr-1"></i>
-<span>2021-04-12</span></div><div class="mr-6 flex-none"><i class="fas fa-clock mr-1"></i>
-<span>阅读时长约 10 分钟</span></div></div><article class=content><h2 id=class>Class</h2><p>程序运行期间，Java虚拟机会为所有对象维护一个运行时的类型标识符，这个信息跟踪着每个对象所属的类。通过Class类，可以动态的访问这些信息。</p><blockquote><p>Java 的 Object 和 Class</p><p>两者确实是一个有趣的关系，在我学习面向对象过程中，始终保持的观念是：类是一种模板或者框架，而对象则是一个类的实例、具体化。因此只看名字确实会出现一个问题，那就是认为Object是Class的实例或是继承自Class，但事实却完全不是这样。</p><p>首先，Java作为一门面向对象的语言，其完全由类和对象构成，所有类最终都继承自一个特殊的类：Object。注意，不是Class，这确实与我一开始的想象有点相去，尤其是当Java中确实存在一个Class类时，更加让我感到窒息。</p><p>Class同样是一个特殊的类，和其他所有类一样，Class也是继承于Object，也就是说，Class是Object的子类。除了名字之外，Class也有着其特殊之处：可以通过Class类获取是Java运行中的类和接口的元数据；换句话说，Class类的实例表示了一个类。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>final</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Class</span><span style=color:#f92672>&lt;</span>T<span style=color:#f92672>&gt;</span>
+<!doctype html><html lang=zh>
+<head><meta http-equiv=content-type content="text/html" charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge,chrome=1">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel=stylesheet href=/css/tailwind.min.b39a406edef2cbbd2ccee2cbd368a787bfad3ac016440c2b37558902050cf85d.css integrity=sha256-s5pAbt7yy70szuLL02inh7+tOsAWRAwrN1WJAgUM+F0=>
+<link rel=preconnect href=https://fonts.googleapis.com>
+<link rel=preconnect href=https://fonts.gstatic.com crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Lora&display=swap" rel=stylesheet>
+<script src=https://kit.fontawesome.com/9cc9e9e3f3.js crossorigin=anonymous></script>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/docsearch.js@2.6.3/dist/cdn/docsearch.min.css><title>Reflection</title>
+</head>
+<body class="flex flex-col">
+<header class="flex fixed bg-white w-full p-4 font-title text-xl border-b"><div class="logo flex-1">
+<a href=/ class=font-title>Forgotten Land</a>
+</div>
+<nav class="flex-initial ml-4">
+<div id=归档 class=inline>
+<a href=/metapages/archive/ class="mx-2 hover:text-blue-200">归档</a>
+</div>
+<div id=分类 class=inline>
+<a href=/categories/ class="mx-2 hover:text-blue-200">分类</a>
+<div class=absolute>
+</div>
+</div>
+<div id=标签 class=inline>
+<a href=/tags/ class="mx-2 hover:text-blue-200">标签</a>
+</div>
+<div id=关于 class=inline>
+<a href=/metapages/about/ class="mx-2 hover:text-blue-200">关于</a>
+</div>
+</nav>
+</header>
+<div class="flex-grow mt-24">
+<div class=flex>
+<div class="md:w-4/5 lg:w-2/3 max-w-screen-lg mx-auto lg:mr-0 p-4 shadow-2xl">
+<h1 class="font-title text-4xl text-center mb-4">Reflection</h1>
+<div class="flex justify-center font-mono">
+<div class="mr-6 flex-none">
+<i class="fas fa-calendar mr-1"></i>
+<span>2021-04-12</span>
+</div>
+<div class="mr-6 flex-none">
+<i class="fas fa-clock mr-1"></i>
+<span>阅读时长约 10 分钟</span>
+</div>
+</div>
+<article id=content class="content mb-4 p-4">
+<h2 id=class>Class</h2>
+<p>程序运行期间，Java虚拟机会为所有对象维护一个运行时的类型标识符，这个信息跟踪着每个对象所属的类。通过Class类，可以动态的访问这些信息。</p>
+<blockquote>
+<p>Java 的 Object 和 Class</p>
+<p>两者确实是一个有趣的关系，在我学习面向对象过程中，始终保持的观念是：类是一种模板或者框架，而对象则是一个类的实例、具体化。因此只看名字确实会出现一个问题，那就是认为Object是Class的实例或是继承自Class，但事实却完全不是这样。</p>
+<p>首先，Java作为一门面向对象的语言，其完全由类和对象构成，所有类最终都继承自一个特殊的类：Object。注意，不是Class，这确实与我一开始的想象有点相去，尤其是当Java中确实存在一个Class类时，更加让我感到窒息。</p>
+<p>Class同样是一个特殊的类，和其他所有类一样，Class也是继承于Object，也就是说，Class是Object的子类。除了名字之外，Class也有着其特殊之处：可以通过Class类获取是Java运行中的类和接口的元数据；换句话说，Class类的实例表示了一个类。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>final</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Class</span><span style=color:#f92672>&lt;</span>T<span style=color:#f92672>&gt;</span>
 <span style=color:#66d9ef>extends</span> Object
 <span style=color:#66d9ef>implements</span> Serializable<span style=color:#f92672>,</span> GenericDeclaration<span style=color:#f92672>,</span> Type<span style=color:#f92672>,</span> AnnotatedElement
-</code></pre></div><p>总结：Object是一个特殊的类，特殊在其是所有类的父类；Class是一个特殊的类，特殊在其对象可以表示一个类。</p></blockquote><p>除了int等基本类型外，Java的其他类型都是class，包括字符串、数组甚至接口，从某种程度上来说，可以想象class是与int同等的基本“数据类型”。</p><blockquote><p>这里出现了另一个关键字：class。这个class并不是一个类，或者说class就是中文所说的“类”。</p><p>我们可以稍微看一下，对于每一个类，我们都这样定义它：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ClassName</span><span style=color:#f92672>{</span>
+</code></pre></div><p>总结：Object是一个特殊的类，特殊在其是所有类的父类；Class是一个特殊的类，特殊在其对象可以表示一个类。</p>
+</blockquote>
+<p>除了int等基本类型外，Java的其他类型都是class，包括字符串、数组甚至接口，从某种程度上来说，可以想象class是与int同等的基本“数据类型”。</p>
+<blockquote>
+<p>这里出现了另一个关键字：class。这个class并不是一个类，或者说class就是中文所说的“类”。</p>
+<p>我们可以稍微看一下，对于每一个类，我们都这样定义它：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ClassName</span><span style=color:#f92672>{</span>
     <span style=color:#66d9ef>public</span> <span style=color:#a6e22e>ClassName</span><span style=color:#f92672>(){}</span>
 <span style=color:#f92672>}</span>
-</code></pre></div><p>而这种形式确实与我们定义一个变量十分相似：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>private</span> <span style=color:#66d9ef>int</span> num<span style=color:#f92672>;</span>
-</code></pre></div><p>因此我说可以想象class是与int同等的基本数据类型。</p></blockquote><p>而实际上，class是JVM在执行过程中动态加载的，JVM每次读取到一个新的class类型时，将其加载到内存；而每加载一种class，JVM就会为其创建一个Class实例；因此，每个Class实例都指向一个类，并且包含了这个类所有信息。</p><h2 id=reflection>Reflection</h2><p>了解了Class，就可以尝试理解反射。</p><p>Java反射是一种机制，这个机制使得一个运行的Java程序可以检查自身，并且操作程序的内部属性。举例来说，Java类可以获取所有成员的名称并显示出来。</p><p>Class则是反射机制相关的一个重要的类，原因就是前面所说的，它可以获取到运行中的程序中所有类的元数据。</p><p>在程序中获取一个Class有三个方法：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#75715e>// 使用静态变量class
+</code></pre></div><p>而这种形式确实与我们定义一个变量十分相似：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>private</span> <span style=color:#66d9ef>int</span> num<span style=color:#f92672>;</span>
+</code></pre></div><p>因此我说可以想象class是与int同等的基本数据类型。</p>
+</blockquote>
+<p>而实际上，class是JVM在执行过程中动态加载的，JVM每次读取到一个新的class类型时，将其加载到内存；而每加载一种class，JVM就会为其创建一个Class实例；因此，每个Class实例都指向一个类，并且包含了这个类所有信息。</p>
+<h2 id=reflection>Reflection</h2>
+<p>了解了Class，就可以尝试理解反射。</p>
+<p>Java反射是一种机制，这个机制使得一个运行的Java程序可以检查自身，并且操作程序的内部属性。举例来说，Java类可以获取所有成员的名称并显示出来。</p>
+<p>Class则是反射机制相关的一个重要的类，原因就是前面所说的，它可以获取到运行中的程序中所有类的元数据。</p>
+<p>在程序中获取一个Class有三个方法：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#75715e>// 使用静态变量class
 </span><span style=color:#75715e></span>Class cls <span style=color:#f92672>=</span> String<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>;</span>
 
 <span style=color:#75715e>// 使用实例变量的getClass()方法
@@ -16,10 +83,22 @@ Class cls <span style=color:#f92672>=</span> s<span style=color:#f92672>.</span>
 
 <span style=color:#75715e>// 使用Class.forName()通过完整类名获得
 </span><span style=color:#75715e></span>Class cls <span style=color:#f92672>=</span> Class<span style=color:#f92672>.</span><span style=color:#a6e22e>forName</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;java.lang.String&#34;</span><span style=color:#f92672>);</span>
-</code></pre></div><p>如果获取到了一个实例，就可通过这个实例获取到相应的Class，并且使用Class创建一个新的实例：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>String s <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;Hello&#34;</span><span style=color:#f92672>;</span>
+</code></pre></div><p>如果获取到了一个实例，就可通过这个实例获取到相应的Class，并且使用Class创建一个新的实例：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>String s <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;Hello&#34;</span><span style=color:#f92672>;</span>
 Class cls <span style=color:#f92672>=</span> s<span style=color:#f92672>.</span><span style=color:#a6e22e>getClass</span><span style=color:#f92672>();</span>
 String rs <span style=color:#f92672>=</span> <span style=color:#f92672>(</span>String<span style=color:#f92672>)</span> cls<span style=color:#f92672>.</span><span style=color:#a6e22e>newInstance</span><span style=color:#f92672>();</span>
-</code></pre></div><p>从这里可以模糊的感知到为什么这个机制要被称为“反射”了。</p><h3 id=field>Field</h3><p>反射的核心是访问通过实例获取到类的各种元数据，所以这里首先考虑访问一个类的Fields。Class提供了以下几个方法来获取实例的Fields：</p><ul><li>Field getField(String name)：根据字段名获取反射的字段</li><li>Field getDeclaredField(String name)：根据字段名获取反射的该类声明的字段</li><li>Field[] getFields()：获取反射的所有public field构成的数组</li><li>Field[] getDeclaredFields()：获取该类声明的所有字段</li></ul><p>这四个方法可谓是各具特色：getField()和getFields()可以获取到父类的字段，但是只能获取到public修饰的；getDeclaredField()和getDeclaredFields()则可以获取到private修饰的，但是只能获取到本类中定义的。</p><p>通过下面这个程序可以测试出来：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#f92672>package</span> top.causality.learnjava<span style=color:#f92672>;</span>
+</code></pre></div><p>从这里可以模糊的感知到为什么这个机制要被称为“反射”了。</p>
+<h3 id=field>Field</h3>
+<p>反射的核心是访问通过实例获取到类的各种元数据，所以这里首先考虑访问一个类的Fields。Class提供了以下几个方法来获取实例的Fields：</p>
+<ul>
+<li>Field getField(String name)：根据字段名获取反射的字段</li>
+<li>Field getDeclaredField(String name)：根据字段名获取反射的该类声明的字段</li>
+<li>Field[] getFields()：获取反射的所有public field构成的数组</li>
+<li>Field[] getDeclaredFields()：获取该类声明的所有字段</li>
+</ul>
+<p>这四个方法可谓是各具特色：getField()和getFields()可以获取到父类的字段，但是只能获取到public修饰的；getDeclaredField()和getDeclaredFields()则可以获取到private修饰的，但是只能获取到本类中定义的。</p>
+<p>通过下面这个程序可以测试出来：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#f92672>package</span> top.causality.learnjava<span style=color:#f92672>;</span>
 
 <span style=color:#f92672>import</span> java.lang.reflect.Field<span style=color:#f92672>;</span>
 
@@ -54,7 +133,8 @@ String rs <span style=color:#f92672>=</span> <span style=color:#f92672>(</span>S
     <span style=color:#66d9ef>private</span> String priChild<span style=color:#f92672>;</span>
     <span style=color:#66d9ef>public</span> String pubChild<span style=color:#f92672>;</span>
 <span style=color:#f92672>}</span>
-</code></pre></div><p>其输出为：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>Child 的所有字段<span style=color:#960050;background-color:#1e0010>：</span>
+</code></pre></div><p>其输出为：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>Child 的所有字段<span style=color:#960050;background-color:#1e0010>：</span>
 <span style=color:#66d9ef>public</span> java<span style=color:#f92672>.</span><span style=color:#a6e22e>lang</span><span style=color:#f92672>.</span><span style=color:#a6e22e>String</span> top<span style=color:#f92672>.</span><span style=color:#a6e22e>causality</span><span style=color:#f92672>.</span><span style=color:#a6e22e>learnjava</span><span style=color:#f92672>.</span><span style=color:#a6e22e>Child</span><span style=color:#f92672>.</span><span style=color:#a6e22e>pubChild</span>
 <span style=color:#66d9ef>public</span> java<span style=color:#f92672>.</span><span style=color:#a6e22e>lang</span><span style=color:#f92672>.</span><span style=color:#a6e22e>String</span> top<span style=color:#f92672>.</span><span style=color:#a6e22e>causality</span><span style=color:#f92672>.</span><span style=color:#a6e22e>learnjava</span><span style=color:#f92672>.</span><span style=color:#a6e22e>Parent</span><span style=color:#f92672>.</span><span style=color:#a6e22e>pubParent</span>
 Child 的所有声明字段<span style=color:#960050;background-color:#1e0010>：</span>
@@ -63,16 +143,26 @@ Child 的所有声明字段<span style=color:#960050;background-color:#1e0010>�
 
 pubParent: <span style=color:#66d9ef>public</span> java<span style=color:#f92672>.</span><span style=color:#a6e22e>lang</span><span style=color:#f92672>.</span><span style=color:#a6e22e>String</span> top<span style=color:#f92672>.</span><span style=color:#a6e22e>causality</span><span style=color:#f92672>.</span><span style=color:#a6e22e>learnjava</span><span style=color:#f92672>.</span><span style=color:#a6e22e>Parent</span><span style=color:#f92672>.</span><span style=color:#a6e22e>pubParent</span>
 priChild: <span style=color:#66d9ef>private</span> java<span style=color:#f92672>.</span><span style=color:#a6e22e>lang</span><span style=color:#f92672>.</span><span style=color:#a6e22e>String</span> top<span style=color:#f92672>.</span><span style=color:#a6e22e>causality</span><span style=color:#f92672>.</span><span style=color:#a6e22e>learnjava</span><span style=color:#f92672>.</span><span style=color:#a6e22e>Child</span><span style=color:#f92672>.</span><span style=color:#a6e22e>priChild</span>
-</code></pre></div><p>如果尝试使用<code>cls.getField("priParent")</code>就会报出NoSuchFieldException错误：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>Exception in thread <span style=color:#e6db74>&#34;main&#34;</span> java<span style=color:#f92672>.</span><span style=color:#a6e22e>lang</span><span style=color:#f92672>.</span><span style=color:#a6e22e>NoSuchFieldException</span><span style=color:#f92672>:</span> priParent
+</code></pre></div><p>如果尝试使用<code>cls.getField("priParent")</code>就会报出NoSuchFieldException错误：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>Exception in thread <span style=color:#e6db74>&#34;main&#34;</span> java<span style=color:#f92672>.</span><span style=color:#a6e22e>lang</span><span style=color:#f92672>.</span><span style=color:#a6e22e>NoSuchFieldException</span><span style=color:#f92672>:</span> priParent
 	at java<span style=color:#f92672>.</span><span style=color:#a6e22e>lang</span><span style=color:#f92672>.</span><span style=color:#a6e22e>Class</span><span style=color:#f92672>.</span><span style=color:#a6e22e>getField</span><span style=color:#f92672>(</span>Class<span style=color:#f92672>.</span><span style=color:#a6e22e>java</span><span style=color:#f92672>:</span>1703<span style=color:#f92672>)</span>
 	at top<span style=color:#f92672>.</span><span style=color:#a6e22e>causality</span><span style=color:#f92672>.</span><span style=color:#a6e22e>learnjava</span><span style=color:#f92672>.</span><span style=color:#a6e22e>ReflectDemo</span><span style=color:#f92672>.</span><span style=color:#a6e22e>main</span><span style=color:#f92672>(</span>ReflectDemo<span style=color:#f92672>.</span><span style=color:#a6e22e>java</span><span style=color:#f92672>:</span>22<span style=color:#f92672>)</span>
-</code></pre></div><p>从输出中可以看出，一个Field包含了一个字段的所有信息，可以使用方法获取到具体的某一项值：</p><ul><li>getName：返回这个字段的名称</li><li>getModifiers：返回字段的修饰器，是一个int值，每一位代表特定的意义</li><li>getType：返回一个字段的类型值，也是类实例</li></ul><blockquote><p>getModifiers会返回一个整型值，这个值的每一bit分别代表特定的意义，可以使用java.reflect.Modifiers来得到其代表的具体意义。</p></blockquote><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>        <span style=color:#66d9ef>for</span><span style=color:#f92672>(</span>Field x<span style=color:#f92672>:</span> cfs<span style=color:#f92672>){</span>
+</code></pre></div><p>从输出中可以看出，一个Field包含了一个字段的所有信息，可以使用方法获取到具体的某一项值：</p>
+<ul>
+<li>getName：返回这个字段的名称</li>
+<li>getModifiers：返回字段的修饰器，是一个int值，每一位代表特定的意义</li>
+<li>getType：返回一个字段的类型值，也是类实例</li>
+</ul>
+<blockquote>
+<p>getModifiers会返回一个整型值，这个值的每一bit分别代表特定的意义，可以使用java.reflect.Modifiers来得到其代表的具体意义。</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>        <span style=color:#66d9ef>for</span><span style=color:#f92672>(</span>Field x<span style=color:#f92672>:</span> cfs<span style=color:#f92672>){</span>
             System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>println</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;名称 ：\t&#34;</span> <span style=color:#f92672>+</span> x<span style=color:#f92672>.</span><span style=color:#a6e22e>getName</span><span style=color:#f92672>());</span>
             System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>println</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;修饰器：\t&#34;</span> <span style=color:#f92672>+</span> x<span style=color:#f92672>.</span><span style=color:#a6e22e>getModifiers</span><span style=color:#f92672>());</span>
             System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>println</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;类型：\t&#34;</span> <span style=color:#f92672>+</span> x<span style=color:#f92672>.</span><span style=color:#a6e22e>getType</span><span style=color:#f92672>());</span>
             System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>println</span><span style=color:#f92672>();</span>
         <span style=color:#f92672>}</span>
-</code></pre></div><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>Child 的所有声明字段<span style=color:#960050;background-color:#1e0010>：</span>
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>Child 的所有声明字段<span style=color:#960050;background-color:#1e0010>：</span>
 名称 <span style=color:#960050;background-color:#1e0010>：</span>	priChild
 修饰器<span style=color:#960050;background-color:#1e0010>：</span>	2
 类型<span style=color:#960050;background-color:#1e0010>：</span>	<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>java</span><span style=color:#f92672>.</span><span style=color:#a6e22e>lang</span><span style=color:#f92672>.</span><span style=color:#a6e22e>String</span>
@@ -80,7 +170,9 @@ priChild: <span style=color:#66d9ef>private</span> java<span style=color:#f92672
 名称 <span style=color:#960050;background-color:#1e0010>：</span>	pubChild
 修饰器<span style=color:#960050;background-color:#1e0010>：</span>	1
 类型<span style=color:#960050;background-color:#1e0010>：</span>	<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>java</span><span style=color:#f92672>.</span><span style=color:#a6e22e>lang</span><span style=color:#f92672>.</span><span style=color:#a6e22e>String</span>
-</code></pre></div><p>通过Class获取到了一个字段后，还可以使用这个字段来获取到某个类的该字段的值，甚至设置这个值，只需要使用Field.get(object)、Field.set(object)：</p><p>接下来修改上面的程序，为Child添加构造函数后，再修改Main：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>main</span><span style=color:#f92672>(</span>String<span style=color:#f92672>[]</span> args<span style=color:#f92672>)</span> <span style=color:#66d9ef>throws</span> NoSuchFieldException<span style=color:#f92672>,</span> IllegalAccessException <span style=color:#f92672>{</span>
+</code></pre></div><p>通过Class获取到了一个字段后，还可以使用这个字段来获取到某个类的该字段的值，甚至设置这个值，只需要使用Field.get(object)、Field.set(object)：</p>
+<p>接下来修改上面的程序，为Child添加构造函数后，再修改Main：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>main</span><span style=color:#f92672>(</span>String<span style=color:#f92672>[]</span> args<span style=color:#f92672>)</span> <span style=color:#66d9ef>throws</span> NoSuchFieldException<span style=color:#f92672>,</span> IllegalAccessException <span style=color:#f92672>{</span>
         Child c <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> Child<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Child_Pri&#34;</span><span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;Child_Pub&#34;</span><span style=color:#f92672>);</span>
         Class cls <span style=color:#f92672>=</span> c<span style=color:#f92672>.</span><span style=color:#a6e22e>getClass</span><span style=color:#f92672>();</span>
         Field f <span style=color:#f92672>=</span> cls<span style=color:#f92672>.</span><span style=color:#a6e22e>getField</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;pubChild&#34;</span><span style=color:#f92672>);</span>
@@ -88,14 +180,27 @@ priChild: <span style=color:#66d9ef>private</span> java<span style=color:#f92672
         f<span style=color:#f92672>.</span><span style=color:#a6e22e>set</span><span style=color:#f92672>(</span>c<span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;Modify Child&#34;</span><span style=color:#f92672>);</span>
         System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>println</span><span style=color:#f92672>(</span>f<span style=color:#f92672>.</span><span style=color:#a6e22e>get</span><span style=color:#f92672>(</span>c<span style=color:#f92672>));</span>
     <span style=color:#f92672>}</span>
-</code></pre></div><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>Child_Pub
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>Child_Pub
 Modify Child
-</code></pre></div><p>如果访问私有属性则会报错，但是可以通过设置f.setAccessible(true)获取到权限；</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>        Field fp <span style=color:#f92672>=</span> cls<span style=color:#f92672>.</span><span style=color:#a6e22e>getDeclaredField</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;priChild&#34;</span><span style=color:#f92672>);</span>
+</code></pre></div><p>如果访问私有属性则会报错，但是可以通过设置f.setAccessible(true)获取到权限；</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>        Field fp <span style=color:#f92672>=</span> cls<span style=color:#f92672>.</span><span style=color:#a6e22e>getDeclaredField</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;priChild&#34;</span><span style=color:#f92672>);</span>
         fp<span style=color:#f92672>.</span><span style=color:#a6e22e>setAccessible</span><span style=color:#f92672>(</span><span style=color:#66d9ef>true</span><span style=color:#f92672>);</span>
         fp<span style=color:#f92672>.</span><span style=color:#a6e22e>set</span><span style=color:#f92672>(</span>c<span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;Modify Private Field&#34;</span><span style=color:#f92672>);</span>
         System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>println</span><span style=color:#f92672>(</span>fp<span style=color:#f92672>.</span><span style=color:#a6e22e>get</span><span style=color:#f92672>(</span>c<span style=color:#f92672>));</span>
-</code></pre></div><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>Modify Private Field
-</code></pre></div><blockquote><p><code>setAccessible(true)</code>可能会失败。如果JVM运行期存在<code>SecurityManager</code>，那么它会根据规则进行检查，有可能阻止<code>setAccessible(true)</code>。例如，某个<code>SecurityManager</code>可能不允许对<code>java</code>和<code>javax</code>开头的<code>package</code>的类调用<code>setAccessible(true)</code>，这样可以保证JVM核心库的安全。</p></blockquote><h3 id=methods>Methods</h3><p>获取Method与获取Field方法基本一致：</p><ul><li>public Method getMethod(String name, Class&lt;?>&mldr; parameterTypes)：获取公有方法，第二个参数可以按顺序输入参数的类型；</li><li>public Method getDeclaredMethod(String name, Class&lt;?>&mldr; parameterTypes)：同样是反射一个方法对象</li><li>public Method[] getMethods()：反射所有公共方法对象</li><li>public Method[] getDeclaredMethods()：反射类声明的方法对象</li></ul><p>特点与Field基本一致。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#f92672>package</span> top.causality.learnjava<span style=color:#f92672>;</span>
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>Modify Private Field
+</code></pre></div><blockquote>
+<p><code>setAccessible(true)</code>可能会失败。如果JVM运行期存在<code>SecurityManager</code>，那么它会根据规则进行检查，有可能阻止<code>setAccessible(true)</code>。例如，某个<code>SecurityManager</code>可能不允许对<code>java</code>和<code>javax</code>开头的<code>package</code>的类调用<code>setAccessible(true)</code>，这样可以保证JVM核心库的安全。</p>
+</blockquote>
+<h3 id=methods>Methods</h3>
+<p>获取Method与获取Field方法基本一致：</p>
+<ul>
+<li>public Method getMethod(String name, Class&lt;?>&mldr; parameterTypes)：获取公有方法，第二个参数可以按顺序输入参数的类型；</li>
+<li>public Method getDeclaredMethod(String name, Class&lt;?>&mldr; parameterTypes)：同样是反射一个方法对象</li>
+<li>public Method[] getMethods()：反射所有公共方法对象</li>
+<li>public Method[] getDeclaredMethods()：反射类声明的方法对象</li>
+</ul>
+<p>特点与Field基本一致。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#f92672>package</span> top.causality.learnjava<span style=color:#f92672>;</span>
 
 <span style=color:#f92672>import</span> java.lang.reflect.Method<span style=color:#f92672>;</span>
 
@@ -125,7 +230,7 @@ Modify Child
         System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>println</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;foo&#34;</span><span style=color:#f92672>);</span>
     <span style=color:#f92672>}</span>
 <span style=color:#f92672>}</span>
-</code></pre></div><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> top<span style=color:#f92672>.</span><span style=color:#a6e22e>causality</span><span style=color:#f92672>.</span><span style=color:#a6e22e>learnjava</span><span style=color:#f92672>.</span><span style=color:#a6e22e>Child</span><span style=color:#f92672>.</span><span style=color:#a6e22e>foo</span><span style=color:#f92672>()</span>
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> top<span style=color:#f92672>.</span><span style=color:#a6e22e>causality</span><span style=color:#f92672>.</span><span style=color:#a6e22e>learnjava</span><span style=color:#f92672>.</span><span style=color:#a6e22e>Child</span><span style=color:#f92672>.</span><span style=color:#a6e22e>foo</span><span style=color:#f92672>()</span>
 <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>final</span> <span style=color:#66d9ef>void</span> java<span style=color:#f92672>.</span><span style=color:#a6e22e>lang</span><span style=color:#f92672>.</span><span style=color:#a6e22e>Object</span><span style=color:#f92672>.</span><span style=color:#a6e22e>wait</span><span style=color:#f92672>(</span><span style=color:#66d9ef>long</span><span style=color:#f92672>,</span><span style=color:#66d9ef>int</span><span style=color:#f92672>)</span> <span style=color:#66d9ef>throws</span> java<span style=color:#f92672>.</span><span style=color:#a6e22e>lang</span><span style=color:#f92672>.</span><span style=color:#a6e22e>InterruptedException</span>
 <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>final</span> <span style=color:#66d9ef>native</span> <span style=color:#66d9ef>void</span> java<span style=color:#f92672>.</span><span style=color:#a6e22e>lang</span><span style=color:#f92672>.</span><span style=color:#a6e22e>Object</span><span style=color:#f92672>.</span><span style=color:#a6e22e>wait</span><span style=color:#f92672>(</span><span style=color:#66d9ef>long</span><span style=color:#f92672>)</span> <span style=color:#66d9ef>throws</span> java<span style=color:#f92672>.</span><span style=color:#a6e22e>lang</span><span style=color:#f92672>.</span><span style=color:#a6e22e>InterruptedException</span>
 <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>final</span> <span style=color:#66d9ef>void</span> java<span style=color:#f92672>.</span><span style=color:#a6e22e>lang</span><span style=color:#f92672>.</span><span style=color:#a6e22e>Object</span><span style=color:#f92672>.</span><span style=color:#a6e22e>wait</span><span style=color:#f92672>()</span> <span style=color:#66d9ef>throws</span> java<span style=color:#f92672>.</span><span style=color:#a6e22e>lang</span><span style=color:#f92672>.</span><span style=color:#a6e22e>InterruptedException</span>
@@ -137,29 +242,47 @@ Modify Child
 <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>final</span> <span style=color:#66d9ef>native</span> <span style=color:#66d9ef>void</span> java<span style=color:#f92672>.</span><span style=color:#a6e22e>lang</span><span style=color:#f92672>.</span><span style=color:#a6e22e>Object</span><span style=color:#f92672>.</span><span style=color:#a6e22e>notifyAll</span><span style=color:#f92672>()</span>
 
 <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> top<span style=color:#f92672>.</span><span style=color:#a6e22e>causality</span><span style=color:#f92672>.</span><span style=color:#a6e22e>learnjava</span><span style=color:#f92672>.</span><span style=color:#a6e22e>Child</span><span style=color:#f92672>.</span><span style=color:#a6e22e>foo</span><span style=color:#f92672>()</span>
-</code></pre></div><p>和Field一样，Method同样可以获得具体的某一项值：</p><ul><li><code>getName()</code>：返回方法名称</li><li><code>getReturnType()</code>：返回方法返回值类型</li><li><code>getParameterTypes()</code>：返回方法的参数类型，是一个Class数组</li><li><code>getModifiers()</code>：返回方法的修饰符，同样是int</li></ul><p>获取到方法后，同样可以向Field一样来对某个对象使用这个方法，只需要通过Method.invoke(object, &mldr;params)；如果获取到的是一个静态对象，所以无需指定对象，因此传入的第一个参数永远为null。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>        Method m <span style=color:#f92672>=</span> cls<span style=color:#f92672>.</span><span style=color:#a6e22e>getMethod</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;foo&#34;</span><span style=color:#f92672>);</span>
+</code></pre></div><p>和Field一样，Method同样可以获得具体的某一项值：</p>
+<ul>
+<li><code>getName()</code>：返回方法名称</li>
+<li><code>getReturnType()</code>：返回方法返回值类型</li>
+<li><code>getParameterTypes()</code>：返回方法的参数类型，是一个Class数组</li>
+<li><code>getModifiers()</code>：返回方法的修饰符，同样是int</li>
+</ul>
+<p>获取到方法后，同样可以向Field一样来对某个对象使用这个方法，只需要通过Method.invoke(object, &mldr;params)；如果获取到的是一个静态对象，所以无需指定对象，因此传入的第一个参数永远为null。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>        Method m <span style=color:#f92672>=</span> cls<span style=color:#f92672>.</span><span style=color:#a6e22e>getMethod</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;foo&#34;</span><span style=color:#f92672>);</span>
         m<span style=color:#f92672>.</span><span style=color:#a6e22e>invoke</span><span style=color:#f92672>(</span>c<span style=color:#f92672>);</span>
-</code></pre></div><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>foo
-</code></pre></div><p>对于非public类型的方法，同样可以使用setAccessible(true)来获取到权限。</p><h3 id=constructor>Constructor</h3><p>尽管前面说到，可以使用newInstance()方法来创建一个新的实例，但是其缺陷很明显，那就是只能调用public型的无参数的的构造方法。</p><p>所以在需要的时候，可以使用Constructor。Constructor和Method使用方法基本上是完全相同的。</p><h3 id=inheritance>Inheritance</h3><p>获取到一个Class，可以继续通过getSuperclass()获取到其父类：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>main</span><span style=color:#f92672>(</span>String<span style=color:#f92672>[]</span> args<span style=color:#f92672>)</span> <span style=color:#66d9ef>throws</span> NoSuchMethodException<span style=color:#f92672>,</span> InvocationTargetException<span style=color:#f92672>,</span> IllegalAccessException <span style=color:#f92672>{</span>
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>foo
+</code></pre></div><p>对于非public类型的方法，同样可以使用setAccessible(true)来获取到权限。</p>
+<h3 id=constructor>Constructor</h3>
+<p>尽管前面说到，可以使用newInstance()方法来创建一个新的实例，但是其缺陷很明显，那就是只能调用public型的无参数的的构造方法。</p>
+<p>所以在需要的时候，可以使用Constructor。Constructor和Method使用方法基本上是完全相同的。</p>
+<h3 id=inheritance>Inheritance</h3>
+<p>获取到一个Class，可以继续通过getSuperclass()获取到其父类：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>main</span><span style=color:#f92672>(</span>String<span style=color:#f92672>[]</span> args<span style=color:#f92672>)</span> <span style=color:#66d9ef>throws</span> NoSuchMethodException<span style=color:#f92672>,</span> InvocationTargetException<span style=color:#f92672>,</span> IllegalAccessException <span style=color:#f92672>{</span>
         Child c <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> Child<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Foo&#34;</span><span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;Bar&#34;</span><span style=color:#f92672>);</span>
         Class cls <span style=color:#f92672>=</span> c<span style=color:#f92672>.</span><span style=color:#a6e22e>getClass</span><span style=color:#f92672>();</span>
         Class scls <span style=color:#f92672>=</span> cls<span style=color:#f92672>.</span><span style=color:#a6e22e>getSuperclass</span><span style=color:#f92672>();</span>
         System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>println</span><span style=color:#f92672>(</span>scls<span style=color:#f92672>);</span>
     <span style=color:#f92672>}</span>
-</code></pre></div><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>top</span><span style=color:#f92672>.</span><span style=color:#a6e22e>causality</span><span style=color:#f92672>.</span><span style=color:#a6e22e>learnjava</span><span style=color:#f92672>.</span><span style=color:#a6e22e>Parent</span>
-</code></pre></div><p>除了获取到父类，还可以获取到接口，为Child实现一个接口，然后修改main函数：</p><pre><code>Class cls = c.getClass();
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>top</span><span style=color:#f92672>.</span><span style=color:#a6e22e>causality</span><span style=color:#f92672>.</span><span style=color:#a6e22e>learnjava</span><span style=color:#f92672>.</span><span style=color:#a6e22e>Parent</span>
+</code></pre></div><p>除了获取到父类，还可以获取到接口，为Child实现一个接口，然后修改main函数：</p>
+<pre><code>Class cls = c.getClass();
 Class[] icls = cls.getInterfaces();
 for(Class x: icls){
     System.out.println(x);
 }
-</code></pre><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>interface</span> <span style=color:#a6e22e>java</span><span style=color:#f92672>.</span><span style=color:#a6e22e>io</span><span style=color:#f92672>.</span><span style=color:#a6e22e>Serializable</span>
-</code></pre></div><p>类似与获取一个实例是否是某个类型，可以使用isAssignableFrom()来判断一个类是否转换某个类：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>main</span><span style=color:#f92672>(</span>String<span style=color:#f92672>[]</span> args<span style=color:#f92672>){</span>
+</code></pre><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>interface</span> <span style=color:#a6e22e>java</span><span style=color:#f92672>.</span><span style=color:#a6e22e>io</span><span style=color:#f92672>.</span><span style=color:#a6e22e>Serializable</span>
+</code></pre></div><p>类似与获取一个实例是否是某个类型，可以使用isAssignableFrom()来判断一个类是否转换某个类：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>main</span><span style=color:#f92672>(</span>String<span style=color:#f92672>[]</span> args<span style=color:#f92672>){</span>
         System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>println</span><span style=color:#f92672>(</span>Number<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>.</span><span style=color:#a6e22e>isAssignableFrom</span><span style=color:#f92672>(</span>Integer<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>));</span>
         System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>println</span><span style=color:#f92672>(</span>Integer<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>.</span><span style=color:#a6e22e>isAssignableFrom</span><span style=color:#f92672>(</span>Number<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>));</span>
     <span style=color:#f92672>}</span>
-</code></pre></div><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>true</span>
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>true</span>
 <span style=color:#66d9ef>false</span>
-</code></pre></div><h3 id=use-reflection>Use Reflection</h3><p>通过上面的方法，就可以通过获取到一个类的主要信息：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#f92672>package</span> top.causality.learnjava<span style=color:#f92672>;</span>
+</code></pre></div><h3 id=use-reflection>Use Reflection</h3>
+<p>通过上面的方法，就可以通过获取到一个类的主要信息：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#f92672>package</span> top.causality.learnjava<span style=color:#f92672>;</span>
 
 
 <span style=color:#f92672>import</span> java.lang.reflect.Constructor<span style=color:#f92672>;</span>
@@ -248,7 +371,8 @@ for(Class x: icls){
         <span style=color:#f92672>}</span>
     <span style=color:#f92672>}</span>
 <span style=color:#f92672>}</span>
-</code></pre></div><p>调用这个主函数并传入一个完整的类名，就可以输出其主要信息，例如：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>输入一个完整的Java类<span style=color:#960050;background-color:#1e0010>：</span>
+</code></pre></div><p>调用这个主函数并传入一个完整的类名，就可以输出其主要信息，例如：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>输入一个完整的Java类<span style=color:#960050;background-color:#1e0010>：</span>
 java<span style=color:#f92672>.</span><span style=color:#a6e22e>lang</span><span style=color:#f92672>.</span><span style=color:#a6e22e>Double</span>
 修饰器<span style=color:#960050;background-color:#1e0010>：</span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>final</span>
 类名<span style=color:#960050;background-color:#1e0010>：</span>java<span style=color:#f92672>.</span><span style=color:#a6e22e>lang</span><span style=color:#f92672>.</span><span style=color:#a6e22e>Double</span>
@@ -303,7 +427,16 @@ java<span style=color:#f92672>.</span><span style=color:#a6e22e>lang</span><span
 	<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>boolean</span> <span style=color:#a6e22e>isFinite</span><span style=color:#f92672>(</span><span style=color:#66d9ef>double</span><span style=color:#f92672>);</span>
 	<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>double</span> <span style=color:#a6e22e>sum</span><span style=color:#f92672>(</span><span style=color:#66d9ef>double</span><span style=color:#f92672>,</span> <span style=color:#66d9ef>double</span><span style=color:#f92672>);</span>
 	<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>double</span> <span style=color:#a6e22e>parseDouble</span><span style=color:#f92672>(</span>java<span style=color:#f92672>.</span><span style=color:#a6e22e>lang</span><span style=color:#f92672>.</span><span style=color:#a6e22e>String</span><span style=color:#f92672>);</span>
-</code></pre></div><h2 id=dynamic-proxy>Dynamic Proxy</h2><p>在Java中一般来说不可以直接创建某个interface的实例，而是使用某个类进行实现；但是Java标准库提供了一种动态代理（Dynamic Proxy）机制，可以在运行期间动态创建某个interface的实例。</p><p>动态创建一个接口实例的方法是指，在代码中虽然预先定义了某个接口，但是不编写实现类，而是通过JDK提供的Proxy.newProxyInstance()创建一个接口对象。</p><p>创建一个简单的动态代理的方式为：</p><ol><li>定义 InvocationHandler实例，负责实现接口的方法调用；</li><li>使用 Proxy.newProxyInstance() 创建一个接口对象；</li><li>将返回的 object 强制转换为 interface。</li></ol><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#f92672>package</span> top.causality.learnjava<span style=color:#f92672>;</span>
+</code></pre></div><h2 id=dynamic-proxy>Dynamic Proxy</h2>
+<p>在Java中一般来说不可以直接创建某个interface的实例，而是使用某个类进行实现；但是Java标准库提供了一种动态代理（Dynamic Proxy）机制，可以在运行期间动态创建某个interface的实例。</p>
+<p>动态创建一个接口实例的方法是指，在代码中虽然预先定义了某个接口，但是不编写实现类，而是通过JDK提供的Proxy.newProxyInstance()创建一个接口对象。</p>
+<p>创建一个简单的动态代理的方式为：</p>
+<ol>
+<li>定义 InvocationHandler实例，负责实现接口的方法调用；</li>
+<li>使用 Proxy.newProxyInstance() 创建一个接口对象；</li>
+<li>将返回的 object 强制转换为 interface。</li>
+</ol>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#f92672>package</span> top.causality.learnjava<span style=color:#f92672>;</span>
 
 <span style=color:#f92672>import</span> java.lang.reflect.InvocationHandler<span style=color:#f92672>;</span>
 <span style=color:#f92672>import</span> java.lang.reflect.Method<span style=color:#f92672>;</span>
@@ -332,5 +465,54 @@ java<span style=color:#f92672>.</span><span style=color:#a6e22e>lang</span><span
 <span style=color:#66d9ef>interface</span> <span style=color:#a6e22e>Hello</span><span style=color:#f92672>{</span>
     <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>morning</span><span style=color:#f92672>(</span>String name<span style=color:#f92672>);</span>
 <span style=color:#f92672>}</span>
-</code></pre></div><p>在InvocationHandler中，在获取到morning方法时执行一个输出的操作；然后使用(Hello) Proxy.newProxyInstance 强制创建一个Hello类型的实例，其中第一个参数时ClassLoader，一般传入接口类的ClassLoader，第二个参数为一个接口数组，第三个则是处理接口方法的实例。</p><p>运行这段程序，就相当于创建了一个Hello的接口hello，并且执行其中的morning方法：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>GoodMorning<span style=color:#f92672>,</span> Foo
-</code></pre></div><blockquote><p>可以看出，动态代理实际上是JVM在运行期动态创建class字节码并加载的过程。</p></blockquote></article><link rel=stylesheet href=https://unpkg.com/gitalk/dist/gitalk.css><script src=https://unpkg.com/gitalk/dist/gitalk.min.js></script><div id=gitalk></div><script>var gitalk=new Gitalk({clientID:'9a04c6b451fbce76511d',clientSecret:'430c540c77ecd6b59749c60f0341c057bd5320a0',repo:'Causa1ity.github.io',owner:'Causa1ity',admin:'Causa1ity',id:'devops/java/reflection',distractionFreeMode:!1});gitalk.render('gitalk')</script></div><div class="flex-initial hidden lg:block lg:w-40 xl:w-60 2xl:w-80"><div class=fixed><h2 class="font-title text-2xl mb-4">Reflection</h2><div class="font-mono text-xl"><nav id=TableOfContents><ul><li><a href=#class>Class</a></li><li><a href=#reflection>Reflection</a><ul><li><a href=#field>Field</a></li><li><a href=#methods>Methods</a></li><li><a href=#constructor>Constructor</a></li><li><a href=#inheritance>Inheritance</a></li><li><a href=#use-reflection>Use Reflection</a></li></ul></li><li><a href=#dynamic-proxy>Dynamic Proxy</a></li></ul></nav></div></div></div></div></div><footer class=flex-auto><div class="font-title text-center my-4"><p class=text-lg>Powered By <a href=https://gohugo.io>Hugo</a></p></div></footer></body></html>
+</code></pre></div><p>在InvocationHandler中，在获取到morning方法时执行一个输出的操作；然后使用(Hello) Proxy.newProxyInstance 强制创建一个Hello类型的实例，其中第一个参数时ClassLoader，一般传入接口类的ClassLoader，第二个参数为一个接口数组，第三个则是处理接口方法的实例。</p>
+<p>运行这段程序，就相当于创建了一个Hello的接口hello，并且执行其中的morning方法：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>GoodMorning<span style=color:#f92672>,</span> Foo
+</code></pre></div><blockquote>
+<p>可以看出，动态代理实际上是JVM在运行期动态创建class字节码并加载的过程。</p>
+</blockquote>
+</article>
+<div class="flex justify-between mt-12 mx-8 font-title text-xl">
+<div class=flex-initial>
+<a href=https://causality.top/devops/java/serialization/ class=hover:text-blue-200>上一篇：Serialization</a>
+</div>
+<div class=flex-initial>
+<a href=https://causality.top/misc/tech/font-family/ class=hover:text-blue-200>下一篇：Font Family</a>
+</div>
+</div>
+<link rel=stylesheet href=https://unpkg.com/gitalk/dist/gitalk.css>
+<script src=https://unpkg.com/gitalk/dist/gitalk.min.js></script>
+<div id=gitalk></div>
+<script>var gitalk=new Gitalk({clientID:'9a04c6b451fbce76511d',clientSecret:'430c540c77ecd6b59749c60f0341c057bd5320a0',repo:'Causa1ity.github.io',owner:'Causa1ity',admin:'Causa1ity',id:'devops/java/reflection',distractionFreeMode:!1});gitalk.render('gitalk')</script>
+</div>
+<div class="flex-initial hidden lg:block ml-4 mr-auto">
+<div class=fixed>
+<div class=font-serif>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#class>Class</a></li>
+<li><a href=#reflection>Reflection</a>
+<ul>
+<li><a href=#field>Field</a></li>
+<li><a href=#methods>Methods</a></li>
+<li><a href=#constructor>Constructor</a></li>
+<li><a href=#inheritance>Inheritance</a></li>
+<li><a href=#use-reflection>Use Reflection</a></li>
+</ul>
+</li>
+<li><a href=#dynamic-proxy>Dynamic Proxy</a></li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+</div>
+</div>
+<footer class=flex-auto><div class="font-title text-center my-4">
+<p class=text-lg>
+Powered By <a href=https://gohugo.io>Hugo</a>
+</p>
+</div>
+</footer>
+</body>
+</html>

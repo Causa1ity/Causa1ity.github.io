@@ -1,17 +1,147 @@
-<!doctype html><html lang=zh><head><meta http-equiv=content-type content="text/html" charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=stylesheet href=/css/tailwind.min.b39a406edef2cbbd2ccee2cbd368a787bfad3ac016440c2b37558902050cf85d.css integrity=sha256-s5pAbt7yy70szuLL02inh7+tOsAWRAwrN1WJAgUM+F0=><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Lora&display=swap" rel=stylesheet><script src=https://kit.fontawesome.com/9cc9e9e3f3.js crossorigin=anonymous></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/docsearch.js@2.6.3/dist/cdn/docsearch.min.css><title>Netcat 小记</title></head><body class="flex flex-col"><header class="flex fixed bg-white w-full p-4 font-title text-xl border-b"><div class="logo flex-1"><a href=/ class=font-title>Forgotten Land</a></div><nav class="flex-initial ml-4"><div id=归档 class=inline><a href=/metapages/archive/ class="mx-2 hover:text-blue-200">归档</a></div><div id=分类 class=inline><a href=/categories/ class="mx-2 hover:text-blue-200">分类</a><div class=absolute></div></div><div id=标签 class=inline><a href=/tags/ class="mx-2 hover:text-blue-200">标签</a></div><div id=关于 class=inline><a href=/metapages/about/ class="mx-2 hover:text-blue-200">关于</a></div></nav></header><div class="flex-grow mt-24"><div class=flex><div class="md:w-4/5 lg:w-2/3 max-w-screen-lg mx-auto p-4 shadow-2xl"><h1 class="font-title text-4xl text-center mb-4">Netcat 小记</h1><div class="flex justify-center font-mono"><div class="mr-6 flex-none"><i class="fas fa-calendar mr-1"></i>
-<span>2021-04-21</span></div><div class="mr-6 flex-none"><i class="fas fa-clock mr-1"></i>
-<span>阅读时长约 5 分钟</span></div></div><article class=content><h2 id=概述>概述</h2><p>Netcat（简称nc）是一个通过TCP/IP协议在网络连接中读写数据的工具，其强大之处在于几乎可以创建任何类型的连接，内置了各种实用的功能，报考端口扫描、数据传输、端口监听，因此甚至可以作为一个后门。</p><p>而Ncat则是Nmap项目对Netcat的重新实现，可以认为Ncat是netcat的更新版。</p><h2 id=使用>使用</h2><p>没有找到nc的使用文档，所以直接参考nc的Manual进行学习了，各种参数就跳过了，用到再说。</p><blockquote><p>不同的发行版功能略有不同，这里使用的是ubuntu sever预装的nc。</p></blockquote><h3 id=clientserver--model>Client/Server Model</h3><p>使用nc建立一个C/S连接非常简单，首先使用nc在服务器端监听一个特定的端口：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>nc -l <span style=color:#ae81ff>1234</span>
-</code></pre></div><blockquote><p>-l 含义是监听一个端口，可以直接在其后跟上ip和port，也可以与-s和-p搭配使用。需要注意-l只会监听端口，而不会向初始化与远程的连接。</p><p>-s，source，发送数据包使用的源ip</p><p>-p，source_port，指定发送数据包使用的源端口</p></blockquote><p>现在nc会监听在1234端口，此时就可以向这个端口发起连接：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>nc source_ip <span style=color:#ae81ff>1234</span>
-</code></pre></div><p><img src=https://causality-blog.oss-cn-hangzhou.aliyuncs.com/hugo/notes/tech/netcat/image-20210421090255426.png alt=image-20210421090255426></p><p><img src=https://causality-blog.oss-cn-hangzhou.aliyuncs.com/hugo/notes/tech/netcat/image-20210421090308957.png alt=image-20210421090308957></p><p>也可以直接在本地重新启动一个nc连接到127.0.0.1:1234。</p><p>可以看到，客户端连接后可以直接将内容发送到服务器端；而实际上，服务器也可以将内容输出到客户端。也就是说，连接建立后，两端实际上是等价的。当客户端终止连接（^D）后，服务器端的服务也会终止。</p><blockquote><p>如果希望客户端终止连接后服务器端依然保持监听的话，可以使用-k参数：这个参数的含义是当一个连接结束时，监听另一个连接。</p></blockquote><p>不同的Linux发行版所预装的nc功能有些不同，ubuntu-server预装的nc没有-e、-c参数，也就是说不能直接通过nc执行命令；而kali的nc则有-e、-c命令，这意味着如果在kali端启用：<code>nc -l -p 1230 -c /bin/bash</code>，在客户端连接后就可以直接执行命令。</p><p>如果是没有-e、-c这样的命令，可以通过重定向来创建一个可以执行命令的连接：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>rm -f /tmp/f; mkfifo /tmp/f
+<!doctype html><html lang=zh>
+<head><meta http-equiv=content-type content="text/html" charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge,chrome=1">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel=stylesheet href=/css/tailwind.min.b39a406edef2cbbd2ccee2cbd368a787bfad3ac016440c2b37558902050cf85d.css integrity=sha256-s5pAbt7yy70szuLL02inh7+tOsAWRAwrN1WJAgUM+F0=>
+<link rel=preconnect href=https://fonts.googleapis.com>
+<link rel=preconnect href=https://fonts.gstatic.com crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Lora&display=swap" rel=stylesheet>
+<script src=https://kit.fontawesome.com/9cc9e9e3f3.js crossorigin=anonymous></script>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/docsearch.js@2.6.3/dist/cdn/docsearch.min.css><title>Netcat 小记</title>
+</head>
+<body class="flex flex-col">
+<header class="flex fixed bg-white w-full p-4 font-title text-xl border-b"><div class="logo flex-1">
+<a href=/ class=font-title>Forgotten Land</a>
+</div>
+<nav class="flex-initial ml-4">
+<div id=归档 class=inline>
+<a href=/metapages/archive/ class="mx-2 hover:text-blue-200">归档</a>
+</div>
+<div id=分类 class=inline>
+<a href=/categories/ class="mx-2 hover:text-blue-200">分类</a>
+<div class=absolute>
+</div>
+</div>
+<div id=标签 class=inline>
+<a href=/tags/ class="mx-2 hover:text-blue-200">标签</a>
+</div>
+<div id=关于 class=inline>
+<a href=/metapages/about/ class="mx-2 hover:text-blue-200">关于</a>
+</div>
+</nav>
+</header>
+<div class="flex-grow mt-24">
+<div class=flex>
+<div class="md:w-4/5 lg:w-2/3 max-w-screen-lg mx-auto lg:mr-0 p-4 shadow-2xl">
+<h1 class="font-title text-4xl text-center mb-4">Netcat 小记</h1>
+<div class="flex justify-center font-mono">
+<div class="mr-6 flex-none">
+<i class="fas fa-calendar mr-1"></i>
+<span>2021-04-21</span>
+</div>
+<div class="mr-6 flex-none">
+<i class="fas fa-clock mr-1"></i>
+<span>阅读时长约 5 分钟</span>
+</div>
+</div>
+<article id=content class="content mb-4 p-4">
+<h2 id=概述>概述</h2>
+<p>Netcat（简称nc）是一个通过TCP/IP协议在网络连接中读写数据的工具，其强大之处在于几乎可以创建任何类型的连接，内置了各种实用的功能，报考端口扫描、数据传输、端口监听，因此甚至可以作为一个后门。</p>
+<p>而Ncat则是Nmap项目对Netcat的重新实现，可以认为Ncat是netcat的更新版。</p>
+<h2 id=使用>使用</h2>
+<p>没有找到nc的使用文档，所以直接参考nc的Manual进行学习了，各种参数就跳过了，用到再说。</p>
+<blockquote>
+<p>不同的发行版功能略有不同，这里使用的是ubuntu sever预装的nc。</p>
+</blockquote>
+<h3 id=clientserver--model>Client/Server Model</h3>
+<p>使用nc建立一个C/S连接非常简单，首先使用nc在服务器端监听一个特定的端口：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>nc -l <span style=color:#ae81ff>1234</span>
+</code></pre></div><blockquote>
+<p>-l 含义是监听一个端口，可以直接在其后跟上ip和port，也可以与-s和-p搭配使用。需要注意-l只会监听端口，而不会向初始化与远程的连接。</p>
+<p>-s，source，发送数据包使用的源ip</p>
+<p>-p，source_port，指定发送数据包使用的源端口</p>
+</blockquote>
+<p>现在nc会监听在1234端口，此时就可以向这个端口发起连接：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>nc source_ip <span style=color:#ae81ff>1234</span>
+</code></pre></div><p><img src=https://causality-blog.oss-cn-hangzhou.aliyuncs.com/hugo/notes/tech/netcat/image-20210421090255426.png alt=image-20210421090255426></p>
+<p><img src=https://causality-blog.oss-cn-hangzhou.aliyuncs.com/hugo/notes/tech/netcat/image-20210421090308957.png alt=image-20210421090308957></p>
+<p>也可以直接在本地重新启动一个nc连接到127.0.0.1:1234。</p>
+<p>可以看到，客户端连接后可以直接将内容发送到服务器端；而实际上，服务器也可以将内容输出到客户端。也就是说，连接建立后，两端实际上是等价的。当客户端终止连接（^D）后，服务器端的服务也会终止。</p>
+<blockquote>
+<p>如果希望客户端终止连接后服务器端依然保持监听的话，可以使用-k参数：这个参数的含义是当一个连接结束时，监听另一个连接。</p>
+</blockquote>
+<p>不同的Linux发行版所预装的nc功能有些不同，ubuntu-server预装的nc没有-e、-c参数，也就是说不能直接通过nc执行命令；而kali的nc则有-e、-c命令，这意味着如果在kali端启用：<code>nc -l -p 1230 -c /bin/bash</code>，在客户端连接后就可以直接执行命令。</p>
+<p>如果是没有-e、-c这样的命令，可以通过重定向来创建一个可以执行命令的连接：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>rm -f /tmp/f; mkfifo /tmp/f
 cat /tmp/f | /bin/sh -i 2&gt;&amp;<span style=color:#ae81ff>1</span> | nc -l <span style=color:#ae81ff>1234</span> &gt; /tmp/f
-</code></pre></div><p>可以看出第一条命令是创建了一个fifo文件；而第二条命令首先是读取管道内容，并传输到下一个命令；下一个命令是使用/bin/sh -i创建一个交互式shell，并将错误输出重定向到标准输出，这意味将会执行读取到的内容并且将错误输出同样向后传递；最后一条命令则是nc监听连接。</p><p>而在客户端，只需要建立一个连接。这种情况下，通过管道的传送，将类似于建立一个交互式shell，而nc的作用只是将命令和回显进行传输。</p><p><img src=https://causality-blog.oss-cn-hangzhou.aliyuncs.com/hugo/notes/tech/netcat/image-20210421092550827.png alt=image-20210421092550827></p><h3 id=data-transfer>Data Transfer</h3><p>数据传输，其实上面的过程可以看出就是通过nc进行数据传输，所以为了将数据传输到某个主机，只需要启用一个监听并将其输出重定向到文件就行：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>nc -l <span style=color:#ae81ff>1234</span> &gt; filename.out
-</code></pre></div><p>然后从发送端建立一个连接，将数据从文件读入即可：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>nc -N host.example.com <span style=color:#ae81ff>1234</span> &lt; filename.in
-</code></pre></div><blockquote><p>-N 其含义是读取到 EOF 时终止连接，这就使得文件传输结束后就终止这个连接。</p></blockquote><h3 id=talking-to-server>Talking to Server</h3><p>为了与服务器提供的某项服务进行交互，需要输入特定格式的数据：</p><p><img src=https://causality-blog.oss-cn-hangzhou.aliyuncs.com/hugo/notes/tech/netcat/image-20210421094623031.png alt=image-20210421094623031></p><p>有些情况先可能需要多行数据，这种情况下可以使用<code>&lt;&lt;</code>来处理：</p><p><img src=https://causality-blog.oss-cn-hangzhou.aliyuncs.com/hugo/notes/tech/netcat/image-20210421100143732.png alt=image-20210421100143732></p><h3 id=port-scanning>Port Scanning</h3><p>可以使用nc进行简单的端口扫描：</p><p><img src=https://causality-blog.oss-cn-hangzhou.aliyuncs.com/hugo/notes/tech/netcat/image-20210421101059119.png alt=image-20210421101059119></p><blockquote><p>-z 表示只扫描监听的端口而不发送任何数据</p><p>-n 表示不适用DNS服务，这意味会将后面的内容作为ip处理，如果是对某个域名扫描，那么就不需要这个参数</p><p>-v，verbose，详细输出</p></blockquote><p>后面的参数端口可以指定一个列表，使用空格隔开：</p><p><img src=https://causality-blog.oss-cn-hangzhou.aliyuncs.com/hugo/notes/tech/netcat/image-20210421101436300.png alt=image-20210421101436300></p><p>有些时候可以通过一些别的手段进行扫描测试；比如，很多应用会存在一些greeting banners，这意味当连接建立和断开时可能会输出一些特殊信息，因此可以通过向其发送一些greeting data根据回显来进行扫描：</p><p><img src=https://causality-blog.oss-cn-hangzhou.aliyuncs.com/hugo/notes/tech/netcat/image-20210421101744159.png alt=image-20210421101744159></p><h3 id=examples>Examples</h3><p>一些其他简单常见的使用示例：</p><ul><li><p>连接到使用指定端口连接到某个服务，如使用31337端口连接到host.example.com的42端口：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>nc -p <span style=color:#ae81ff>31337</span> -w <span style=color:#ae81ff>5</span> host.example.com <span style=color:#ae81ff>42</span>
-</code></pre></div><blockquote><p>-w timeout</p></blockquote></li><li><p>与host.example.com建立一个UDP连接：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>nc -u host.example.com <span style=color:#ae81ff>53</span>
-</code></pre></div><blockquote><p>-u 使用UDP协议</p></blockquote></li><li><p>与host.example.com建立连接并使用10.1.2.3作为源ip</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>nc -s 10.1.2.3 host.example.com <span style=color:#ae81ff>42</span>
-</code></pre></div></li><li><p>监听一个Unix-daemon stream socket：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>nc -lU /var/tmp/dsocket
-</code></pre></div><blockquote><p>-U Unix-deamon socket</p></blockquote></li><li><p>使用HTTP代理：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>nc -x10.2.3.4:8080 -Xconnect -Puser host.example.com <span style=color:#ae81ff>42</span>
-</code></pre></div><blockquote><p>-x proxy_address[:port]，使用给定ip和port作为代理进行连接</p><p>-X proxy_protocol，指定使用的协议，如4（SOCKS v.4)、5（SOCKS v.5）、connect（HTTPS）；没有指定协议时默认使用SOCKS5</p><p>-P proxy_username，代理服务器验证身份的用户名</p></blockquote></li></ul><h3 id=参数列表>参数列表</h3><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>% nc -h  
+</code></pre></div><p>可以看出第一条命令是创建了一个fifo文件；而第二条命令首先是读取管道内容，并传输到下一个命令；下一个命令是使用/bin/sh -i创建一个交互式shell，并将错误输出重定向到标准输出，这意味将会执行读取到的内容并且将错误输出同样向后传递；最后一条命令则是nc监听连接。</p>
+<p>而在客户端，只需要建立一个连接。这种情况下，通过管道的传送，将类似于建立一个交互式shell，而nc的作用只是将命令和回显进行传输。</p>
+<p><img src=https://causality-blog.oss-cn-hangzhou.aliyuncs.com/hugo/notes/tech/netcat/image-20210421092550827.png alt=image-20210421092550827></p>
+<h3 id=data-transfer>Data Transfer</h3>
+<p>数据传输，其实上面的过程可以看出就是通过nc进行数据传输，所以为了将数据传输到某个主机，只需要启用一个监听并将其输出重定向到文件就行：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>nc -l <span style=color:#ae81ff>1234</span> &gt; filename.out
+</code></pre></div><p>然后从发送端建立一个连接，将数据从文件读入即可：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>nc -N host.example.com <span style=color:#ae81ff>1234</span> &lt; filename.in
+</code></pre></div><blockquote>
+<p>-N 其含义是读取到 EOF 时终止连接，这就使得文件传输结束后就终止这个连接。</p>
+</blockquote>
+<h3 id=talking-to-server>Talking to Server</h3>
+<p>为了与服务器提供的某项服务进行交互，需要输入特定格式的数据：</p>
+<p><img src=https://causality-blog.oss-cn-hangzhou.aliyuncs.com/hugo/notes/tech/netcat/image-20210421094623031.png alt=image-20210421094623031></p>
+<p>有些情况先可能需要多行数据，这种情况下可以使用<code>&lt;&lt;</code>来处理：</p>
+<p><img src=https://causality-blog.oss-cn-hangzhou.aliyuncs.com/hugo/notes/tech/netcat/image-20210421100143732.png alt=image-20210421100143732></p>
+<h3 id=port-scanning>Port Scanning</h3>
+<p>可以使用nc进行简单的端口扫描：</p>
+<p><img src=https://causality-blog.oss-cn-hangzhou.aliyuncs.com/hugo/notes/tech/netcat/image-20210421101059119.png alt=image-20210421101059119></p>
+<blockquote>
+<p>-z 表示只扫描监听的端口而不发送任何数据</p>
+<p>-n 表示不适用DNS服务，这意味会将后面的内容作为ip处理，如果是对某个域名扫描，那么就不需要这个参数</p>
+<p>-v，verbose，详细输出</p>
+</blockquote>
+<p>后面的参数端口可以指定一个列表，使用空格隔开：</p>
+<p><img src=https://causality-blog.oss-cn-hangzhou.aliyuncs.com/hugo/notes/tech/netcat/image-20210421101436300.png alt=image-20210421101436300></p>
+<p>有些时候可以通过一些别的手段进行扫描测试；比如，很多应用会存在一些greeting banners，这意味当连接建立和断开时可能会输出一些特殊信息，因此可以通过向其发送一些greeting data根据回显来进行扫描：</p>
+<p><img src=https://causality-blog.oss-cn-hangzhou.aliyuncs.com/hugo/notes/tech/netcat/image-20210421101744159.png alt=image-20210421101744159></p>
+<h3 id=examples>Examples</h3>
+<p>一些其他简单常见的使用示例：</p>
+<ul>
+<li>
+<p>连接到使用指定端口连接到某个服务，如使用31337端口连接到host.example.com的42端口：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>nc -p <span style=color:#ae81ff>31337</span> -w <span style=color:#ae81ff>5</span> host.example.com <span style=color:#ae81ff>42</span>
+</code></pre></div><blockquote>
+<p>-w timeout</p>
+</blockquote>
+</li>
+<li>
+<p>与host.example.com建立一个UDP连接：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>nc -u host.example.com <span style=color:#ae81ff>53</span>
+</code></pre></div><blockquote>
+<p>-u 使用UDP协议</p>
+</blockquote>
+</li>
+<li>
+<p>与host.example.com建立连接并使用10.1.2.3作为源ip</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>nc -s 10.1.2.3 host.example.com <span style=color:#ae81ff>42</span>
+</code></pre></div></li>
+<li>
+<p>监听一个Unix-daemon stream socket：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>nc -lU /var/tmp/dsocket
+</code></pre></div><blockquote>
+<p>-U Unix-deamon socket</p>
+</blockquote>
+</li>
+<li>
+<p>使用HTTP代理：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>nc -x10.2.3.4:8080 -Xconnect -Puser host.example.com <span style=color:#ae81ff>42</span>
+</code></pre></div><blockquote>
+<p>-x proxy_address[:port]，使用给定ip和port作为代理进行连接</p>
+<p>-X proxy_protocol，指定使用的协议，如4（SOCKS v.4)、5（SOCKS v.5）、connect（HTTPS）；没有指定协议时默认使用SOCKS5</p>
+<p>-P proxy_username，代理服务器验证身份的用户名</p>
+</blockquote>
+</li>
+</ul>
+<h3 id=参数列表>参数列表</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>% nc -h  
 OpenBSD netcat <span style=color:#f92672>(</span>Debian patchlevel 1.206-1ubuntu1<span style=color:#f92672>)</span>
 usage: nc <span style=color:#f92672>[</span>-46CDdFhklNnrStUuvZz<span style=color:#f92672>]</span> <span style=color:#f92672>[</span>-I length<span style=color:#f92672>]</span> <span style=color:#f92672>[</span>-i interval<span style=color:#f92672>]</span> <span style=color:#f92672>[</span>-M ttl<span style=color:#f92672>]</span>
 	  <span style=color:#f92672>[</span>-m minttl<span style=color:#f92672>]</span> <span style=color:#f92672>[</span>-O length<span style=color:#f92672>]</span> <span style=color:#f92672>[</span>-P proxy_username<span style=color:#f92672>]</span> <span style=color:#f92672>[</span>-p source_port<span style=color:#f92672>]</span>
@@ -55,5 +185,57 @@ usage: nc <span style=color:#f92672>[</span>-46CDdFhklNnrStUuvZz<span style=colo
 		-z		Zero-I/O mode <span style=color:#f92672>[</span>used <span style=color:#66d9ef>for</span> scanning<span style=color:#f92672>]</span>
 	Port numbers can be individual or ranges: lo-hi <span style=color:#f92672>[</span>inclusive<span style=color:#f92672>]</span>
 
-</code></pre></div><h3 id=more-general-use>More General Use</h3><p>一些经常使用的命令：</p><ul><li><p>监听</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>nc -nvlp <span style=color:#ae81ff>9999</span> -e 
-</code></pre></div></li></ul></article><link rel=stylesheet href=https://unpkg.com/gitalk/dist/gitalk.css><script src=https://unpkg.com/gitalk/dist/gitalk.min.js></script><div id=gitalk></div><script>var gitalk=new Gitalk({clientID:'9a04c6b451fbce76511d',clientSecret:'430c540c77ecd6b59749c60f0341c057bd5320a0',repo:'Causa1ity.github.io',owner:'Causa1ity',admin:'Causa1ity',id:'security/tools/nc',distractionFreeMode:!1});gitalk.render('gitalk')</script></div><div class="flex-initial hidden lg:block lg:w-40 xl:w-60 2xl:w-80"><div class=fixed><h2 class="font-title text-2xl mb-4">Netcat 小记</h2><div class="font-mono text-xl"><nav id=TableOfContents><ul><li><a href=#概述>概述</a></li><li><a href=#使用>使用</a><ul><li><a href=#clientserver--model>Client/Server Model</a></li><li><a href=#data-transfer>Data Transfer</a></li><li><a href=#talking-to-server>Talking to Server</a></li><li><a href=#port-scanning>Port Scanning</a></li><li><a href=#examples>Examples</a></li><li><a href=#参数列表>参数列表</a></li><li><a href=#more-general-use>More General Use</a></li></ul></li></ul></nav></div></div></div></div></div><footer class=flex-auto><div class="font-title text-center my-4"><p class=text-lg>Powered By <a href=https://gohugo.io>Hugo</a></p></div></footer></body></html>
+</code></pre></div><h3 id=more-general-use>More General Use</h3>
+<p>一些经常使用的命令：</p>
+<ul>
+<li>
+<p>监听</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>nc -nvlp <span style=color:#ae81ff>9999</span> -e 
+</code></pre></div></li>
+</ul>
+</article>
+<div class="flex justify-between mt-12 mx-8 font-title text-xl">
+<div class=flex-initial>
+<a href=https://causality.top/security/notes/reverse-shell/ class=hover:text-blue-200>上一篇：反弹 Shell 小记</a>
+</div>
+<div class=flex-initial>
+<a href=https://causality.top/security/vulns/java/urldns/ class=hover:text-blue-200>下一篇：Urldns 复现</a>
+</div>
+</div>
+<link rel=stylesheet href=https://unpkg.com/gitalk/dist/gitalk.css>
+<script src=https://unpkg.com/gitalk/dist/gitalk.min.js></script>
+<div id=gitalk></div>
+<script>var gitalk=new Gitalk({clientID:'9a04c6b451fbce76511d',clientSecret:'430c540c77ecd6b59749c60f0341c057bd5320a0',repo:'Causa1ity.github.io',owner:'Causa1ity',admin:'Causa1ity',id:'security/tools/nc',distractionFreeMode:!1});gitalk.render('gitalk')</script>
+</div>
+<div class="flex-initial hidden lg:block ml-4 mr-auto">
+<div class=fixed>
+<div class=font-serif>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#概述>概述</a></li>
+<li><a href=#使用>使用</a>
+<ul>
+<li><a href=#clientserver--model>Client/Server Model</a></li>
+<li><a href=#data-transfer>Data Transfer</a></li>
+<li><a href=#talking-to-server>Talking to Server</a></li>
+<li><a href=#port-scanning>Port Scanning</a></li>
+<li><a href=#examples>Examples</a></li>
+<li><a href=#参数列表>参数列表</a></li>
+<li><a href=#more-general-use>More General Use</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+</div>
+</div>
+<footer class=flex-auto><div class="font-title text-center my-4">
+<p class=text-lg>
+Powered By <a href=https://gohugo.io>Hugo</a>
+</p>
+</div>
+</footer>
+</body>
+</html>

@@ -1,17 +1,194 @@
-<!doctype html><html lang=zh><head><meta http-equiv=content-type content="text/html" charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=stylesheet href=/css/tailwind.min.b39a406edef2cbbd2ccee2cbd368a787bfad3ac016440c2b37558902050cf85d.css integrity=sha256-s5pAbt7yy70szuLL02inh7+tOsAWRAwrN1WJAgUM+F0=><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Lora&display=swap" rel=stylesheet><script src=https://kit.fontawesome.com/9cc9e9e3f3.js crossorigin=anonymous></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/docsearch.js@2.6.3/dist/cdn/docsearch.min.css><title>Django</title></head><body class="flex flex-col"><header class="flex fixed bg-white w-full p-4 font-title text-xl border-b"><div class="logo flex-1"><a href=/ class=font-title>Forgotten Land</a></div><nav class="flex-initial ml-4"><div id=归档 class=inline><a href=/metapages/archive/ class="mx-2 hover:text-blue-200">归档</a></div><div id=分类 class=inline><a href=/categories/ class="mx-2 hover:text-blue-200">分类</a><div class=absolute></div></div><div id=标签 class=inline><a href=/tags/ class="mx-2 hover:text-blue-200">标签</a></div><div id=关于 class=inline><a href=/metapages/about/ class="mx-2 hover:text-blue-200">关于</a></div></nav></header><div class="flex-grow mt-24"><div class=flex><div class="md:w-4/5 lg:w-2/3 max-w-screen-lg mx-auto p-4 shadow-2xl"><h1 class="font-title text-4xl text-center mb-4">Django</h1><div class="flex justify-center font-mono"><div class="mr-6 flex-none"><i class="fas fa-calendar mr-1"></i>
-<span>2021-03-25</span></div><div class="mr-6 flex-none"><i class="fas fa-clock mr-1"></i>
-<span>阅读时长约 4 分钟</span></div></div><article class=content><h2 id=intro>Intro</h2><p>Django 最初被设计用于具有快速开发需求的新闻类站点，目的是要实现简单快捷的网站开发。因此，可以使用 django 快速实现一个数据库驱动的 Web 应用。</p><p>Django 使用 MTV 模式架构，即：Model（模型）、Template（模板）、View（视图）。其中 Model 与数据对应，一般来说，一个模型对应一张数据表；与其他一些框架一样，Template 负责使用一种动态的方式渲染页面，一般来说，模板中需要包含一个静态的 HTML 内容以及一些逻辑语法来动态的插入其他内容；View 部分则定义了网站的工作逻辑，即当接受到一个请求时，网站如何进行响应。</p><h2 id=django-初窥>django 初窥</h2><h3 id=steps>Steps</h3><p>使用各种开发工具、IDE等可以很方便的生成一个 django 的主要框架，但是这里为了理解方便使用命令行来创建一个 django 网站。在开始之前，首先需要先安装 django，使用<code>python -m django --version</code>可以查看是否安装 django，如果没有，需要首先安装<code>pip install django</code>。</p><ol><li><p>创建站点 <code>django-admin startproject mysite</code>：</p><ul><li>这个命令会在 mysite 目录下生成一个站点，其包含以下内容：</li><li><em>manage.py</em>：一个管理站点的命令行工具，之后的许多操作都要使用<code>python manage.py ...</code>实现；</li><li><em>mysite/__init__.py</em>：告诉 python 这是一个包；</li><li><em>mysiet/settings.py</em>：django配置文件；</li><li><em>mysite/urls.py</em>：django 站点的 url 声明，在这里定义网站接收到的请求交给谁处理；</li><li><em>mysite/asgi.py</em>：作为你的项目的运行在 ASGI 兼容的 Web 服务器上的入口；</li><li><em>mysite/wsgi.py</em>：作为你的项目的运行在 WSGI 兼容的 Web 服务器上的入口；</li><li>此时就可以使用<code>python manage.py runserver</code>启动网站了，如果可以正常访问，那么我们揪下来就可以创建一个 web应用了；</li></ul></li><li><p>创建应用 <code>python manage.py startapp webapp</code>：</p><ul><li>首先要进入 mysite 的目录，然后再执行这条命令；</li><li>这条命令会在 webapp 下创建一个应用，其包含以下几个文件：</li><li><em>webapp/__init__.py</em>：告诉 python 这是一个包；</li><li><em>webapp/admin.py</em>：一个默认的 webapp 管理应用；</li><li><em>webapp/apps.py</em>：可以认为是app的设置文件；</li><li><em>webapp/models.py</em>：应用的模型定义；</li><li><em>webapp/views.py</em>：应用的视图定义；</li><li><em>webapp/tests.py</em></li><li><em>webapp/migrations/__init__.py</em>：数据库迁移数据</li><li>除此之外，还可自己定义一个 <em>urls.conf</em> 文件，这样做的目的是降低耦合，也使站点的布局更加清晰；在接收到一个请求时，只需要将所有只想该应用的请求全部转发到 <em>webapp/urls.conf</em> 下，再有该文件进行具体由哪个视图处理；</li><li>创建完成之后，为了使该应用加入到该站点中，至少还需要两项设置：<ul><li>在 <em>mysite/urls.py</em> 中增加该应用的 route；</li><li>在 <em>mysite/settings.py</em> 中增加该应用；</li></ul></li></ul></li><li><p>设计APP：</p><ul><li>设计模型</li><li>设计视图</li><li>设计模板</li></ul></li><li><p>修改 urlconf：</p><ul><li><em>mysite/urls.py</em>：<div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-py data-lang=py>urlpatterns <span style=color:#f92672>=</span> [
+<!doctype html><html lang=zh>
+<head><meta http-equiv=content-type content="text/html" charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge,chrome=1">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel=stylesheet href=/css/tailwind.min.b39a406edef2cbbd2ccee2cbd368a787bfad3ac016440c2b37558902050cf85d.css integrity=sha256-s5pAbt7yy70szuLL02inh7+tOsAWRAwrN1WJAgUM+F0=>
+<link rel=preconnect href=https://fonts.googleapis.com>
+<link rel=preconnect href=https://fonts.gstatic.com crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Lora&display=swap" rel=stylesheet>
+<script src=https://kit.fontawesome.com/9cc9e9e3f3.js crossorigin=anonymous></script>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/docsearch.js@2.6.3/dist/cdn/docsearch.min.css><title>Django</title>
+</head>
+<body class="flex flex-col">
+<header class="flex fixed bg-white w-full p-4 font-title text-xl border-b"><div class="logo flex-1">
+<a href=/ class=font-title>Forgotten Land</a>
+</div>
+<nav class="flex-initial ml-4">
+<div id=归档 class=inline>
+<a href=/metapages/archive/ class="mx-2 hover:text-blue-200">归档</a>
+</div>
+<div id=分类 class=inline>
+<a href=/categories/ class="mx-2 hover:text-blue-200">分类</a>
+<div class=absolute>
+</div>
+</div>
+<div id=标签 class=inline>
+<a href=/tags/ class="mx-2 hover:text-blue-200">标签</a>
+</div>
+<div id=关于 class=inline>
+<a href=/metapages/about/ class="mx-2 hover:text-blue-200">关于</a>
+</div>
+</nav>
+</header>
+<div class="flex-grow mt-24">
+<div class=flex>
+<div class="md:w-4/5 lg:w-2/3 max-w-screen-lg mx-auto lg:mr-0 p-4 shadow-2xl">
+<h1 class="font-title text-4xl text-center mb-4">Django</h1>
+<div class="flex justify-center font-mono">
+<div class="mr-6 flex-none">
+<i class="fas fa-calendar mr-1"></i>
+<span>2021-03-25</span>
+</div>
+<div class="mr-6 flex-none">
+<i class="fas fa-clock mr-1"></i>
+<span>阅读时长约 4 分钟</span>
+</div>
+</div>
+<article id=content class="content mb-4 p-4">
+<h2 id=intro>Intro</h2>
+<p>Django 最初被设计用于具有快速开发需求的新闻类站点，目的是要实现简单快捷的网站开发。因此，可以使用 django 快速实现一个数据库驱动的 Web 应用。</p>
+<p>Django 使用 MTV 模式架构，即：Model（模型）、Template（模板）、View（视图）。其中 Model 与数据对应，一般来说，一个模型对应一张数据表；与其他一些框架一样，Template 负责使用一种动态的方式渲染页面，一般来说，模板中需要包含一个静态的 HTML 内容以及一些逻辑语法来动态的插入其他内容；View 部分则定义了网站的工作逻辑，即当接受到一个请求时，网站如何进行响应。</p>
+<h2 id=django-初窥>django 初窥</h2>
+<h3 id=steps>Steps</h3>
+<p>使用各种开发工具、IDE等可以很方便的生成一个 django 的主要框架，但是这里为了理解方便使用命令行来创建一个 django 网站。在开始之前，首先需要先安装 django，使用<code>python -m django --version</code>可以查看是否安装 django，如果没有，需要首先安装<code>pip install django</code>。</p>
+<ol>
+<li>
+<p>创建站点 <code>django-admin startproject mysite</code>：</p>
+<ul>
+<li>这个命令会在 mysite 目录下生成一个站点，其包含以下内容：</li>
+<li><em>manage.py</em>：一个管理站点的命令行工具，之后的许多操作都要使用<code>python manage.py ...</code>实现；</li>
+<li><em>mysite/__init__.py</em>：告诉 python 这是一个包；</li>
+<li><em>mysiet/settings.py</em>：django配置文件；</li>
+<li><em>mysite/urls.py</em>：django 站点的 url 声明，在这里定义网站接收到的请求交给谁处理；</li>
+<li><em>mysite/asgi.py</em>：作为你的项目的运行在 ASGI 兼容的 Web 服务器上的入口；</li>
+<li><em>mysite/wsgi.py</em>：作为你的项目的运行在 WSGI 兼容的 Web 服务器上的入口；</li>
+<li>此时就可以使用<code>python manage.py runserver</code>启动网站了，如果可以正常访问，那么我们揪下来就可以创建一个 web应用了；</li>
+</ul>
+</li>
+<li>
+<p>创建应用 <code>python manage.py startapp webapp</code>：</p>
+<ul>
+<li>首先要进入 mysite 的目录，然后再执行这条命令；</li>
+<li>这条命令会在 webapp 下创建一个应用，其包含以下几个文件：</li>
+<li><em>webapp/__init__.py</em>：告诉 python 这是一个包；</li>
+<li><em>webapp/admin.py</em>：一个默认的 webapp 管理应用；</li>
+<li><em>webapp/apps.py</em>：可以认为是app的设置文件；</li>
+<li><em>webapp/models.py</em>：应用的模型定义；</li>
+<li><em>webapp/views.py</em>：应用的视图定义；</li>
+<li><em>webapp/tests.py</em></li>
+<li><em>webapp/migrations/__init__.py</em>：数据库迁移数据</li>
+<li>除此之外，还可自己定义一个 <em>urls.conf</em> 文件，这样做的目的是降低耦合，也使站点的布局更加清晰；在接收到一个请求时，只需要将所有只想该应用的请求全部转发到 <em>webapp/urls.conf</em> 下，再有该文件进行具体由哪个视图处理；</li>
+<li>创建完成之后，为了使该应用加入到该站点中，至少还需要两项设置：
+<ul>
+<li>在 <em>mysite/urls.py</em> 中增加该应用的 route；</li>
+<li>在 <em>mysite/settings.py</em> 中增加该应用；</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>设计APP：</p>
+<ul>
+<li>设计模型</li>
+<li>设计视图</li>
+<li>设计模板</li>
+</ul>
+</li>
+<li>
+<p>修改 urlconf：</p>
+<ul>
+<li><em>mysite/urls.py</em>：
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-py data-lang=py>urlpatterns <span style=color:#f92672>=</span> [
     path(<span style=color:#e6db74>&#39;webapp/&#39;</span>, include(<span style=color:#e6db74>&#39;webapp.urls&#39;</span>)),
     path(<span style=color:#e6db74>&#39;admin/&#39;</span>, admin<span style=color:#f92672>.</span>site<span style=color:#f92672>.</span>urls),
 ]
-</code></pre></div></li><li><em>webapp/urls.py</em>：<div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-py data-lang=py><span style=color:#f92672>from</span> django.urls <span style=color:#f92672>import</span> path
+</code></pre></div></li>
+<li><em>webapp/urls.py</em>：
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-py data-lang=py><span style=color:#f92672>from</span> django.urls <span style=color:#f92672>import</span> path
 <span style=color:#f92672>from</span> . <span style=color:#f92672>import</span> views
 
 urlpatterns <span style=color:#f92672>=</span> [
     path(<span style=color:#e6db74>&#39;&#39;</span>, views<span style=color:#f92672>.</span>index, name<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;index&#39;</span>),
 ]
-</code></pre></div></li></ul></li><li><p>修改网站设置：</p><ul><li>主要需要做的事情有两件，目的是为了保证 app 的模型与数据库能正常工作；</li><li>INSTALLED_APPS = [&lsquo;webapp.apps.WebappConfig&rsquo;]</li><li>定义数据库蛇者：DATABASES = {}</li></ul></li><li><p>生成数据库迁移文件 <code>python makemigrations webapp</code>：</p><ul><li>这条命令会使 django 检测模型的修改，然后存储为一次迁移</li><li>可以使用<code>sqlmigrate</code>查看迁移的 sql 语句，假设迁移文件为<code>webapp/migrations/0001_initial.py</code>，那么可以使用<code>python manage.py sqlmigrate webapp 0001</code>查看迁移语句。</li></ul></li><li><p>保存迁移到数据库<code>python manage.py migrate</code>：</p><ul><li>该命令会所有还没有执行的迁移应用的数据库上</li></ul></li></ol><h3 id=django-shell>django shell</h3><p>使用 <code>python manage.py shell</code> 可以进入一个特定的交互式命令行，这个命令行中设置了 <strong>DJANGO_SETTINGS_MODULE</strong> 环境变量，可以使用这个命令行测试各种 django api。</p><h3 id=django-admin>django admin</h3><p>django 会默认生成一个后台管理界面，通过这个界面可以方便的进行一些数据库管理。</p><ol><li>首先需要创建一个管理员账户：<code>python manage.py createsuperuser</code></li><li>编辑 <code>webapp/admin.py</code> 文件，注册模型：<div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-py data-lang=py><span style=color:#f92672>from</span> django.contrib <span style=color:#f92672>import</span> admin
+</code></pre></div></li>
+</ul>
+</li>
+<li>
+<p>修改网站设置：</p>
+<ul>
+<li>主要需要做的事情有两件，目的是为了保证 app 的模型与数据库能正常工作；</li>
+<li>INSTALLED_APPS = [&lsquo;webapp.apps.WebappConfig&rsquo;]</li>
+<li>定义数据库蛇者：DATABASES = {}</li>
+</ul>
+</li>
+<li>
+<p>生成数据库迁移文件 <code>python makemigrations webapp</code>：</p>
+<ul>
+<li>这条命令会使 django 检测模型的修改，然后存储为一次迁移</li>
+<li>可以使用<code>sqlmigrate</code>查看迁移的 sql 语句，假设迁移文件为<code>webapp/migrations/0001_initial.py</code>，那么可以使用<code>python manage.py sqlmigrate webapp 0001</code>查看迁移语句。</li>
+</ul>
+</li>
+<li>
+<p>保存迁移到数据库<code>python manage.py migrate</code>：</p>
+<ul>
+<li>该命令会所有还没有执行的迁移应用的数据库上</li>
+</ul>
+</li>
+</ol>
+<h3 id=django-shell>django shell</h3>
+<p>使用 <code>python manage.py shell</code> 可以进入一个特定的交互式命令行，这个命令行中设置了 <strong>DJANGO_SETTINGS_MODULE</strong> 环境变量，可以使用这个命令行测试各种 django api。</p>
+<h3 id=django-admin>django admin</h3>
+<p>django 会默认生成一个后台管理界面，通过这个界面可以方便的进行一些数据库管理。</p>
+<ol>
+<li>首先需要创建一个管理员账户：<code>python manage.py createsuperuser</code></li>
+<li>编辑 <code>webapp/admin.py</code> 文件，注册模型：
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-py data-lang=py><span style=color:#f92672>from</span> django.contrib <span style=color:#f92672>import</span> admin
 <span style=color:#f92672>from</span> .models <span style=color:#f92672>import</span> ModelName
 
 admin<span style=color:#f92672>.</span>site<span style=color:#f92672>.</span>register(ModelName)
-</code></pre></div></li><li>启动开发服务器：<code>python manage.py runserver</code></li><li>访问管理员页面：<em>http://127.0.0.1:8000/admin</em></li></ol></article><link rel=stylesheet href=https://unpkg.com/gitalk/dist/gitalk.css><script src=https://unpkg.com/gitalk/dist/gitalk.min.js></script><div id=gitalk></div><script>var gitalk=new Gitalk({clientID:'9a04c6b451fbce76511d',clientSecret:'430c540c77ecd6b59749c60f0341c057bd5320a0',repo:'Causa1ity.github.io',owner:'Causa1ity',admin:'Causa1ity',id:'devops/python/django',distractionFreeMode:!1});gitalk.render('gitalk')</script></div><div class="flex-initial hidden lg:block lg:w-40 xl:w-60 2xl:w-80"><div class=fixed><h2 class="font-title text-2xl mb-4">Django</h2><div class="font-mono text-xl"><nav id=TableOfContents><ul><li><a href=#intro>Intro</a></li><li><a href=#django-初窥>django 初窥</a><ul><li><a href=#steps>Steps</a></li><li><a href=#django-shell>django shell</a></li><li><a href=#django-admin>django admin</a></li></ul></li></ul></nav></div></div></div></div></div><footer class=flex-auto><div class="font-title text-center my-4"><p class=text-lg>Powered By <a href=https://gohugo.io>Hugo</a></p></div></footer></body></html>
+</code></pre></div></li>
+<li>启动开发服务器：<code>python manage.py runserver</code></li>
+<li>访问管理员页面：<em>http://127.0.0.1:8000/admin</em></li>
+</ol>
+</article>
+<div class="flex justify-between mt-12 mx-8 font-title text-xl">
+<div class=flex-initial>
+<a href=https://causality.top/security/vulns/shiro/shiro-550/ class=hover:text-blue-200>上一篇：Shiro 550</a>
+</div>
+<div class=flex-initial>
+<a href=https://causality.top/devops/python/flask/ class=hover:text-blue-200>下一篇：Flask</a>
+</div>
+</div>
+<link rel=stylesheet href=https://unpkg.com/gitalk/dist/gitalk.css>
+<script src=https://unpkg.com/gitalk/dist/gitalk.min.js></script>
+<div id=gitalk></div>
+<script>var gitalk=new Gitalk({clientID:'9a04c6b451fbce76511d',clientSecret:'430c540c77ecd6b59749c60f0341c057bd5320a0',repo:'Causa1ity.github.io',owner:'Causa1ity',admin:'Causa1ity',id:'devops/python/django',distractionFreeMode:!1});gitalk.render('gitalk')</script>
+</div>
+<div class="flex-initial hidden lg:block ml-4 mr-auto">
+<div class=fixed>
+<div class=font-serif>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#intro>Intro</a></li>
+<li><a href=#django-初窥>django 初窥</a>
+<ul>
+<li><a href=#steps>Steps</a></li>
+<li><a href=#django-shell>django shell</a></li>
+<li><a href=#django-admin>django admin</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+</div>
+</div>
+<footer class=flex-auto><div class="font-title text-center my-4">
+<p class=text-lg>
+Powered By <a href=https://gohugo.io>Hugo</a>
+</p>
+</div>
+</footer>
+</body>
+</html>

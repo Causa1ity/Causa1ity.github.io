@@ -1,21 +1,94 @@
-<!doctype html><html lang=zh><head><meta http-equiv=content-type content="text/html" charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=stylesheet href=/css/tailwind.min.b39a406edef2cbbd2ccee2cbd368a787bfad3ac016440c2b37558902050cf85d.css integrity=sha256-s5pAbt7yy70szuLL02inh7+tOsAWRAwrN1WJAgUM+F0=><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Lora&display=swap" rel=stylesheet><script src=https://kit.fontawesome.com/9cc9e9e3f3.js crossorigin=anonymous></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/docsearch.js@2.6.3/dist/cdn/docsearch.min.css><title>Hugo Web 0x01: 基本框架</title></head><body class="flex flex-col"><header class="flex fixed bg-white w-full p-4 font-title text-xl border-b"><div class="logo flex-1"><a href=/ class=font-title>Forgotten Land</a></div><nav class="flex-initial ml-4"><div id=归档 class=inline><a href=/metapages/archive/ class="mx-2 hover:text-blue-200">归档</a></div><div id=分类 class=inline><a href=/categories/ class="mx-2 hover:text-blue-200">分类</a><div class=absolute></div></div><div id=标签 class=inline><a href=/tags/ class="mx-2 hover:text-blue-200">标签</a></div><div id=关于 class=inline><a href=/metapages/about/ class="mx-2 hover:text-blue-200">关于</a></div></nav></header><div class="flex-grow mt-24"><div class=flex><div class="md:w-4/5 lg:w-2/3 max-w-screen-lg mx-auto p-4 shadow-2xl"><h1 class="font-title text-4xl text-center mb-4">Hugo Web 0x01: 基本框架</h1><div class="flex justify-center font-mono"><div class="mr-6 flex-none"><i class="fas fa-calendar mr-1"></i>
-<span>2021-07-15</span></div><div class="mr-6 flex-none"><i class="fas fa-clock mr-1"></i>
-<span>阅读时长约 5 分钟</span></div></div><article class=content><blockquote><p>Hugo Web Series 是记录使用 Hugo 搭建一个 Web 网站的记录系列，目标是记录下使用 Hugo + TailwindCSS + Vue 搭建网站的各种构思、问题。</p><p>文章基于 Windows 编写，Shell 主要为 PowerShell。</p><p>这是本系列的第一篇，主要内容为使用 Hugo + TailwindCSS 搭建一个简单的框架。</p></blockquote><h2 id=目录结构>目录结构</h2><p>由于是使用Hugo来生成一个网站，因此实际牵扯到的目录结构有两个：一个是Hugo站点本身的目录结构，一个是Hugo生成的静态网站的目录。这里讨论的主要是前者。</p><p>网站的目录由一个基本的 Hugo Site 略作修改而来，这里没有使用主题的方式来渲染网页，而是直接将主题的内容搬到了Site下，原因是主题使用 postcss 时需要全局安装，但是我不想这么做（😜），但是如果是直接合起来就不需要这样，因此采用了这样的方式来组织目录（事实上只要将content目录去掉，这个站点也很容易当作主题使用。</p><p>OK，现在看看具体的目录，大概长这样：</p><p><img src=D:%5CWorkSpace%5CWebStorm%5CBlog%5Ccontent%5Cdevops%5CWeb%5Chugo%5Cbasic.assets%5Cimage-20210714231207695.png alt=image-20210714231207695></p><p>没有什么需要特别说明的地方，接下来介绍一下怎么生成这样一个目录结构。</p><p>首先是需要有一个基本的站点结构，因此首先需要使用 Hugo 来新建一个 Site：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-powershell data-lang=powershell>PS&gt; hugo new site Hugo-Web
-</code></pre></div><p>默认情况下会有 7 个目录或文件：archetypes、content、data、layouts、static、themes、config.toml。可以看出我最后没有 data、static、themes，因为用不到，所以我把它们都删了。然后就是配置文件，我是改成了多个文件的形式（config目录），这些都是视个人习惯而言的。然后就是多了一个assets目录，这个也不用多说了。</p><p>首先是 .git 和 .gitignore，这两个其实也不用多说，为了方便管理，打算将网站的源码直接托管到github上，所以将其创建为了一个仓库，这个就是看需求了。然后是 go.mod ，这个是 Hugo Modules 的相关文件。其实这里没有用到其他Modules的话，是没有必要的；我这里之所以有，是因为后来才确定的结构，这个文件也就一直在这里了。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-powershell data-lang=powershell>PS&gt; git init .
+<!doctype html><html lang=zh>
+<head><meta http-equiv=content-type content="text/html" charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge,chrome=1">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel=stylesheet href=/css/tailwind.min.b39a406edef2cbbd2ccee2cbd368a787bfad3ac016440c2b37558902050cf85d.css integrity=sha256-s5pAbt7yy70szuLL02inh7+tOsAWRAwrN1WJAgUM+F0=>
+<link rel=preconnect href=https://fonts.googleapis.com>
+<link rel=preconnect href=https://fonts.gstatic.com crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Lora&display=swap" rel=stylesheet>
+<script src=https://kit.fontawesome.com/9cc9e9e3f3.js crossorigin=anonymous></script>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/docsearch.js@2.6.3/dist/cdn/docsearch.min.css><title>Hugo Web 0x01: 基本框架</title>
+</head>
+<body class="flex flex-col">
+<header class="flex fixed bg-white w-full p-4 font-title text-xl border-b"><div class="logo flex-1">
+<a href=/ class=font-title>Forgotten Land</a>
+</div>
+<nav class="flex-initial ml-4">
+<div id=归档 class=inline>
+<a href=/metapages/archive/ class="mx-2 hover:text-blue-200">归档</a>
+</div>
+<div id=分类 class=inline>
+<a href=/categories/ class="mx-2 hover:text-blue-200">分类</a>
+<div class=absolute>
+</div>
+</div>
+<div id=标签 class=inline>
+<a href=/tags/ class="mx-2 hover:text-blue-200">标签</a>
+</div>
+<div id=关于 class=inline>
+<a href=/metapages/about/ class="mx-2 hover:text-blue-200">关于</a>
+</div>
+</nav>
+</header>
+<div class="flex-grow mt-24">
+<div class=flex>
+<div class="md:w-4/5 lg:w-2/3 max-w-screen-lg mx-auto lg:mr-0 p-4 shadow-2xl">
+<h1 class="font-title text-4xl text-center mb-4">Hugo Web 0x01: 基本框架</h1>
+<div class="flex justify-center font-mono">
+<div class="mr-6 flex-none">
+<i class="fas fa-calendar mr-1"></i>
+<span>2021-07-15</span>
+</div>
+<div class="mr-6 flex-none">
+<i class="fas fa-clock mr-1"></i>
+<span>阅读时长约 5 分钟</span>
+</div>
+</div>
+<article id=content class="content mb-4 p-4">
+<blockquote>
+<p>Hugo Web Series 是记录使用 Hugo 搭建一个 Web 网站的记录系列，目标是记录下使用 Hugo + TailwindCSS + Vue 搭建网站的各种构思、问题。</p>
+<p>文章基于 Windows 编写，Shell 主要为 PowerShell。</p>
+<p>这是本系列的第一篇，主要内容为使用 Hugo + TailwindCSS 搭建一个简单的框架。</p>
+</blockquote>
+<h2 id=目录结构>目录结构</h2>
+<p>由于是使用Hugo来生成一个网站，因此实际牵扯到的目录结构有两个：一个是Hugo站点本身的目录结构，一个是Hugo生成的静态网站的目录。这里讨论的主要是前者。</p>
+<p>网站的目录由一个基本的 Hugo Site 略作修改而来，这里没有使用主题的方式来渲染网页，而是直接将主题的内容搬到了Site下，原因是主题使用 postcss 时需要全局安装，但是我不想这么做（😜），但是如果是直接合起来就不需要这样，因此采用了这样的方式来组织目录（事实上只要将content目录去掉，这个站点也很容易当作主题使用。</p>
+<p>OK，现在看看具体的目录，大概长这样：</p>
+<p><img src=D:%5CWorkSpace%5CWebStorm%5CBlog%5Ccontent%5Cdevops%5CWeb%5Chugo%5Cbasic.assets%5Cimage-20210714231207695.png alt=image-20210714231207695></p>
+<p>没有什么需要特别说明的地方，接下来介绍一下怎么生成这样一个目录结构。</p>
+<p>首先是需要有一个基本的站点结构，因此首先需要使用 Hugo 来新建一个 Site：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-powershell data-lang=powershell>PS&gt; hugo new site Hugo-Web
+</code></pre></div><p>默认情况下会有 7 个目录或文件：archetypes、content、data、layouts、static、themes、config.toml。可以看出我最后没有 data、static、themes，因为用不到，所以我把它们都删了。然后就是配置文件，我是改成了多个文件的形式（config目录），这些都是视个人习惯而言的。然后就是多了一个assets目录，这个也不用多说了。</p>
+<p>首先是 .git 和 .gitignore，这两个其实也不用多说，为了方便管理，打算将网站的源码直接托管到github上，所以将其创建为了一个仓库，这个就是看需求了。然后是 go.mod ，这个是 Hugo Modules 的相关文件。其实这里没有用到其他Modules的话，是没有必要的；我这里之所以有，是因为后来才确定的结构，这个文件也就一直在这里了。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-powershell data-lang=powershell>PS&gt; git init .
 PS&gt; ni .gitignore
-</code></pre></div><p>然后是几个重点文件：package.json、package-lock.json、node_modules，这三个是node相关的文件，由于这里要使用postcss和tailwindcss，所以这里需要使用npm来管理包，所以这里就有了这些文件。然后是postcss.config.js 和 tailwind.config.js，从名称也可以很容易看出这两个文件是配置文件。</p><pre><code>PS&gt; npm init
+</code></pre></div><p>然后是几个重点文件：package.json、package-lock.json、node_modules，这三个是node相关的文件，由于这里要使用postcss和tailwindcss，所以这里需要使用npm来管理包，所以这里就有了这些文件。然后是postcss.config.js 和 tailwind.config.js，从名称也可以很容易看出这两个文件是配置文件。</p>
+<pre><code>PS&gt; npm init
 PS&gt; npm install -D postcss-cli postcss-import autoprefixer tailwindcss
 PS&gt; npx tailwind init -p
-</code></pre><p>执行完上面的命令，目录结构就差不多成型了。当然这里还有一个resouces目录，这个目录是一个缓存目录，会在使用 hugo 生成网站时自动创建，这里暂时不必在意。</p><h2 id=基本配置>基本配置</h2><p>参考前面的步骤，得到的目录应该是下面这个样子：</p><p><img src=D:%5CWorkSpace%5CWebStorm%5CBlog%5Ccontent%5Cdevops%5CWeb%5Chugo%5Cbasic.assets%5Cimage-20210714234814796.png alt=image-20210714234814796></p><p>虽然已经有了基本的目录结构，但是也只是徒有其表罢了，所以接下来就是要让其变得可用。这样，按照顺序来，首先看看archetypes这个目录。这个目录的作用是决定创建新文件时的默认内容，一般就是指定文件的frontmatter。在使用 <code>hugo new</code> 新建一个目录或文件时，可以使用 <code>-k</code> 来指定类型，hugo会根据指定的类型在这个目录下查找模板来生成文件。</p><p>默认情况下，这个目录会有一个default.md，如果不指定<code>-k</code>就会使用这个文件。本节的目标只是创建主页和文章页，因此暂时不需要进行修改。</p><p>接下来是 assets，这里自然是用来存放资源文件的了。这个目录是手动创建的，所以目前还没有内容，接下来就需要在其中创建一个目录和两个文件：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-powershell data-lang=powershell>PS&gt; mkdir .\assets\css
+</code></pre><p>执行完上面的命令，目录结构就差不多成型了。当然这里还有一个resouces目录，这个目录是一个缓存目录，会在使用 hugo 生成网站时自动创建，这里暂时不必在意。</p>
+<h2 id=基本配置>基本配置</h2>
+<p>参考前面的步骤，得到的目录应该是下面这个样子：</p>
+<p><img src=D:%5CWorkSpace%5CWebStorm%5CBlog%5Ccontent%5Cdevops%5CWeb%5Chugo%5Cbasic.assets%5Cimage-20210714234814796.png alt=image-20210714234814796></p>
+<p>虽然已经有了基本的目录结构，但是也只是徒有其表罢了，所以接下来就是要让其变得可用。这样，按照顺序来，首先看看archetypes这个目录。这个目录的作用是决定创建新文件时的默认内容，一般就是指定文件的frontmatter。在使用 <code>hugo new</code> 新建一个目录或文件时，可以使用 <code>-k</code> 来指定类型，hugo会根据指定的类型在这个目录下查找模板来生成文件。</p>
+<p>默认情况下，这个目录会有一个default.md，如果不指定<code>-k</code>就会使用这个文件。本节的目标只是创建主页和文章页，因此暂时不需要进行修改。</p>
+<p>接下来是 assets，这里自然是用来存放资源文件的了。这个目录是手动创建的，所以目前还没有内容，接下来就需要在其中创建一个目录和两个文件：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-powershell data-lang=powershell>PS&gt; mkdir .\assets\css
 PS&gt; ni .\assets\css\tailwind.css
 PS&gt; ni .\assets\css\markdown.css
 
-</code></pre></div><p>然后编辑，tailwind.css 内容如下：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-css data-lang=css>@<span style=color:#66d9ef>import</span> <span style=color:#e6db74>&#34;assets/css/markdown.css&#34;</span>;
+</code></pre></div><p>然后编辑，tailwind.css 内容如下：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-css data-lang=css>@<span style=color:#66d9ef>import</span> <span style=color:#e6db74>&#34;assets/css/markdown.css&#34;</span>;
 
 @<span style=color:#66d9ef>import</span> <span style=color:#e6db74>&#34;tailwindcss/base&#34;</span>;
 @<span style=color:#66d9ef>import</span> <span style=color:#e6db74>&#34;tailwindcss/components&#34;</span>;
 @<span style=color:#66d9ef>import</span> <span style=color:#e6db74>&#34;tailwindcss/utilities&#34;</span>;
-</code></pre></div><p>而 markdown.css 自然是用来渲染 markdown，需要这个文件的原因是 tailwindcss 会把 HTML 标签的默认效果清除，所以需要指定样式；当然也可以使用 tailwind 的插件来实现，这个搜索一下就有了。</p><p>接下来是 content 目录，这个是内容目录，暂时就不管了。</p><p>然后是layout，这个是重头戏，放在最后再说。</p><p>config.toml、package.json 目前没有特别需要修改的，也先跳过。</p><p>然后是postcss.config.js，这里需要配置一下插件，所以修改文件内容：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#a6e22e>module</span>.<span style=color:#a6e22e>exports</span> <span style=color:#f92672>=</span> {
+</code></pre></div><p>而 markdown.css 自然是用来渲染 markdown，需要这个文件的原因是 tailwindcss 会把 HTML 标签的默认效果清除，所以需要指定样式；当然也可以使用 tailwind 的插件来实现，这个搜索一下就有了。</p>
+<p>接下来是 content 目录，这个是内容目录，暂时就不管了。</p>
+<p>然后是layout，这个是重头戏，放在最后再说。</p>
+<p>config.toml、package.json 目前没有特别需要修改的，也先跳过。</p>
+<p>然后是postcss.config.js，这里需要配置一下插件，所以修改文件内容：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#a6e22e>module</span>.<span style=color:#a6e22e>exports</span> <span style=color:#f92672>=</span> {
   <span style=color:#a6e22e>plugins</span><span style=color:#f92672>:</span> {
     <span style=color:#e6db74>&#39;postcss-import&#39;</span><span style=color:#f92672>:</span> {},
     <span style=color:#a6e22e>tailwindcss</span><span style=color:#f92672>:</span> {},
@@ -23,7 +96,8 @@ PS&gt; ni .\assets\css\markdown.css
   },
 }
 
-</code></pre></div><p>最后是 tailwind.config.js，这里也需要修改，将 purge 部分进行修改：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js>  <span style=color:#a6e22e>purge</span><span style=color:#f92672>:</span> {
+</code></pre></div><p>最后是 tailwind.config.js，这里也需要修改，将 purge 部分进行修改：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js>  <span style=color:#a6e22e>purge</span><span style=color:#f92672>:</span> {
     <span style=color:#a6e22e>enable</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>process</span>.<span style=color:#a6e22e>env</span>.<span style=color:#a6e22e>HUGO_ENVIROMENT</span> <span style=color:#f92672>===</span> <span style=color:#e6db74>&#34;production&#34;</span>,
     <span style=color:#a6e22e>content</span><span style=color:#f92672>:</span> [
       <span style=color:#e6db74>&#34;./layouts/**/*.html&#34;</span>,
@@ -31,7 +105,8 @@ PS&gt; ni .\assets\css\markdown.css
       <span style=color:#e6db74>&#34;./content/**/*.html&#34;</span>
     ],
   },
-</code></pre></div><p>其余部分可以看情况修改，比如使用插件、增加样式等，比如我这里增加了几个字体的样式，就需要在theme部分增加：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js>  <span style=color:#a6e22e>theme</span><span style=color:#f92672>:</span> {
+</code></pre></div><p>其余部分可以看情况修改，比如使用插件、增加样式等，比如我这里增加了几个字体的样式，就需要在theme部分增加：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js>  <span style=color:#a6e22e>theme</span><span style=color:#f92672>:</span> {
     <span style=color:#a6e22e>fontFamily</span><span style=color:#f92672>:</span> {
       <span style=color:#e6db74>&#34;title&#34;</span><span style=color:#f92672>:</span> [<span style=color:#e6db74>&#34;Lora&#34;</span>, <span style=color:#e6db74>&#34;KaiTi&#34;</span>, <span style=color:#e6db74>&#34;serif&#34;</span>],
       <span style=color:#e6db74>&#39;main&#39;</span><span style=color:#f92672>:</span> [<span style=color:#e6db74>&#39;Fira Code&#39;</span>, <span style=color:#e6db74>&#39;Lora&#39;</span>, <span style=color:#e6db74>&#39;serif&#39;</span>],
@@ -42,13 +117,16 @@ PS&gt; ni .\assets\css\markdown.css
     <span style=color:#a6e22e>extend</span><span style=color:#f92672>:</span> {
     },
   },
-</code></pre></div><p>好了，现在回来看看layouts，这部分影响网页的渲染，也就是决定了网页最终的呈现状态。</p><p>首先这里需要几个基础的目录和文件：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-powershell data-lang=powershell>PS&gt; mkdir .\layouts\_default
+</code></pre></div><p>好了，现在回来看看layouts，这部分影响网页的渲染，也就是决定了网页最终的呈现状态。</p>
+<p>首先这里需要几个基础的目录和文件：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-powershell data-lang=powershell>PS&gt; mkdir .\layouts\_default
 PS&gt; ni .\layouts\_default\baseof.html
 PS&gt; ni .\layouts\index.html
 PS&gt; ni .\layouts\404.html
 PS&gt; mkdir .\layouts\partials\basic
 PS&gt; ni .\layouts\partials\baisc\head.html
-</code></pre></div><p>这几个文件就是生成网页的关键文件，每一个网页都是由这些文件组合而成。首先编辑 baseof 文件，这个文件的作用是一般情况下会将其作为基础模板使用，也就是基本的框架：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html><span style=color:#75715e>&lt;!doctype html&gt;</span>
+</code></pre></div><p>这几个文件就是生成网页的关键文件，每一个网页都是由这些文件组合而成。首先编辑 baseof 文件，这个文件的作用是一般情况下会将其作为基础模板使用，也就是基本的框架：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html><span style=color:#75715e>&lt;!doctype html&gt;</span>
 &lt;<span style=color:#f92672>html</span> <span style=color:#a6e22e>lang</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;en&#34;</span>&gt;
 &lt;<span style=color:#f92672>head</span>&gt;
     {{ partial &#34;basic/head.html&#34; . }}
@@ -59,7 +137,9 @@ PS&gt; ni .\layouts\partials\baisc\head.html
 {{ end }}
 &lt;/<span style=color:#f92672>body</span>&gt;
 &lt;/<span style=color:#f92672>html</span>&gt;
-</code></pre></div><p>这里有两个函数，第一个是 partial，其作用是包含一个文件，这里就会将 head.html 的内容包含到这里；另一个是 <code>block "main"</code>，当渲染到这一部分时，就会寻找文件对应的模板，例如主页就会去寻找 index.html、home.html 等等，具体的寻找方法可以参考 <a href=https://gohugo.io/templates/lookup-order/>Hugo&rsquo;s Lookup Order | Hugo (gohugo.io)</a>。</p><p>所以接下来编辑这两个文件，首先是head.html：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html>&lt;<span style=color:#f92672>meta</span> <span style=color:#a6e22e>http-equiv</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Content-Type&#34;</span> <span style=color:#a6e22e>content</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;text/html&#34;</span> <span style=color:#a6e22e>charset</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;UTF-8&#34;</span> /&gt;
+</code></pre></div><p>这里有两个函数，第一个是 partial，其作用是包含一个文件，这里就会将 head.html 的内容包含到这里；另一个是 <code>block "main"</code>，当渲染到这一部分时，就会寻找文件对应的模板，例如主页就会去寻找 index.html、home.html 等等，具体的寻找方法可以参考 <a href=https://gohugo.io/templates/lookup-order/>Hugo&rsquo;s Lookup Order | Hugo (gohugo.io)</a>。</p>
+<p>所以接下来编辑这两个文件，首先是head.html：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html>&lt;<span style=color:#f92672>meta</span> <span style=color:#a6e22e>http-equiv</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Content-Type&#34;</span> <span style=color:#a6e22e>content</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;text/html&#34;</span> <span style=color:#a6e22e>charset</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;UTF-8&#34;</span> /&gt;
 &lt;<span style=color:#f92672>meta</span> <span style=color:#a6e22e>http-equiv</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;X-UA-Compatible&#34;</span> <span style=color:#a6e22e>content</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;IE=edge,chrome=1&#34;</span> /&gt;
 &lt;<span style=color:#f92672>meta</span> <span style=color:#a6e22e>name</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;viewport&#34;</span> <span style=color:#a6e22e>content</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;width=device-width, initial-scale=1.0&#34;</span> /&gt;
 
@@ -83,9 +163,49 @@ PS&gt; ni .\layouts\partials\baisc\head.html
 &lt;<span style=color:#f92672>link</span> <span style=color:#a6e22e>rel</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;stylesheet&#34;</span>
       <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.1.0/build/styles/default.min.css&#34;</span>&gt;
 &lt;<span style=color:#f92672>script</span> <span style=color:#a6e22e>src</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.1.0/build/highlight.min.js&#34;</span>&gt;&lt;/<span style=color:#f92672>script</span>&gt;
-</code></pre></div><p>至少需要包含前两部分内容，第一部分就不用多说了，第二部分的作用是将tailwindCSS的内容进行解析，然后最小化处理，代码也很容易理解。</p><p>然后是 index.html，这里暂时先简单一点，就测试一下是否可以按照预期渲染网页：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html>{{ define &#34;main&#34; }}
+</code></pre></div><p>至少需要包含前两部分内容，第一部分就不用多说了，第二部分的作用是将tailwindCSS的内容进行解析，然后最小化处理，代码也很容易理解。</p>
+<p>然后是 index.html，这里暂时先简单一点，就测试一下是否可以按照预期渲染网页：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html>{{ define &#34;main&#34; }}
 &lt;<span style=color:#f92672>h1</span> <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;font-title text-3xl&#34;</span>&gt;
     Forgotten Land.
 &lt;/<span style=color:#f92672>h1</span>&gt;
 {{ end }}
-</code></pre></div><p>然后运行<code>hugo server</code>，在浏览器访问对应的页面：</p><p><img src=D:%5CWorkSpace%5CWebStorm%5CBlog%5Ccontent%5Cdevops%5CWeb%5Chugo%5Cbasic.assets%5Cimage-20210715084501395.png alt=image-20210715084501395></p><p>到此一个基本的框架就搭建好了。</p></article><link rel=stylesheet href=https://unpkg.com/gitalk/dist/gitalk.css><script src=https://unpkg.com/gitalk/dist/gitalk.min.js></script><div id=gitalk></div><script>var gitalk=new Gitalk({clientID:'9a04c6b451fbce76511d',clientSecret:'430c540c77ecd6b59749c60f0341c057bd5320a0',repo:'Causa1ity.github.io',owner:'Causa1ity',admin:'Causa1ity',id:'devops/web/hugo/0x01 basic',distractionFreeMode:!1});gitalk.render('gitalk')</script></div><div class="flex-initial hidden lg:block lg:w-40 xl:w-60 2xl:w-80"><div class=fixed><h2 class="font-title text-2xl mb-4">Hugo Web 0x01: 基本框架</h2><div class="font-mono text-xl"><nav id=TableOfContents><ul><li><a href=#目录结构>目录结构</a></li><li><a href=#基本配置>基本配置</a></li></ul></nav></div></div></div></div></div><footer class=flex-auto><div class="font-title text-center my-4"><p class=text-lg>Powered By <a href=https://gohugo.io>Hugo</a></p></div></footer></body></html>
+</code></pre></div><p>然后运行<code>hugo server</code>，在浏览器访问对应的页面：</p>
+<p><img src=D:%5CWorkSpace%5CWebStorm%5CBlog%5Ccontent%5Cdevops%5CWeb%5Chugo%5Cbasic.assets%5Cimage-20210715084501395.png alt=image-20210715084501395></p>
+<p>到此一个基本的框架就搭建好了。</p>
+</article>
+<div class="flex justify-between mt-12 mx-8 font-title text-xl">
+<div class=flex-initial>
+<a href=https://causality.top/security/vulns/java/cc1/ class=hover:text-blue-200>上一篇：Commons Collections 1 复现</a>
+</div>
+<div class=flex-initial>
+<a href=https://causality.top/devops/web/hugo/0x02-home/ class=hover:text-blue-200>下一篇：Hugo Web 0x02: 创建主页</a>
+</div>
+</div>
+<link rel=stylesheet href=https://unpkg.com/gitalk/dist/gitalk.css>
+<script src=https://unpkg.com/gitalk/dist/gitalk.min.js></script>
+<div id=gitalk></div>
+<script>var gitalk=new Gitalk({clientID:'9a04c6b451fbce76511d',clientSecret:'430c540c77ecd6b59749c60f0341c057bd5320a0',repo:'Causa1ity.github.io',owner:'Causa1ity',admin:'Causa1ity',id:'devops/web/hugo/0x01 basic',distractionFreeMode:!1});gitalk.render('gitalk')</script>
+</div>
+<div class="flex-initial hidden lg:block ml-4 mr-auto">
+<div class=fixed>
+<div class=font-serif>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#目录结构>目录结构</a></li>
+<li><a href=#基本配置>基本配置</a></li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+</div>
+</div>
+<footer class=flex-auto><div class="font-title text-center my-4">
+<p class=text-lg>
+Powered By <a href=https://gohugo.io>Hugo</a>
+</p>
+</div>
+</footer>
+</body>
+</html>
