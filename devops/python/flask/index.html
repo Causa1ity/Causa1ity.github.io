@@ -2,7 +2,7 @@
 <head><meta http-equiv=content-type content="text/html" charset=utf-8>
 <meta http-equiv=x-ua-compatible content="IE=edge,chrome=1">
 <meta name=viewport content="width=device-width,initial-scale=1">
-<link rel=stylesheet href=/css/tailwind.min.b39a406edef2cbbd2ccee2cbd368a787bfad3ac016440c2b37558902050cf85d.css integrity=sha256-s5pAbt7yy70szuLL02inh7+tOsAWRAwrN1WJAgUM+F0=>
+<link rel=stylesheet href="/css/tailwind.min.b39a406edef2cbbd2ccee2cbd368a787bfad3ac016440c2b37558902050cf85d.css" integrity="sha256-s5pAbt7yy70szuLL02inh7+tOsAWRAwrN1WJAgUM+F0=">
 <link rel=preconnect href=https://fonts.googleapis.com>
 <link rel=preconnect href=https://fonts.gstatic.com crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Lora&display=swap" rel=stylesheet>
@@ -48,7 +48,7 @@
 <h2 id=before-use>Before Use</h2>
 <h3 id=环境配置>环境配置</h3>
 <p>和django不同，flask设计上没有使用类似<code>flask create</code>这样的命令来创建一个项目，因此项目结构又很大的自由性，但是也因此需要自己来注意合理对项目进行布局。官方文档中在Qucikstart中使用单个文件作为Web应用，Tutorial中也给出了一种将应用作为一个包的布局参考：</p>
-<pre><code>/home/user/Projects/flask-tutorial
+<pre tabindex=0><code>/home/user/Projects/flask-tutorial
 ├── flaskr/
 │   ├── __init__.py
 │   ├── db.py
@@ -193,7 +193,7 @@ app <span style=color:#f92672>=</span> Flask(__name__)
     print(url_for(<span style=color:#e6db74>&#39;login&#39;</span>))
     print(url_for(<span style=color:#e6db74>&#39;login&#39;</span>, next<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;/&#39;</span>))
     print(url_for(<span style=color:#e6db74>&#39;profile&#39;</span>, username<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;John Doe&#39;</span>))
-</code></pre></div><pre><code>/
+</code></pre></div><pre tabindex=0><code>/
 /login
 /login?next=/
 /user/John%20Doe
@@ -415,7 +415,7 @@ au <span style=color:#f92672>=</span> Blueprint(<span style=color:#e6db74>&#39;a
 <h3 id=字符串解析提取网页内容>字符串解析+提取网页内容</h3>
 <p>两个作业，一个是解析字符串，提取出前缀、后缀、子集等，另一个是获取一个网页解析文本内容，都比较简单，拿来练练手。</p>
 <p>简单想了以下，这次打算做成一个包，两次作业分别设计为两个蓝图，主页暂时就起一个导航作用，那么结构大概就是这个样子：</p>
-<pre><code>|---app/
+<pre tabindex=0><code>|---app/
 	|---__init__.py
 	|---stringParse.py
 	|---contextExtract.py

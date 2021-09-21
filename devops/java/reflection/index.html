@@ -2,7 +2,7 @@
 <head><meta http-equiv=content-type content="text/html" charset=utf-8>
 <meta http-equiv=x-ua-compatible content="IE=edge,chrome=1">
 <meta name=viewport content="width=device-width,initial-scale=1">
-<link rel=stylesheet href=/css/tailwind.min.b39a406edef2cbbd2ccee2cbd368a787bfad3ac016440c2b37558902050cf85d.css integrity=sha256-s5pAbt7yy70szuLL02inh7+tOsAWRAwrN1WJAgUM+F0=>
+<link rel=stylesheet href="/css/tailwind.min.b39a406edef2cbbd2ccee2cbd368a787bfad3ac016440c2b37558902050cf85d.css" integrity="sha256-s5pAbt7yy70szuLL02inh7+tOsAWRAwrN1WJAgUM+F0=">
 <link rel=preconnect href=https://fonts.googleapis.com>
 <link rel=preconnect href=https://fonts.gstatic.com crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Lora&display=swap" rel=stylesheet>
@@ -249,7 +249,7 @@ Modify Child
 <li><code>getParameterTypes()</code>：返回方法的参数类型，是一个Class数组</li>
 <li><code>getModifiers()</code>：返回方法的修饰符，同样是int</li>
 </ul>
-<p>获取到方法后，同样可以向Field一样来对某个对象使用这个方法，只需要通过Method.invoke(object, &mldr;params)；如果获取到的是一个静态对象，所以无需指定对象，因此传入的第一个参数永远为null。</p>
+<p>获取到方法后，同样可以向Field一样来对某个对象使用这个方法，只需要通过Method.invoke(object, &mldr;params)；如果获取到的是一个静态对象，由于无需指定对象，因此传入的第一个参数永远为null。</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>        Method m <span style=color:#f92672>=</span> cls<span style=color:#f92672>.</span><span style=color:#a6e22e>getMethod</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;foo&#34;</span><span style=color:#f92672>);</span>
         m<span style=color:#f92672>.</span><span style=color:#a6e22e>invoke</span><span style=color:#f92672>(</span>c<span style=color:#f92672>);</span>
 </code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>foo
@@ -267,7 +267,7 @@ Modify Child
     <span style=color:#f92672>}</span>
 </code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>top</span><span style=color:#f92672>.</span><span style=color:#a6e22e>causality</span><span style=color:#f92672>.</span><span style=color:#a6e22e>learnjava</span><span style=color:#f92672>.</span><span style=color:#a6e22e>Parent</span>
 </code></pre></div><p>除了获取到父类，还可以获取到接口，为Child实现一个接口，然后修改main函数：</p>
-<pre><code>Class cls = c.getClass();
+<pre tabindex=0><code>Class cls = c.getClass();
 Class[] icls = cls.getInterfaces();
 for(Class x: icls){
     System.out.println(x);

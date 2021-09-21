@@ -2,7 +2,7 @@
 <head><meta http-equiv=content-type content="text/html" charset=utf-8>
 <meta http-equiv=x-ua-compatible content="IE=edge,chrome=1">
 <meta name=viewport content="width=device-width,initial-scale=1">
-<link rel=stylesheet href=/css/tailwind.min.b39a406edef2cbbd2ccee2cbd368a787bfad3ac016440c2b37558902050cf85d.css integrity=sha256-s5pAbt7yy70szuLL02inh7+tOsAWRAwrN1WJAgUM+F0=>
+<link rel=stylesheet href="/css/tailwind.min.b39a406edef2cbbd2ccee2cbd368a787bfad3ac016440c2b37558902050cf85d.css" integrity="sha256-s5pAbt7yy70szuLL02inh7+tOsAWRAwrN1WJAgUM+F0=">
 <link rel=preconnect href=https://fonts.googleapis.com>
 <link rel=preconnect href=https://fonts.gstatic.com crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Lora&display=swap" rel=stylesheet>
@@ -41,29 +41,7 @@
 <div class="border p-4 mb-4">
 <article class=my-4>
 <h3 class="mb-2 font-title font-bold text-xl">
-<a href=https://causality.top/security/vulns/java/cc1/ class="font-title hover:text-indigo-200">Commons Collections 1 复现</a>
-</h3>
-<div class="flex justify-start font-mono mb-2">
-<div class="mr-6 flex-none">
-<i class="fas fa-calendar mr-1"></i>
-<span>2021-04-28</span>
-</div>
-<div class="mr-6 flex-none">
-<i class="fas fa-clock mr-1"></i>
-<span>阅读时长约 10 分钟</span>
-</div>
-</div>
-<p class="font-main mb-2">利用链分析 先看一眼gadget chain： /* Gadget chain: ObjectInputStream.readObject() AnnotationInvocationHandler.readObject() Map(Proxy).entrySet() AnnotationInvocationHandler.invoke() LazyMap.get() ChainedTransformer.transform() ConstantTransformer.transform() InvokerTransformer.transform() Method.invoke() Class.getMethod() InvokerTransformer.transform() Method.invoke() Runtime.getRuntime() InvokerTransformer.transform() Method.invoke() Runtime.exec() Requires: commons-collections */ 参考这个利用链，其利用的关键在于几个Transformer，所以先来关注这几个类的方法的详细信息： ChainedTransformer 根据描述，这个</p>
-<div>
-<a href=https://causality.top/security/vulns/java/cc1/ class="font-mono hover:text-indigo-200">阅读全文</a>
-<i class="fas fa-caret-right ml-1"></i>
-</div>
-</article>
-</div>
-<div class="border p-4 mb-4">
-<article class=my-4>
-<h3 class="mb-2 font-title font-bold text-xl">
-<a href=https://causality.top/security/vulns/java/urldns/ class="font-title hover:text-indigo-200">Urldns 复现</a>
+<a href=https://causality.top/security/vulns/java/urldns/ class="font-title hover:text-indigo-200">URLDNS 反序列化利用链分析</a>
 </h3>
 <div class="flex justify-start font-mono mb-2">
 <div class="mr-6 flex-none">
