@@ -1,0 +1,187 @@
+<!doctype html><html lang=zh>
+<head><meta http-equiv=content-type content="text/html" charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge,chrome=1">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel=stylesheet href="/css/tailwind.min.b39a406edef2cbbd2ccee2cbd368a787bfad3ac016440c2b37558902050cf85d.css" integrity="sha256-s5pAbt7yy70szuLL02inh7+tOsAWRAwrN1WJAgUM+F0=">
+<link rel=preconnect href=https://fonts.googleapis.com>
+<link rel=preconnect href=https://fonts.gstatic.com crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Lora&display=swap" rel=stylesheet>
+<script src=https://kit.fontawesome.com/9cc9e9e3f3.js crossorigin=anonymous></script>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/docsearch.js@2.6.3/dist/cdn/docsearch.min.css><title>Typecho 安装</title>
+</head>
+<body class="flex flex-col">
+<header class="flex fixed bg-white w-full p-4 font-title text-xl border-b"><div class="logo flex-1">
+<a href=/ class=font-title>Forgotten Land</a>
+</div>
+<nav class="flex-initial ml-4">
+<div id=归档 class=inline>
+<a href=/metapages/archive/ class="mx-2 hover:text-blue-200">归档</a>
+</div>
+<div id=分类 class=inline>
+<a href=/categories/ class="mx-2 hover:text-blue-200">分类</a>
+<div class=absolute>
+</div>
+</div>
+<div id=标签 class=inline>
+<a href=/tags/ class="mx-2 hover:text-blue-200">标签</a>
+</div>
+<div id=关于 class=inline>
+<a href=/metapages/about/ class="mx-2 hover:text-blue-200">关于</a>
+</div>
+</nav>
+</header>
+<div class="flex-grow mt-24">
+<div class=flex>
+<div class="md:w-4/5 lg:w-2/3 max-w-screen-lg mx-auto lg:mr-0 p-4 shadow-2xl">
+<h1 class="font-title text-4xl text-center mb-4">Typecho 安装</h1>
+<div class="flex justify-center font-mono">
+<div class="mr-6 flex-none">
+<i class="fas fa-calendar mr-1"></i>
+<span>2020-04-07</span>
+</div>
+<div class="mr-6 flex-none">
+<i class="fas fa-clock mr-1"></i>
+<span>阅读时长约 4 分钟</span>
+</div>
+</div>
+<article id=content class="content mb-4 p-4">
+<h1 id=准备>准备</h1>
+<p>typecho 安装需要 php 和一种数据库支持，当然肯定还需要一个服务器。这里我使用的是 LNMP 的架构，使用的系统是 CentOS 7.3，数据库使用的是 MySQL 5.7 版本。</p>
+<h2 id=php>PHP</h2>
+<p>根据官方文档，php 需要支持 mbstring，因此这里需要额外安装这个扩展，除此之外，就是安装必要的 mysql 和 fastcgi 扩展：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ sudo yum install php php-fpm php-mysql php-mbstring
+</code></pre></div><p>然后启动 php 即可。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ sudo systemctl start php-fpm
+</code></pre></div><h2 id=nginx>Nginx</h2>
+<p>方便起见，这里直接使用 yum 安装：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ sudo yum install nginx
+</code></pre></div><p>默认的配置文件是在 <code>/etc/nginx/nginx.conf</code>。安装完成后，最主要的是需要配置对 php 的支持，需要在 <code>server {}</code> 块内添加一个 <code>location</code> 块：</p>
+<pre tabindex=0><code class=language-conf data-lang=conf>$ sudo vim /etc/nginx/nginx.conf
+
+http{
+   ...
+   
+   server{
+      ...
+
+      location ~ \.php?.*$ {
+        fastcgi_pass            127.0.0.1:9000;
+        fastcgi_index           index.php;
+        fastcgi_param           SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        include                 fastcgi_params;
+        }
+   }
+}
+</code></pre><p>其他配置可以自行添加，这里我为了方便，所以配置 server 块为访问 hufl.top 时使用，并且根目录为 typecho：</p>
+<pre tabindex=0><code class=language-conf data-lang=conf>http{
+   ...
+   
+   server{
+      ...
+
+      server_name    hufl.top;
+      root           /usr/share/nginx/html/typecho;
+
+      location ~ \.php?.*$ {
+        fastcgi_pass            127.0.0.1:9000;
+        fastcgi_index           index.php;
+        fastcgi_param           SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        include                 fastcgi_params;
+        }
+   }
+}
+</code></pre><p>然后就可以启动 nginx 了：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ sudo systemctl start nginx
+</code></pre></div><p>到这里可以简单测试一下能不能正常访问 Web 服务器，到网站根目录下创建一个 phpinfo.php 文件：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php><span style=color:#f92672>&lt;?</span><span style=color:#a6e22e>php</span>
+
+<span style=color:#a6e22e>phpinfo</span>();
+
+<span style=color:#75715e>?&gt;</span><span style=color:#960050;background-color:#1e0010>
+</span></code></pre></div><p>使用浏览器访问站点，如果显示出了 php 信息就证明成功，否则可以参考日志来排除错误。</p>
+<h2 id=mysql>mysql</h2>
+<p>CentOS 7 的镜像源已经移除了 mysql，直接使用 <code>yum install mysql</code> 安装的将会是 <code>mariadb</code>。所以需要用其他方法安装 mysql。方法有很多种，这里使用rpm包安装和docker容器来安装。这里其实还有一种方法就是先到这里<a href=https://dev.mysql.com/downloads/repo/>https://dev.mysql.com/downloads/repo/</a>下载对应的镜像源，安装镜像源之后再使用 yum 安装。但是我这里下载实在是太慢，所以就换了种方法。可以参考这篇<a href=https://juejin.im/post/5d07cf13f265da1bd522cfb6#heading-30>https://juejin.im/post/5d07cf13f265da1bd522cfb6#heading-30</a>来选择各种安装方式（十分详细）。</p>
+<h3 id=rpm-包安装>RPM 包安装</h3>
+<p>首先到这里<a href=https://dev.mysql.com/downloads/mysql/>https://dev.mysql.com/downloads/mysql/</a>选择对应的压缩包，CentOS 系统可以直接选择 Red Hat 版本的，我们这里安装将会使用 <code>common、libs、client、server</code>四个包，我这里直接选择 <code>RPM Bundle</code> 再在后面安装的时候选择具体的包。
+可以直接将下载到服务器，或者先下载到本地，然后使用 FTP 传到服务器上。之后就是解压：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-Bash data-lang=Bash>$ sudo tar -xvf mysql-5.7.29-1.el7.x86_64.rpm-bundle.tar
+$ ls
+mysql-community-client-5.7.29-1.el7.x86_64.rpm  mysql-community-devel-5.7.29-1.el7.x86_64.rpm     mysql-community-embedded-compat-5.7.29-1.el7.x86_64.rpm  mysql-community-libs-5.7.29-1.el7.x86_64.rpm         mysql-community-server-5.7.29-1.el7.x86_64.rpm
+mysql-community-common-5.7.29-1.el7.x86_64.rpm  mysql-community-embedded-5.7.29-1.el7.x86_64.rpm  mysql-community-embedded-devel-5.7.29-1.el7.x86_64.rpm   mysql-community-libs-compat-5.7.29-1.el7.x86_64.rpm  mysql-community-test-5.7.29-1.el7.x86_64.rpm
+</code></pre></div><p>如上面所说，我们需要安装四个包，可以分别使用<code>rpm -ivh mysql-</code> 来安装（需要先安装依赖），或者我这里直接使用 yum 一次性安装：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-Bash data-lang=Bash>// 需要先进入包所在的目录
+$ sudo yum install mysql-community-<span style=color:#f92672>{</span>server,client,common,libs<span style=color:#f92672>}</span>-*
+// 会多安装一个 libs-compat，不过没有关系
+</code></pre></div><p>接下来等待安装好就行了。mysql安装完成后会为root生成一个默认密码，查看日志文件可以找到：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-Bash data-lang=Bash>$ sudo cat /var/log/mysqld.log | grep password
+A temporary password is generated <span style=color:#66d9ef>for</span> root@localhost: 2L-W6h-iF888
+</code></pre></div><p>然后就可以启动 MySQL 了：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ sudo systemctl start mysqld
+</code></pre></div><p>注意这里可以先使用<code>mysql-secure-installation</code>修改一下root密码，并进行一些设置。根据需要设置即可。</p>
+<h3 id=docker容器>Docker容器</h3>
+<p>使用 docker 就更加方便了，当然首先要安装有 docker，安装docker的方法这里就不再列出了，配置好镜像源之后，就可以直接拉取 mysql 镜像。</p>
+<pre tabindex=0><code>$ docker pull mysql:5
+$ docker run -d --name mysql -e MYSQL_ROOT_PASSWORD='password' mysql:5 
+</code></pre><p>个人使用时主要有 5.7 和 8.0 两个大版本，这里使用的同样是 5.7版本。</p>
+<h2 id=配置-mysql>配置 MySQL</h2>
+<p>在开始安装之前，需要为 typecho 创建一个数据库，最好为其专门指定一个用户来管理：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sql data-lang=sql><span style=color:#960050;background-color:#1e0010>$</span> mysql <span style=color:#f92672>-</span>uroot <span style=color:#f92672>-</span>p
+Enter password:
+
+mysql<span style=color:#f92672>&gt;</span> <span style=color:#66d9ef>create</span> <span style=color:#66d9ef>database</span> typecho;
+mysql<span style=color:#f92672>&gt;</span> <span style=color:#66d9ef>create</span> <span style=color:#66d9ef>user</span> <span style=color:#e6db74>&#39;typecho&#39;</span><span style=color:#f92672>@</span><span style=color:#e6db74>&#39;%&#39;</span> identified <span style=color:#66d9ef>by</span> <span style=color:#e6db74>&#39;password&#39;</span>;
+mysql<span style=color:#f92672>&gt;</span> <span style=color:#66d9ef>grant</span> <span style=color:#66d9ef>all</span> <span style=color:#66d9ef>privileges</span> <span style=color:#66d9ef>on</span> typecho.<span style=color:#f92672>*</span> <span style=color:#66d9ef>to</span> typecho;
+</code></pre></div><p>上面三条语句分别创建了 typecho 数据库和 typecho 用户，并将这个数据库的所有权限都赋予了 typecho。</p>
+<h2 id=typecho>typecho</h2>
+<p>接下来就是安装 typecho 了，官方给出的压缩包中直接就有安装的 php 脚本，直接访问就能安装了。
+到 typecho 的官方网站 <a href=https://typecho.org/download>https://typecho.org/download</a> 找到对应的版本，下载到网站的目录下，然后解压：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ cd /usr/share/nginx/html
+$ wget https://typecho.org/downloads/1.1-17.10.30-release.tar.gz
+$ tar -zxvf 1.1-17.10.30-release.tar.gz
+</code></pre></div><p>默认会解压到 build 目录下，也可以自己指定位置，如网站的根目录下或者我使用的是 <code>html/typecho</code>下。
+接下来就是访问install.php，我这里就是访问<code>hufl.top/install.php</code>，依次输入信息点击安装即可安装成功。
+如果使用 docker 容器安装 mysql 可能出现使用 localhost 无法连接的问题，此时可以指定docker 容器的 ip。</p>
+</article>
+<div class="flex justify-between mt-12 mx-8 font-title text-xl">
+<div class=flex-initial>
+<a href=https://causality.top/security/writeup/buu-web-2/ class=hover:text-blue-200>上一篇：BUUCTF Web 部分题解（2）</a>
+</div>
+<div class=flex-initial>
+<a href=https://causality.top/devops/python/django/ class=hover:text-blue-200>下一篇：Django 框架学习笔记</a>
+</div>
+</div>
+<link rel=stylesheet href=https://unpkg.com/gitalk/dist/gitalk.css>
+<script src=https://unpkg.com/gitalk/dist/gitalk.min.js></script>
+<div id=gitalk></div>
+<script>var gitalk=new Gitalk({clientID:'9a04c6b451fbce76511d',clientSecret:'430c540c77ecd6b59749c60f0341c057bd5320a0',repo:'Causa1ity.github.io',owner:'Causa1ity',admin:'Causa1ity',id:'devops/web/misc/typecho',distractionFreeMode:!1});gitalk.render('gitalk')</script>
+</div>
+<div class="flex-initial hidden lg:block ml-4 mr-auto">
+<div class=fixed>
+<div class=font-serif>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#php>PHP</a></li>
+<li><a href=#nginx>Nginx</a></li>
+<li><a href=#mysql>mysql</a>
+<ul>
+<li><a href=#rpm-包安装>RPM 包安装</a></li>
+<li><a href=#docker容器>Docker容器</a></li>
+</ul>
+</li>
+<li><a href=#配置-mysql>配置 MySQL</a></li>
+<li><a href=#typecho>typecho</a></li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+</div>
+</div>
+<footer class=flex-auto><div class="font-title text-center my-4">
+<p class=text-lg>
+Powered By <a href=https://gohugo.io>Hugo</a>
+</p>
+</div>
+</footer>
+</body>
+</html>

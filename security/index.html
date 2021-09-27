@@ -35,173 +35,111 @@
 <div class=mb-4>
 <h1 class="font-title text-4xl text-center">Security</h1>
 <div class="font-main text-center">
-<p>Something About This Volume.</p>
+<p>安全相关，漏洞分析、复现、研究，题解等</p>
 </div>
 </div>
 <div class="border rounded-2xl p-4 my-4">
 <h2 class="mb-4 border-b-2">
-<a href=https://causality.top/security/posts/ class="font-title text-2xl">Posts</a>
-<p class="font-main lg"><p>Something About This Chapter.</p>
+<a href=https://causality.top/security/java/ class="font-title text-2xl">Java</a>
+<p class="font-main lg"><p>Java安全相关</p>
 </p>
 </h2>
 <article class=my-4>
 <h3 class="mb-2 font-title font-bold text-xl">
-<a href=https://causality.top/security/posts/java/cc1/ class="font-title hover:text-indigo-200">CommonsCollections1</a>
+<a href=https://causality.top/security/java/java%E5%BA%8F%E5%88%97%E5%8C%96%E8%BF%87%E7%A8%8B%E5%88%86%E6%9E%90/ class="font-title hover:text-indigo-200">Java序列化(ObjectOutputStream)过程分析</a>
 </h3>
 <div class="flex justify-start font-mono mb-2">
 <div class="mr-6 flex-none">
 <i class="fas fa-calendar mr-1"></i>
-<span>2021-09-21</span>
+<span>2021-09-27</span>
 </div>
 <div class="mr-6 flex-none">
 <i class="fas fa-clock mr-1"></i>
-<span>阅读时长约 9 分钟</span>
+<span>阅读时长约 22 分钟</span>
 </div>
 </div>
-<p class="font-main mb-2">CommonsCollections1 Gadget Chain Gadget chain: ObjectInputStream.readObject() AnnotationInvocationHandler.readObject() Map(Proxy).entrySet() AnnotationInvocationHandler.invoke() LazyMap.get() ChainedTransformer.transform() ConstantTransformer.transform() InvokerTransformer.transform() Method.invoke() Class.getMethod() InvokerTransformer.transform() Method.invoke() Runtime.getRuntime() InvokerTransformer.transform() Method.invoke() Runtime.exec() Requires: commons-collections 这条利用链其实可以分为两个部分，后半部分从ChainedTransformer之后目的是为了构造一个可序列化的命令执行，前半部分则是用来触发这个操作的调用</p>
+<p class="font-main mb-2">对Java利用ObjectOutputStream对对象进行序列化操作的流程进行了学习，记录下对对象序列化的过程，最后按照对象类型分类总结出了序列化后的字节序列的含义。 构造函数和writeObject</p>
 <div>
-<a href=https://causality.top/security/posts/java/cc1/ class="font-mono hover:text-indigo-200">阅读全文</a>
+<a href=https://causality.top/security/java/java%E5%BA%8F%E5%88%97%E5%8C%96%E8%BF%87%E7%A8%8B%E5%88%86%E6%9E%90/ class="font-mono hover:text-indigo-200">阅读全文</a>
 <i class="fas fa-caret-right ml-1"></i>
 </div>
 </article>
 <hr>
 <article class=my-4>
 <h3 class="mb-2 font-title font-bold text-xl">
-<a href=https://causality.top/security/posts/java/deserialization/ class="font-title hover:text-indigo-200">Java Reserialization</a>
+<a href=https://causality.top/security/java/commonscollections3-7/ class="font-title hover:text-indigo-200">CommonsCollections3-7 利用连分析</a>
 </h3>
 <div class="flex justify-start font-mono mb-2">
 <div class="mr-6 flex-none">
 <i class="fas fa-calendar mr-1"></i>
-<span>2021-04-11</span>
+<span>2021-09-25</span>
 </div>
 <div class="mr-6 flex-none">
 <i class="fas fa-clock mr-1"></i>
-<span>阅读时长约 2 分钟</span>
+<span>阅读时长约 14 分钟</span>
 </div>
 </div>
-<p class="font-main mb-2">初窥 Before 在理解Java反序列化漏洞之前，首先需要了解Java序列化与反序列化、Java反射的基本概念： Java 序列化 Java 反射 简单来说，Java 序列化是指将 Java 对象转换成一个字节数组的过程；反序列化则是将一个字节数</p>
+<p class="font-main mb-2">理解了CC1和CC2之后，CC3-7其实十分简单，CC3和CC1类似，但是换了一种命令执行的方式，CC4也是这样；而CC5-7则是寻找到了另外触发LazyMap.get的方式，在这个前提下，就只需要关</p>
 <div>
-<a href=https://causality.top/security/posts/java/deserialization/ class="font-mono hover:text-indigo-200">阅读全文</a>
+<a href=https://causality.top/security/java/commonscollections3-7/ class="font-mono hover:text-indigo-200">阅读全文</a>
 <i class="fas fa-caret-right ml-1"></i>
 </div>
 </article>
 <hr>
 <div class=mt-4>
-<a href=https://causality.top/security/posts/ class="font-mono hover:text-indigo-200">Read More >> </a>
+<a href=https://causality.top/security/java/ class="font-mono hover:text-indigo-200">Read More >> </a>
 </div>
 </div>
 <div class="border rounded-2xl p-4 my-4">
 <h2 class="mb-4 border-b-2">
-<a href=https://causality.top/security/vulns/ class="font-title text-2xl">Vulns</a>
-<p class="font-main lg"><p>Something About This Chapter.</p>
+<a href=https://causality.top/security/writeup/ class="font-title text-2xl">Writeup</a>
+<p class="font-main lg"><p>靶场、比赛等题解</p>
 </p>
 </h2>
 <article class=my-4>
 <h3 class="mb-2 font-title font-bold text-xl">
-<a href=https://causality.top/security/vulns/java/urldns/ class="font-title hover:text-indigo-200">URLDNS 反序列化利用链分析</a>
+<a href=https://causality.top/security/writeup/buu-web-2/ class="font-title hover:text-indigo-200">BUUCTF Web 部分题解（2）</a>
 </h3>
 <div class="flex justify-start font-mono mb-2">
 <div class="mr-6 flex-none">
 <i class="fas fa-calendar mr-1"></i>
-<span>2021-04-25</span>
-</div>
-<div class="mr-6 flex-none">
-<i class="fas fa-clock mr-1"></i>
-<span>阅读时长约 1 分钟</span>
-</div>
-</div>
-<p class="font-main mb-2">URLDNS分析 URLDNS是ysoserial中一个利用链的名称，其参数是一个URL，触发的结果是一次DNS请求。 核心代码很短： public class URLDNS implements ObjectPayload&amp;lt;Object&amp;gt; { public Object getObject(final String url) throws Exception { URLStreamHandler handler = new SilentURLStreamHandler(); HashMap ht = new HashMap(); URL u = new URL(null, url, handler); ht.put(u, url); Reflections.setFieldValue(u, &amp;quot;hashCode&amp;quot;,</p>
-<div>
-<a href=https://causality.top/security/vulns/java/urldns/ class="font-mono hover:text-indigo-200">阅读全文</a>
-<i class="fas fa-caret-right ml-1"></i>
-</div>
-</article>
-<hr>
-<article class=my-4>
-<h3 class="mb-2 font-title font-bold text-xl">
-<a href=https://causality.top/security/vulns/shiro/shiro-550/ class="font-title hover:text-indigo-200">Shiro 550</a>
-</h3>
-<div class="flex justify-start font-mono mb-2">
-<div class="mr-6 flex-none">
-<i class="fas fa-calendar mr-1"></i>
-<span>2021-03-25</span>
-</div>
-<div class="mr-6 flex-none">
-<i class="fas fa-clock mr-1"></i>
-<span>阅读时长约 10 分钟</span>
-</div>
-</div>
-<p class="font-main mb-2">漏洞成因 默认情况下，shiro使用CookieRememberMeManager，其将用户的身份进行序列化、加密和编码，以便日后检索。因此，当它收到一个未经认证的用户的请求时，它会通过以下方式寻找他们</p>
-<div>
-<a href=https://causality.top/security/vulns/shiro/shiro-550/ class="font-mono hover:text-indigo-200">阅读全文</a>
-<i class="fas fa-caret-right ml-1"></i>
-</div>
-</article>
-<hr>
-<div class=mt-4>
-<a href=https://causality.top/security/vulns/ class="font-mono hover:text-indigo-200">Read More >> </a>
-</div>
-</div>
-<div class="border rounded-2xl p-4 my-4">
-<h2 class="mb-4 border-b-2">
-<a href=https://causality.top/security/tools/ class="font-title text-2xl">Tools</a>
-<p class="font-main lg">
-Something About This Chapter.</p>
-</h2>
-<article class=my-4>
-<h3 class="mb-2 font-title font-bold text-xl">
-<a href=https://causality.top/security/tools/nc/ class="font-title hover:text-indigo-200">Netcat 小记</a>
-</h3>
-<div class="flex justify-start font-mono mb-2">
-<div class="mr-6 flex-none">
-<i class="fas fa-calendar mr-1"></i>
-<span>2021-04-21</span>
-</div>
-<div class="mr-6 flex-none">
-<i class="fas fa-clock mr-1"></i>
-<span>阅读时长约 5 分钟</span>
-</div>
-</div>
-<p class="font-main mb-2">概述 Netcat（简称nc）是一个通过TCP/IP协议在网络连接中读写数据的工具，其强大之处在于几乎可以创建任何类型的连接，内置了各种实用的功能，报考端口扫描、数据传输、端口监听，因此甚至可以作为一个</p>
-<div>
-<a href=https://causality.top/security/tools/nc/ class="font-mono hover:text-indigo-200">阅读全文</a>
-<i class="fas fa-caret-right ml-1"></i>
-</div>
-</article>
-<hr>
-<div class=mt-4>
-<a href=https://causality.top/security/tools/ class="font-mono hover:text-indigo-200">Read More >> </a>
-</div>
-</div>
-<div class="border rounded-2xl p-4 my-4">
-<h2 class="mb-4 border-b-2">
-<a href=https://causality.top/security/notes/ class="font-title text-2xl">Notes</a>
-<p class="font-main lg"><p>Something About This Chapter.</p>
-</p>
-</h2>
-<article class=my-4>
-<h3 class="mb-2 font-title font-bold text-xl">
-<a href=https://causality.top/security/notes/reverse-shell/ class="font-title hover:text-indigo-200">反弹 Shell 小记</a>
-</h3>
-<div class="flex justify-start font-mono mb-2">
-<div class="mr-6 flex-none">
-<i class="fas fa-calendar mr-1"></i>
-<span>2021-04-19</span>
+<span>2020-04-06</span>
 </div>
 <div class="mr-6 flex-none">
 <i class="fas fa-clock mr-1"></i>
 <span>阅读时长约 3 分钟</span>
 </div>
 </div>
-<p class="font-main mb-2">基本原理 首先是Shell，广义的Shell可以认为是一个应用程序，这个程序提供了与操作系统和其他应用程序交互的功能这样一种服务；操作系统shell可以分为CLI和GUI两种形式的。 而很多情况下，会在接</p>
+<p class="font-main mb-2">[SUCTF 2019]Pythonginx &amp;hellip; [极客大挑战 2019]Upload 文件上传。 测试之后发现有四个检查，首先是检查文件类型，这个可以直接抓包修改；其次会检查文件的扩展名，可以使用phtml绕过；然会检查文件的头部信息，可以添加 GIF89a 绕过；最后会检查内容 &</p>
 <div>
-<a href=https://causality.top/security/notes/reverse-shell/ class="font-mono hover:text-indigo-200">阅读全文</a>
+<a href=https://causality.top/security/writeup/buu-web-2/ class="font-mono hover:text-indigo-200">阅读全文</a>
+<i class="fas fa-caret-right ml-1"></i>
+</div>
+</article>
+<hr>
+<article class=my-4>
+<h3 class="mb-2 font-title font-bold text-xl">
+<a href=https://causality.top/security/writeup/mrctf/ class="font-title hover:text-indigo-200">MRCTF Web 部分题解</a>
+</h3>
+<div class="flex justify-start font-mono mb-2">
+<div class="mr-6 flex-none">
+<i class="fas fa-calendar mr-1"></i>
+<span>2020-03-30</span>
+</div>
+<div class="mr-6 flex-none">
+<i class="fas fa-clock mr-1"></i>
+<span>阅读时长约 5 分钟</span>
+</div>
+</div>
+<p class="font-main mb-2">部分 MRCTF 新生赛 Web 方向的 Writeup ez_bypass 题目给出了源码： include &amp;#39;flag.php&amp;#39;; $flag=&amp;#39;MRCTF{xxxxxxxxxxxxxxxxxxxxxxxxx}&amp;#39;; if(isset($_GET[&amp;#39;gg&amp;#39;])&amp;amp;&amp;amp;isset($_GET[&amp;#39;id&amp;#39;])) { $id=$_GET[&amp;#39;id&amp;#39;]; $gg=$_GET[&amp;#39;gg&amp;#39;]; if (md5($id) === md5($gg) &amp;amp;&amp;amp; $id !== $gg) { echo &amp;#39;You got the first step&amp;#39;; if(isset($_POST[&amp;#39;passwd&amp;#39;])) { $passwd=$_POST[&amp;#39;passwd&amp;#39;]; if (!is_numeric($passwd)) { if($passwd==1234567) { echo &amp;#39;Good Job!&amp;#39;; highlight_file(&amp;#39;flag.php&amp;#39;); die(&amp;#39;By Retr_0&amp;#39;); } else { echo &amp;#34;can you think twice??&amp;#34;; } } else{ echo &amp;#39;You can not get it !&amp;#39;; } } else{ die(&amp;#39;only one way to get the flag&amp;#39;); } } else { echo &amp;#34;You are not a real hacker!&amp;#34;; } } else{ die(&amp;#39;Please input</p>
+<div>
+<a href=https://causality.top/security/writeup/mrctf/ class="font-mono hover:text-indigo-200">阅读全文</a>
 <i class="fas fa-caret-right ml-1"></i>
 </div>
 </article>
 <hr>
 <div class=mt-4>
-<a href=https://causality.top/security/notes/ class="font-mono hover:text-indigo-200">Read More >> </a>
+<a href=https://causality.top/security/writeup/ class="font-mono hover:text-indigo-200">Read More >> </a>
 </div>
 </div>
 </div>

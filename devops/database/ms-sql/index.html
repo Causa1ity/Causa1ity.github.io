@@ -1,0 +1,255 @@
+<!doctype html><html lang=zh>
+<head><meta http-equiv=content-type content="text/html" charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge,chrome=1">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel=stylesheet href="/css/tailwind.min.b39a406edef2cbbd2ccee2cbd368a787bfad3ac016440c2b37558902050cf85d.css" integrity="sha256-s5pAbt7yy70szuLL02inh7+tOsAWRAwrN1WJAgUM+F0=">
+<link rel=preconnect href=https://fonts.googleapis.com>
+<link rel=preconnect href=https://fonts.gstatic.com crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Lora&display=swap" rel=stylesheet>
+<script src=https://kit.fontawesome.com/9cc9e9e3f3.js crossorigin=anonymous></script>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/docsearch.js@2.6.3/dist/cdn/docsearch.min.css><title>MS SQL</title>
+</head>
+<body class="flex flex-col">
+<header class="flex fixed bg-white w-full p-4 font-title text-xl border-b"><div class="logo flex-1">
+<a href=/ class=font-title>Forgotten Land</a>
+</div>
+<nav class="flex-initial ml-4">
+<div id=归档 class=inline>
+<a href=/metapages/archive/ class="mx-2 hover:text-blue-200">归档</a>
+</div>
+<div id=分类 class=inline>
+<a href=/categories/ class="mx-2 hover:text-blue-200">分类</a>
+<div class=absolute>
+</div>
+</div>
+<div id=标签 class=inline>
+<a href=/tags/ class="mx-2 hover:text-blue-200">标签</a>
+</div>
+<div id=关于 class=inline>
+<a href=/metapages/about/ class="mx-2 hover:text-blue-200">关于</a>
+</div>
+</nav>
+</header>
+<div class="flex-grow mt-24">
+<div class=flex>
+<div class="md:w-4/5 lg:w-2/3 max-w-screen-lg mx-auto lg:mr-0 p-4 shadow-2xl">
+<h1 class="font-title text-4xl text-center mb-4">MS SQL</h1>
+<div class="flex justify-center font-mono">
+<div class="mr-6 flex-none">
+<i class="fas fa-calendar mr-1"></i>
+<span>0001-01-01</span>
+</div>
+<div class="mr-6 flex-none">
+<i class="fas fa-clock mr-1"></i>
+<span>阅读时长约 3 分钟</span>
+</div>
+</div>
+<article id=content class="content mb-4 p-4">
+<p>学校学习数据库要求使用的是MS sqlserver，与之前自学的MySQL多少有些不同，因此这里对其做一些笔记。</p>
+<h1 id=语法内容>语法内容</h1>
+<h2 id=数据定义>数据定义</h2>
+<table>
+<thead>
+<tr>
+<th style=text-align:center>操作对象</th>
+<th style=text-align:left>创建</th>
+<th style=text-align:left>删除</th>
+<th style=text-align:left>修改</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style=text-align:center>模式</td>
+<td style=text-align:left>CREATE SCHEMA</td>
+<td style=text-align:left>DROP SCHEMA</td>
+<td style=text-align:left></td>
+</tr>
+<tr>
+<td style=text-align:center>表</td>
+<td style=text-align:left>CREATE TABLE</td>
+<td style=text-align:left>DROP TABLE</td>
+<td style=text-align:left>ALTER TABLE</td>
+</tr>
+<tr>
+<td style=text-align:center>视图</td>
+<td style=text-align:left>CREATE VIEW</td>
+<td style=text-align:left>DROP VIEW</td>
+<td style=text-align:left></td>
+</tr>
+<tr>
+<td style=text-align:center>索引</td>
+<td style=text-align:left>CREATE INDEX</td>
+<td style=text-align:left>DROP INDEX</td>
+<td style=text-align:left>ALTER INDEX</td>
+</tr>
+</tbody>
+</table>
+<p>想要修改模式定义和视图定义的操作，只能先删除他们然后在重建。</p>
+<p>一个关系数据库管理系统的实例中可以建立多个数据库，一个数据库中可以建立多个模式，一个模式下通常含有多个表、试图和索引等数据库对象。</p>
+<h3 id=模式的定义与删除>模式的定义与删除</h3>
+<blockquote>
+<p>CREATE SCHEMA &lt;模式名> AUTHORIZATION &lt;用户名>
+DROP SCHEMA &lt;模式名>&lt;CASEADE|RESTRICT></p>
+</blockquote>
+<p>其中CASEADE和RESTRICT两者必选其一，选择了CASEADE(级联)，表示在删除模式的同时吧该模式中所有数据库对象全部删除；选择RESTRICT(限制)，表示如果该模式中已定义了下属的数据库对象，则拒绝删除语句的执行。</p>
+<h3 id=基本表的定义删除与修改>基本表的定义、删除与修改</h3>
+<blockquote>
+<p>CREATE TABLE &lt;表名>(&lt;列名> &lt;数据类型> [列级完整性越是条件]
+[,&lt;列名> &lt;数据类型> [列级完整性越是条件]
+&mldr;
+[,表级完整性约束条件]);</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>数据类型</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CAHR(n)，CHARACTER(n)</td>
+<td>长度为n的定长字符串</td>
+</tr>
+<tr>
+<td>VARCHAR(N), CHARACTERVARYING(N)</td>
+<td>最大长度为n的变长字符串</td>
+</tr>
+<tr>
+<td>CLOB</td>
+<td>字符串大对象</td>
+</tr>
+<tr>
+<td>BLOB</td>
+<td>二进制大对象</td>
+</tr>
+<tr>
+<td>INT、INTEGER</td>
+<td>长整数（4字节）</td>
+</tr>
+<tr>
+<td>SMALLINT</td>
+<td>短整数（2字节）</td>
+</tr>
+<tr>
+<td>BIGINT</td>
+<td>大整数（8字节）</td>
+</tr>
+<tr>
+<td>NUMERIC(p,d)</td>
+<td>定点数，p位数字，小数点后有d位</td>
+</tr>
+<tr>
+<td>DECIMAL(p,d)、DEC(p,d)</td>
+<td>同NUMERIC</td>
+</tr>
+<tr>
+<td>REAL</td>
+<td>取决于机器精度的单精度浮点数</td>
+</tr>
+<tr>
+<td>DOUBLE PRECISION</td>
+<td>取决于机器精度的双精度浮点数</td>
+</tr>
+<tr>
+<td>FLOAT(n)</td>
+<td>可选精度的浮点数，精度至少为n位数字</td>
+</tr>
+<tr>
+<td>BOOLEAN</td>
+<td>逻辑布尔量</td>
+</tr>
+<tr>
+<td>DATE</td>
+<td>日期，YYYY-MM-DD</td>
+</tr>
+<tr>
+<td>TIME</td>
+<td>时间, HH:MM:SS</td>
+</tr>
+<tr>
+<td>TIMESTAMP</td>
+<td>时间戳类型</td>
+</tr>
+<tr>
+<td>INTERVAL</td>
+<td>时间间隔类型</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>ALTER TABLE &lt;表名>
+[ADD [COLUMN] &lt;新列名>&lt;数据类型>[完整性约束]]
+[ADD &lt;表级完整性约束>]
+[DROP [COLUMN] &lt;列名>&lt;CASEADE|RESTRICT>]
+[DROP CONSTRAINT&lt;完整性约束>[RESTRICT|CASCADE]]
+[ALTER COLUMN &lt;列名>&lt;数据类型>];</p>
+</blockquote>
+<blockquote>
+<p>DROP TABLE &lt;表名> [RESTRICT|CASCADE]</p>
+</blockquote>
+<h3 id=索引的建立与删除>索引的建立与删除</h3>
+<blockquote>
+<p>CREATE [UNIQUE][CLUSTER] INDEX &lt;索引名>
+ON &lt;表名>(&lt;列名>[&lt;次序>][,&lt;列名>[&lt;次序>]]&mldr;);</p>
+</blockquote>
+<blockquote>
+<p>ALTER INDEX &lt;旧索引名> RENAME TO &lt;新索引名>;</p>
+</blockquote>
+<blockquote>
+<p>DROP INDEX &lt;索引名></p>
+</blockquote>
+<h2 id=数据查询>数据查询</h2>
+<blockquote>
+<p>SELECT [ALL|DISTINCT] &lt;目标列表达式> [,&lt;目标列表达式>]&mldr;
+FROM &lt;表名或视图名>[，&lt;表名或视图名>&mldr;](SELECT语句)[AS]&lt;别名>
+[WHERE &lt;条件表达式>]
+[GROUP BY &lt;列名1> [HAVING &lt;条件表达式>]]
+[ORDER BY &lt;列名2> [ASC|DESC]];</p>
+</blockquote>
+<h2 id=数据更新>数据更新</h2>
+<h3 id=插入数据>插入数据</h3>
+<blockquote>
+<p>INSERT INTO &lt;表名>[(&lt;属性列1>[,&lt;属性列2>]&mldr;)]
+VALUES(&lt;常量1>[,&lt;常量2>]&mldr;);</p>
+</blockquote>
+</article>
+<div class="flex justify-between mt-12 mx-8 font-title text-xl">
+<div class=flex-initial>
+<a href=https://causality.top/security/writeup/bandit/ class=hover:text-blue-200>下一篇：Bandit 靶场练习记录</a>
+</div>
+</div>
+</div>
+<div class="flex-initial hidden lg:block ml-4 mr-auto">
+<div class=fixed>
+<div class=font-serif>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#数据定义>数据定义</a>
+<ul>
+<li><a href=#模式的定义与删除>模式的定义与删除</a></li>
+<li><a href=#基本表的定义删除与修改>基本表的定义、删除与修改</a></li>
+<li><a href=#索引的建立与删除>索引的建立与删除</a></li>
+</ul>
+</li>
+<li><a href=#数据查询>数据查询</a></li>
+<li><a href=#数据更新>数据更新</a>
+<ul>
+<li><a href=#插入数据>插入数据</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+</div>
+</div>
+<footer class=flex-auto><div class="font-title text-center my-4">
+<p class=text-lg>
+Powered By <a href=https://gohugo.io>Hugo</a>
+</p>
+</div>
+</footer>
+</body>
+</html>
