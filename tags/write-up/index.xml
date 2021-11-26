@@ -1,1 +1,20 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Write Up on Noth</title><link>https://causality.top/tags/write-up/</link><description>Recent content in Write Up on Noth</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 08 Mar 2020 18:47:06 +0800</lastBuildDate><atom:link href="https://causality.top/tags/write-up/index.xml" rel="self" type="application/rss+xml"/><item><title>攻防世界 Web 部分题解</title><link>https://causality.top/security/writeups/adworld/</link><pubDate>Sun, 08 Mar 2020 18:47:06 +0800</pubDate><guid>https://causality.top/security/writeups/adworld/</guid><description>攻防世界是一个CTF联系平台，包含有各种类型的题目，难度不等，适合入门。 这里是攻防世界Web题目个人练习记录，本文为Web新手练习区的题目。 view_source X老师让小宁同学查看一个网页的源代码，但小宁同学发现鼠标右</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Write Up on Noth</title>
+    <link>https://causality.top/tags/write-up/</link>
+    <description>Recent content in Write Up on Noth</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 08 Mar 2020 18:47:06 +0800</lastBuildDate><atom:link href="https://causality.top/tags/write-up/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>攻防世界 Web 部分题解</title>
+      <link>https://causality.top/security/writeups/adworld/</link>
+      <pubDate>Sun, 08 Mar 2020 18:47:06 +0800</pubDate>
+      
+      <guid>https://causality.top/security/writeups/adworld/</guid>
+      <description>攻防世界是一个CTF联系平台，包含有各种类型的题目，难度不等，适合入门。 这里是攻防世界Web题目个人练习记录，本文为Web新手练习区的题目。 view_source X老师让小宁同学查看一个网页的源代码，但小宁同学发现鼠标右</description>
+    </item>
+    
+  </channel>
+</rss>

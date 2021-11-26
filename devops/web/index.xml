@@ -1,1 +1,74 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Web on Noth</title><link>https://causality.top/devops/web/</link><description>Recent content in Web on Noth</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 26 Nov 2021 23:12:50 +0800</lastBuildDate><atom:link href="https://causality.top/devops/web/index.xml" rel="self" type="application/rss+xml"/><item><title>Hugo Web 0x06: Gitalk 评论系统</title><link>https://causality.top/devops/web/hugo/0x06-gitalk/</link><pubDate>Sun, 18 Jul 2021 22:15:23 +0800</pubDate><guid>https://causality.top/devops/web/hugo/0x06-gitalk/</guid><description>Hugo Web Series 是记录使用 Hugo 搭建一个 Web 网站的记录系列，目标是记录下使用 Hugo + TailwindCSS + Vue 搭建网站的各种构思、问题。 文章基于 Windows 编写，Shell 主要为 PowerShell。 这是本系列的第五篇，内容为为网站增加 gitalk 评论系统。 G</description></item><item><title>Hugo Web 0x05：发布上线</title><link>https://causality.top/devops/web/hugo/0x05-deploy/</link><pubDate>Sat, 17 Jul 2021 15:31:19 +0800</pubDate><guid>https://causality.top/devops/web/hugo/0x05-deploy/</guid><description>Hugo Web Series 是记录使用 Hugo 搭建一个 Web 网站的记录系列，目标是记录下使用 Hugo + TailwindCSS + Vue 搭建网站的各种构思、问题。 这是本系列的第五篇，内容为将网站部署到github pages上。 网站搭建好了之后自然是要放到网上访问的，</description></item><item><title>Hugo Web 0x04: 分类标签</title><link>https://causality.top/devops/web/hugo/0x04-taxonomy/</link><pubDate>Fri, 16 Jul 2021 23:11:20 +0800</pubDate><guid>https://causality.top/devops/web/hugo/0x04-taxonomy/</guid><description>Hugo Web Series 是记录使用 Hugo 搭建一个 Web 网站的记录系列，目标是记录下使用 Hugo + TailwindCSS + Vue 搭建网站的各种构思、问题。 这是本系列的第四篇，内容为使用 Taxonomy 创建分类和标签。 Taxonomy Taxonomy 是 hugo 中一种对页面进行分组或分类管理的方式，通过 taxonomy 可以</description></item><item><title>Hugo Web 0x03: 其他页面</title><link>https://causality.top/devops/web/hugo/0x03-archetypes/</link><pubDate>Thu, 15 Jul 2021 16:47:20 +0800</pubDate><guid>https://causality.top/devops/web/hugo/0x03-archetypes/</guid><description>Hugo Web Series 是记录使用 Hugo 搭建一个 Web 网站的记录系列，目标是记录下使用 Hugo + TailwindCSS + Vue 搭建网站的各种构思、问题。 这是本系列的第三篇，内容为 archetypes 介绍及其相关页面的创建。 Archetypes Archetypes，翻译为原型。前面也介绍过了，</description></item><item><title>Hugo Web 0x02: 创建主页</title><link>https://causality.top/devops/web/hugo/0x02-home/</link><pubDate>Thu, 15 Jul 2021 09:57:14 +0800</pubDate><guid>https://causality.top/devops/web/hugo/0x02-home/</guid><description>Hugo Web Series 是记录使用 Hugo 搭建一个 Web 网站的记录系列，目标是记录下使用 Hugo + TailwindCSS + Vue 搭建网站的各种构思、问题。 这是本系列的第二篇，内容为创建一个简单的主页。 基本结构 目标是创建一个基本的主页，其主要包括一个导航栏；主</description></item><item><title>Hugo Web 0x01: 基本框架</title><link>https://causality.top/devops/web/hugo/0x01-basic/</link><pubDate>Thu, 15 Jul 2021 09:57:03 +0800</pubDate><guid>https://causality.top/devops/web/hugo/0x01-basic/</guid><description>Hugo Web Series 是记录使用 Hugo 搭建一个 Web 网站的记录系列，目标是记录下使用 Hugo + TailwindCSS + Vue 搭建网站的各种构思、问题。 这是本系列的第一篇，主要内容为使用 Hugo + TailwindCSS 搭建一个简单的框架。 目录结构 由于是使用Hugo来生成一个网站，因</description></item><item><title>Typecho 安装</title><link>https://causality.top/devops/web/misc/typecho/</link><pubDate>Tue, 07 Apr 2020 17:01:55 +0800</pubDate><guid>https://causality.top/devops/web/misc/typecho/</guid><description>准备 typecho 安装需要 php 和一种数据库支持，当然肯定还需要一个服务器。这里我使用的是 LNMP 的架构，使用的系统是 CentOS 7.3，数据库使用的是 MySQL 5.7 版本。 PHP 根据官方文档，php 需要支持 mbstring，因此这里需要额外安装这</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Web on Noth</title>
+    <link>https://causality.top/devops/web/</link>
+    <description>Recent content in Web on Noth</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 26 Nov 2021 23:12:50 +0800</lastBuildDate><atom:link href="https://causality.top/devops/web/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hugo Web 0x06: Gitalk 评论系统</title>
+      <link>https://causality.top/devops/web/hugo/0x06-gitalk/</link>
+      <pubDate>Sun, 18 Jul 2021 22:15:23 +0800</pubDate>
+      
+      <guid>https://causality.top/devops/web/hugo/0x06-gitalk/</guid>
+      <description>Hugo Web Series 是记录使用 Hugo 搭建一个 Web 网站的记录系列，目标是记录下使用 Hugo + TailwindCSS + Vue 搭建网站的各种构思、问题。 文章基于 Windows 编写，Shell 主要为 PowerShell。 这是本系列的第五篇，内容为为网站增加 gitalk 评论系统。 G</description>
+    </item>
+    
+    <item>
+      <title>Hugo Web 0x05：发布上线</title>
+      <link>https://causality.top/devops/web/hugo/0x05-deploy/</link>
+      <pubDate>Sat, 17 Jul 2021 15:31:19 +0800</pubDate>
+      
+      <guid>https://causality.top/devops/web/hugo/0x05-deploy/</guid>
+      <description>Hugo Web Series 是记录使用 Hugo 搭建一个 Web 网站的记录系列，目标是记录下使用 Hugo + TailwindCSS + Vue 搭建网站的各种构思、问题。 这是本系列的第五篇，内容为将网站部署到github pages上。 网站搭建好了之后自然是要放到网上访问的，</description>
+    </item>
+    
+    <item>
+      <title>Hugo Web 0x04: 分类标签</title>
+      <link>https://causality.top/devops/web/hugo/0x04-taxonomy/</link>
+      <pubDate>Fri, 16 Jul 2021 23:11:20 +0800</pubDate>
+      
+      <guid>https://causality.top/devops/web/hugo/0x04-taxonomy/</guid>
+      <description>Hugo Web Series 是记录使用 Hugo 搭建一个 Web 网站的记录系列，目标是记录下使用 Hugo + TailwindCSS + Vue 搭建网站的各种构思、问题。 这是本系列的第四篇，内容为使用 Taxonomy 创建分类和标签。 Taxonomy Taxonomy 是 hugo 中一种对页面进行分组或分类管理的方式，通过 taxonomy 可以</description>
+    </item>
+    
+    <item>
+      <title>Hugo Web 0x03: 其他页面</title>
+      <link>https://causality.top/devops/web/hugo/0x03-archetypes/</link>
+      <pubDate>Thu, 15 Jul 2021 16:47:20 +0800</pubDate>
+      
+      <guid>https://causality.top/devops/web/hugo/0x03-archetypes/</guid>
+      <description>Hugo Web Series 是记录使用 Hugo 搭建一个 Web 网站的记录系列，目标是记录下使用 Hugo + TailwindCSS + Vue 搭建网站的各种构思、问题。 这是本系列的第三篇，内容为 archetypes 介绍及其相关页面的创建。 Archetypes Archetypes，翻译为原型。前面也介绍过了，</description>
+    </item>
+    
+    <item>
+      <title>Hugo Web 0x02: 创建主页</title>
+      <link>https://causality.top/devops/web/hugo/0x02-home/</link>
+      <pubDate>Thu, 15 Jul 2021 09:57:14 +0800</pubDate>
+      
+      <guid>https://causality.top/devops/web/hugo/0x02-home/</guid>
+      <description>Hugo Web Series 是记录使用 Hugo 搭建一个 Web 网站的记录系列，目标是记录下使用 Hugo + TailwindCSS + Vue 搭建网站的各种构思、问题。 这是本系列的第二篇，内容为创建一个简单的主页。 基本结构 目标是创建一个基本的主页，其主要包括一个导航栏；主</description>
+    </item>
+    
+    <item>
+      <title>Hugo Web 0x01: 基本框架</title>
+      <link>https://causality.top/devops/web/hugo/0x01-basic/</link>
+      <pubDate>Thu, 15 Jul 2021 09:57:03 +0800</pubDate>
+      
+      <guid>https://causality.top/devops/web/hugo/0x01-basic/</guid>
+      <description>Hugo Web Series 是记录使用 Hugo 搭建一个 Web 网站的记录系列，目标是记录下使用 Hugo + TailwindCSS + Vue 搭建网站的各种构思、问题。 这是本系列的第一篇，主要内容为使用 Hugo + TailwindCSS 搭建一个简单的框架。 目录结构 由于是使用Hugo来生成一个网站，因</description>
+    </item>
+    
+    <item>
+      <title>Typecho 安装</title>
+      <link>https://causality.top/devops/web/misc/typecho/</link>
+      <pubDate>Tue, 07 Apr 2020 17:01:55 +0800</pubDate>
+      
+      <guid>https://causality.top/devops/web/misc/typecho/</guid>
+      <description>准备 typecho 安装需要 php 和一种数据库支持，当然肯定还需要一个服务器。这里我使用的是 LNMP 的架构，使用的系统是 CentOS 7.3，数据库使用的是 MySQL 5.7 版本。 PHP 根据官方文档，php 需要支持 mbstring，因此这里需要额外安装这</description>
+    </item>
+    
+  </channel>
+</rss>

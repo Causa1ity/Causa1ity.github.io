@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head><meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+
+
+<link rel="stylesheet" href="/css/main.min.603bdac5a514a018c8a598608c9559e9356dee22c6203eb4ba7ad06c438010c7.css" integrity="sha256-YDvaxaUUoBjIpZhgjJVZ6TVt7iLGID60unrQbEOAEMc="/>
+
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Lora&display=swap" rel="stylesheet">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/code-line"></script><title>学习正则表达式</title>
+</head>
+<body class="flex flex-col bg-gray-100">
+
+<div class="flex my-8 font-serif">
+    <div class="flex-auto w-1/3">
+        <div class="w-64 h-full mr-2 ml-auto">
+            <div class="mb-8"><div class="border rounded-lg shadow-md">
+    <div class="h-32 flex rounded-t-lg text-white" style="background-image: url('/images/background-1.jpg')">
+        <div class="m-auto">
+            <div class="text-center font-serif text-3xl my-2"><a href="/">Noth</a></div>
+            <div class="text-center font-serif">去码头整点薯条</div>
+        </div>
+    </div>
+    <nav class="rounded-b-lg bg-white">
+        <ul class="py-2 ml-8">
+            <li class="my-2 content-center">
+                <a href="/" class="hover:text-red-300"><i class="fas fa-home"></i>&nbsp;&nbsp;&nbsp;主页</a>
+            </li>
+
+
+
+            <li class="my-2 content-center">
+                <a href="/metapages/archive/" class="hover:text-red-300"><i class="fas fa-scroll"></i>&nbsp;&nbsp;归档</a>
+            </li>
+            <li class="my-2 content-center">
+                <a href="/categories/" class="hover:text-red-300"><i class="fas fa-th"></i>&nbsp;&nbsp;&nbsp;分类</a>
+            </li>
+            <li class="my-2 content-center">
+                <a href="/tags/" class="hover:text-red-300"><i class="fas fa-tags"></i>&nbsp;&nbsp;标签</a>
+            </li>
+            <li class="my-2 content-center">
+                <a href="/metapages/link/" class="hover:text-red-300"><i class="fas fa-link"></i>&nbsp;&nbsp;&nbsp;链接</a>
+            </li>
+            <li class="my-2 content-center">
+                <a href="/metapages/message/" class="hover:text-red-300"><i class="fas fa-comment-alt"></i>&nbsp;&nbsp;&nbsp;留言</a>
+            </li>
+        </ul>
+    </nav>
+</div></div>
+            <div class="sticky top-2">
+                <div class="toc">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#元字符">元字符</a>
+      <ul>
+        <li><a href="#点运算符">点运算符<code>.</code></a></li>
+        <li><a href="#字符集">字符集</a></li>
+        <li><a href="#否定字符集">否定字符集</a></li>
+        <li><a href="#重复次数">重复次数</a></li>
+        <li><a href="#锚点">锚点</a></li>
+      </ul>
+    </li>
+    <li><a href="#简写字符集">简写字符集</a></li>
+    <li><a href="#零宽度断言">零宽度断言</a>
+      <ul>
+        <li><a href="#正先行断言">正先行断言</a></li>
+      </ul>
+    </li>
+    <li><a href="#标志">标志</a></li>
+    <li><a href="#贪婪匹配与惰性匹配">贪婪匹配与惰性匹配</a></li>
+  </ul>
+</nav>
+</div>
+            </div>
+        </div>
+    </div>
+    <div class="flex-auto w-2/3">
+        <div class="w-200 border rounded-lg bg-white ml-2 mr-auto px-4">
+            <h1 class="font-serif text-4xl text-center mt-8 mb-2">学习正则表达式</h1>
+            <div class="text-right text-gray-500 mr-20">
+                <span>
+                    Mar. 2, 2020 |
+                    <i class="far fa-bookmark"></i> 
+                </span>
+            </div>
+            <div class="content px-6 mb-8">
+                <p>正则表达式（英语：Regular Expression，常简写为regex、regexp或RE），又称正则表示式、正则表示法、规则表达式、常规表示法，是计算机科学的一个概念。正则表达式使用单个字符串来描述、匹配一系列符合某个句法规则的字符串。在很多文本编辑器里，正则表达式通常被用来检索、替换那些符合某个模式的文本。</p>
+<p>许多程序设计语言都支持利用正则表达式进行字符串操作。例如，在Perl中就内建了一个功能强大的正则表达式引擎。正则表达式这个概念最初是由Unix中的工具软件（例如sed和grep）普及开的。</p>
+<p>这里记录一下正则的基本语法。</p>
+<h2 id="元字符">元字符</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Meta Character</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">.</td>
+<td style="text-align:left">匹配任意单个字符</td>
+</tr>
+<tr>
+<td style="text-align:center">[]</td>
+<td style="text-align:left">字符种类，匹配方括号内的任意字符</td>
+</tr>
+<tr>
+<td style="text-align:center">[^]</td>
+<td style="text-align:left">否定的字符种类，匹配除了方括号中的任意字符</td>
+</tr>
+<tr>
+<td style="text-align:center">*</td>
+<td style="text-align:left">匹配&gt;=0 个重复的在*之前的字符</td>
+</tr>
+<tr>
+<td style="text-align:center">+</td>
+<td style="text-align:left">匹配 &gt;=1 个重复的在+之前的字符</td>
+</tr>
+<tr>
+<td style="text-align:center">?</td>
+<td style="text-align:left">标记 ? 之前的字符为可选</td>
+</tr>
+<tr>
+<td style="text-align:center">{n,m}</td>
+<td style="text-align:left">匹配num个大括号之前的字符</td>
+</tr>
+<tr>
+<td style="text-align:center">(xyz)</td>
+<td style="text-align:left">字符集，匹配与xyz完全相等的字符串</td>
+</tr>
+<tr>
+<td style="text-align:center">|</td>
+<td style="text-align:left">或预算夫，匹配符号前或后的字符串</td>
+</tr>
+<tr>
+<td style="text-align:center">\</td>
+<td style="text-align:left">转义字符，匹配一些保留字符</td>
+</tr>
+<tr>
+<td style="text-align:center">^</td>
+<td style="text-align:left">从开始进行匹配</td>
+</tr>
+<tr>
+<td style="text-align:center">$</td>
+<td style="text-align:left">从末端开始匹配</td>
+</tr>
+</tbody>
+</table>
+<h3 id="点运算符">点运算符<code>.</code></h3>
+<p><code>.</code>是元字符中最简单的字符，他匹配任意单个字符，但不匹配换行符
+<code>.*</code>可以匹配所有的字符</p>
+<h3 id="字符集">字符集</h3>
+<ul>
+<li>使用连字符来指定字符集的范围，或直接列出字符集。</li>
+<li>方括号中的句号就表示句号。</li>
+<li>方括号中的字符集不关心顺序</li>
+</ul>
+<h3 id="否定字符集">否定字符集</h3>
+<p>与字符集相反，匹配除了字符集内的字符</p>
+<h3 id="重复次数">重复次数</h3>
+<ul>
+<li><code>*</code>匹配在其之前出现的字符大于等于零次；</li>
+<li><code>+</code>匹配出现在其之前的字符大于等于1次；</li>
+<li><code>?</code>之前的字符为可选，即出现0次或1次；</li>
+<li><code>{}</code>匹配一个或一组字符可以重复出现的次数。</li>
+</ul>
+<h3 id="锚点">锚点</h3>
+<ul>
+<li><code>^</code>匹配开头</li>
+<li><code>$</code>匹配结尾</li>
+</ul>
+<h2 id="简写字符集">简写字符集</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">简写</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">\w</td>
+<td style="text-align:left">除换行符外的所有字符 [a-zA-Z0-9]</td>
+</tr>
+<tr>
+<td style="text-align:center">\W</td>
+<td style="text-align:left">匹配所有非字母数字，即符号，等同于: [^\w]</td>
+</tr>
+<tr>
+<td style="text-align:center">\d</td>
+<td style="text-align:left">匹配数字：[0-9]</td>
+</tr>
+<tr>
+<td style="text-align:center">\D</td>
+<td style="text-align:left">匹配非数字</td>
+</tr>
+<tr>
+<td style="text-align:center">\s</td>
+<td style="text-align:left">匹配所有空格字符：[\t\n\f\r\p{Z}]</td>
+</tr>
+<tr>
+<td style="text-align:center">\S</td>
+<td style="text-align:left">匹配所有非空格字符</td>
+</tr>
+<tr>
+<td style="text-align:center">\f</td>
+<td style="text-align:left">匹配一个换页符</td>
+</tr>
+<tr>
+<td style="text-align:center">\n</td>
+<td style="text-align:left">匹配一个换行符</td>
+</tr>
+<tr>
+<td style="text-align:center">\r</td>
+<td style="text-align:left">匹配一个回车符</td>
+</tr>
+<tr>
+<td style="text-align:center">\t</td>
+<td style="text-align:left">匹配一个制表符</td>
+</tr>
+<tr>
+<td style="text-align:center">\v</td>
+<td style="text-align:left">匹配一个垂直制表符</td>
+</tr>
+<tr>
+<td style="text-align:center">\p</td>
+<td style="text-align:left">匹配CR/LF(等同于\r\n)，用来匹配DOS行终止符</td>
+</tr>
+</tbody>
+</table>
+<h2 id="零宽度断言">零宽度断言</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">符号</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">?=</td>
+<td style="text-align:left">正先行断言，存在</td>
+</tr>
+<tr>
+<td style="text-align:center">?!</td>
+<td style="text-align:left">负先行断言，排除</td>
+</tr>
+<tr>
+<td style="text-align:center">?&lt;=</td>
+<td style="text-align:left">正后发断言，存在</td>
+</tr>
+<tr>
+<td style="text-align:center">?&lt;!</td>
+<td style="text-align:left">负后发断言，排除</td>
+</tr>
+</tbody>
+</table>
+<h3 id="正先行断言">正先行断言</h3>
+<p>标识第一部分表达式之后必须跟着<code>?=...</code>定义的表达式。
+返回结果只包含满足匹配条件的第一部分表达式，定义一个正先行断言要用<code>()</code>。</p>
+<h2 id="标志">标志</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">标志</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">i</td>
+<td style="text-align:left">忽略大小写</td>
+</tr>
+<tr>
+<td style="text-align:center">g</td>
+<td style="text-align:left">全局搜素</td>
+</tr>
+<tr>
+<td style="text-align:center">m</td>
+<td style="text-align:left">多行修饰符：锚点元字符<code>^``$</code>工作范围在每行的起始</td>
+</tr>
+</tbody>
+</table>
+<h2 id="贪婪匹配与惰性匹配">贪婪匹配与惰性匹配</h2>
+<p>正则表达式默认采用贪婪匹配模式，在该模式下意味着会匹配尽可能长的字符串。使用<code>?</code>将贪婪模式转化为多型模式。</p>
+
+            </div>
+        </div>
+        <div class="w-200">
+            <div id="gitalk"></div>
+<script>
+    var gitalk = new Gitalk({
+        clientID: '9a04c6b451fbce76511d',
+        clientSecret: '430c540c77ecd6b59749c60f0341c057bd5320a0',
+        repo: 'Causa1ity.github.io',
+        owner: 'Causa1ity',
+        admin: 'Causa1ity',
+        id: 'https:\/\/causality.top\/misc\/skills\/regex\/',
+        distractionFreeMode: false
+    })
+
+    gitalk.render('gitalk')
+</script>
+        </div>
+    </div>
+</div>
+<script>
+    CodeLine.initOnPageLoad({
+        copyBtn: {show: true, position: 'top'},
+        toggleBtn: {show: false}
+    })
+</script>
+<div class="text-center my-8">
+    <span class="font-serif text-lg">
+        Powered By <a href="https://gohugo.io/" class="font-bold hover:text-blue-400">Hugo</a>
+        with theme <a href="https://github.com/causa1ity/hugo-theme-noth/" class="font-bold hover:text-blue-400">Noth</a>
+    </span>
+</div></body>
+</html>

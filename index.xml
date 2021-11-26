@@ -1,1 +1,317 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Noth</title><link>https://causality.top/</link><description>Recent content on Noth</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 26 Nov 2021 23:15:02 +0800</lastBuildDate><atom:link href="https://causality.top/index.xml" rel="self" type="application/rss+xml"/><item><title>Java序列化(ObjectOutputStream)过程分析</title><link>https://causality.top/security/javasec/java%E5%BA%8F%E5%88%97%E5%8C%96%E8%BF%87%E7%A8%8B%E5%88%86%E6%9E%90/</link><pubDate>Mon, 27 Sep 2021 23:05:34 +0800</pubDate><guid>https://causality.top/security/javasec/java%E5%BA%8F%E5%88%97%E5%8C%96%E8%BF%87%E7%A8%8B%E5%88%86%E6%9E%90/</guid><description>对Java利用ObjectOutputStream对对象进行序列化操作的流程进行了学习，记录下对对象序列化的过程，最后按照对象类型分类总结出了序列化后的字节序列的含义。 构造函数和writeObject</description></item><item><title>CommonsCollections3-7 利用连分析</title><link>https://causality.top/security/javasec/commonscollections3-7/</link><pubDate>Sat, 25 Sep 2021 17:06:23 +0800</pubDate><guid>https://causality.top/security/javasec/commonscollections3-7/</guid><description>理解了CC1和CC2之后，CC3-7其实十分简单，CC3和CC1类似，但是换了一种命令执行的方式，CC4也是这样；而CC5-7则是寻找到了另外触发LazyMap.get的方式，在这个前提下，就只需要关</description></item><item><title>CommonsCollections2 利用链分析</title><link>https://causality.top/security/javasec/commonscollections2/</link><pubDate>Sat, 25 Sep 2021 16:35:53 +0800</pubDate><guid>https://causality.top/security/javasec/commonscollections2/</guid><description>Gadget Chain /* Gadget chain: ObjectInputStream.readObject() PriorityQueue.readObject() ... TransformingComparator.compare() InvokerTransformer.transform() Method.invoke() Runtime.exec() */ 这个链分成两部分，前半部分为触发TransformingComparator.compare() ，后半部分则是通过其构造一个命令执行。 TransformingComparat</description></item><item><title>CommonsCollections1 利用链分析</title><link>https://causality.top/security/javasec/commonscollections1/</link><pubDate>Tue, 21 Sep 2021 23:28:15 +0800</pubDate><guid>https://causality.top/security/javasec/commonscollections1/</guid><description>Gadget Chain Gadget chain: ObjectInputStream.readObject() AnnotationInvocationHandler.readObject() Map(Proxy).entrySet() AnnotationInvocationHandler.invoke() LazyMap.get() ChainedTransformer.transform() ConstantTransformer.transform() InvokerTransformer.transform() Method.invoke() Class.getMethod() InvokerTransformer.transform() Method.invoke() Runtime.getRuntime() InvokerTransformer.transform() Method.invoke() Runtime.exec() Requires: commons-collections 这条利用链其实可以分为两个部分，后半部分从ChainedTransformer之后目的是为了构造一个可序列化的命令执行，前半部分则是用来触发这个操作的调用链</description></item><item><title>Hugo Web 0x06: Gitalk 评论系统</title><link>https://causality.top/devops/web/hugo/0x06-gitalk/</link><pubDate>Sun, 18 Jul 2021 22:15:23 +0800</pubDate><guid>https://causality.top/devops/web/hugo/0x06-gitalk/</guid><description>Hugo Web Series 是记录使用 Hugo 搭建一个 Web 网站的记录系列，目标是记录下使用 Hugo + TailwindCSS + Vue 搭建网站的各种构思、问题。 文章基于 Windows 编写，Shell 主要为 PowerShell。 这是本系列的第五篇，内容为为网站增加 gitalk 评论系统。 G</description></item><item><title>Hugo Web 0x05：发布上线</title><link>https://causality.top/devops/web/hugo/0x05-deploy/</link><pubDate>Sat, 17 Jul 2021 15:31:19 +0800</pubDate><guid>https://causality.top/devops/web/hugo/0x05-deploy/</guid><description>Hugo Web Series 是记录使用 Hugo 搭建一个 Web 网站的记录系列，目标是记录下使用 Hugo + TailwindCSS + Vue 搭建网站的各种构思、问题。 这是本系列的第五篇，内容为将网站部署到github pages上。 网站搭建好了之后自然是要放到网上访问的，</description></item><item><title>Hugo Web 0x04: 分类标签</title><link>https://causality.top/devops/web/hugo/0x04-taxonomy/</link><pubDate>Fri, 16 Jul 2021 23:11:20 +0800</pubDate><guid>https://causality.top/devops/web/hugo/0x04-taxonomy/</guid><description>Hugo Web Series 是记录使用 Hugo 搭建一个 Web 网站的记录系列，目标是记录下使用 Hugo + TailwindCSS + Vue 搭建网站的各种构思、问题。 这是本系列的第四篇，内容为使用 Taxonomy 创建分类和标签。 Taxonomy Taxonomy 是 hugo 中一种对页面进行分组或分类管理的方式，通过 taxonomy 可以</description></item><item><title>Beanutils</title><link>https://causality.top/devops/java/beanutils/</link><pubDate>Thu, 15 Jul 2021 16:55:31 +0800</pubDate><guid>https://causality.top/devops/java/beanutils/</guid><description>Java Bean 所谓的java bean，其实就是指符合一定规范的的类，具体而言，包括： 包含一个无参的Constructor（默认构造器） 使用private修饰实例字段，使用访问器方法和修改器方法来访问属性（get</description></item><item><title>Hugo Web 0x03: 其他页面</title><link>https://causality.top/devops/web/hugo/0x03-archetypes/</link><pubDate>Thu, 15 Jul 2021 16:47:20 +0800</pubDate><guid>https://causality.top/devops/web/hugo/0x03-archetypes/</guid><description>Hugo Web Series 是记录使用 Hugo 搭建一个 Web 网站的记录系列，目标是记录下使用 Hugo + TailwindCSS + Vue 搭建网站的各种构思、问题。 这是本系列的第三篇，内容为 archetypes 介绍及其相关页面的创建。 Archetypes Archetypes，翻译为原型。前面也介绍过了，</description></item><item><title>Hugo Web 0x02: 创建主页</title><link>https://causality.top/devops/web/hugo/0x02-home/</link><pubDate>Thu, 15 Jul 2021 09:57:14 +0800</pubDate><guid>https://causality.top/devops/web/hugo/0x02-home/</guid><description>Hugo Web Series 是记录使用 Hugo 搭建一个 Web 网站的记录系列，目标是记录下使用 Hugo + TailwindCSS + Vue 搭建网站的各种构思、问题。 这是本系列的第二篇，内容为创建一个简单的主页。 基本结构 目标是创建一个基本的主页，其主要包括一个导航栏；主</description></item><item><title>Hugo Web 0x01: 基本框架</title><link>https://causality.top/devops/web/hugo/0x01-basic/</link><pubDate>Thu, 15 Jul 2021 09:57:03 +0800</pubDate><guid>https://causality.top/devops/web/hugo/0x01-basic/</guid><description>Hugo Web Series 是记录使用 Hugo 搭建一个 Web 网站的记录系列，目标是记录下使用 Hugo + TailwindCSS + Vue 搭建网站的各种构思、问题。 这是本系列的第一篇，主要内容为使用 Hugo + TailwindCSS 搭建一个简单的框架。 目录结构 由于是使用Hugo来生成一个网站，因</description></item><item><title>Bash Redirect 小记</title><link>https://causality.top/security/treats/bash-redirect/</link><pubDate>Mon, 26 Apr 2021 09:57:30 +0800</pubDate><guid>https://causality.top/security/treats/bash-redirect/</guid><description>记一下和bash重定向相关的内容 文件描述符 先看一下bash的文档：这里有几个特殊的文件描述符，首先是/dev/fd/fd参考描述，其使用整数表示特殊的文件，具体需要向下参看； /dev/stdin: 标准输入，可以使用fd 0</description></item><item><title>Font Family 学习</title><link>https://causality.top/misc/misc/font-family/</link><pubDate>Wed, 14 Apr 2021 11:18:35 +0800</pubDate><guid>https://causality.top/misc/misc/font-family/</guid><description>font-family 应当至少在使用的 font-family 列表中添加一个通用的字体族名，因为无法保证用户的计算机内已经安装了指定的字体，也不能保证使用 @font-face 提供的字体移动能够正确地下载。提供通用的字体族使得浏览器可以在无法得到最佳字体的情况下</description></item><item><title>Java 反序列化漏洞</title><link>https://causality.top/security/javasec/java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/</link><pubDate>Tue, 13 Apr 2021 20:01:18 +0800</pubDate><guid>https://causality.top/security/javasec/java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/</guid><description>初窥 Before 在理解Java反序列化漏洞之前，首先需要了解Java序列化与反序列化、Java反射的基本概念： Java 序列化 Java 反射 简单来说，Java 序列化是指将 Java 对象转换成一个字节数组的过程；反序列化则是将一个字节数</description></item><item><title>Java 反射</title><link>https://causality.top/devops/java/reflection/</link><pubDate>Mon, 12 Apr 2021 18:32:24 +0800</pubDate><guid>https://causality.top/devops/java/reflection/</guid><description>Class 程序运行期间，Java虚拟机会为所有对象维护一个运行时的类型标识符，这个信息跟踪着每个对象所属的类。通过Class类，可以动态的访问这些信息。 Java 的 Object 和 Class 两者确实是一个有趣的关系，在我学习面向对象过程</description></item><item><title>Java 序列化</title><link>https://causality.top/devops/java/serialization/</link><pubDate>Mon, 12 Apr 2021 11:17:40 +0800</pubDate><guid>https://causality.top/devops/java/serialization/</guid><description>浅尝 序列化与反序列化 为了能够将对象在通信过程中进行传送，Java提供了序列化机制。简单来说，Java序列化就是将Java对象转换成字节序列的过程，而反序列化就是将字节序列在转换会Java对象的过程。 一</description></item><item><title>Windows设置定时任务</title><link>https://causality.top/misc/misc/windows-task/</link><pubDate>Wed, 07 Apr 2021 21:09:04 +0800</pubDate><guid>https://causality.top/misc/misc/windows-task/</guid><description>Window下设置定时任务 设置定时程序 Windows搜索任务计划程序，一个典型的Windows三栏设计，右边可以选择创建任务或创建基本任务：我这里选择创建基本任务，然后依次设定即可： 编写需要执行的定时</description></item><item><title>Requests 库学习笔记</title><link>https://causality.top/devops/python/requests/</link><pubDate>Wed, 07 Apr 2021 09:52:39 +0800</pubDate><guid>https://causality.top/devops/python/requests/</guid><description>Before Use Requests 是一个简单易用的 Python HTTP 库，通过这个库可以简单的构造出一个 HTTP 请求。 下载安装：pip install requests 初窥 最简单的请求 最基本的使用方法就是导入后直接使用requests对象，这个对象提供了提交各种请求的对应方法，如</description></item><item><title>Flask 框架学习笔记</title><link>https://causality.top/devops/python/flask/</link><pubDate>Thu, 25 Mar 2021 23:10:37 +0800</pubDate><guid>https://causality.top/devops/python/flask/</guid><description>Before Use 环境配置 和django不同，flask设计上没有使用类似flask create这样的命令来创建一个项目，因此项目结构又很大的自由性，但是也因此需要自己来注意合理对项目进行布局。官方文档中在Quci</description></item><item><title>Django 框架学习笔记</title><link>https://causality.top/devops/python/django/</link><pubDate>Thu, 25 Mar 2021 23:10:24 +0800</pubDate><guid>https://causality.top/devops/python/django/</guid><description>Intro Django 最初被设计用于具有快速开发需求的新闻类站点，目的是要实现简单快捷的网站开发。因此，可以使用 django 快速实现一个数据库驱动的 Web 应用。 Django 使用 MTV 模式架构，即：Model（模型）、Template（模板）、Vi</description></item><item><title>Typecho 安装</title><link>https://causality.top/devops/web/misc/typecho/</link><pubDate>Tue, 07 Apr 2020 17:01:55 +0800</pubDate><guid>https://causality.top/devops/web/misc/typecho/</guid><description>准备 typecho 安装需要 php 和一种数据库支持，当然肯定还需要一个服务器。这里我使用的是 LNMP 的架构，使用的系统是 CentOS 7.3，数据库使用的是 MySQL 5.7 版本。 PHP 根据官方文档，php 需要支持 mbstring，因此这里需要额外安装这</description></item><item><title>BUUCTF Web 部分题解（2）</title><link>https://causality.top/security/writeups/buu-web-2/</link><pubDate>Mon, 06 Apr 2020 10:16:52 +0800</pubDate><guid>https://causality.top/security/writeups/buu-web-2/</guid><description>[SUCTF 2019]Pythonginx &amp;hellip; [极客大挑战 2019]Upload 文件上传。 测试之后发现有四个检查，首先是检查文件类型，这个可以直接抓包修改；其次会检查文件的扩展名，可以使用phtml绕过；然会检查文件的头部信息，可以添加 GIF89a 绕过；最后会检查内容 &amp;</description></item><item><title>MRCTF Web 部分题解</title><link>https://causality.top/security/writeups/mrctf/</link><pubDate>Mon, 30 Mar 2020 15:50:08 +0800</pubDate><guid>https://causality.top/security/writeups/mrctf/</guid><description>部分 MRCTF 新生赛 Web 方向的 Writeup ez_bypass 题目给出了源码： include &amp;#39;flag.php&amp;#39;; $flag=&amp;#39;MRCTF{xxxxxxxxxxxxxxxxxxxxxxxxx}&amp;#39;; if(isset($_GET[&amp;#39;gg&amp;#39;])&amp;amp;&amp;amp;isset($_GET[&amp;#39;id&amp;#39;])) { $id=$_GET[&amp;#39;id&amp;#39;]; $gg=$_GET[&amp;#39;gg&amp;#39;]; if (md5($id) === md5($gg) &amp;amp;&amp;amp; $id !== $gg) { echo &amp;#39;You got the first step&amp;#39;; if(isset($_POST[&amp;#39;passwd&amp;#39;])) { $passwd=$_POST[&amp;#39;passwd&amp;#39;]; if (!is_numeric($passwd)) { if($passwd==1234567) { echo &amp;#39;Good Job!&amp;#39;; highlight_file(&amp;#39;flag.php&amp;#39;); die(&amp;#39;By Retr_0&amp;#39;); } else { echo &amp;#34;can you think twice??&amp;#34;; } } else{ echo &amp;#39;You can not get it !&amp;#39;; } } else{ die(&amp;#39;only one way to get the flag&amp;#39;); } } else { echo &amp;#34;You are not a real hacker!&amp;#34;; } } else{ die(&amp;#39;Please input</description></item><item><title>Bandit 靶场练习记录</title><link>https://causality.top/security/writeups/natas/</link><pubDate>Thu, 26 Mar 2020 21:59:01 +0800</pubDate><guid>https://causality.top/security/writeups/natas/</guid><description>Wargames是OverTheWire社区提供的一个帮助学习安全知识和实践的一个平台，提供了各式各样的项目模块，可以在其中练级基本的安全技能。 Natas0是其中一个比较基础的模块，主要涉及Web方向</description></item><item><title>各种镜像配置笔记</title><link>https://causality.top/misc/misc/mirrors/</link><pubDate>Wed, 25 Mar 2020 17:24:52 +0800</pubDate><guid>https://causality.top/misc/misc/mirrors/</guid><description>pypi 临时使用： 设为默认： pip config set global.index-url http://mirrors.aliyun.com/pypi/simple/ pip config set global.trusted-host mirrors.aliyun.com 也可以直接修改文件： windows下默认配置文件在C:\Users\&amp;lt;username&amp;gt;\AppData\Roaming\pip [global] index-url = https://mirrors.aliyun.com/pypi/simple/ docker 加速器 ubuntu</description></item><item><title>BJD2-Web 部分 Write up</title><link>https://causality.top/security/writeups/bjd2/</link><pubDate>Mon, 23 Mar 2020 21:13:23 +0800</pubDate><guid>https://causality.top/security/writeups/bjd2/</guid><description>BJD2 部分Web题Writeup Schrödinger 查看源码或者直接在页面上能看到一个 test.php, 访问之后只是一个登陆界面，提示在密码中留了一些很棒的东西。尝试登陆失败，也没有SQL注入什么的，先返回上个页面看</description></item><item><title>Git Solution &amp;&amp; Notes</title><link>https://causality.top/misc/tools/git/</link><pubDate>Mon, 09 Mar 2020 20:07:02 +0800</pubDate><guid>https://causality.top/misc/tools/git/</guid><description>Git 使用过程遇到的问题和一些笔记，持续更新&amp;hellip; 一些记录 submodule 使用 添加一个子模块： git submodule add https://github.com/username/repos.git path/to/dir 加载子模块： git submodule init git submodule update 更新子模块： 可以到子模块执行更新 或者：git submodule update &amp;ndash;remote 一些问题和解决方案 Push总是</description></item><item><title>攻防世界 Web 部分题解</title><link>https://causality.top/security/writeups/adworld/</link><pubDate>Sun, 08 Mar 2020 18:47:06 +0800</pubDate><guid>https://causality.top/security/writeups/adworld/</guid><description>攻防世界是一个CTF联系平台，包含有各种类型的题目，难度不等，适合入门。 这里是攻防世界Web题目个人练习记录，本文为Web新手练习区的题目。 view_source X老师让小宁同学查看一个网页的源代码，但小宁同学发现鼠标右</description></item><item><title>BUUCTF Web 部分题解（1）</title><link>https://causality.top/security/writeups/buu-web-1/</link><pubDate>Tue, 03 Mar 2020 19:59:44 +0800</pubDate><guid>https://causality.top/security/writeups/buu-web-1/</guid><description>Web小白，从0开始入门。 WarmUp 打开是一个滑稽的表情，直接源码发现有一个source.php，打开可以看到源码： &amp;lt;?php highlight_file(__FILE__); class emmm { public static function checkFile(&amp;amp;$page) { $whitelist = [&amp;#34;source&amp;#34;=&amp;gt;&amp;#34;source.php&amp;#34;,&amp;#34;hint&amp;#34;=&amp;gt;&amp;#34;hint.php&amp;#34;]; if (!isset($page) || !is_string($page)) { echo &amp;#34;you can&amp;#39;t see it&amp;#34;; return false; } if (in_array($page, $whitelist)) { return true; } $_page = mb_substr( $page, 0, mb_strpos($page . &amp;#39;?&amp;#39;, &amp;#39;?&amp;#39;) ); if (in_array($_page, $whitelist))</description></item><item><title>学习正则表达式</title><link>https://causality.top/misc/skills/regex/</link><pubDate>Mon, 02 Mar 2020 18:40:45 +0800</pubDate><guid>https://causality.top/misc/skills/regex/</guid><description>正则表达式（英语：Regular Expression，常简写为regex、regexp或RE），又称正则表示式、正则表示法、规则表达式、常规表示法，是计算机科学的一个概念。正则表达式使用单个字符串来描</description></item><item><title>Bandit 靶场练习记录</title><link>https://causality.top/security/writeups/bandit/</link><pubDate>Mon, 17 Feb 2020 16:02:18 +0800</pubDate><guid>https://causality.top/security/writeups/bandit/</guid><description>Wargames是OverTheWire社区提供的一个帮助学习安全知识和实践的一个平台，提供了各式各样的项目模块，可以在其中练级基本的安全技能。 Bandit是Wargames最基础的一个模块，用来练习</description></item><item><title>归档</title><link>https://causality.top/metapages/archive/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://causality.top/metapages/archive/</guid><description/></item><item><title>留言</title><link>https://causality.top/metapages/message/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://causality.top/metapages/message/</guid><description>不知道关于能写些什么，就当个留言板吧。</description></item><item><title>链接</title><link>https://causality.top/metapages/link/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://causality.top/metapages/link/</guid><description/></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Noth</title>
+    <link>https://causality.top/</link>
+    <description>Recent content on Noth</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 26 Nov 2021 23:15:02 +0800</lastBuildDate><atom:link href="https://causality.top/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java序列化(ObjectOutputStream)过程分析</title>
+      <link>https://causality.top/security/javasec/java%E5%BA%8F%E5%88%97%E5%8C%96%E8%BF%87%E7%A8%8B%E5%88%86%E6%9E%90/</link>
+      <pubDate>Mon, 27 Sep 2021 23:05:34 +0800</pubDate>
+      
+      <guid>https://causality.top/security/javasec/java%E5%BA%8F%E5%88%97%E5%8C%96%E8%BF%87%E7%A8%8B%E5%88%86%E6%9E%90/</guid>
+      <description>对Java利用ObjectOutputStream对对象进行序列化操作的流程进行了学习，记录下对对象序列化的过程，最后按照对象类型分类总结出了序列化后的字节序列的含义。 构造函数和writeObject</description>
+    </item>
+    
+    <item>
+      <title>CommonsCollections3-7 利用连分析</title>
+      <link>https://causality.top/security/javasec/commonscollections3-7/</link>
+      <pubDate>Sat, 25 Sep 2021 17:06:23 +0800</pubDate>
+      
+      <guid>https://causality.top/security/javasec/commonscollections3-7/</guid>
+      <description>理解了CC1和CC2之后，CC3-7其实十分简单，CC3和CC1类似，但是换了一种命令执行的方式，CC4也是这样；而CC5-7则是寻找到了另外触发LazyMap.get的方式，在这个前提下，就只需要关</description>
+    </item>
+    
+    <item>
+      <title>CommonsCollections2 利用链分析</title>
+      <link>https://causality.top/security/javasec/commonscollections2/</link>
+      <pubDate>Sat, 25 Sep 2021 16:35:53 +0800</pubDate>
+      
+      <guid>https://causality.top/security/javasec/commonscollections2/</guid>
+      <description>Gadget Chain /* Gadget chain: ObjectInputStream.readObject() PriorityQueue.readObject() ... TransformingComparator.compare() InvokerTransformer.transform() Method.invoke() Runtime.exec() */ 这个链分成两部分，前半部分为触发TransformingComparator.compare() ，后半部分则是通过其构造一个命令执行。 TransformingComparat</description>
+    </item>
+    
+    <item>
+      <title>CommonsCollections1 利用链分析</title>
+      <link>https://causality.top/security/javasec/commonscollections1/</link>
+      <pubDate>Tue, 21 Sep 2021 23:28:15 +0800</pubDate>
+      
+      <guid>https://causality.top/security/javasec/commonscollections1/</guid>
+      <description>Gadget Chain Gadget chain: ObjectInputStream.readObject() AnnotationInvocationHandler.readObject() Map(Proxy).entrySet() AnnotationInvocationHandler.invoke() LazyMap.get() ChainedTransformer.transform() ConstantTransformer.transform() InvokerTransformer.transform() Method.invoke() Class.getMethod() InvokerTransformer.transform() Method.invoke() Runtime.getRuntime() InvokerTransformer.transform() Method.invoke() Runtime.exec() Requires: commons-collections 这条利用链其实可以分为两个部分，后半部分从ChainedTransformer之后目的是为了构造一个可序列化的命令执行，前半部分则是用来触发这个操作的调用链</description>
+    </item>
+    
+    <item>
+      <title>Hugo Web 0x06: Gitalk 评论系统</title>
+      <link>https://causality.top/devops/web/hugo/0x06-gitalk/</link>
+      <pubDate>Sun, 18 Jul 2021 22:15:23 +0800</pubDate>
+      
+      <guid>https://causality.top/devops/web/hugo/0x06-gitalk/</guid>
+      <description>Hugo Web Series 是记录使用 Hugo 搭建一个 Web 网站的记录系列，目标是记录下使用 Hugo + TailwindCSS + Vue 搭建网站的各种构思、问题。 文章基于 Windows 编写，Shell 主要为 PowerShell。 这是本系列的第五篇，内容为为网站增加 gitalk 评论系统。 G</description>
+    </item>
+    
+    <item>
+      <title>Hugo Web 0x05：发布上线</title>
+      <link>https://causality.top/devops/web/hugo/0x05-deploy/</link>
+      <pubDate>Sat, 17 Jul 2021 15:31:19 +0800</pubDate>
+      
+      <guid>https://causality.top/devops/web/hugo/0x05-deploy/</guid>
+      <description>Hugo Web Series 是记录使用 Hugo 搭建一个 Web 网站的记录系列，目标是记录下使用 Hugo + TailwindCSS + Vue 搭建网站的各种构思、问题。 这是本系列的第五篇，内容为将网站部署到github pages上。 网站搭建好了之后自然是要放到网上访问的，</description>
+    </item>
+    
+    <item>
+      <title>Hugo Web 0x04: 分类标签</title>
+      <link>https://causality.top/devops/web/hugo/0x04-taxonomy/</link>
+      <pubDate>Fri, 16 Jul 2021 23:11:20 +0800</pubDate>
+      
+      <guid>https://causality.top/devops/web/hugo/0x04-taxonomy/</guid>
+      <description>Hugo Web Series 是记录使用 Hugo 搭建一个 Web 网站的记录系列，目标是记录下使用 Hugo + TailwindCSS + Vue 搭建网站的各种构思、问题。 这是本系列的第四篇，内容为使用 Taxonomy 创建分类和标签。 Taxonomy Taxonomy 是 hugo 中一种对页面进行分组或分类管理的方式，通过 taxonomy 可以</description>
+    </item>
+    
+    <item>
+      <title>Beanutils</title>
+      <link>https://causality.top/devops/java/beanutils/</link>
+      <pubDate>Thu, 15 Jul 2021 16:55:31 +0800</pubDate>
+      
+      <guid>https://causality.top/devops/java/beanutils/</guid>
+      <description>Java Bean 所谓的java bean，其实就是指符合一定规范的的类，具体而言，包括： 包含一个无参的Constructor（默认构造器） 使用private修饰实例字段，使用访问器方法和修改器方法来访问属性（get</description>
+    </item>
+    
+    <item>
+      <title>Hugo Web 0x03: 其他页面</title>
+      <link>https://causality.top/devops/web/hugo/0x03-archetypes/</link>
+      <pubDate>Thu, 15 Jul 2021 16:47:20 +0800</pubDate>
+      
+      <guid>https://causality.top/devops/web/hugo/0x03-archetypes/</guid>
+      <description>Hugo Web Series 是记录使用 Hugo 搭建一个 Web 网站的记录系列，目标是记录下使用 Hugo + TailwindCSS + Vue 搭建网站的各种构思、问题。 这是本系列的第三篇，内容为 archetypes 介绍及其相关页面的创建。 Archetypes Archetypes，翻译为原型。前面也介绍过了，</description>
+    </item>
+    
+    <item>
+      <title>Hugo Web 0x02: 创建主页</title>
+      <link>https://causality.top/devops/web/hugo/0x02-home/</link>
+      <pubDate>Thu, 15 Jul 2021 09:57:14 +0800</pubDate>
+      
+      <guid>https://causality.top/devops/web/hugo/0x02-home/</guid>
+      <description>Hugo Web Series 是记录使用 Hugo 搭建一个 Web 网站的记录系列，目标是记录下使用 Hugo + TailwindCSS + Vue 搭建网站的各种构思、问题。 这是本系列的第二篇，内容为创建一个简单的主页。 基本结构 目标是创建一个基本的主页，其主要包括一个导航栏；主</description>
+    </item>
+    
+    <item>
+      <title>Hugo Web 0x01: 基本框架</title>
+      <link>https://causality.top/devops/web/hugo/0x01-basic/</link>
+      <pubDate>Thu, 15 Jul 2021 09:57:03 +0800</pubDate>
+      
+      <guid>https://causality.top/devops/web/hugo/0x01-basic/</guid>
+      <description>Hugo Web Series 是记录使用 Hugo 搭建一个 Web 网站的记录系列，目标是记录下使用 Hugo + TailwindCSS + Vue 搭建网站的各种构思、问题。 这是本系列的第一篇，主要内容为使用 Hugo + TailwindCSS 搭建一个简单的框架。 目录结构 由于是使用Hugo来生成一个网站，因</description>
+    </item>
+    
+    <item>
+      <title>Bash Redirect 小记</title>
+      <link>https://causality.top/security/treats/bash-redirect/</link>
+      <pubDate>Mon, 26 Apr 2021 09:57:30 +0800</pubDate>
+      
+      <guid>https://causality.top/security/treats/bash-redirect/</guid>
+      <description>记一下和bash重定向相关的内容 文件描述符 先看一下bash的文档：这里有几个特殊的文件描述符，首先是/dev/fd/fd参考描述，其使用整数表示特殊的文件，具体需要向下参看； /dev/stdin: 标准输入，可以使用fd 0</description>
+    </item>
+    
+    <item>
+      <title>Font Family 学习</title>
+      <link>https://causality.top/misc/misc/font-family/</link>
+      <pubDate>Wed, 14 Apr 2021 11:18:35 +0800</pubDate>
+      
+      <guid>https://causality.top/misc/misc/font-family/</guid>
+      <description>font-family 应当至少在使用的 font-family 列表中添加一个通用的字体族名，因为无法保证用户的计算机内已经安装了指定的字体，也不能保证使用 @font-face 提供的字体移动能够正确地下载。提供通用的字体族使得浏览器可以在无法得到最佳字体的情况下</description>
+    </item>
+    
+    <item>
+      <title>Java 反序列化漏洞</title>
+      <link>https://causality.top/security/javasec/java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/</link>
+      <pubDate>Tue, 13 Apr 2021 20:01:18 +0800</pubDate>
+      
+      <guid>https://causality.top/security/javasec/java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/</guid>
+      <description>初窥 Before 在理解Java反序列化漏洞之前，首先需要了解Java序列化与反序列化、Java反射的基本概念： Java 序列化 Java 反射 简单来说，Java 序列化是指将 Java 对象转换成一个字节数组的过程；反序列化则是将一个字节数</description>
+    </item>
+    
+    <item>
+      <title>Java 反射</title>
+      <link>https://causality.top/devops/java/reflection/</link>
+      <pubDate>Mon, 12 Apr 2021 18:32:24 +0800</pubDate>
+      
+      <guid>https://causality.top/devops/java/reflection/</guid>
+      <description>Class 程序运行期间，Java虚拟机会为所有对象维护一个运行时的类型标识符，这个信息跟踪着每个对象所属的类。通过Class类，可以动态的访问这些信息。 Java 的 Object 和 Class 两者确实是一个有趣的关系，在我学习面向对象过程</description>
+    </item>
+    
+    <item>
+      <title>Java 序列化</title>
+      <link>https://causality.top/devops/java/serialization/</link>
+      <pubDate>Mon, 12 Apr 2021 11:17:40 +0800</pubDate>
+      
+      <guid>https://causality.top/devops/java/serialization/</guid>
+      <description>浅尝 序列化与反序列化 为了能够将对象在通信过程中进行传送，Java提供了序列化机制。简单来说，Java序列化就是将Java对象转换成字节序列的过程，而反序列化就是将字节序列在转换会Java对象的过程。 一</description>
+    </item>
+    
+    <item>
+      <title>Windows设置定时任务</title>
+      <link>https://causality.top/misc/misc/windows-task/</link>
+      <pubDate>Wed, 07 Apr 2021 21:09:04 +0800</pubDate>
+      
+      <guid>https://causality.top/misc/misc/windows-task/</guid>
+      <description>Window下设置定时任务 设置定时程序 Windows搜索任务计划程序，一个典型的Windows三栏设计，右边可以选择创建任务或创建基本任务：我这里选择创建基本任务，然后依次设定即可： 编写需要执行的定时</description>
+    </item>
+    
+    <item>
+      <title>Requests 库学习笔记</title>
+      <link>https://causality.top/devops/python/requests/</link>
+      <pubDate>Wed, 07 Apr 2021 09:52:39 +0800</pubDate>
+      
+      <guid>https://causality.top/devops/python/requests/</guid>
+      <description>Before Use Requests 是一个简单易用的 Python HTTP 库，通过这个库可以简单的构造出一个 HTTP 请求。 下载安装：pip install requests 初窥 最简单的请求 最基本的使用方法就是导入后直接使用requests对象，这个对象提供了提交各种请求的对应方法，如</description>
+    </item>
+    
+    <item>
+      <title>Flask 框架学习笔记</title>
+      <link>https://causality.top/devops/python/flask/</link>
+      <pubDate>Thu, 25 Mar 2021 23:10:37 +0800</pubDate>
+      
+      <guid>https://causality.top/devops/python/flask/</guid>
+      <description>Before Use 环境配置 和django不同，flask设计上没有使用类似flask create这样的命令来创建一个项目，因此项目结构又很大的自由性，但是也因此需要自己来注意合理对项目进行布局。官方文档中在Quci</description>
+    </item>
+    
+    <item>
+      <title>Django 框架学习笔记</title>
+      <link>https://causality.top/devops/python/django/</link>
+      <pubDate>Thu, 25 Mar 2021 23:10:24 +0800</pubDate>
+      
+      <guid>https://causality.top/devops/python/django/</guid>
+      <description>Intro Django 最初被设计用于具有快速开发需求的新闻类站点，目的是要实现简单快捷的网站开发。因此，可以使用 django 快速实现一个数据库驱动的 Web 应用。 Django 使用 MTV 模式架构，即：Model（模型）、Template（模板）、Vi</description>
+    </item>
+    
+    <item>
+      <title>Typecho 安装</title>
+      <link>https://causality.top/devops/web/misc/typecho/</link>
+      <pubDate>Tue, 07 Apr 2020 17:01:55 +0800</pubDate>
+      
+      <guid>https://causality.top/devops/web/misc/typecho/</guid>
+      <description>准备 typecho 安装需要 php 和一种数据库支持，当然肯定还需要一个服务器。这里我使用的是 LNMP 的架构，使用的系统是 CentOS 7.3，数据库使用的是 MySQL 5.7 版本。 PHP 根据官方文档，php 需要支持 mbstring，因此这里需要额外安装这</description>
+    </item>
+    
+    <item>
+      <title>BUUCTF Web 部分题解（2）</title>
+      <link>https://causality.top/security/writeups/buu-web-2/</link>
+      <pubDate>Mon, 06 Apr 2020 10:16:52 +0800</pubDate>
+      
+      <guid>https://causality.top/security/writeups/buu-web-2/</guid>
+      <description>[SUCTF 2019]Pythonginx &amp;hellip; [极客大挑战 2019]Upload 文件上传。 测试之后发现有四个检查，首先是检查文件类型，这个可以直接抓包修改；其次会检查文件的扩展名，可以使用phtml绕过；然会检查文件的头部信息，可以添加 GIF89a 绕过；最后会检查内容 &amp;</description>
+    </item>
+    
+    <item>
+      <title>MRCTF Web 部分题解</title>
+      <link>https://causality.top/security/writeups/mrctf/</link>
+      <pubDate>Mon, 30 Mar 2020 15:50:08 +0800</pubDate>
+      
+      <guid>https://causality.top/security/writeups/mrctf/</guid>
+      <description>部分 MRCTF 新生赛 Web 方向的 Writeup ez_bypass 题目给出了源码： include &amp;#39;flag.php&amp;#39;; $flag=&amp;#39;MRCTF{xxxxxxxxxxxxxxxxxxxxxxxxx}&amp;#39;; if(isset($_GET[&amp;#39;gg&amp;#39;])&amp;amp;&amp;amp;isset($_GET[&amp;#39;id&amp;#39;])) { $id=$_GET[&amp;#39;id&amp;#39;]; $gg=$_GET[&amp;#39;gg&amp;#39;]; if (md5($id) === md5($gg) &amp;amp;&amp;amp; $id !== $gg) { echo &amp;#39;You got the first step&amp;#39;; if(isset($_POST[&amp;#39;passwd&amp;#39;])) { $passwd=$_POST[&amp;#39;passwd&amp;#39;]; if (!is_numeric($passwd)) { if($passwd==1234567) { echo &amp;#39;Good Job!&amp;#39;; highlight_file(&amp;#39;flag.php&amp;#39;); die(&amp;#39;By Retr_0&amp;#39;); } else { echo &amp;#34;can you think twice??&amp;#34;; } } else{ echo &amp;#39;You can not get it !&amp;#39;; } } else{ die(&amp;#39;only one way to get the flag&amp;#39;); } } else { echo &amp;#34;You are not a real hacker!&amp;#34;; } } else{ die(&amp;#39;Please input</description>
+    </item>
+    
+    <item>
+      <title>Bandit 靶场练习记录</title>
+      <link>https://causality.top/security/writeups/natas/</link>
+      <pubDate>Thu, 26 Mar 2020 21:59:01 +0800</pubDate>
+      
+      <guid>https://causality.top/security/writeups/natas/</guid>
+      <description>Wargames是OverTheWire社区提供的一个帮助学习安全知识和实践的一个平台，提供了各式各样的项目模块，可以在其中练级基本的安全技能。 Natas0是其中一个比较基础的模块，主要涉及Web方向</description>
+    </item>
+    
+    <item>
+      <title>各种镜像配置笔记</title>
+      <link>https://causality.top/misc/misc/mirrors/</link>
+      <pubDate>Wed, 25 Mar 2020 17:24:52 +0800</pubDate>
+      
+      <guid>https://causality.top/misc/misc/mirrors/</guid>
+      <description>pypi 临时使用： 设为默认： pip config set global.index-url http://mirrors.aliyun.com/pypi/simple/ pip config set global.trusted-host mirrors.aliyun.com 也可以直接修改文件： windows下默认配置文件在C:\Users\&amp;lt;username&amp;gt;\AppData\Roaming\pip [global] index-url = https://mirrors.aliyun.com/pypi/simple/ docker 加速器 ubuntu</description>
+    </item>
+    
+    <item>
+      <title>BJD2-Web 部分 Write up</title>
+      <link>https://causality.top/security/writeups/bjd2/</link>
+      <pubDate>Mon, 23 Mar 2020 21:13:23 +0800</pubDate>
+      
+      <guid>https://causality.top/security/writeups/bjd2/</guid>
+      <description>BJD2 部分Web题Writeup Schrödinger 查看源码或者直接在页面上能看到一个 test.php, 访问之后只是一个登陆界面，提示在密码中留了一些很棒的东西。尝试登陆失败，也没有SQL注入什么的，先返回上个页面看</description>
+    </item>
+    
+    <item>
+      <title>Git Solution &amp;&amp; Notes</title>
+      <link>https://causality.top/misc/tools/git/</link>
+      <pubDate>Mon, 09 Mar 2020 20:07:02 +0800</pubDate>
+      
+      <guid>https://causality.top/misc/tools/git/</guid>
+      <description>Git 使用过程遇到的问题和一些笔记，持续更新&amp;hellip; 一些记录 submodule 使用 添加一个子模块： git submodule add https://github.com/username/repos.git path/to/dir 加载子模块： git submodule init git submodule update 更新子模块： 可以到子模块执行更新 或者：git submodule update &amp;ndash;remote 一些问题和解决方案 Push总是</description>
+    </item>
+    
+    <item>
+      <title>攻防世界 Web 部分题解</title>
+      <link>https://causality.top/security/writeups/adworld/</link>
+      <pubDate>Sun, 08 Mar 2020 18:47:06 +0800</pubDate>
+      
+      <guid>https://causality.top/security/writeups/adworld/</guid>
+      <description>攻防世界是一个CTF联系平台，包含有各种类型的题目，难度不等，适合入门。 这里是攻防世界Web题目个人练习记录，本文为Web新手练习区的题目。 view_source X老师让小宁同学查看一个网页的源代码，但小宁同学发现鼠标右</description>
+    </item>
+    
+    <item>
+      <title>BUUCTF Web 部分题解（1）</title>
+      <link>https://causality.top/security/writeups/buu-web-1/</link>
+      <pubDate>Tue, 03 Mar 2020 19:59:44 +0800</pubDate>
+      
+      <guid>https://causality.top/security/writeups/buu-web-1/</guid>
+      <description>Web小白，从0开始入门。 WarmUp 打开是一个滑稽的表情，直接源码发现有一个source.php，打开可以看到源码： &amp;lt;?php highlight_file(__FILE__); class emmm { public static function checkFile(&amp;amp;$page) { $whitelist = [&amp;#34;source&amp;#34;=&amp;gt;&amp;#34;source.php&amp;#34;,&amp;#34;hint&amp;#34;=&amp;gt;&amp;#34;hint.php&amp;#34;]; if (!isset($page) || !is_string($page)) { echo &amp;#34;you can&amp;#39;t see it&amp;#34;; return false; } if (in_array($page, $whitelist)) { return true; } $_page = mb_substr( $page, 0, mb_strpos($page . &amp;#39;?&amp;#39;, &amp;#39;?&amp;#39;) ); if (in_array($_page, $whitelist))</description>
+    </item>
+    
+    <item>
+      <title>学习正则表达式</title>
+      <link>https://causality.top/misc/skills/regex/</link>
+      <pubDate>Mon, 02 Mar 2020 18:40:45 +0800</pubDate>
+      
+      <guid>https://causality.top/misc/skills/regex/</guid>
+      <description>正则表达式（英语：Regular Expression，常简写为regex、regexp或RE），又称正则表示式、正则表示法、规则表达式、常规表示法，是计算机科学的一个概念。正则表达式使用单个字符串来描</description>
+    </item>
+    
+    <item>
+      <title>Bandit 靶场练习记录</title>
+      <link>https://causality.top/security/writeups/bandit/</link>
+      <pubDate>Mon, 17 Feb 2020 16:02:18 +0800</pubDate>
+      
+      <guid>https://causality.top/security/writeups/bandit/</guid>
+      <description>Wargames是OverTheWire社区提供的一个帮助学习安全知识和实践的一个平台，提供了各式各样的项目模块，可以在其中练级基本的安全技能。 Bandit是Wargames最基础的一个模块，用来练习</description>
+    </item>
+    
+    <item>
+      <title>归档</title>
+      <link>https://causality.top/metapages/archive/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://causality.top/metapages/archive/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>留言</title>
+      <link>https://causality.top/metapages/message/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://causality.top/metapages/message/</guid>
+      <description>不知道关于能写些什么，就当个留言板吧。</description>
+    </item>
+    
+    <item>
+      <title>链接</title>
+      <link>https://causality.top/metapages/link/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://causality.top/metapages/link/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

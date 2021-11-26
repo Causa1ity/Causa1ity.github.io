@@ -1,1 +1,38 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Java on Noth</title><link>https://causality.top/devops/java/</link><description>Recent content in Java on Noth</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 26 Nov 2021 00:08:36 +0800</lastBuildDate><atom:link href="https://causality.top/devops/java/index.xml" rel="self" type="application/rss+xml"/><item><title>Beanutils</title><link>https://causality.top/devops/java/beanutils/</link><pubDate>Thu, 15 Jul 2021 16:55:31 +0800</pubDate><guid>https://causality.top/devops/java/beanutils/</guid><description>Java Bean 所谓的java bean，其实就是指符合一定规范的的类，具体而言，包括： 包含一个无参的Constructor（默认构造器） 使用private修饰实例字段，使用访问器方法和修改器方法来访问属性（get</description></item><item><title>Java 反射</title><link>https://causality.top/devops/java/reflection/</link><pubDate>Mon, 12 Apr 2021 18:32:24 +0800</pubDate><guid>https://causality.top/devops/java/reflection/</guid><description>Class 程序运行期间，Java虚拟机会为所有对象维护一个运行时的类型标识符，这个信息跟踪着每个对象所属的类。通过Class类，可以动态的访问这些信息。 Java 的 Object 和 Class 两者确实是一个有趣的关系，在我学习面向对象过程</description></item><item><title>Java 序列化</title><link>https://causality.top/devops/java/serialization/</link><pubDate>Mon, 12 Apr 2021 11:17:40 +0800</pubDate><guid>https://causality.top/devops/java/serialization/</guid><description>浅尝 序列化与反序列化 为了能够将对象在通信过程中进行传送，Java提供了序列化机制。简单来说，Java序列化就是将Java对象转换成字节序列的过程，而反序列化就是将字节序列在转换会Java对象的过程。 一</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Java on Noth</title>
+    <link>https://causality.top/devops/java/</link>
+    <description>Recent content in Java on Noth</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 26 Nov 2021 00:08:36 +0800</lastBuildDate><atom:link href="https://causality.top/devops/java/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Beanutils</title>
+      <link>https://causality.top/devops/java/beanutils/</link>
+      <pubDate>Thu, 15 Jul 2021 16:55:31 +0800</pubDate>
+      
+      <guid>https://causality.top/devops/java/beanutils/</guid>
+      <description>Java Bean 所谓的java bean，其实就是指符合一定规范的的类，具体而言，包括： 包含一个无参的Constructor（默认构造器） 使用private修饰实例字段，使用访问器方法和修改器方法来访问属性（get</description>
+    </item>
+    
+    <item>
+      <title>Java 反射</title>
+      <link>https://causality.top/devops/java/reflection/</link>
+      <pubDate>Mon, 12 Apr 2021 18:32:24 +0800</pubDate>
+      
+      <guid>https://causality.top/devops/java/reflection/</guid>
+      <description>Class 程序运行期间，Java虚拟机会为所有对象维护一个运行时的类型标识符，这个信息跟踪着每个对象所属的类。通过Class类，可以动态的访问这些信息。 Java 的 Object 和 Class 两者确实是一个有趣的关系，在我学习面向对象过程</description>
+    </item>
+    
+    <item>
+      <title>Java 序列化</title>
+      <link>https://causality.top/devops/java/serialization/</link>
+      <pubDate>Mon, 12 Apr 2021 11:17:40 +0800</pubDate>
+      
+      <guid>https://causality.top/devops/java/serialization/</guid>
+      <description>浅尝 序列化与反序列化 为了能够将对象在通信过程中进行传送，Java提供了序列化机制。简单来说，Java序列化就是将Java对象转换成字节序列的过程，而反序列化就是将字节序列在转换会Java对象的过程。 一</description>
+    </item>
+    
+  </channel>
+</rss>
