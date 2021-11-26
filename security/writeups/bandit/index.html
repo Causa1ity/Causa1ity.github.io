@@ -1,185 +1,161 @@
-<!DOCTYPE html>
-<html lang="zh">
-<head><meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-
-
-
-<link rel="stylesheet" href="/css/main.min.603bdac5a514a018c8a598608c9559e9356dee22c6203eb4ba7ad06c438010c7.css" integrity="sha256-YDvaxaUUoBjIpZhgjJVZ6TVt7iLGID60unrQbEOAEMc="/>
-
-
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Lora&display=swap" rel="stylesheet">
-
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css">
-
-
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css">
-<script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script>
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/code-line"></script><title>Bandit 靶场练习记录</title>
+<!doctype html><html lang=zh>
+<head><meta http-equiv=content-type content="text/html" charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge,chrome=1">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel=stylesheet href="/css/main.min.603bdac5a514a018c8a598608c9559e9356dee22c6203eb4ba7ad06c438010c7.css" integrity="sha256-YDvaxaUUoBjIpZhgjJVZ6TVt7iLGID60unrQbEOAEMc=">
+<link rel=preconnect href=https://fonts.googleapis.com>
+<link rel=preconnect href=https://fonts.gstatic.com crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Lora&display=swap" rel=stylesheet>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css>
+<script src=https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/code-line></script><title>Bandit 靶场练习记录</title>
 </head>
 <body class="flex flex-col bg-gray-100">
-
 <div class="flex my-8 font-serif">
-    <div class="flex-auto w-1/3">
-        <div class="w-64 h-full mr-2 ml-auto">
-            <div class="mb-8"><div class="border rounded-lg shadow-md">
-    <div class="h-32 flex rounded-t-lg text-white" style="background-image: url('/images/background-1.jpg')">
-        <div class="m-auto">
-            <div class="text-center font-serif text-3xl my-2"><a href="/">Noth</a></div>
-            <div class="text-center font-serif">去码头整点薯条</div>
-        </div>
-    </div>
-    <nav class="rounded-b-lg bg-white">
-        <ul class="py-2 ml-8">
-            <li class="my-2 content-center">
-                <a href="/" class="hover:text-red-300"><i class="fas fa-home"></i>&nbsp;&nbsp;&nbsp;主页</a>
-            </li>
-
-
-
-            <li class="my-2 content-center">
-                <a href="/metapages/archive/" class="hover:text-red-300"><i class="fas fa-scroll"></i>&nbsp;&nbsp;归档</a>
-            </li>
-            <li class="my-2 content-center">
-                <a href="/categories/" class="hover:text-red-300"><i class="fas fa-th"></i>&nbsp;&nbsp;&nbsp;分类</a>
-            </li>
-            <li class="my-2 content-center">
-                <a href="/tags/" class="hover:text-red-300"><i class="fas fa-tags"></i>&nbsp;&nbsp;标签</a>
-            </li>
-            <li class="my-2 content-center">
-                <a href="/metapages/link/" class="hover:text-red-300"><i class="fas fa-link"></i>&nbsp;&nbsp;&nbsp;链接</a>
-            </li>
-            <li class="my-2 content-center">
-                <a href="/metapages/message/" class="hover:text-red-300"><i class="fas fa-comment-alt"></i>&nbsp;&nbsp;&nbsp;留言</a>
-            </li>
-        </ul>
-    </nav>
+<div class="flex-auto w-1/3">
+<div class="w-64 h-full mr-2 ml-auto">
+<div class=mb-8><div class="border rounded-lg shadow-md">
+<div class="h-32 flex rounded-t-lg text-white" style=background-image:url(/images/background-1.jpg)>
+<div class=m-auto>
+<div class="text-center font-serif text-3xl my-2"><a href=/>Noth</a></div>
+<div class="text-center font-serif">去码头整点薯条</div>
+</div>
+</div>
+<nav class="rounded-b-lg bg-white">
+<ul class="py-2 ml-8">
+<li class="my-2 content-center">
+<a href=/ class=hover:text-red-300><i class="fas fa-home"></i>&nbsp;&nbsp;&nbsp;主页</a>
+</li>
+<li class="my-2 content-center">
+<a href=/metapages/archive/ class=hover:text-red-300><i class="fas fa-scroll"></i>&nbsp;&nbsp;归档</a>
+</li>
+<li class="my-2 content-center">
+<a href=/categories/ class=hover:text-red-300><i class="fas fa-th"></i>&nbsp;&nbsp;&nbsp;分类</a>
+</li>
+<li class="my-2 content-center">
+<a href=/tags/ class=hover:text-red-300><i class="fas fa-tags"></i>&nbsp;&nbsp;标签</a>
+</li>
+<li class="my-2 content-center">
+<a href=/metapages/link/ class=hover:text-red-300><i class="fas fa-link"></i>&nbsp;&nbsp;&nbsp;链接</a>
+</li>
+<li class="my-2 content-center">
+<a href=/metapages/message/ class=hover:text-red-300><i class="fas fa-comment-alt"></i>&nbsp;&nbsp;&nbsp;留言</a>
+</li>
+</ul>
+</nav>
 </div></div>
-            <div class="sticky top-2">
-                <div class="toc">
-    <nav id="TableOfContents">
-  <ul>
-    <li><a href="#level-07">Level 0~7</a>
-      <ul>
-        <li><a href="#level-0">Level 0:</a></li>
-        <li><a href="#level-0-1">Level 0-&gt;1:</a></li>
-        <li><a href="#level-1-2">Level 1-&gt;2：</a></li>
-        <li><a href="#level-2-3">Level 2-&gt;3：</a></li>
-        <li><a href="#level-3-4">Level 3-&gt;4：</a></li>
-        <li><a href="#level-4-5">Level 4-&gt;5：</a></li>
-        <li><a href="#level-5-6">Level 5-&gt;6：</a></li>
-        <li><a href="#level-6-7">Level 6-&gt;7:</a></li>
-      </ul>
-    </li>
-    <li><a href="#level-813">Level 8~13</a>
-      <ul>
-        <li><a href="#level-7-8">Level 7-&gt;8：</a></li>
-        <li><a href="#level-8-9">Level 8-&gt;9：</a></li>
-        <li><a href="#level-9-10">Level 9-&gt;10：</a></li>
-        <li><a href="#level-10-11">Level 10-&gt;11：</a></li>
-        <li><a href="#level-11-12">Level 11-&gt;12：</a></li>
-        <li><a href="#level-12-13">Level 12-&gt;13：</a></li>
-      </ul>
-    </li>
-    <li><a href="#level-1421">Level 14~21</a>
-      <ul>
-        <li><a href="#level-13-14">Level 13-&gt;14：</a></li>
-        <li><a href="#level-14-15">Level 14-&gt;15：</a></li>
-        <li><a href="#level-16">Level 16：</a></li>
-        <li><a href="#level-17">Level 17：</a></li>
-        <li><a href="#level-18">Level 18：</a></li>
-        <li><a href="#level-19">Level 19：</a></li>
-        <li><a href="#level-20">Level 20：</a></li>
-        <li><a href="#level-21">Level 21：</a></li>
-      </ul>
-    </li>
-    <li><a href="#level-2226">Level 22~26</a>
-      <ul>
-        <li><a href="#level-22">Level 22：</a></li>
-        <li><a href="#level-23">Level 23：</a></li>
-        <li><a href="#level-24">Level 24：</a></li>
-        <li><a href="#level-24-1">Level 24：</a></li>
-        <li><a href="#level-25">Level 25：</a></li>
-        <li><a href="#level-26">Level 26</a></li>
-      </ul>
-    </li>
-    <li><a href="#level-27">Level 27~</a>
-      <ul>
-        <li><a href="#level-27-1">Level 27：</a></li>
-        <li><a href="#level-28">Level 28：</a></li>
-        <li><a href="#level-29">level 29:</a></li>
-        <li><a href="#level-30">Level 30：</a></li>
-        <li><a href="#level-31">Level 31：</a></li>
-        <li><a href="#level-32">Level 32：</a></li>
-        <li><a href="#level-34">Level 34：</a></li>
-      </ul>
-    </li>
-  </ul>
+<div class="sticky top-2">
+<div class=toc>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#level-07>Level 0~7</a>
+<ul>
+<li><a href=#level-0>Level 0:</a></li>
+<li><a href=#level-0-1>Level 0->1:</a></li>
+<li><a href=#level-1-2>Level 1->2：</a></li>
+<li><a href=#level-2-3>Level 2->3：</a></li>
+<li><a href=#level-3-4>Level 3->4：</a></li>
+<li><a href=#level-4-5>Level 4->5：</a></li>
+<li><a href=#level-5-6>Level 5->6：</a></li>
+<li><a href=#level-6-7>Level 6->7:</a></li>
+</ul>
+</li>
+<li><a href=#level-813>Level 8~13</a>
+<ul>
+<li><a href=#level-7-8>Level 7->8：</a></li>
+<li><a href=#level-8-9>Level 8->9：</a></li>
+<li><a href=#level-9-10>Level 9->10：</a></li>
+<li><a href=#level-10-11>Level 10->11：</a></li>
+<li><a href=#level-11-12>Level 11->12：</a></li>
+<li><a href=#level-12-13>Level 12->13：</a></li>
+</ul>
+</li>
+<li><a href=#level-1421>Level 14~21</a>
+<ul>
+<li><a href=#level-13-14>Level 13->14：</a></li>
+<li><a href=#level-14-15>Level 14->15：</a></li>
+<li><a href=#level-16>Level 16：</a></li>
+<li><a href=#level-17>Level 17：</a></li>
+<li><a href=#level-18>Level 18：</a></li>
+<li><a href=#level-19>Level 19：</a></li>
+<li><a href=#level-20>Level 20：</a></li>
+<li><a href=#level-21>Level 21：</a></li>
+</ul>
+</li>
+<li><a href=#level-2226>Level 22~26</a>
+<ul>
+<li><a href=#level-22>Level 22：</a></li>
+<li><a href=#level-23>Level 23：</a></li>
+<li><a href=#level-24>Level 24：</a></li>
+<li><a href=#level-24-1>Level 24：</a></li>
+<li><a href=#level-25>Level 25：</a></li>
+<li><a href=#level-26>Level 26</a></li>
+</ul>
+</li>
+<li><a href=#level-27>Level 27~</a>
+<ul>
+<li><a href=#level-27-1>Level 27：</a></li>
+<li><a href=#level-28>Level 28：</a></li>
+<li><a href=#level-29>level 29:</a></li>
+<li><a href=#level-30>Level 30：</a></li>
+<li><a href=#level-31>Level 31：</a></li>
+<li><a href=#level-32>Level 32：</a></li>
+<li><a href=#level-34>Level 34：</a></li>
+</ul>
+</li>
+</ul>
 </nav>
 </div>
-            </div>
-        </div>
-    </div>
-    <div class="flex-auto w-2/3">
-        <div class="w-200 border rounded-lg bg-white ml-2 mr-auto px-4">
-            <h1 class="font-serif text-4xl text-center mt-8 mb-2">Bandit 靶场练习记录</h1>
-            <div class="text-right text-gray-500 mr-20">
-                <span>
-                    Feb. 17, 2020 |
-                    <i class="far fa-bookmark"></i> 
-                </span>
-            </div>
-            <div class="content px-6 mb-8">
-                <p>Wargames是OverTheWire社区提供的一个帮助学习安全知识和实践的一个平台，提供了各式各样的项目模块，可以在其中练级基本的安全技能。
+</div>
+</div>
+</div>
+<div class="flex-auto w-2/3">
+<div class="w-200 border rounded-lg bg-white ml-2 mr-auto px-4">
+<h1 class="font-serif text-4xl text-center mt-8 mb-2">Bandit 靶场练习记录</h1>
+<div class="text-right text-gray-500 mr-20">
+<span>
+Feb. 17, 2020 |
+<i class="far fa-bookmark"></i>
+</span>
+</div>
+<div class="content px-6 mb-8">
+<p>Wargames是OverTheWire社区提供的一个帮助学习安全知识和实践的一个平台，提供了各式各样的项目模块，可以在其中练级基本的安全技能。
 Bandit是Wargames最基础的一个模块，用来练习最基本的Linux操作知识，同时适应Wargames的模式。</p>
-<p><a href="https://overthewire.org/wargames/">Wargames</a>
-<a href="https://overthewire.org/wargames/bandit/">bandit</a></p>
-<h2 id="level-07">Level 0~7</h2>
-<h3 id="level-0">Level 0:</h3>
+<p><a href=https://overthewire.org/wargames/>Wargames</a>
+<a href=https://overthewire.org/wargames/bandit/>bandit</a></p>
+<h2 id=level-07>Level 0~7</h2>
+<h3 id=level-0>Level 0:</h3>
 <p>Level就是测试一下ssh客户端，直接连接到bandit.labs.overthewire.org:2220就行了。</p>
-<h3 id="level-0-1">Level 0-&gt;1:</h3>
+<h3 id=level-0-1>Level 0->1:</h3>
 <p>The password for the next level is stored in a file called readme located in the home directory. Use this password to log into bandit1 using SSH. Whenever you find a password for a level, use SSH (on port 2220) to log into that level and continue the game.
 密码在home的readme中，那么很简单，进入Home目录，输出文件即可。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ cd ~
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>$ cd ~
 $ cat readme
-</code></pre></div><h3 id="level-1-2">Level 1-&gt;2：</h3>
-<!-- raw HTML omitted -->
+</code></pre></div><h3 id=level-1-2>Level 1->2：</h3>
 <p>The password for the next level is stored in a file called - located in the home directory。
 密码在 &ldquo;-&ldquo;里，直接使用cat发现它停了下来，猜测一下，因为linux命令的短选项通常是以一个“-”开始，因此其可能将其作为某个选项的开头，所以无法作为文件打开。那么就要想方法绕过这个限制。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">bandit1@bandit:~$ cat ./-
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>bandit1@bandit:~$ cat ./-
 CV1DtqXWVFXTvM2F0k09SHz0YwRINYA9
 </code></pre></div><p>可以了。
-<a href="http://tldp.org/LDP/abs/html/special-chars.html">*nix常用特殊字符</a></p>
-<h3 id="level-2-3">Level 2-&gt;3：</h3>
-<!-- raw HTML omitted -->
+<a href=http://tldp.org/LDP/abs/html/special-chars.html>*nix常用特殊字符</a></p>
+<h3 id=level-2-3>Level 2->3：</h3>
 <p>The password for the next level is stored in a file called spaces in this filename located in the home directory。
 密码在“spaces in this file”文件里，这个文件的特别之处就在与有空着，直接输入会被命令视为多个文件，因此使用双引号将文件名引起来。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">bandit2@bandit:~$ cat <span style="color:#e6db74">&#34;spaces in this filename&#34;</span> 
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>bandit2@bandit:~$ cat <span style=color:#e6db74>&#34;spaces in this filename&#34;</span> 
 UmHadQclWmgdLOKQ3YNgjWxGoRMb5luK
-</code></pre></div><h3 id="level-3-4">Level 3-&gt;4：</h3>
-<!-- raw HTML omitted -->
+</code></pre></div><h3 id=level-3-4>Level 3->4：</h3>
 <p>The password for the next level is stored in a hidden file in the inhere directory.
 密码在一个隐藏文件里。Linux下以“.”开头的文件会被隐藏，使用 ls -a 选项可以查看隐藏文件。所以，先进入inhere目录，使用ls -a查看文件。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">bandit3@bandit:~$ cd inhere/
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>bandit3@bandit:~$ cd inhere/
 bandit3@bandit:~/inhere$ ls -a
 .  ..  .hidden
 bandit3@bandit:~/inhere$ cat .hidden 
 pIwrPrtPN36QITSp3EQaw936yaFoFgAB
-</code></pre></div><h3 id="level-4-5">Level 4-&gt;5：</h3>
-<!-- raw HTML omitted -->
+</code></pre></div><h3 id=level-4-5>Level 4->5：</h3>
 <p>The password for the next level is stored in the only human-readable file in the inhere directory. Tip: if your terminal is messed up, try the “reset” command.
 密码在一个人类可读的文件里，打开inhere文件，发现里面有10个文件，题目说是人类可读，那就应该是个文本文件，使用file查看文件类型。当然这里的文件都以“-”开头，所以还需要前面的方法来绕过命令执行：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">bandit4@bandit:~/inhere$ file ./*
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>bandit4@bandit:~/inhere$ file ./*
 ./-file00: data
 ./-file01: data
 ./-file02: data
@@ -192,8 +168,7 @@ pIwrPrtPN36QITSp3EQaw936yaFoFgAB
 ./-file09: data
 bandit4@bandit:~/inhere$ cat ./-file07
 koReBOKuIDDepwhWk7jZC0RTdopnAYKh
-</code></pre></div><h3 id="level-5-6">Level 5-&gt;6：</h3>
-<!-- raw HTML omitted -->
+</code></pre></div><h3 id=level-5-6>Level 5->6：</h3>
 <p>The password for the next level is stored in a file somewhere under the inhere directory and has all of the following properties:</p>
 <ul>
 <li>human-readable</li>
@@ -201,12 +176,11 @@ koReBOKuIDDepwhWk7jZC0RTdopnAYKh
 <li>not executable</li>
 </ul>
 <p>密码在inhere目录的某个子目录里，而且具有那几样属性。很显然，是要使用find命令并通过属性来筛选。使用man find可以查看find的各个选项和参数。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">bandit5@bandit:~/inhere$ find -size 1033c -type f ! -executable 
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>bandit5@bandit:~/inhere$ find -size 1033c -type f ! -executable 
 ./maybehere07/.file2
 bandit5@bandit:~/inhere$ cat ./maybehere07/.file2
 DXjZPULLxYr17uwoI01bNLQbtFemEgo7
-</code></pre></div><h3 id="level-6-7">Level 6-&gt;7:</h3>
-<!-- raw HTML omitted -->
+</code></pre></div><h3 id=level-6-7>Level 6->7:</h3>
 <p>The password for the next level is stored somewhere on the server and has all of the following properties:</p>
 <ul>
 <li>owned by user bandit7</li>
@@ -214,170 +188,161 @@ DXjZPULLxYr17uwoI01bNLQbtFemEgo7
 <li>33 bytes in size</li>
 </ul>
 <p>和上题类似，仍然是查询相关属性。因为这次范围是服务器:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">bandit6@bandit:/$ find / -user bandit7 -group bandit6 -size 33c 2&gt;/dev/null
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>bandit6@bandit:/$ find / -user bandit7 -group bandit6 -size 33c 2&gt;/dev/null
 ./var/lib/dpkg/info/bandit7.password
 bandit6@bandit:/$ cat ./var/lib/dpkg/info/bandit7.password
 HKBPTKQnIay4Fw76bEy8PVxKEDQRKTzs
 </code></pre></div><p>因为权限原因会提示很多警告，为方便查找，将他们重定向值黑洞，然后就能找到密码了。</p>
-<h2 id="level-813">Level 8~13</h2>
-<h3 id="level-7-8">Level 7-&gt;8：</h3>
-<!-- raw HTML omitted -->
+<h2 id=level-813>Level 8~13</h2>
+<h3 id=level-7-8>Level 7->8：</h3>
 <p>The password for the next level is stored in the file data.txt next to the word millionth。
 密码在data.txt并且紧邻着millionth。那么很明显了，使用grep命令。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">bandit7@bandit:~$ cat data.txt | grep millionth
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>bandit7@bandit:~$ cat data.txt | grep millionth
 millionth	cvX2JJa4CFALtqS87jk27qwqGhBM9plV
-</code></pre></div><h3 id="level-8-9">Level 8-&gt;9：</h3>
-<!-- raw HTML omitted -->
+</code></pre></div><h3 id=level-8-9>Level 8->9：</h3>
 <p>The password for the next level is stored in the file data.txt and is the only line of text that occurs only once。
 密码所在行在data.txt中只出现一次。提示中有一个uniq命令，先查询一下：</p>
 <blockquote>
 <p>uniq - report or omit repeated lines
 就是他了。uniq会忽略重复的行，但是他们必须是相邻的，我们还需要找到方法将相同的行放在一起。</p>
 </blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">bandit8@bandit:~$ sort data.txt | uniq -u
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>bandit8@bandit:~$ sort data.txt | uniq -u
 UsvVyFSfZZWbi6wgC7dAFyFuR6jQQUhR
-</code></pre></div><h3 id="level-9-10">Level 9-&gt;10：</h3>
-<!-- raw HTML omitted -->
+</code></pre></div><h3 id=level-9-10>Level 9->10：</h3>
 <p>The password for the next level is stored in the file data.txt in one of the few human-readable strings, beginning with several ‘=’ characters.
 strings命令在对象文件或二进制文件中查找可打印的字符串。字符串是4个或更多可打印字符的任意序列，以换行符或空字符结束。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">bandit9@bandit:~$ strings data.txt | grep -e <span style="color:#f92672">==</span>*2<span style="color:#f92672">==========</span> the<span style="color:#f92672">==========</span> password&gt;t<span style="color:#f92672">=</span>	yPrV~dHm<span style="color:#f92672">===========</span> isa<span style="color:#f92672">=</span>FQ?P<span style="color:#ae81ff">\U</span><span style="color:#f92672">=</span>	F<span style="color:#f92672">[</span>pb<span style="color:#f92672">=</span>xJ;m<span style="color:#f92672">==)</span>$<span style="color:#f92672">===========</span> truKLdjsbJ5g7yyJ2X2R0o3a5HQJFuLkiv8!<span style="color:#f92672">=</span>
-</code></pre></div><h3 id="level-10-11">Level 10-&gt;11：</h3>
-<!-- raw HTML omitted -->
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>bandit9@bandit:~$ strings data.txt | grep -e <span style=color:#f92672>==</span>*2<span style=color:#f92672>==========</span> the<span style=color:#f92672>==========</span> password&gt;t<span style=color:#f92672>=</span>	yPrV~dHm<span style=color:#f92672>===========</span> isa<span style=color:#f92672>=</span>FQ?P<span style=color:#ae81ff>\U</span><span style=color:#f92672>=</span>	F<span style=color:#f92672>[</span>pb<span style=color:#f92672>=</span>xJ;m<span style=color:#f92672>==)</span>$<span style=color:#f92672>===========</span> truKLdjsbJ5g7yyJ2X2R0o3a5HQJFuLkiv8!<span style=color:#f92672>=</span>
+</code></pre></div><h3 id=level-10-11>Level 10->11：</h3>
 <p>The password for the next level is stored in the file data.txt, which contains base64 encoded data。
 密码在data.txt中，但是这个文件是使用base64加密的，使用base64解密即可。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">bandit10@bandit:~$ base64 -d data.txt The password is IFukwKGsFW8MOq3IRFqrxE1hxTNEbUPR
-</code></pre></div><h3 id="level-11-12">Level 11-&gt;12：</h3>
-<!-- raw HTML omitted -->
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>bandit10@bandit:~$ base64 -d data.txt The password is IFukwKGsFW8MOq3IRFqrxE1hxTNEbUPR
+</code></pre></div><h3 id=level-11-12>Level 11->12：</h3>
 <p>The password for the next level is stored in the file data.txt, where all lowercase (a-z) and uppercase (A-Z) letters have been rotated by 13 positions。
 密码在data.txt中，但是所有的字母都偏移了13个位置。使用tr命令可以进行字符替换。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">bandit11@bandit:~$ cat data.txt | tr <span style="color:#f92672">[</span>a-zA-Z<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>n-za-mN-ZA-M<span style="color:#f92672">]</span>The password is 5Te8Y4drgCRfCx8ugdwuEX8KFC6k2EUu
-</code></pre></div><h3 id="level-12-13">Level 12-&gt;13：</h3>
-<!-- raw HTML omitted -->
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>bandit11@bandit:~$ cat data.txt | tr <span style=color:#f92672>[</span>a-zA-Z<span style=color:#f92672>]</span> <span style=color:#f92672>[</span>n-za-mN-ZA-M<span style=color:#f92672>]</span>The password is 5Te8Y4drgCRfCx8ugdwuEX8KFC6k2EUu
+</code></pre></div><h3 id=level-12-13>Level 12->13：</h3>
 <p>The password for the next level is stored in the file data.txt, which is a hexdump of a file that has been repeatedly compressed. For this level it may be useful to create a directory under /tmp in which you can work using mkdir. For example: mkdir /tmp/myname123. Then copy the datafile using cp, and rename it using mv (read the manpages!)
 文件经过十六进制转存和压缩，所以这里首先对其十六进制逆转码，然后反复解压缩和解包就行了。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">bandit12@bandit:/tmp/name1231$ ls
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>bandit12@bandit:/tmp/name1231$ ls
 data.txt
-bandit12@bandit:/tmp/name1231$ xxd -r data.txt <span style="color:#ae81ff">1</span>
-bandit12@bandit:/tmp/name1231$ file <span style="color:#ae81ff">1</span>
-1: gzip compressed data, was <span style="color:#e6db74">&#34;data2.bin&#34;</span>, last modified: Tue Oct <span style="color:#ae81ff">16</span> 12:00:23 2018, max compression, from Unix
-bandit12@bandit:/tmp/name1231$ mv <span style="color:#ae81ff">1</span> 1.gz
+bandit12@bandit:/tmp/name1231$ xxd -r data.txt <span style=color:#ae81ff>1</span>
+bandit12@bandit:/tmp/name1231$ file <span style=color:#ae81ff>1</span>
+1: gzip compressed data, was <span style=color:#e6db74>&#34;data2.bin&#34;</span>, last modified: Tue Oct <span style=color:#ae81ff>16</span> 12:00:23 2018, max compression, from Unix
+bandit12@bandit:/tmp/name1231$ mv <span style=color:#ae81ff>1</span> 1.gz
 bandit12@bandit:/tmp/name1231$ gzip -d 1.gz 
 bandit12@bandit:/tmp/name1231$ ls
-<span style="color:#ae81ff">1</span>  data.txt
-andit12@bandit:/tmp/name1231$ file <span style="color:#ae81ff">1</span>
-1: bzip2 compressed data, block size <span style="color:#f92672">=</span> 900k
-bandit12@bandit:/tmp/name1231$ mv <span style="color:#ae81ff">1</span> 2.bz2
+<span style=color:#ae81ff>1</span>  data.txt
+andit12@bandit:/tmp/name1231$ file <span style=color:#ae81ff>1</span>
+1: bzip2 compressed data, block size <span style=color:#f92672>=</span> 900k
+bandit12@bandit:/tmp/name1231$ mv <span style=color:#ae81ff>1</span> 2.bz2
 bandit12@bandit:/tmp/name1231$ bzip2 -d 2.bz2 
-bandit12@bandit:/tmp/name1231$ file <span style="color:#ae81ff">2</span>
-2: gzip compressed data, was <span style="color:#e6db74">&#34;data4.bin&#34;</span>, last modified: Tue Oct <span style="color:#ae81ff">16</span> 12:00:23 2018, max compression, from Unix
-bandit12@bandit:/tmp/name1231$ mv <span style="color:#ae81ff">2</span> 4.gz
+bandit12@bandit:/tmp/name1231$ file <span style=color:#ae81ff>2</span>
+2: gzip compressed data, was <span style=color:#e6db74>&#34;data4.bin&#34;</span>, last modified: Tue Oct <span style=color:#ae81ff>16</span> 12:00:23 2018, max compression, from Unix
+bandit12@bandit:/tmp/name1231$ mv <span style=color:#ae81ff>2</span> 4.gz
 bandit12@bandit:/tmp/name1231$ gzip -d 4.gz 
-bandit12@bandit:/tmp/name1231$ file <span style="color:#ae81ff">4</span>
-4: POSIX tar archive <span style="color:#f92672">(</span>GNU<span style="color:#f92672">)</span>
-bandit12@bandit:/tmp/name1231$ mv <span style="color:#ae81ff">4</span> 5.tar
+bandit12@bandit:/tmp/name1231$ file <span style=color:#ae81ff>4</span>
+4: POSIX tar archive <span style=color:#f92672>(</span>GNU<span style=color:#f92672>)</span>
+bandit12@bandit:/tmp/name1231$ mv <span style=color:#ae81ff>4</span> 5.tar
 bandit12@bandit:/tmp/name1231$ tar -xvf 5.tar 
 data5.bin
 bandit12@bandit:/tmp/name1231$ file data5.bin 
-data5.bin: POSIX tar archive <span style="color:#f92672">(</span>GNU<span style="color:#f92672">)</span>
+data5.bin: POSIX tar archive <span style=color:#f92672>(</span>GNU<span style=color:#f92672>)</span>
 bandit12@bandit:/tmp/name1231$ mv data5.bin data5.tar
 bandit12@bandit:/tmp/name1231$ tar -xvf data5.tar 
 data6.bin
 bandit12@bandit:/tmp/name1231$ file data6.bin 
-data6.bin: bzip2 compressed data, block size <span style="color:#f92672">=</span> 900k
+data6.bin: bzip2 compressed data, block size <span style=color:#f92672>=</span> 900k
 bandit12@bandit:/tmp/name1231$ mv data6.bin data6.bz2
 bandit12@bandit:/tmp/name1231$ bzip2 -d data6.bz2 
 bandit12@bandit:/tmp/name1231$ file data6
-data6: POSIX tar archive <span style="color:#f92672">(</span>GNU<span style="color:#f92672">)</span>
+data6: POSIX tar archive <span style=color:#f92672>(</span>GNU<span style=color:#f92672>)</span>
 bandit12@bandit:/tmp/name1231$ mv data6 data6.tar
 bandit12@bandit:/tmp/name1231$ tar -xvf data6.tar 
 data8.bin
 bandit12@bandit:/tmp/name1231$ file data8.bin 
-data8.bin: gzip compressed data, was <span style="color:#e6db74">&#34;data9.bin&#34;</span>, last modified: Tue Oct <span style="color:#ae81ff">16</span> 12:00:23 2018, max compression, from Unix
+data8.bin: gzip compressed data, was <span style=color:#e6db74>&#34;data9.bin&#34;</span>, last modified: Tue Oct <span style=color:#ae81ff>16</span> 12:00:23 2018, max compression, from Unix
 bandit12@bandit:/tmp/name1231$ mv data8.bin data9.gz
 bandit12@bandit:/tmp/name1231$ gzip -d data9.gz 
 bandit12@bandit:/tmp/name1231$ file data9
 data9: ASCII text
 bandit12@bandit:/tmp/name1231$ cat data9
 The password is 8ZjyCRiBWFYkneahHwxCv3wb2a1ORpYL
-</code></pre></div><h2 id="level-1421">Level 14~21</h2>
-<h3 id="level-13-14">Level 13-&gt;14：</h3>
-<!-- raw HTML omitted -->
+</code></pre></div><h2 id=level-1421>Level 14~21</h2>
+<h3 id=level-13-14>Level 13->14：</h3>
 <p>The password for the next level is stored in /etc/bandit_pass/bandit14 and can only be read by user bandit14. For this level, you don’t get the next password, but you get a private SSH key that can be used to log into the next level. Note: localhost is a hostname that refers to the machine you are working on.
 这一次不是使用密码登录，而是使用ssh key登录。可以发现sshkey就在在当前目录下，直接使用ssh登陆即可。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">bandit13@bandit:~$ ssh localhost -l bandit14 -i ./sshkey.private Could not create directory <span style="color:#e6db74">&#39;/home/bandit13/.ssh&#39;</span>.The authenticity of host <span style="color:#e6db74">&#39;localhost (127.0.0.1)&#39;</span> can<span style="color:#960050;background-color:#1e0010">&#39;</span>t be established.ECDSA key fingerprint is SHA256:98UL0ZWr85496EtCRkKlo20X3OPnyPSB5tB5RPbhczc.Are you sure you want to <span style="color:#66d9ef">continue</span> connecting <span style="color:#f92672">(</span>yes/no<span style="color:#f92672">)</span>? yes
-</code></pre></div><h3 id="level-14-15">Level 14-&gt;15：</h3>
-<!-- raw HTML omitted -->
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>bandit13@bandit:~$ ssh localhost -l bandit14 -i ./sshkey.private Could not create directory <span style=color:#e6db74>&#39;/home/bandit13/.ssh&#39;</span>.The authenticity of host <span style=color:#e6db74>&#39;localhost (127.0.0.1)&#39;</span> can<span style=color:#960050;background-color:#1e0010>&#39;</span>t be established.ECDSA key fingerprint is SHA256:98UL0ZWr85496EtCRkKlo20X3OPnyPSB5tB5RPbhczc.Are you sure you want to <span style=color:#66d9ef>continue</span> connecting <span style=color:#f92672>(</span>yes/no<span style=color:#f92672>)</span>? yes
+</code></pre></div><h3 id=level-14-15>Level 14->15：</h3>
 <p>The password for the next level can be retrieved by submitting the password of the current level to port 30000 on localhost.
 使用当前级别的密码登录从本地登录到30000端口。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">bandit14@bandit:~$ telnet -l bandit15 localhost 30000Trying 127.0.0.1...Connected to localhost.Escape character is <span style="color:#e6db74">&#39;^]&#39;</span>.4wcYUJFw0k0XLShlDzztnTBHiqxU3b3eCorrect!BfMYroe26WYalil77FoDi9qh59eK5xNrConnection closed by foreign host.
-</code></pre></div><h3 id="level-16">Level 16：</h3>
-<!-- raw HTML omitted -->
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>bandit14@bandit:~$ telnet -l bandit15 localhost 30000Trying 127.0.0.1...Connected to localhost.Escape character is <span style=color:#e6db74>&#39;^]&#39;</span>.4wcYUJFw0k0XLShlDzztnTBHiqxU3b3eCorrect!BfMYroe26WYalil77FoDi9qh59eK5xNrConnection closed by foreign host.
+</code></pre></div><h3 id=level-16>Level 16：</h3>
 <p>The password for the next level can be retrieved by submitting the password of the current level to port 30001 on localhost using SSL encryption.
 Helpful note: Getting “HEARTBEATING” and “Read R BLOCK”? Use -ign_eof and read the “CONNECTED COMMANDS” section in the manpage. Next to ‘R’ and ‘Q’, the ‘B’ command also works in this version of that command…
 这次要求使用ssl加密连接，根据给出的命令提示，猜测应该是使用openssl，先使用man openssl查看一下用法。
 值得注意的是s_client，但是没有给出具体用法，继续使用帮助信息，man s_client。可以看到，使用 -connect可以指定连接的主机和端口，那么payload就应该是：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">bandit15@bandit:~$ openssl s_client -connect localhost:30001 ...---BfMYroe26WYalil77FoDi9qh59eK5xNrCorrect!cluFn7wTiGryunymYOu4RcffSxQluehdclosed
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>bandit15@bandit:~$ openssl s_client -connect localhost:30001 ...---BfMYroe26WYalil77FoDi9qh59eK5xNrCorrect!cluFn7wTiGryunymYOu4RcffSxQluehdclosed
 </code></pre></div><p>可以看到返回了一个密码。
 补充：提示信息没有看的太明白，似乎是出现问题的话可以加上 -ign_eof选项，并且还有一些选项可以使用；这里 -ign_eof也是s_client的一个选项，后面的没有看懂。 -ign_eof是忽略文件结尾EOF，但是我加上之后没有什么变化，还需要学习。</p>
-<h3 id="level-17">Level 17：</h3>
+<h3 id=level-17>Level 17：</h3>
 <p>The credentials for the next level can be retrieved by submitting the password of the current level to a port on localhost in the range 31000 to 32000. First find out which of these ports have a server listening on them. Then find out which of those speak SSL and which don’t. There is only 1 server that will give the next credentials, the others will simply send back to you whatever you send to it.
 简单来说仍然是将当前的密码提交到某个端口。需要扫描31000到32000端口，查看哪些端口是开放的，那些是加密的，只有一个会返回下一级的密码，其他的都仍然返回输入的东西。
 很显然，需要先使用Nmap。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">bandit16@bandit:~$ nmap -sV -p31000-32000 localhost
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>bandit16@bandit:~$ nmap -sV -p31000-32000 localhost
 
-Starting Nmap 7.40 <span style="color:#f92672">(</span> https://nmap.org <span style="color:#f92672">)</span> at 2020-02-18 05:13 CET
-Nmap scan report <span style="color:#66d9ef">for</span> localhost <span style="color:#f92672">(</span>127.0.0.1<span style="color:#f92672">)</span>
-Host is up <span style="color:#f92672">(</span>0.00032s latency<span style="color:#f92672">)</span>.
-Not shown: <span style="color:#ae81ff">999</span> closed ports
+Starting Nmap 7.40 <span style=color:#f92672>(</span> https://nmap.org <span style=color:#f92672>)</span> at 2020-02-18 05:13 CET
+Nmap scan report <span style=color:#66d9ef>for</span> localhost <span style=color:#f92672>(</span>127.0.0.1<span style=color:#f92672>)</span>
+Host is up <span style=color:#f92672>(</span>0.00032s latency<span style=color:#f92672>)</span>.
+Not shown: <span style=color:#ae81ff>999</span> closed ports
 PORT      STATE SERVICE     VERSION
 31518/tcp open  ssl/echo
 31790/tcp open  ssl/unknown
 </code></pre></div><p>显然，访问31518会返回你输入的内容，我们要访问31790端口。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">bandit16@bandit:~$ openssl s_client -connect localhost:31790
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>bandit16@bandit:~$ openssl s_client -connect localhost:31790
 </code></pre></div><p>根据提示输入密码后返回的是一个密钥，所以应该是使用密钥登陆。先将密钥保存下来，然后使用之前的方法登录：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">bandit16@bandit:/tmp/name12341$ ssh -i sshkey.private bandit17@localhost
-</code></pre></div><h3 id="level-18">Level 18：</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>bandit16@bandit:/tmp/name12341$ ssh -i sshkey.private bandit17@localhost
+</code></pre></div><h3 id=level-18>Level 18：</h3>
 <p>There are 2 files in the homedirectory: passwords.old and passwords.new. The password for the next level is in passwords.new and is the only line that has been changed between passwords.old and passwords.new
 NOTE: if you have solved this level and see ‘Byebye!’ when trying to log into bandit18, this is related to the next level, bandit19
 密码在password.new和password.old不同的一行中，直接比较两个文件就行了。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">bandit17@bandit:~$ ls
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>bandit17@bandit:~$ ls
 passwords.new  passwords.old
 bandit17@bandit:~$ diff passwords.new passwords.old 
 42c42
 &lt; kfBf3eYk5BPBRzwjqutbbfE887SVc5Yd
 ---
 &gt; hlbSBPAWJmL6WFDb06gpTx1pPButblOA
-</code></pre></div><h3 id="level-19">Level 19：</h3>
+</code></pre></div><h3 id=level-19>Level 19：</h3>
 <p>The password for the next level is stored in a file readme in the homedirectory. Unfortunately, someone has modified .bashrc to log you out when you log in with SSH.
 上一题提示，没有办法直接使用密码登录。这里又说.bashrc文件被修改登陆后会被强制登出，但告诉了文件名和位置，所以直接读取即可。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">bandit0@bandit:~$ ssh bandit18@localhost -p <span style="color:#ae81ff">2220</span> cat readme
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>bandit0@bandit:~$ ssh bandit18@localhost -p <span style=color:#ae81ff>2220</span> cat readme
 ssh: connect to host localhost port 2220: Connection refused
 bandit0@bandit:~$ ssh bandit18@localhost cat readme
-Could not create directory <span style="color:#e6db74">&#39;/home/bandit0/.ssh&#39;</span>.
-The authenticity of host <span style="color:#e6db74">&#39;localhost (127.0.0.1)&#39;</span> can<span style="color:#e6db74">&#39;t be established.
-</span><span style="color:#e6db74">ECDSA key fingerprint is SHA256:98UL0ZWr85496EtCRkKlo20X3OPnyPSB5tB5RPbhczc.
-</span><span style="color:#e6db74">Are you sure you want to continue connecting (yes/no)? yes
-</span><span style="color:#e6db74">Failed to add the host to the list of known hosts (/home/bandit0/.ssh/known_hosts).
-</span><span style="color:#e6db74">This is a OverTheWire game server. More information on http://www.overthewire.org/wargames
-</span><span style="color:#e6db74">
-</span><span style="color:#e6db74">bandit18@localhost&#39;</span>s password: 
+Could not create directory <span style=color:#e6db74>&#39;/home/bandit0/.ssh&#39;</span>.
+The authenticity of host <span style=color:#e6db74>&#39;localhost (127.0.0.1)&#39;</span> can<span style=color:#e6db74>&#39;t be established.
+</span><span style=color:#e6db74>ECDSA key fingerprint is SHA256:98UL0ZWr85496EtCRkKlo20X3OPnyPSB5tB5RPbhczc.
+</span><span style=color:#e6db74>Are you sure you want to continue connecting (yes/no)? yes
+</span><span style=color:#e6db74>Failed to add the host to the list of known hosts (/home/bandit0/.ssh/known_hosts).
+</span><span style=color:#e6db74>This is a OverTheWire game server. More information on http://www.overthewire.org/wargames
+</span><span style=color:#e6db74>
+</span><span style=color:#e6db74>bandit18@localhost&#39;</span>s password: 
 IueksS7Ubh8G3DCwVzrTd8rAVOwq3M5x
-</code></pre></div><h3 id="level-20">Level 20：</h3>
+</code></pre></div><h3 id=level-20>Level 20：</h3>
 <p>To gain access to the next level, you should use the setuid binary in the homedirectory. Execute it without arguments to find out how to use it. The password for this level can be found in the usual place (/etc/bandit_pass), after you have used the setuid binary.
 根据题目提示，是要使用二进制文件来读取/etc/bandit_pass下的密码，访问该目录可知道，每个密码只有自己Level可读，那么就要想办法使用bandit19获取bandit20权限来访问/etc/bandit_pass/bandit20文件。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">bandit19@bandit:~$ ./bandit20-do 
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>bandit19@bandit:~$ ./bandit20-do 
 Run a command as another user.
   Example: ./bandit20-do id
 bandit19@bandit:~$ ./bandit20-do id
-uid<span style="color:#f92672">=</span>11019<span style="color:#f92672">(</span>bandit19<span style="color:#f92672">)</span> gid<span style="color:#f92672">=</span>11019<span style="color:#f92672">(</span>bandit19<span style="color:#f92672">)</span> euid<span style="color:#f92672">=</span>11020<span style="color:#f92672">(</span>bandit20<span style="color:#f92672">)</span> groups<span style="color:#f92672">=</span>11019<span style="color:#f92672">(</span>bandit19<span style="color:#f92672">)</span>
+uid<span style=color:#f92672>=</span>11019<span style=color:#f92672>(</span>bandit19<span style=color:#f92672>)</span> gid<span style=color:#f92672>=</span>11019<span style=color:#f92672>(</span>bandit19<span style=color:#f92672>)</span> euid<span style=color:#f92672>=</span>11020<span style=color:#f92672>(</span>bandit20<span style=color:#f92672>)</span> groups<span style=color:#f92672>=</span>11019<span style=color:#f92672>(</span>bandit19<span style=color:#f92672>)</span>
 bandit19@bandit:~$ ./bandit20-do --help
-Usage: env <span style="color:#f92672">[</span>OPTION<span style="color:#f92672">]</span>... <span style="color:#f92672">[</span>-<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>NAME<span style="color:#f92672">=</span>VALUE<span style="color:#f92672">]</span>... <span style="color:#f92672">[</span>COMMAND <span style="color:#f92672">[</span>ARG<span style="color:#f92672">]</span>...<span style="color:#f92672">]</span>
+Usage: env <span style=color:#f92672>[</span>OPTION<span style=color:#f92672>]</span>... <span style=color:#f92672>[</span>-<span style=color:#f92672>]</span> <span style=color:#f92672>[</span>NAME<span style=color:#f92672>=</span>VALUE<span style=color:#f92672>]</span>... <span style=color:#f92672>[</span>COMMAND <span style=color:#f92672>[</span>ARG<span style=color:#f92672>]</span>...<span style=color:#f92672>]</span>
 Set each NAME to VALUE in the environment and run COMMAND.
 
-Mandatory arguments to long options are mandatory <span style="color:#66d9ef">for</span> short options too.
+Mandatory arguments to long options are mandatory <span style=color:#66d9ef>for</span> short options too.
   -i, --ignore-environment  start with an empty environment
   -0, --null           end each output line with NUL, not newline
-  -u, --unset<span style="color:#f92672">=</span>NAME     remove variable from the environment
+  -u, --unset<span style=color:#f92672>=</span>NAME     remove variable from the environment
       --help     display this help and exit
       --version  output version information and exit
 
@@ -385,148 +350,148 @@ A mere - implies -i.  If no COMMAND, print the resulting environment.
 
 GNU coreutils online help: &lt;http://www.gnu.org/software/coreutils/&gt;
 Full documentation at: &lt;http://www.gnu.org/software/coreutils/env&gt;
-or available locally via: info <span style="color:#e6db74">&#39;(coreutils) env invocation&#39;</span>
-bandit19@bandit:~$ ./bandit20-do NAME<span style="color:#f92672">=</span><span style="color:#ae81ff">11020</span> cat /etc/bandit_pass/bandit20
+or available locally via: info <span style=color:#e6db74>&#39;(coreutils) env invocation&#39;</span>
+bandit19@bandit:~$ ./bandit20-do NAME<span style=color:#f92672>=</span><span style=color:#ae81ff>11020</span> cat /etc/bandit_pass/bandit20
 GbKksEFF4yrVs6il55v6gwY5aVje5f0j
 </code></pre></div><p>先运行该文件，使用id可以看到bandit19和bandit20的id；然后使用NAME=UID可以以UID的权限运行指令。</p>
-<h3 id="level-21">Level 21：</h3>
+<h3 id=level-21>Level 21：</h3>
 <p>There is a setuid binary in the homedirectory that does the following: it makes a connection to localhost on the port you specify as a commandline argument. It then reads a line of text from the connection and compares it to the password in the previous level (bandit20). If the password is correct, it will transmit the password for the next level (bandit21).
 NOTE: Try connecting to your own network daemon to see if it works as you think.
 题目要求使用home二进制文件连接到本地的一个端口，然后会对比bandit20的密码，如果相同就会向其发送bandit21的密码。所以，我们需要用nc监听本地的一个端口，然后使用本地的文件访问这个端口，最后接收到密码：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e"># 先查询一下端口开放情况bandit20@bandit:~$ nmap localhost...Not shown: 997 closed portsPORT      STATE SERVICE22/tcp    open  ssh113/tcp   open  ident30000/tcp open  ndmps...# 使用nc监听端口bandit20@bandit:~$ echo &#34;GbKksEFF4yrVs6il55v6gwY5aVje5f0j&#34; | nc -l -p 40000# 使用本地下的文件连接bandit20@bandit:~$ ./suconnect 40000Read: GbKksEFF4yrVs6il55v6gwY5aVje5f0jPassword matches, sending next password# 接受密码bandit20@bandit:~$ echo &#34;GbKksEFF4yrVs6il55v6gwY5aVje5f0j&#34; | nc -l -p 40000gE269g2h3mw3pwgrj0Ha9Uoqen1c9DGr</span>
-</code></pre></div><h2 id="level-2226">Level 22~26</h2>
-<h3 id="level-22">Level 22：</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=color:#75715e># 先查询一下端口开放情况bandit20@bandit:~$ nmap localhost...Not shown: 997 closed portsPORT      STATE SERVICE22/tcp    open  ssh113/tcp   open  ident30000/tcp open  ndmps...# 使用nc监听端口bandit20@bandit:~$ echo &#34;GbKksEFF4yrVs6il55v6gwY5aVje5f0j&#34; | nc -l -p 40000# 使用本地下的文件连接bandit20@bandit:~$ ./suconnect 40000Read: GbKksEFF4yrVs6il55v6gwY5aVje5f0jPassword matches, sending next password# 接受密码bandit20@bandit:~$ echo &#34;GbKksEFF4yrVs6il55v6gwY5aVje5f0j&#34; | nc -l -p 40000gE269g2h3mw3pwgrj0Ha9Uoqen1c9DGr</span>
+</code></pre></div><h2 id=level-2226>Level 22~26</h2>
+<h3 id=level-22>Level 22：</h3>
 <p>A program is running automatically at regular intervals from cron, the time-based job scheduler. Look in /etc/cron.d/ for the configuration and see what command is being executed.
 题目说明这里有一个使用cron定期运行的任务，查看/etc/cron.d/来查看具体的命令：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">bandit21@bandit:~$ ls /etc/cron.d/atop  cronjob_bandit22  cronjob_bandit23  cronjob_bandit24bandit21@bandit:~$ cat /etc/cron.d/cronjob_bandit22@reboot bandit22 /usr/bin/cronjob_bandit22.sh &amp;&gt; /dev/null* * * * * bandit22 /usr/bin/cronjob_bandit22.sh &amp;&gt; /dev/null
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>bandit21@bandit:~$ ls /etc/cron.d/atop  cronjob_bandit22  cronjob_bandit23  cronjob_bandit24bandit21@bandit:~$ cat /etc/cron.d/cronjob_bandit22@reboot bandit22 /usr/bin/cronjob_bandit22.sh &amp;&gt; /dev/null* * * * * bandit22 /usr/bin/cronjob_bandit22.sh &amp;&gt; /dev/null
 </code></pre></div><p>可以看出这个任务是运行/usr/bin/cronjob_bandit22.sh，将其输出重定向至/dev/null中，我们看看这个脚本具体是什么：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">bandit21@bandit:~$ cat /usr/bin/cronjob_bandit22.sh#!/bin/bashchmod <span style="color:#ae81ff">644</span> /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgvcat /etc/bandit_pass/bandit22 &gt; /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>bandit21@bandit:~$ cat /usr/bin/cronjob_bandit22.sh#!/bin/bashchmod <span style=color:#ae81ff>644</span> /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgvcat /etc/bandit_pass/bandit22 &gt; /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
 </code></pre></div><p>可以看出这个脚本将bandit22的密码输入到了/tmp/t706这个文件里，并且将这个文件的权限定义为所有人可读，那么直接从中就可以得到bandit22的密码。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">bandit21@bandit:~$ cat /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgvYk7owGAcWjwMVRwrTesJEwB7WVOiILLI
-</code></pre></div><h3 id="level-23">Level 23：</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>bandit21@bandit:~$ cat /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgvYk7owGAcWjwMVRwrTesJEwB7WVOiILLI
+</code></pre></div><h3 id=level-23>Level 23：</h3>
 <p>A program is running automatically at regular intervals from cron, the time-based job scheduler. Look in /etc/cron.d/ for the configuration and see what command is being executed.
 NOTE: Looking at shell scripts written by other people is a very useful skill. The script for this level is intentionally made easy to read. If you are having problems understanding what it does, try executing it to see the debug information it prints.
 和上题给出的差不多，先读取一下这个任务是干什么：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">bandit22@bandit:~$ cat /etc/cron.d/cronjob_bandit23@reboot bandit23 /usr/bin/cronjob_bandit23.sh  &amp;&gt; /dev/null* * * * * bandit23 /usr/bin/cronjob_bandit23.sh  &amp;&gt; /dev/nullbandit22@bandit:~$ cat /usr/bin/cronjob_bandit23.sh <span style="color:#75715e">#!/bin/bashmyname=$(whoami)mytarget=$(echo I am user $myname | md5sum | cut -d &#39; &#39; -f 1)echo &#34;Copying passwordfile /etc/bandit_pass/$myname to /tmp/$mytarget&#34;cat /etc/bandit_pass/$myname &gt; /tmp/$mytarget</span>
-</code></pre></div><p>和上题一样，我们先阅读一下这个脚本：首先将用户赋值给myname，然后将“I am user $myname&quot;进行加密在切割，存储到mytarget中，然后将myname的密码输入到mytarget中。
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>bandit22@bandit:~$ cat /etc/cron.d/cronjob_bandit23@reboot bandit23 /usr/bin/cronjob_bandit23.sh  &amp;&gt; /dev/null* * * * * bandit23 /usr/bin/cronjob_bandit23.sh  &amp;&gt; /dev/nullbandit22@bandit:~$ cat /usr/bin/cronjob_bandit23.sh <span style=color:#75715e>#!/bin/bashmyname=$(whoami)mytarget=$(echo I am user $myname | md5sum | cut -d &#39; &#39; -f 1)echo &#34;Copying passwordfile /etc/bandit_pass/$myname to /tmp/$mytarget&#34;cat /etc/bandit_pass/$myname &gt; /tmp/$mytarget</span>
+</code></pre></div><p>和上题一样，我们先阅读一下这个脚本：首先将用户赋值给myname，然后将“I am user $myname"进行加密在切割，存储到mytarget中，然后将myname的密码输入到mytarget中。
 所以，我们只要使用bandit23重复这个过程，得到bandit23对应的target就可以获得其密码。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">bandit22@bandit:~$ echo I am user bandit23 | md5sum | cut -d <span style="color:#e6db74">&#39; &#39;</span> -f 18ca319486bfbbc3663ea0fbe81326349bandit22@bandit:~$ cat /tmp/8ca319486bfbbc3663ea0fbe81326349jc1udXuA1tiHqjIsL8yaapX5XIAI6i0n
-</code></pre></div><h3 id="level-24">Level 24：</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>bandit22@bandit:~$ echo I am user bandit23 | md5sum | cut -d <span style=color:#e6db74>&#39; &#39;</span> -f 18ca319486bfbbc3663ea0fbe81326349bandit22@bandit:~$ cat /tmp/8ca319486bfbbc3663ea0fbe81326349jc1udXuA1tiHqjIsL8yaapX5XIAI6i0n
+</code></pre></div><h3 id=level-24>Level 24：</h3>
 <p>A program is running automatically at regular intervals from cron, the time-based job scheduler. Look in /etc/cron.d/ for the configuration and see what command is being executed.
 NOTE: This level requires you to create your own first shell-script. This is a very big step and you should be proud of yourself when you beat this level!
 NOTE 2: Keep in mind that your shell script is removed once executed, so you may want to keep a copy around…
-题目要求还是一样的&hellip;</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">bandit23@bandit:~$ cat /usr/bin/cronjob_bandit24.sh <span style="color:#75715e">#!/bin/bashmyname=$(whoami)cd /var/spool/$mynameecho &#34;Executing and deleting all scripts in /var/spool/$myname:&#34;for i in * .*;do    if [ &#34;$i&#34; != &#34;.&#34; -a &#34;$i&#34; != &#34;..&#34; ];    then	echo &#34;Handling $i&#34;	timeout -s 9 60 ./$i	rm -f ./$i    fidonebandit23@bandit:~$ ls /var/spoolbandit24  cron  mail  rsyslog</span>
+题目要求还是一样的&mldr;</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>bandit23@bandit:~$ cat /usr/bin/cronjob_bandit24.sh <span style=color:#75715e>#!/bin/bashmyname=$(whoami)cd /var/spool/$mynameecho &#34;Executing and deleting all scripts in /var/spool/$myname:&#34;for i in * .*;do    if [ &#34;$i&#34; != &#34;.&#34; -a &#34;$i&#34; != &#34;..&#34; ];    then	echo &#34;Handling $i&#34;	timeout -s 9 60 ./$i	rm -f ./$i    fidonebandit23@bandit:~$ ls /var/spoolbandit24  cron  mail  rsyslog</span>
 </code></pre></div><p>这个脚本会每分钟执行一次，运行/var/spool/$name下的文件并删除，因此我们需要在/var/spool/bandit24下创建一个脚本并将其密码输出到一个我们可以读取的位置：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">bandit23@bandit:~$ mkdir /tmp/tttt23bandit23@bandit:~$ vim /tmp/tttt23/my_script.sh#!/bin/bashcat /etc/bandit_pass/bandit24 &gt;&gt; /tmp/my_test_sh/the_passbandit23@bandit:~$ chmod +777 /tmp/tttt23/my_script.sh bandit23@bandit:~$ vim /tmp/tttt23/passbandit23@bandit:~$ chmod +777 /tmp/tttt23/passbandit23@bandit:~$ ls -l /tmp/tttt23total 4-rwxrwxrwx <span style="color:#ae81ff">1</span> bandit23 root <span style="color:#ae81ff">64</span> Feb <span style="color:#ae81ff">19</span> 11:12 my_script.sh-rwxrwxrwx <span style="color:#ae81ff">1</span> bandit23 root  <span style="color:#ae81ff">0</span> Feb <span style="color:#ae81ff">19</span> 11:21 pass
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>bandit23@bandit:~$ mkdir /tmp/tttt23bandit23@bandit:~$ vim /tmp/tttt23/my_script.sh#!/bin/bashcat /etc/bandit_pass/bandit24 &gt;&gt; /tmp/my_test_sh/the_passbandit23@bandit:~$ chmod +777 /tmp/tttt23/my_script.sh bandit23@bandit:~$ vim /tmp/tttt23/passbandit23@bandit:~$ chmod +777 /tmp/tttt23/passbandit23@bandit:~$ ls -l /tmp/tttt23total 4-rwxrwxrwx <span style=color:#ae81ff>1</span> bandit23 root <span style=color:#ae81ff>64</span> Feb <span style=color:#ae81ff>19</span> 11:12 my_script.sh-rwxrwxrwx <span style=color:#ae81ff>1</span> bandit23 root  <span style=color:#ae81ff>0</span> Feb <span style=color:#ae81ff>19</span> 11:21 pass
 </code></pre></div><p>注意修改权限，否则没办法执行脚本和写入密码（反正我是等了半天没反应才想到修改权限）。然后等待就行了:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">bandit23@bandit:~$ ls -l /tmp/tttt23total 8-rwxrwxrwx <span style="color:#ae81ff">1</span> bandit23 root <span style="color:#ae81ff">64</span> Feb <span style="color:#ae81ff">19</span> 11:12 my_script.sh-rwxrwxrwx <span style="color:#ae81ff">1</span> bandit23 root <span style="color:#ae81ff">33</span> Feb <span style="color:#ae81ff">19</span> 11:29 passbandit23@bandit:~$ cat /tmp/tttt23/passUoMYTrfrBFHyQXmg6gzctqAwOmw1IohZ
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>bandit23@bandit:~$ ls -l /tmp/tttt23total 8-rwxrwxrwx <span style=color:#ae81ff>1</span> bandit23 root <span style=color:#ae81ff>64</span> Feb <span style=color:#ae81ff>19</span> 11:12 my_script.sh-rwxrwxrwx <span style=color:#ae81ff>1</span> bandit23 root <span style=color:#ae81ff>33</span> Feb <span style=color:#ae81ff>19</span> 11:29 passbandit23@bandit:~$ cat /tmp/tttt23/passUoMYTrfrBFHyQXmg6gzctqAwOmw1IohZ
 </code></pre></div><p>注意到pass大小发生了变化，于是读取该文件。</p>
-<h3 id="level-24-1">Level 24：</h3>
+<h3 id=level-24-1>Level 24：</h3>
 <p>A daemon is listening on port 30002 and will give you the password for bandit25 if given the password for bandit24 and a secret numeric 4-digit pincode. There is no way to retrieve the pincode except by going through all of the 10000 combinations, called brute-forcing.
 题目要求连接端口30002并把bandit24的密码传过去除此之外还有一个4为的pincode，题目直接说了这个四位数要爆破，题目没有给出命令提示，可能是要我们使用脚本来爆破了。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e"># 先看一下密码格式bandit24@bandit:/tmp/tttt23$ nc localhost 30002I am the pincode checker for user bandit25. Please enter the password for user bandit24 and the secret pincode on a single line, separated by a space.# 密码和pincode在一行，使用空格隔开，可以编写脚本了bandit24@bandit:/tmp/tttt23$ vim scrpit.sh#! /bin/bashpass24=&#34;UoMYTrfrBFHyQXmg6gzctqAwOmw1IohZ&#34;nc localhost 30002for i in {0..9}{0..9}{0..9}{0..9}do	echo $pass24&#39; &#39;$i &gt;&gt; dictdonecat ./dict | nc localhost 30002 &gt;&gt; resort re | uniq -ubandit24@bandit:/tmp/tttt23$ ./scrpit.sh I am the pincode checker for user bandit25. Please enter the password for user bandit24 and the secret pincode on a single line, separated by a space.Timeout. Exiting.Correct!Exiting.I am the pincode checker for user bandit25. Please enter the password for user bandit24 and the secret pincode on a single line, separated by a space.The password of user bandit25 is uNG9O58gUE7snukf3bvZ0rxhtnjzSGzG</span>
-</code></pre></div><h3 id="level-25">Level 25：</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=color:#75715e># 先看一下密码格式bandit24@bandit:/tmp/tttt23$ nc localhost 30002I am the pincode checker for user bandit25. Please enter the password for user bandit24 and the secret pincode on a single line, separated by a space.# 密码和pincode在一行，使用空格隔开，可以编写脚本了bandit24@bandit:/tmp/tttt23$ vim scrpit.sh#! /bin/bashpass24=&#34;UoMYTrfrBFHyQXmg6gzctqAwOmw1IohZ&#34;nc localhost 30002for i in {0..9}{0..9}{0..9}{0..9}do	echo $pass24&#39; &#39;$i &gt;&gt; dictdonecat ./dict | nc localhost 30002 &gt;&gt; resort re | uniq -ubandit24@bandit:/tmp/tttt23$ ./scrpit.sh I am the pincode checker for user bandit25. Please enter the password for user bandit24 and the secret pincode on a single line, separated by a space.Timeout. Exiting.Correct!Exiting.I am the pincode checker for user bandit25. Please enter the password for user bandit24 and the secret pincode on a single line, separated by a space.The password of user bandit25 is uNG9O58gUE7snukf3bvZ0rxhtnjzSGzG</span>
+</code></pre></div><h3 id=level-25>Level 25：</h3>
 <p>Logging in to bandit26 from bandit25 should be fairly easy… The shell for user bandit26 is not /bin/bash, but something else. Find out what it is, how it works and how to break out of it.
 题目说bandit26的shell非/bin/bash，所以需要查看一下他所用的shell：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">bandit25@bandit:~$ cat /etc/passwd | grep 26bandit26:x:11026:11026:bandit level 26:/home/bandit26:/usr/bin/showtextbandit25@bandit:~$ cat /usr/bin/showtext#!/bin/shexport TERM<span style="color:#f92672">=</span>linuxmore ~/text.txtexit <span style="color:#ae81ff">0</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>bandit25@bandit:~$ cat /etc/passwd | grep 26bandit26:x:11026:11026:bandit level 26:/home/bandit26:/usr/bin/showtextbandit25@bandit:~$ cat /usr/bin/showtext#!/bin/shexport TERM<span style=color:#f92672>=</span>linuxmore ~/text.txtexit <span style=color:#ae81ff>0</span>
 </code></pre></div><p>bandit25下有一个密钥文件，直接使用登陆后会在进入后就弹出</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">...  Enjoy your stay!  _                     _ _ _   ___   __   | |                   | <span style="color:#f92672">(</span>_<span style="color:#f92672">)</span> | |__ <span style="color:#ae81ff">\ </span>/ /   | |__   __ _ _ __   __| |_| |_   <span style="color:#f92672">)</span> / /_   | <span style="color:#e6db74">&#39;_ \ / _` | &#39;</span>_ <span style="color:#ae81ff">\ </span>/ _<span style="color:#e6db74">`</span> | | __| / / <span style="color:#960050;background-color:#1e0010">&#39;</span>_ <span style="color:#ae81ff">\ </span> | |_<span style="color:#f92672">)</span> | <span style="color:#f92672">(</span>_| | | | | <span style="color:#f92672">(</span>_| | | |_ / /| <span style="color:#f92672">(</span>_<span style="color:#f92672">)</span> | |_.__/ <span style="color:#ae81ff">\_</span>_,_|_| |_|<span style="color:#ae81ff">\_</span>_,_|_|<span style="color:#ae81ff">\_</span>_|____<span style="color:#ae81ff">\_</span>__/ Connection to localhost closed.
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>...  Enjoy your stay!  _                     _ _ _   ___   __   | |                   | <span style=color:#f92672>(</span>_<span style=color:#f92672>)</span> | |__ <span style=color:#ae81ff>\ </span>/ /   | |__   __ _ _ __   __| |_| |_   <span style=color:#f92672>)</span> / /_   | <span style=color:#e6db74>&#39;_ \ / _` | &#39;</span>_ <span style=color:#ae81ff>\ </span>/ _<span style=color:#e6db74>`</span> | | __| / / <span style=color:#960050;background-color:#1e0010>&#39;</span>_ <span style=color:#ae81ff>\ </span> | |_<span style=color:#f92672>)</span> | <span style=color:#f92672>(</span>_| | | | | <span style=color:#f92672>(</span>_| | | |_ / /| <span style=color:#f92672>(</span>_<span style=color:#f92672>)</span> | |_.__/ <span style=color:#ae81ff>\_</span>_,_|_| |_|<span style=color:#ae81ff>\_</span>_,_|_|<span style=color:#ae81ff>\_</span>_|____<span style=color:#ae81ff>\_</span>__/ Connection to localhost closed.
 </code></pre></div><p>通过观察showtext这个“Shell”，可以发现他会执行一个退出的命令；那么就要想办法不让他退出。在退出之前是一个more，通过和之前的登陆界面对比，发现这里的登陆界面多出了一个“bandit26”的图像，所以这个text.txt文件应该就是保存了这个，而推出命令之前会执行more命令来打印这个文件。而more命令会在打印结束后退出，如果没有显示玩，就会等待输入以往下翻页，到此可以不让他退出了。但是这还是没什么用，因为more就只是显示一个文件。
 提示中有一个vi命令，很有可能和more相关，查询了一下，发现在more时直接输入v可进入vi编辑器模式，而vi下是可以获取终端的，那么就好办了：先将终端缩小一直无法直接读完：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">bandit25@bandit:~$ ssh -i bandit26.sshkey bandit26@localhost...  _                     _ _ _   ___   __   | |                   | <span style="color:#f92672">(</span>_<span style="color:#f92672">)</span> | |__ <span style="color:#ae81ff">\ </span>/ /   | |__   __ _ _ __   __| |_| |_   <span style="color:#f92672">)</span> / /_   | <span style="color:#e6db74">&#39;_ \ / _` | &#39;</span>_ <span style="color:#ae81ff">\ </span>/ _<span style="color:#e6db74">`</span> | | __| / / <span style="color:#960050;background-color:#1e0010">&#39;</span>_ <span style="color:#ae81ff">\ </span>--More--<span style="color:#f92672">(</span>66%<span style="color:#f92672">)</span><span style="color:#75715e"># 按下v键进入vi编辑模式，就可以将窗口还原了:set shell sh=/bin/bash:sh                                                                                                                                                     [No write since last change]bandit26@bandit:~$ </span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>bandit25@bandit:~$ ssh -i bandit26.sshkey bandit26@localhost...  _                     _ _ _   ___   __   | |                   | <span style=color:#f92672>(</span>_<span style=color:#f92672>)</span> | |__ <span style=color:#ae81ff>\ </span>/ /   | |__   __ _ _ __   __| |_| |_   <span style=color:#f92672>)</span> / /_   | <span style=color:#e6db74>&#39;_ \ / _` | &#39;</span>_ <span style=color:#ae81ff>\ </span>/ _<span style=color:#e6db74>`</span> | | __| / / <span style=color:#960050;background-color:#1e0010>&#39;</span>_ <span style=color:#ae81ff>\ </span>--More--<span style=color:#f92672>(</span>66%<span style=color:#f92672>)</span><span style=color:#75715e># 按下v键进入vi编辑模式，就可以将窗口还原了:set shell sh=/bin/bash:sh                                                                                                                                                     [No write since last change]bandit26@bandit:~$ </span>
 </code></pre></div><p>可以看到，已经进入bandit26了。（不得不说这一波操作太秀了）</p>
-<h3 id="level-26">Level 26</h3>
+<h3 id=level-26>Level 26</h3>
 <p>Good job getting a shell! Now hurry and grab the password for bandit27!
 就一句话，获取bandit27的密码。看一下给了什么东西吧：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">bandit26@bandit:~$ lsbandit27-do  text.txt
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>bandit26@bandit:~$ lsbandit27-do  text.txt
 </code></pre></div><p>这里给出了一个可执行文件，运行一下试试：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">bandit26@bandit:~$ ./bandit27-do Run a command as another user.  Example: ./bandit27-do idbandit26@bandit:~$ ./bandit27-do iduid<span style="color:#f92672">=</span>11026<span style="color:#f92672">(</span>bandit26<span style="color:#f92672">)</span> gid<span style="color:#f92672">=</span>11026<span style="color:#f92672">(</span>bandit26<span style="color:#f92672">)</span> euid<span style="color:#f92672">=</span>11027<span style="color:#f92672">(</span>bandit27<span style="color:#f92672">)</span> groups<span style="color:#f92672">=</span>11026<span style="color:#f92672">(</span>bandit26<span style="color:#f92672">)</span>bandit26@bandit:~$ ./bandit27-do cat /etc/bandit_pass/bandit273ba3118a22e93127a4ed485be72ef5ea
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>bandit26@bandit:~$ ./bandit27-do Run a command as another user.  Example: ./bandit27-do idbandit26@bandit:~$ ./bandit27-do iduid<span style=color:#f92672>=</span>11026<span style=color:#f92672>(</span>bandit26<span style=color:#f92672>)</span> gid<span style=color:#f92672>=</span>11026<span style=color:#f92672>(</span>bandit26<span style=color:#f92672>)</span> euid<span style=color:#f92672>=</span>11027<span style=color:#f92672>(</span>bandit27<span style=color:#f92672>)</span> groups<span style=color:#f92672>=</span>11026<span style=color:#f92672>(</span>bandit26<span style=color:#f92672>)</span>bandit26@bandit:~$ ./bandit27-do cat /etc/bandit_pass/bandit273ba3118a22e93127a4ed485be72ef5ea
 </code></pre></div><p>是一个和之前一样的脚本，直接就可以拿到密码。</p>
-<h2 id="level-27">Level 27~</h2>
-<h3 id="level-27-1">Level 27：</h3>
+<h2 id=level-27>Level 27~</h2>
+<h3 id=level-27-1>Level 27：</h3>
 <p>There is a git repository at ssh://bandit27-git@localhost/home/bandit27-git/repo. The password for the user bandit27-git is the same as for the user bandit27.
 Clone the repository and find the password for the next level.
 这里开始使用Git了，题目要求把仓库克隆下来来找到下一级的密码，同时bandit27-git的密码和bandit27时一样的，所以我们直接clone下来就行：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">bandit27@bandit:~$ git clone ssh://bandit27-git@localhost/home/bandit27-git/repo /tmp/tttt23/bandit27Cloning into <span style="color:#e6db74">&#39;/tmp/tttt23/bandit27&#39;</span>...Could not create directory <span style="color:#e6db74">&#39;/home/bandit27/.ssh&#39;</span>.The authenticity of host <span style="color:#e6db74">&#39;localhost (127.0.0.1)&#39;</span> can<span style="color:#e6db74">&#39;t be established.ECDSA key fingerprint is SHA256:98UL0ZWr85496EtCRkKlo20X3OPnyPSB5tB5RPbhczc.Are you sure you want to continue connecting (yes/no)? yesFailed to add the host to the list of known hosts (/home/bandit27/.ssh/known_hosts).This is a OverTheWire game server. More information on http://www.overthewire.org/wargamesbandit27-git@localhost&#39;</span>s password: remote: Counting objects: 3, <span style="color:#66d9ef">done</span>.remote: Compressing objects: 100% <span style="color:#f92672">(</span>2/2<span style="color:#f92672">)</span>, <span style="color:#66d9ef">done</span>.remote: Total <span style="color:#ae81ff">3</span> <span style="color:#f92672">(</span>delta 0<span style="color:#f92672">)</span>, reused <span style="color:#ae81ff">0</span> <span style="color:#f92672">(</span>delta 0<span style="color:#f92672">)</span>Receiving objects: 100% <span style="color:#f92672">(</span>3/3<span style="color:#f92672">)</span>, <span style="color:#66d9ef">done</span>.bandit27@bandit:~$ cd /tmp/tttt23/bandit27@bandit:/tmp/tttt23$ lsbandit27  dict  pass25  re  scrpit.shbandit27@bandit:/tmp/tttt23$ cd bandit27/bandit27@bandit:/tmp/tttt23/bandit27$ lsREADMEbandit27@bandit:/tmp/tttt23/bandit27$ cat READMEThe password to the next level is: 0ef186ac70e04ea33b4c1853d2526fa2bandit27@bandit:/tmp/tttt23/bandit27$ 
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>bandit27@bandit:~$ git clone ssh://bandit27-git@localhost/home/bandit27-git/repo /tmp/tttt23/bandit27Cloning into <span style=color:#e6db74>&#39;/tmp/tttt23/bandit27&#39;</span>...Could not create directory <span style=color:#e6db74>&#39;/home/bandit27/.ssh&#39;</span>.The authenticity of host <span style=color:#e6db74>&#39;localhost (127.0.0.1)&#39;</span> can<span style=color:#e6db74>&#39;t be established.ECDSA key fingerprint is SHA256:98UL0ZWr85496EtCRkKlo20X3OPnyPSB5tB5RPbhczc.Are you sure you want to continue connecting (yes/no)? yesFailed to add the host to the list of known hosts (/home/bandit27/.ssh/known_hosts).This is a OverTheWire game server. More information on http://www.overthewire.org/wargamesbandit27-git@localhost&#39;</span>s password: remote: Counting objects: 3, <span style=color:#66d9ef>done</span>.remote: Compressing objects: 100% <span style=color:#f92672>(</span>2/2<span style=color:#f92672>)</span>, <span style=color:#66d9ef>done</span>.remote: Total <span style=color:#ae81ff>3</span> <span style=color:#f92672>(</span>delta 0<span style=color:#f92672>)</span>, reused <span style=color:#ae81ff>0</span> <span style=color:#f92672>(</span>delta 0<span style=color:#f92672>)</span>Receiving objects: 100% <span style=color:#f92672>(</span>3/3<span style=color:#f92672>)</span>, <span style=color:#66d9ef>done</span>.bandit27@bandit:~$ cd /tmp/tttt23/bandit27@bandit:/tmp/tttt23$ lsbandit27  dict  pass25  re  scrpit.shbandit27@bandit:/tmp/tttt23$ cd bandit27/bandit27@bandit:/tmp/tttt23/bandit27$ lsREADMEbandit27@bandit:/tmp/tttt23/bandit27$ cat READMEThe password to the next level is: 0ef186ac70e04ea33b4c1853d2526fa2bandit27@bandit:/tmp/tttt23/bandit27$ 
 </code></pre></div><p>进入仓库直接读取就可以获取密码。</p>
-<h3 id="level-28">Level 28：</h3>
+<h3 id=level-28>Level 28：</h3>
 <p>There is a git repository at ssh://bandit28-git@localhost/home/bandit28-git/repo. The password for the user bandit28-git is the same as for the user bandit28.
 Clone the repository and find the password for the next level.
 和上题一样，需要先clone仓库：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">bandit28@bandit:~$ git clone ssh://bandit28-git@localhost/home/bandit28-git/repo /tmp/tttt23/bandit28
-Cloning into <span style="color:#e6db74">&#39;/tmp/tttt23/bandit28&#39;</span>...
-Could not create directory <span style="color:#e6db74">&#39;/home/bandit28/.ssh&#39;</span>.
-The authenticity of host <span style="color:#e6db74">&#39;localhost (127.0.0.1)&#39;</span> can<span style="color:#e6db74">&#39;t be established.
-</span><span style="color:#e6db74">ECDSA key fingerprint is SHA256:98UL0ZWr85496EtCRkKlo20X3OPnyPSB5tB5RPbhczc.
-</span><span style="color:#e6db74">Are you sure you want to continue connecting (yes/no)? yes
-</span><span style="color:#e6db74">Failed to add the host to the list of known hosts (/home/bandit28/.ssh/known_hosts).
-</span><span style="color:#e6db74">This is a OverTheWire game server. More information on http://www.overthewire.org/wargames
-</span><span style="color:#e6db74">
-</span><span style="color:#e6db74">bandit28-git@localhost&#39;</span>s password: 
-remote: Counting objects: 9, <span style="color:#66d9ef">done</span>.
-remote: Compressing objects: 100% <span style="color:#f92672">(</span>6/6<span style="color:#f92672">)</span>, <span style="color:#66d9ef">done</span>.
-remote: Total <span style="color:#ae81ff">9</span> <span style="color:#f92672">(</span>delta 2<span style="color:#f92672">)</span>, reused <span style="color:#ae81ff">0</span> <span style="color:#f92672">(</span>delta 0<span style="color:#f92672">)</span>
-Receiving objects: 100% <span style="color:#f92672">(</span>9/9<span style="color:#f92672">)</span>, <span style="color:#66d9ef">done</span>.
-Resolving deltas: 100% <span style="color:#f92672">(</span>2/2<span style="color:#f92672">)</span>, <span style="color:#66d9ef">done</span>.
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>bandit28@bandit:~$ git clone ssh://bandit28-git@localhost/home/bandit28-git/repo /tmp/tttt23/bandit28
+Cloning into <span style=color:#e6db74>&#39;/tmp/tttt23/bandit28&#39;</span>...
+Could not create directory <span style=color:#e6db74>&#39;/home/bandit28/.ssh&#39;</span>.
+The authenticity of host <span style=color:#e6db74>&#39;localhost (127.0.0.1)&#39;</span> can<span style=color:#e6db74>&#39;t be established.
+</span><span style=color:#e6db74>ECDSA key fingerprint is SHA256:98UL0ZWr85496EtCRkKlo20X3OPnyPSB5tB5RPbhczc.
+</span><span style=color:#e6db74>Are you sure you want to continue connecting (yes/no)? yes
+</span><span style=color:#e6db74>Failed to add the host to the list of known hosts (/home/bandit28/.ssh/known_hosts).
+</span><span style=color:#e6db74>This is a OverTheWire game server. More information on http://www.overthewire.org/wargames
+</span><span style=color:#e6db74>
+</span><span style=color:#e6db74>bandit28-git@localhost&#39;</span>s password: 
+remote: Counting objects: 9, <span style=color:#66d9ef>done</span>.
+remote: Compressing objects: 100% <span style=color:#f92672>(</span>6/6<span style=color:#f92672>)</span>, <span style=color:#66d9ef>done</span>.
+remote: Total <span style=color:#ae81ff>9</span> <span style=color:#f92672>(</span>delta 2<span style=color:#f92672>)</span>, reused <span style=color:#ae81ff>0</span> <span style=color:#f92672>(</span>delta 0<span style=color:#f92672>)</span>
+Receiving objects: 100% <span style=color:#f92672>(</span>9/9<span style=color:#f92672>)</span>, <span style=color:#66d9ef>done</span>.
+Resolving deltas: 100% <span style=color:#f92672>(</span>2/2<span style=color:#f92672>)</span>, <span style=color:#66d9ef>done</span>.
 
 bandit28@bandit:~$ cd /tmp/tttt23/bandit28
 bandit28@bandit:/tmp/tttt23/bandit28$ ls
 README.md
 bandit28@bandit:/tmp/tttt23/bandit28$ cat README.md
-<span style="color:#75715e"># Bandit Notes</span>
-Some notes <span style="color:#66d9ef">for</span> level29 of bandit.
+<span style=color:#75715e># Bandit Notes</span>
+Some notes <span style=color:#66d9ef>for</span> level29 of bandit.
 
-<span style="color:#75715e">## credentials</span>
+<span style=color:#75715e>## credentials</span>
 
 - username: bandit29
 - password: xxxxxxxxxx
 </code></pre></div><p>有一个markdown文件，但是没有直接给出密码，仓库下也没有其他特别的东西。猜想是否时在之前的提交中被修改过了。查看一下提交记录：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">bandit28@bandit:/tmp/tttt23/bandit28$ git log
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>bandit28@bandit:/tmp/tttt23/bandit28$ git log
 commit 073c27c130e6ee407e12faad1dd3848a110c4f95
 Author: Morla Porla &lt;morla@overthewire.org&gt;
-Date:   Tue Oct <span style="color:#ae81ff">16</span> 14:00:39 <span style="color:#ae81ff">2018</span> +0200
+Date:   Tue Oct <span style=color:#ae81ff>16</span> 14:00:39 <span style=color:#ae81ff>2018</span> +0200
 
     fix info leak
 
 commit 186a1038cc54d1358d42d468cdc8e3cc28a93fcb
 Author: Morla Porla &lt;morla@overthewire.org&gt;
-Date:   Tue Oct <span style="color:#ae81ff">16</span> 14:00:39 <span style="color:#ae81ff">2018</span> +0200
+Date:   Tue Oct <span style=color:#ae81ff>16</span> 14:00:39 <span style=color:#ae81ff>2018</span> +0200
 
     add missing data
 
 commit b67405defc6ef44210c53345fc953e6a21338cc7
 Author: Ben Dover &lt;noone@overthewire.org&gt;
-Date:   Tue Oct <span style="color:#ae81ff">16</span> 14:00:39 <span style="color:#ae81ff">2018</span> +0200
+Date:   Tue Oct <span style=color:#ae81ff>16</span> 14:00:39 <span style=color:#ae81ff>2018</span> +0200
 
     initial commit of README.md
 </code></pre></div><p>只有三次提交记录，而且最后一次的提交记录信息时“ 修复信息泄露 ”，那么很显然恢复上一版本或者查看修改就能得到密码：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">bandit28@bandit:/tmp/tttt23/bandit28$ git show
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>bandit28@bandit:/tmp/tttt23/bandit28$ git show
 commit 073c27c130e6ee407e12faad1dd3848a110c4f95
 Author: Morla Porla &lt;morla@overthewire.org&gt;
-Date:   Tue Oct <span style="color:#ae81ff">16</span> 14:00:39 <span style="color:#ae81ff">2018</span> +0200
+Date:   Tue Oct <span style=color:#ae81ff>16</span> 14:00:39 <span style=color:#ae81ff>2018</span> +0200
 
     fix info leak
 
 diff --git a/README.md b/README.md
-index 3f7cee8..5c6457b <span style="color:#ae81ff">100644</span>
+index 3f7cee8..5c6457b <span style=color:#ae81ff>100644</span>
 --- a/README.md
 +++ b/README.md
-@@ -4,5 +4,5 @@ Some notes <span style="color:#66d9ef">for</span> level29 of bandit.
- <span style="color:#75715e">## credentials</span>
+@@ -4,5 +4,5 @@ Some notes <span style=color:#66d9ef>for</span> level29 of bandit.
+ <span style=color:#75715e>## credentials</span>
  
  - username: bandit29
 -- password: bbc96594b4e001778eee9975372716b2
 +- password: xxxxxxxxxx
-</code></pre></div><h3 id="level-29">level 29:</h3>
+</code></pre></div><h3 id=level-29>level 29:</h3>
 <p>There is a git repository at ssh://bandit29-git@localhost/home/bandit29-git/repo. The password for the user bandit29-git is the same as for the user bandit29.
 Clone the repository and find the password for the next level.
 题目还是一样的，还是在仓库里动手了：</p>
-<pre tabindex="0"><code>...省略clone操作bandit29@bandit:/tmp/tttt23/bandit29$ lsREADME.mdbandit29@bandit:/tmp/tttt23/bandit29$ cat README.md # Bandit NotesSome notes for bandit30 of bandit.## credentials- username: bandit30- password: &lt;no passwords in production!&gt;
+<pre tabindex=0><code>...省略clone操作bandit29@bandit:/tmp/tttt23/bandit29$ lsREADME.mdbandit29@bandit:/tmp/tttt23/bandit29$ cat README.md # Bandit NotesSome notes for bandit30 of bandit.## credentials- username: bandit30- password: &lt;no passwords in production!&gt;
 </code></pre><p>提示生产过程中没有密码！查看过提交记录确实没什么东西，那是不是在其他分支上呢？试一下：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">bandit29@bandit:/tmp/tttt23/bandit29$ git branch -a* master  remotes/origin/HEAD -&gt; origin/master  remotes/origin/dev  remotes/origin/master  remotes/origin/sploits-devbandit29@bandit:/tmp/tttt23/bandit29$ git show-branch<span style="color:#f92672">[</span>master<span style="color:#f92672">]</span> fix usernamebandit29@bandit:/tmp/tttt23/bandit29$ git show-branch -a* <span style="color:#f92672">[</span>master<span style="color:#f92672">]</span> fix username ! <span style="color:#f92672">[</span>origin/HEAD<span style="color:#f92672">]</span> fix username  ! <span style="color:#f92672">[</span>origin/dev<span style="color:#f92672">]</span> add data needed <span style="color:#66d9ef">for</span> development   ! <span style="color:#f92672">[</span>origin/master<span style="color:#f92672">]</span> fix username    ! <span style="color:#f92672">[</span>origin/sploits-dev<span style="color:#f92672">]</span> add some silly exploit, just <span style="color:#66d9ef">for</span> shit and giggles-----    + <span style="color:#f92672">[</span>origin/sploits-dev<span style="color:#f92672">]</span> add some silly exploit, just <span style="color:#66d9ef">for</span> shit and giggles  +   <span style="color:#f92672">[</span>origin/dev<span style="color:#f92672">]</span> add data needed <span style="color:#66d9ef">for</span> development  +   <span style="color:#f92672">[</span>origin/dev^<span style="color:#f92672">]</span> add gif2ascii*++++ <span style="color:#f92672">[</span>master<span style="color:#f92672">]</span> fix username
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>bandit29@bandit:/tmp/tttt23/bandit29$ git branch -a* master  remotes/origin/HEAD -&gt; origin/master  remotes/origin/dev  remotes/origin/master  remotes/origin/sploits-devbandit29@bandit:/tmp/tttt23/bandit29$ git show-branch<span style=color:#f92672>[</span>master<span style=color:#f92672>]</span> fix usernamebandit29@bandit:/tmp/tttt23/bandit29$ git show-branch -a* <span style=color:#f92672>[</span>master<span style=color:#f92672>]</span> fix username ! <span style=color:#f92672>[</span>origin/HEAD<span style=color:#f92672>]</span> fix username  ! <span style=color:#f92672>[</span>origin/dev<span style=color:#f92672>]</span> add data needed <span style=color:#66d9ef>for</span> development   ! <span style=color:#f92672>[</span>origin/master<span style=color:#f92672>]</span> fix username    ! <span style=color:#f92672>[</span>origin/sploits-dev<span style=color:#f92672>]</span> add some silly exploit, just <span style=color:#66d9ef>for</span> shit and giggles-----    + <span style=color:#f92672>[</span>origin/sploits-dev<span style=color:#f92672>]</span> add some silly exploit, just <span style=color:#66d9ef>for</span> shit and giggles  +   <span style=color:#f92672>[</span>origin/dev<span style=color:#f92672>]</span> add data needed <span style=color:#66d9ef>for</span> development  +   <span style=color:#f92672>[</span>origin/dev^<span style=color:#f92672>]</span> add gif2ascii*++++ <span style=color:#f92672>[</span>master<span style=color:#f92672>]</span> fix username
 </code></pre></div><p>真的有点东西，在dev分支时添加了一些数据，说不定就是密码，可以尝试一下，origin时远程仓库的默认的名字，所以我们需要先使用git remote来切换：</p>
-<pre tabindex="0"><code>bandit29@bandit:/tmp/tttt23/bandit29$ git remote show origin
+<pre tabindex=0><code>bandit29@bandit:/tmp/tttt23/bandit29$ git remote show origin
 Could not create directory '/home/bandit29/.ssh'.
 ...
 bandit29-git@localhost's password: 
@@ -555,34 +520,34 @@ Some notes for bandit30 of bandit.
 - username: bandit30
 - password: 5b90576bedb2cc04c86a9e924ce42faf
 </code></pre><p>找到密码了</p>
-<h3 id="level-30">Level 30：</h3>
+<h3 id=level-30>Level 30：</h3>
 <p>There is a git repository at ssh://bandit30-git@localhost/home/bandit30-git/repo. The password for the user bandit30-git is the same as for the user bandit30.
 Clone the repository and find the password for the next level.
 还是一样的题目：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">bandit30@bandit:/tmp/tttt23/bandit30$ cat README.md 
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>bandit30@bandit:/tmp/tttt23/bandit30$ cat README.md 
 just an epmty file... muahaha
 bandit30@bandit:/tmp/tttt23/bandit30$ git log
 commit 3aa4c239f729b07deb99a52f125893e162daac9e
 Author: Ben Dover &lt;noone@overthewire.org&gt;
-Date:   Tue Oct <span style="color:#ae81ff">16</span> 14:00:44 <span style="color:#ae81ff">2018</span> +0200
+Date:   Tue Oct <span style=color:#ae81ff>16</span> 14:00:44 <span style=color:#ae81ff>2018</span> +0200
 
     initial commit of README.md
     
 bandit30@bandit:/tmp/tttt23/bandit30$ git show-branch -a
-* <span style="color:#f92672">[</span>master<span style="color:#f92672">]</span> initial commit of README.md
- ! <span style="color:#f92672">[</span>origin/HEAD<span style="color:#f92672">]</span> initial commit of README.md
-  ! <span style="color:#f92672">[</span>origin/master<span style="color:#f92672">]</span> initial commit of README.md
+* <span style=color:#f92672>[</span>master<span style=color:#f92672>]</span> initial commit of README.md
+ ! <span style=color:#f92672>[</span>origin/HEAD<span style=color:#f92672>]</span> initial commit of README.md
+  ! <span style=color:#f92672>[</span>origin/master<span style=color:#f92672>]</span> initial commit of README.md
 ---
-*++ <span style="color:#f92672">[</span>master<span style="color:#f92672">]</span> initial commit of README.md
+*++ <span style=color:#f92672>[</span>master<span style=color:#f92672>]</span> initial commit of README.md
 
 </code></pre></div><p>没什么提示，分支也没有信息，跟着git官方给的基础走，轮到标签了，随手试一下：</p>
-<pre tabindex="0"><code>bandit30@bandit:/tmp/tttt23/bandit30/.git/refs/tags$ git tagsecretbandit30@bandit:/tmp/tttt23/bandit30/.git/refs/tags$ git show secret47e603bb428404d265f59c42920d81e5
+<pre tabindex=0><code>bandit30@bandit:/tmp/tttt23/bandit30/.git/refs/tags$ git tagsecretbandit30@bandit:/tmp/tttt23/bandit30/.git/refs/tags$ git show secret47e603bb428404d265f59c42920d81e5
 </code></pre><p>看到secret就知道蒙对了，但是这里没有提示真的头秃。</p>
-<h3 id="level-31">Level 31：</h3>
+<h3 id=level-31>Level 31：</h3>
 <p>There is a git repository at ssh://bandit31-git@localhost/home/bandit31-git/repo. The password for the user bandit31-git is the same as for the user bandit31.
 Clone the repository and find the password for the next level.
 题目还是一样的：</p>
-<pre tabindex="0"><code>bandit31@bandit:/tmp/tttt23/bandit31$ cat README.md 
+<pre tabindex=0><code>bandit31@bandit:/tmp/tttt23/bandit31$ cat README.md 
 This time your task is to push a file to the remote repository.
 
 Details:
@@ -590,109 +555,91 @@ Details:
     Content: 'May I come in?'
     Branch: master
 </code></pre><p>提示要push一个文件，那就照做呗。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">bandit31@bandit:/tmp/tttt23/bandit31$ touch key.txt
-bandit31@bandit:/tmp/tttt23/bandit31$ echo <span style="color:#e6db74">&#34;May I come in?&#34;</span> &gt; key.txt
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>bandit31@bandit:/tmp/tttt23/bandit31$ touch key.txt
+bandit31@bandit:/tmp/tttt23/bandit31$ echo <span style=color:#e6db74>&#34;May I come in?&#34;</span> &gt; key.txt
 bandit31@bandit:/tmp/tttt23/bandit31$ git add key.txt
 The following paths are ignored by one of your .gitignore files:
 key.txt
-Use -f <span style="color:#66d9ef">if</span> you really want to add them.
+Use -f <span style=color:#66d9ef>if</span> you really want to add them.
 bandit31@bandit:/tmp/tttt23/bandit31$ git add key.txt -f
-bandit31@bandit:/tmp/tttt23/bandit31$ git commit -m <span style="color:#e6db74">&#34;add key.txt&#34;</span>
-<span style="color:#f92672">[</span>master 51a1f03<span style="color:#f92672">]</span> add key.txt
- <span style="color:#ae81ff">1</span> file changed, <span style="color:#ae81ff">1</span> insertion<span style="color:#f92672">(</span>+<span style="color:#f92672">)</span>
- create mode <span style="color:#ae81ff">100644</span> key.txt
+bandit31@bandit:/tmp/tttt23/bandit31$ git commit -m <span style=color:#e6db74>&#34;add key.txt&#34;</span>
+<span style=color:#f92672>[</span>master 51a1f03<span style=color:#f92672>]</span> add key.txt
+ <span style=color:#ae81ff>1</span> file changed, <span style=color:#ae81ff>1</span> insertion<span style=color:#f92672>(</span>+<span style=color:#f92672>)</span>
+ create mode <span style=color:#ae81ff>100644</span> key.txt
 bandit31@bandit:/tmp/tttt23/bandit31$ git push
 ...
-bandit31-git@localhost<span style="color:#e6db74">&#39;s password: 
-</span><span style="color:#e6db74">Counting objects: 3, done.
-</span><span style="color:#e6db74">Delta compression using up to 4 threads.
-</span><span style="color:#e6db74">Compressing objects: 100% (2/2), done.
-</span><span style="color:#e6db74">Writing objects: 100% (3/3), 325 bytes | 0 bytes/s, done.
-</span><span style="color:#e6db74">Total 3 (delta 0), reused 0 (delta 0)
-</span><span style="color:#e6db74">remote: ### Attempting to validate files... ####
-</span><span style="color:#e6db74">remote: 
-</span><span style="color:#e6db74">remote: .oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.
-</span><span style="color:#e6db74">remote: 
-</span><span style="color:#e6db74">remote: Well done! Here is the password for the next level:
-</span><span style="color:#e6db74">remote: 56a9bf19c63d650ce78e6ec0354ee45e
-</span><span style="color:#e6db74">remote: 
-</span><span style="color:#e6db74">remote: .oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.
-</span><span style="color:#e6db74">remote: 
-</span><span style="color:#e6db74">To ssh://localhost/home/bandit31-git/repo
-</span><span style="color:#e6db74"> ! [remote rejected] master -&gt; master (pre-receive hook declined)
-</span><span style="color:#e6db74">error: failed to push some refs to &#39;</span>ssh://bandit31-git@localhost/home/bandit31-git/repo<span style="color:#960050;background-color:#1e0010">&#39;</span>
+bandit31-git@localhost<span style=color:#e6db74>&#39;s password: 
+</span><span style=color:#e6db74>Counting objects: 3, done.
+</span><span style=color:#e6db74>Delta compression using up to 4 threads.
+</span><span style=color:#e6db74>Compressing objects: 100% (2/2), done.
+</span><span style=color:#e6db74>Writing objects: 100% (3/3), 325 bytes | 0 bytes/s, done.
+</span><span style=color:#e6db74>Total 3 (delta 0), reused 0 (delta 0)
+</span><span style=color:#e6db74>remote: ### Attempting to validate files... ####
+</span><span style=color:#e6db74>remote: 
+</span><span style=color:#e6db74>remote: .oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.
+</span><span style=color:#e6db74>remote: 
+</span><span style=color:#e6db74>remote: Well done! Here is the password for the next level:
+</span><span style=color:#e6db74>remote: 56a9bf19c63d650ce78e6ec0354ee45e
+</span><span style=color:#e6db74>remote: 
+</span><span style=color:#e6db74>remote: .oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.
+</span><span style=color:#e6db74>remote: 
+</span><span style=color:#e6db74>To ssh://localhost/home/bandit31-git/repo
+</span><span style=color:#e6db74> ! [remote rejected] master -&gt; master (pre-receive hook declined)
+</span><span style=color:#e6db74>error: failed to push some refs to &#39;</span>ssh://bandit31-git@localhost/home/bandit31-git/repo<span style=color:#960050;background-color:#1e0010>&#39;</span>
 </code></pre></div><p>虽然不能上传，但是返回有信息，很容易看到密码。</p>
-<h3 id="level-32">Level 32：</h3>
+<h3 id=level-32>Level 32：</h3>
 <p>After all this git stuff its time for another escape. Good luck!
 题目没读懂，可能是git终于完了的意思。直接登录发现是一个特别的shell：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">WELCOME TO THE UPPERCASE SHELL
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>WELCOME TO THE UPPERCASE SHELL
 &gt;&gt; ls
 sh: 1: LS: not found
 &gt;&gt; exit
 sh: 1: EXIT: not found
 &gt;&gt; LS
 sh: 1: LS: not found
-$ <span style="color:#ae81ff">12</span>
+$ <span style=color:#ae81ff>12</span>
 sh: 5: 12: not found
 $ @#$%
 sh: 6: @#$%: not found
 </code></pre></div><p>它会将所有的命令大写然后执行，看来时和之前的一样，直接将默认shell改成了这个样子；这里不论字母大小写都会被变为大写，而数字和其他符号则没有影响，试了各种命令都没有办法直接转换大小写。看来只能从特殊字符入手了，注意到提示中有sh和man，尝试在参考一下该命令，最终发现了$0。</p>
 <pre><code>Expands to the name of the shell or shell script.  This is set at shell initialization.  If bash is invoked with a file of commands, $0 is set  to  the  name  of that file.  If bash is started with the -c option, then $0 is set to the first argument after the string to be executed, if one is present.  Otherwise, it is set to the file name used to invoke bash, as given by argument zero.
 </code></pre>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">&gt;&gt; $0
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>&gt;&gt; $0
 $ ls -al
-total <span style="color:#ae81ff">28</span>
-drwxr-xr-x  <span style="color:#ae81ff">2</span> root     root     <span style="color:#ae81ff">4096</span> Oct <span style="color:#ae81ff">16</span>  <span style="color:#ae81ff">2018</span> .
-drwxr-xr-x <span style="color:#ae81ff">41</span> root     root     <span style="color:#ae81ff">4096</span> Oct <span style="color:#ae81ff">16</span>  <span style="color:#ae81ff">2018</span> ..
--rw-r--r--  <span style="color:#ae81ff">1</span> root     root      <span style="color:#ae81ff">220</span> May <span style="color:#ae81ff">15</span>  <span style="color:#ae81ff">2017</span> .bash_logout
--rw-r--r--  <span style="color:#ae81ff">1</span> root     root     <span style="color:#ae81ff">3526</span> May <span style="color:#ae81ff">15</span>  <span style="color:#ae81ff">2017</span> .bashrc
--rw-r--r--  <span style="color:#ae81ff">1</span> root     root      <span style="color:#ae81ff">675</span> May <span style="color:#ae81ff">15</span>  <span style="color:#ae81ff">2017</span> .profile
--rwsr-x---  <span style="color:#ae81ff">1</span> bandit33 bandit32 <span style="color:#ae81ff">7556</span> Oct <span style="color:#ae81ff">16</span>  <span style="color:#ae81ff">2018</span> uppershell
+total <span style=color:#ae81ff>28</span>
+drwxr-xr-x  <span style=color:#ae81ff>2</span> root     root     <span style=color:#ae81ff>4096</span> Oct <span style=color:#ae81ff>16</span>  <span style=color:#ae81ff>2018</span> .
+drwxr-xr-x <span style=color:#ae81ff>41</span> root     root     <span style=color:#ae81ff>4096</span> Oct <span style=color:#ae81ff>16</span>  <span style=color:#ae81ff>2018</span> ..
+-rw-r--r--  <span style=color:#ae81ff>1</span> root     root      <span style=color:#ae81ff>220</span> May <span style=color:#ae81ff>15</span>  <span style=color:#ae81ff>2017</span> .bash_logout
+-rw-r--r--  <span style=color:#ae81ff>1</span> root     root     <span style=color:#ae81ff>3526</span> May <span style=color:#ae81ff>15</span>  <span style=color:#ae81ff>2017</span> .bashrc
+-rw-r--r--  <span style=color:#ae81ff>1</span> root     root      <span style=color:#ae81ff>675</span> May <span style=color:#ae81ff>15</span>  <span style=color:#ae81ff>2017</span> .profile
+-rwsr-x---  <span style=color:#ae81ff>1</span> bandit33 bandit32 <span style=color:#ae81ff>7556</span> Oct <span style=color:#ae81ff>16</span>  <span style=color:#ae81ff>2018</span> uppershell
 $ ls -al
-total <span style="color:#ae81ff">28</span>
-drwxr-xr-x  <span style="color:#ae81ff">2</span> root     root     <span style="color:#ae81ff">4096</span> Oct <span style="color:#ae81ff">16</span>  <span style="color:#ae81ff">2018</span> .
-drwxr-xr-x <span style="color:#ae81ff">41</span> root     root     <span style="color:#ae81ff">4096</span> Oct <span style="color:#ae81ff">16</span>  <span style="color:#ae81ff">2018</span> ..
--rw-r--r--  <span style="color:#ae81ff">1</span> root     root      <span style="color:#ae81ff">220</span> May <span style="color:#ae81ff">15</span>  <span style="color:#ae81ff">2017</span> .bash_logout
--rw-r--r--  <span style="color:#ae81ff">1</span> root     root     <span style="color:#ae81ff">3526</span> May <span style="color:#ae81ff">15</span>  <span style="color:#ae81ff">2017</span> .bashrc
--rw-r--r--  <span style="color:#ae81ff">1</span> root     root      <span style="color:#ae81ff">675</span> May <span style="color:#ae81ff">15</span>  <span style="color:#ae81ff">2017</span> .profile
--rwsr-x---  <span style="color:#ae81ff">1</span> bandit33 bandit32 <span style="color:#ae81ff">7556</span> Oct <span style="color:#ae81ff">16</span>  <span style="color:#ae81ff">2018</span> uppershell
+total <span style=color:#ae81ff>28</span>
+drwxr-xr-x  <span style=color:#ae81ff>2</span> root     root     <span style=color:#ae81ff>4096</span> Oct <span style=color:#ae81ff>16</span>  <span style=color:#ae81ff>2018</span> .
+drwxr-xr-x <span style=color:#ae81ff>41</span> root     root     <span style=color:#ae81ff>4096</span> Oct <span style=color:#ae81ff>16</span>  <span style=color:#ae81ff>2018</span> ..
+-rw-r--r--  <span style=color:#ae81ff>1</span> root     root      <span style=color:#ae81ff>220</span> May <span style=color:#ae81ff>15</span>  <span style=color:#ae81ff>2017</span> .bash_logout
+-rw-r--r--  <span style=color:#ae81ff>1</span> root     root     <span style=color:#ae81ff>3526</span> May <span style=color:#ae81ff>15</span>  <span style=color:#ae81ff>2017</span> .bashrc
+-rw-r--r--  <span style=color:#ae81ff>1</span> root     root      <span style=color:#ae81ff>675</span> May <span style=color:#ae81ff>15</span>  <span style=color:#ae81ff>2017</span> .profile
+-rwsr-x---  <span style=color:#ae81ff>1</span> bandit33 bandit32 <span style=color:#ae81ff>7556</span> Oct <span style=color:#ae81ff>16</span>  <span style=color:#ae81ff>2018</span> uppershell
 $ cat /etc/bandit_pass/bandit33
 c9c3199ddf4121b10cf581a98d51caee
 </code></pre></div><p>这里虽然最终解决出来了，但是还是有些问题不清楚，为什么使用$0会进入sh，不再与大小写相关；真能猜测是uppershell写的时候设计为再次执行是会进入另一个shell，而这一题考的就是sh的一些非常规操作。</p>
-<h3 id="level-34">Level 34：</h3>
+<h3 id=level-34>Level 34：</h3>
 <p>At this moment, level 34 does not exist yet.
 目前还没有Level 34，终于结束了。</p>
-
-            </div>
-        </div>
-        <div class="w-200">
-            <div id="gitalk"></div>
-<script>
-    var gitalk = new Gitalk({
-        clientID: '9a04c6b451fbce76511d',
-        clientSecret: '430c540c77ecd6b59749c60f0341c057bd5320a0',
-        repo: 'Causa1ity.github.io',
-        owner: 'Causa1ity',
-        admin: 'Causa1ity',
-        id: 'https:\/\/causality.top\/security\/writeups\/bandit\/',
-        distractionFreeMode: false
-    })
-
-    gitalk.render('gitalk')
-</script>
-        </div>
-    </div>
 </div>
-<script>
-    CodeLine.initOnPageLoad({
-        copyBtn: {show: true, position: 'top'},
-        toggleBtn: {show: false}
-    })
-</script>
+</div>
+<div class=w-200>
+<div id=gitalk></div>
+<script>var gitalk=new Gitalk({clientID:'9a04c6b451fbce76511d',clientSecret:'430c540c77ecd6b59749c60f0341c057bd5320a0',repo:'Causa1ity.github.io',owner:'Causa1ity',admin:'Causa1ity',id:'https://causality.top/security/writeups/bandit/',distractionFreeMode:!1});gitalk.render('gitalk')</script>
+</div>
+</div>
+</div>
+<script>CodeLine.initOnPageLoad({copyBtn:{show:!0,position:'top'},toggleBtn:{show:!1}})</script>
 <div class="text-center my-8">
-    <span class="font-serif text-lg">
-        Powered By <a href="https://gohugo.io/" class="font-bold hover:text-blue-400">Hugo</a>
-        with theme <a href="https://github.com/causa1ity/hugo-theme-noth/" class="font-bold hover:text-blue-400">Noth</a>
-    </span>
+<span class="font-serif text-lg">
+Powered By <a href=https://gohugo.io/ class="font-bold hover:text-blue-400">Hugo</a>
+with theme <a href=https://github.com/causa1ity/hugo-theme-noth/ class="font-bold hover:text-blue-400">Noth</a>
+</span>
 </div></body>
 </html>

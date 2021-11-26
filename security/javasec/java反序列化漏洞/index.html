@@ -1,180 +1,142 @@
-<!DOCTYPE html>
-<html lang="zh">
-<head><meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-
-
-
-<link rel="stylesheet" href="/css/main.min.603bdac5a514a018c8a598608c9559e9356dee22c6203eb4ba7ad06c438010c7.css" integrity="sha256-YDvaxaUUoBjIpZhgjJVZ6TVt7iLGID60unrQbEOAEMc="/>
-
-
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Lora&display=swap" rel="stylesheet">
-
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css">
-
-
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css">
-<script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script>
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/code-line"></script><title>Java 反序列化漏洞</title>
+<!doctype html><html lang=zh>
+<head><meta http-equiv=content-type content="text/html" charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge,chrome=1">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel=stylesheet href="/css/main.min.603bdac5a514a018c8a598608c9559e9356dee22c6203eb4ba7ad06c438010c7.css" integrity="sha256-YDvaxaUUoBjIpZhgjJVZ6TVt7iLGID60unrQbEOAEMc=">
+<link rel=preconnect href=https://fonts.googleapis.com>
+<link rel=preconnect href=https://fonts.gstatic.com crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Lora&display=swap" rel=stylesheet>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css>
+<script src=https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/code-line></script><title>Java 反序列化漏洞</title>
 </head>
 <body class="flex flex-col bg-gray-100">
-
 <div class="flex my-8 font-serif">
-    <div class="flex-auto w-1/3">
-        <div class="w-64 h-full mr-2 ml-auto">
-            <div class="mb-8"><div class="border rounded-lg shadow-md">
-    <div class="h-32 flex rounded-t-lg text-white" style="background-image: url('/images/background-1.jpg')">
-        <div class="m-auto">
-            <div class="text-center font-serif text-3xl my-2"><a href="/">Noth</a></div>
-            <div class="text-center font-serif">去码头整点薯条</div>
-        </div>
-    </div>
-    <nav class="rounded-b-lg bg-white">
-        <ul class="py-2 ml-8">
-            <li class="my-2 content-center">
-                <a href="/" class="hover:text-red-300"><i class="fas fa-home"></i>&nbsp;&nbsp;&nbsp;主页</a>
-            </li>
-
-
-
-            <li class="my-2 content-center">
-                <a href="/metapages/archive/" class="hover:text-red-300"><i class="fas fa-scroll"></i>&nbsp;&nbsp;归档</a>
-            </li>
-            <li class="my-2 content-center">
-                <a href="/categories/" class="hover:text-red-300"><i class="fas fa-th"></i>&nbsp;&nbsp;&nbsp;分类</a>
-            </li>
-            <li class="my-2 content-center">
-                <a href="/tags/" class="hover:text-red-300"><i class="fas fa-tags"></i>&nbsp;&nbsp;标签</a>
-            </li>
-            <li class="my-2 content-center">
-                <a href="/metapages/link/" class="hover:text-red-300"><i class="fas fa-link"></i>&nbsp;&nbsp;&nbsp;链接</a>
-            </li>
-            <li class="my-2 content-center">
-                <a href="/metapages/message/" class="hover:text-red-300"><i class="fas fa-comment-alt"></i>&nbsp;&nbsp;&nbsp;留言</a>
-            </li>
-        </ul>
-    </nav>
+<div class="flex-auto w-1/3">
+<div class="w-64 h-full mr-2 ml-auto">
+<div class=mb-8><div class="border rounded-lg shadow-md">
+<div class="h-32 flex rounded-t-lg text-white" style=background-image:url(/images/background-1.jpg)>
+<div class=m-auto>
+<div class="text-center font-serif text-3xl my-2"><a href=/>Noth</a></div>
+<div class="text-center font-serif">去码头整点薯条</div>
+</div>
+</div>
+<nav class="rounded-b-lg bg-white">
+<ul class="py-2 ml-8">
+<li class="my-2 content-center">
+<a href=/ class=hover:text-red-300><i class="fas fa-home"></i>&nbsp;&nbsp;&nbsp;主页</a>
+</li>
+<li class="my-2 content-center">
+<a href=/metapages/archive/ class=hover:text-red-300><i class="fas fa-scroll"></i>&nbsp;&nbsp;归档</a>
+</li>
+<li class="my-2 content-center">
+<a href=/categories/ class=hover:text-red-300><i class="fas fa-th"></i>&nbsp;&nbsp;&nbsp;分类</a>
+</li>
+<li class="my-2 content-center">
+<a href=/tags/ class=hover:text-red-300><i class="fas fa-tags"></i>&nbsp;&nbsp;标签</a>
+</li>
+<li class="my-2 content-center">
+<a href=/metapages/link/ class=hover:text-red-300><i class="fas fa-link"></i>&nbsp;&nbsp;&nbsp;链接</a>
+</li>
+<li class="my-2 content-center">
+<a href=/metapages/message/ class=hover:text-red-300><i class="fas fa-comment-alt"></i>&nbsp;&nbsp;&nbsp;留言</a>
+</li>
+</ul>
+</nav>
 </div></div>
-            <div class="sticky top-2">
-                <div class="toc">
-    <nav id="TableOfContents">
-  <ul>
-    <li><a href="#初窥">初窥</a>
-      <ul>
-        <li><a href="#before">Before</a></li>
-        <li><a href="#java反序列化漏洞">Java反序列化漏洞</a></li>
-      </ul>
-    </li>
-    <li><a href="#登堂">登堂</a></li>
-  </ul>
+<div class="sticky top-2">
+<div class=toc>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#初窥>初窥</a>
+<ul>
+<li><a href=#before>Before</a></li>
+<li><a href=#java反序列化漏洞>Java反序列化漏洞</a></li>
+</ul>
+</li>
+<li><a href=#登堂>登堂</a></li>
+</ul>
 </nav>
 </div>
-            </div>
-        </div>
-    </div>
-    <div class="flex-auto w-2/3">
-        <div class="w-200 border rounded-lg bg-white ml-2 mr-auto px-4">
-            <h1 class="font-serif text-4xl text-center mt-8 mb-2">Java 反序列化漏洞</h1>
-            <div class="text-right text-gray-500 mr-20">
-                <span>
-                    Apr. 13, 2021 |
-                    <i class="far fa-bookmark"></i> 
-                </span>
-            </div>
-            <div class="content px-6 mb-8">
-                <h2 id="初窥">初窥</h2>
-<h3 id="before">Before</h3>
+</div>
+</div>
+</div>
+<div class="flex-auto w-2/3">
+<div class="w-200 border rounded-lg bg-white ml-2 mr-auto px-4">
+<h1 class="font-serif text-4xl text-center mt-8 mb-2">Java 反序列化漏洞</h1>
+<div class="text-right text-gray-500 mr-20">
+<span>
+Apr. 13, 2021 |
+<i class="far fa-bookmark"></i>
+</span>
+</div>
+<div class="content px-6 mb-8">
+<h2 id=初窥>初窥</h2>
+<h3 id=before>Before</h3>
 <p>在理解Java反序列化漏洞之前，首先需要了解Java序列化与反序列化、Java反射的基本概念：</p>
 <ul>
-<li><a href="https://causality.top/devops/java/reflection/" title="Java 序列化">Java 序列化</a></li>
-<li><a href="https://causality.top/devops/java/reflection/" title="Java 反射">Java 反射</a></li>
+<li><a href=https://causality.top/devops/java/reflection/ title="Java 序列化">Java 序列化</a></li>
+<li><a href=https://causality.top/devops/java/reflection/ title="Java 反射">Java 反射</a></li>
 </ul>
 <p>简单来说，Java 序列化是指将 Java 对象转换成一个字节数组的过程；反序列化则是将一个字节数组转换成 Java 对象的过程。</p>
 <p>而 Java 的反射则是一种机制，指通过对象获取和操控一个类的机制。</p>
-<h3 id="java反序列化漏洞">Java反序列化漏洞</h3>
+<h3 id=java反序列化漏洞>Java反序列化漏洞</h3>
 <p>一般来说，序列化和反序列化可以使用ObjectOutputStream对象和ObjectInputStream对象来实现：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> IOException<span style="color:#f92672">,</span> ClassNotFoundException <span style="color:#f92672">{</span>
-        DemoClass dc <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> DemoClass<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;aDemoClass&#34;</span><span style="color:#f92672">);</span>
-        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>dc<span style="color:#f92672">);</span>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>main</span><span style=color:#f92672>(</span>String<span style=color:#f92672>[]</span> args<span style=color:#f92672>)</span> <span style=color:#66d9ef>throws</span> IOException<span style=color:#f92672>,</span> ClassNotFoundException <span style=color:#f92672>{</span>
+        DemoClass dc <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> DemoClass<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;aDemoClass&#34;</span><span style=color:#f92672>);</span>
+        System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>println</span><span style=color:#f92672>(</span>dc<span style=color:#f92672>);</span>
 
-        <span style="color:#75715e">// 序列化一个对象并保存到一个字节数组中
-</span><span style="color:#75715e"></span>        ByteArrayOutputStream bytesOut <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ByteArrayOutputStream<span style="color:#f92672">();</span>
-        ObjectOutputStream out <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ObjectOutputStream<span style="color:#f92672">(</span>bytesOut<span style="color:#f92672">);</span>
-        out<span style="color:#f92672">.</span><span style="color:#a6e22e">writeObject</span><span style="color:#f92672">(</span>dc<span style="color:#f92672">);</span>
-        out<span style="color:#f92672">.</span><span style="color:#a6e22e">close</span><span style="color:#f92672">();</span>
-        <span style="color:#66d9ef">byte</span><span style="color:#f92672">[]</span> bytes <span style="color:#f92672">=</span> bytesOut<span style="color:#f92672">.</span><span style="color:#a6e22e">toByteArray</span><span style="color:#f92672">();</span>
+        <span style=color:#75715e>// 序列化一个对象并保存到一个字节数组中
+</span><span style=color:#75715e></span>        ByteArrayOutputStream bytesOut <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> ByteArrayOutputStream<span style=color:#f92672>();</span>
+        ObjectOutputStream out <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> ObjectOutputStream<span style=color:#f92672>(</span>bytesOut<span style=color:#f92672>);</span>
+        out<span style=color:#f92672>.</span><span style=color:#a6e22e>writeObject</span><span style=color:#f92672>(</span>dc<span style=color:#f92672>);</span>
+        out<span style=color:#f92672>.</span><span style=color:#a6e22e>close</span><span style=color:#f92672>();</span>
+        <span style=color:#66d9ef>byte</span><span style=color:#f92672>[]</span> bytes <span style=color:#f92672>=</span> bytesOut<span style=color:#f92672>.</span><span style=color:#a6e22e>toByteArray</span><span style=color:#f92672>();</span>
 
-        <span style="color:#75715e">// 从一个字节数组中读取一个对象
-</span><span style="color:#75715e"></span>        ByteArrayInputStream bytesIn <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ByteArrayInputStream<span style="color:#f92672">(</span>bytes<span style="color:#f92672">);</span>
-        ObjectInputStream in <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ObjectInputStream<span style="color:#f92672">(</span>bytesIn<span style="color:#f92672">);</span>
-        DemoClass ddc <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>DemoClass<span style="color:#f92672">)</span> in<span style="color:#f92672">.</span><span style="color:#a6e22e">readObject</span><span style="color:#f92672">();</span>
-        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>ddc<span style="color:#f92672">.</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">());</span>
-    <span style="color:#f92672">}</span>
+        <span style=color:#75715e>// 从一个字节数组中读取一个对象
+</span><span style=color:#75715e></span>        ByteArrayInputStream bytesIn <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> ByteArrayInputStream<span style=color:#f92672>(</span>bytes<span style=color:#f92672>);</span>
+        ObjectInputStream in <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> ObjectInputStream<span style=color:#f92672>(</span>bytesIn<span style=color:#f92672>);</span>
+        DemoClass ddc <span style=color:#f92672>=</span> <span style=color:#f92672>(</span>DemoClass<span style=color:#f92672>)</span> in<span style=color:#f92672>.</span><span style=color:#a6e22e>readObject</span><span style=color:#f92672>();</span>
+        System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>println</span><span style=color:#f92672>(</span>ddc<span style=color:#f92672>.</span><span style=color:#a6e22e>toString</span><span style=color:#f92672>());</span>
+    <span style=color:#f92672>}</span>
 </code></pre></div><p>然而，如果再对象中存在readObject方法，就有可能调用这个方法：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">readObject</span><span style="color:#f92672">(</span>java<span style="color:#f92672">.</span><span style="color:#a6e22e">io</span><span style="color:#f92672">.</span><span style="color:#a6e22e">ObjectInputStream</span> in<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> IOException<span style="color:#f92672">,</span> ClassNotFoundException <span style="color:#f92672">{</span>
-        in<span style="color:#f92672">.</span><span style="color:#a6e22e">defaultReadObject</span><span style="color:#f92672">();</span>
-        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Test&#34;</span><span style="color:#f92672">);</span>
-    <span style="color:#f92672">}</span>
-</code></pre></div><p><img src="https://causality-blog.oss-cn-hangzhou.aliyuncs.com/hugo/posts/java/deserial/image-20210418171811406.png" alt="image-20210418171811406"></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>readObject</span><span style=color:#f92672>(</span>java<span style=color:#f92672>.</span><span style=color:#a6e22e>io</span><span style=color:#f92672>.</span><span style=color:#a6e22e>ObjectInputStream</span> in<span style=color:#f92672>)</span> <span style=color:#66d9ef>throws</span> IOException<span style=color:#f92672>,</span> ClassNotFoundException <span style=color:#f92672>{</span>
+        in<span style=color:#f92672>.</span><span style=color:#a6e22e>defaultReadObject</span><span style=color:#f92672>();</span>
+        System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>println</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Test&#34;</span><span style=color:#f92672>);</span>
+    <span style=color:#f92672>}</span>
+</code></pre></div><p><img src=https://causality-blog.oss-cn-hangzhou.aliyuncs.com/hugo/posts/java/deserial/image-20210418171811406.png alt=image-20210418171811406></p>
 <p>结合反射可以造成命令执行：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">readObject</span><span style="color:#f92672">(</span>java<span style="color:#f92672">.</span><span style="color:#a6e22e">io</span><span style="color:#f92672">.</span><span style="color:#a6e22e">ObjectInputStream</span> in<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> IOException<span style="color:#f92672">,</span> ClassNotFoundException <span style="color:#f92672">{</span>
-        in<span style="color:#f92672">.</span><span style="color:#a6e22e">defaultReadObject</span><span style="color:#f92672">();</span>
-        Runtime<span style="color:#f92672">.</span><span style="color:#a6e22e">getRuntime</span><span style="color:#f92672">().</span><span style="color:#a6e22e">exec</span><span style="color:#f92672">(</span>data<span style="color:#f92672">);</span>
-    <span style="color:#f92672">}</span>
-</code></pre></div><p><img src="https://causality-blog.oss-cn-hangzhou.aliyuncs.com/hugo/posts/java/deserial/image-20210418171954959.png" alt="image-20210418171954959"></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>readObject</span><span style=color:#f92672>(</span>java<span style=color:#f92672>.</span><span style=color:#a6e22e>io</span><span style=color:#f92672>.</span><span style=color:#a6e22e>ObjectInputStream</span> in<span style=color:#f92672>)</span> <span style=color:#66d9ef>throws</span> IOException<span style=color:#f92672>,</span> ClassNotFoundException <span style=color:#f92672>{</span>
+        in<span style=color:#f92672>.</span><span style=color:#a6e22e>defaultReadObject</span><span style=color:#f92672>();</span>
+        Runtime<span style=color:#f92672>.</span><span style=color:#a6e22e>getRuntime</span><span style=color:#f92672>().</span><span style=color:#a6e22e>exec</span><span style=color:#f92672>(</span>data<span style=color:#f92672>);</span>
+    <span style=color:#f92672>}</span>
+</code></pre></div><p><img src=https://causality-blog.oss-cn-hangzhou.aliyuncs.com/hugo/posts/java/deserial/image-20210418171954959.png alt=image-20210418171954959></p>
 <p>通过追踪调用过程可以知道，反序列化过程中如果存在readObject方法，就会调用这个方法：</p>
-<p><img src="https://causality-blog.oss-cn-hangzhou.aliyuncs.com/hugo/posts/java/deserial/image-20210418172904412.png" alt="image-20210418172904412"></p>
-<p><img src="https://causality-blog.oss-cn-hangzhou.aliyuncs.com/hugo/posts/java/deserial/image-20210418171029447.png" alt="image-20210418171029447"></p>
-<h2 id="登堂">登堂</h2>
+<p><img src=https://causality-blog.oss-cn-hangzhou.aliyuncs.com/hugo/posts/java/deserial/image-20210418172904412.png alt=image-20210418172904412></p>
+<p><img src=https://causality-blog.oss-cn-hangzhou.aliyuncs.com/hugo/posts/java/deserial/image-20210418171029447.png alt=image-20210418171029447></p>
+<h2 id=登堂>登堂</h2>
 <p>从上面的过程也可以看出，Java反序列化漏洞的触发条件还是有些难度，毕竟在类中定义一个readObject方法并且在其中设置一个命令执行完全是等于专门设置了一个漏洞；自然很难遇到这样的事。</p>
 <p>所以相对的，一般情况下想要利用一个反序列化漏洞，就需要使用服务包含的其他的类，通过类之间的调用构成一个利用链，也就是所谓的Gadget Chains。</p>
 <p>几个Gadget Chains分析例子：</p>
 <ul>
-<li><a href="https://causality.top/security/javasec/commonscollections1/">Apache CommonsCollections1（CC1）</a></li>
-<li><a href="https://causality.top/security/javasec/commonscollections2/">Apache CommonsCollections2（CC2）</a></li>
-<li><a href="https://causality.top/security/javasec/commonscollections3-7/">Apache CommonsCollections3-7</a></li>
+<li><a href=https://causality.top/security/javasec/commonscollections1/>Apache CommonsCollections1（CC1）</a></li>
+<li><a href=https://causality.top/security/javasec/commonscollections2/>Apache CommonsCollections2（CC2）</a></li>
+<li><a href=https://causality.top/security/javasec/commonscollections3-7/>Apache CommonsCollections3-7</a></li>
 </ul>
-
-            </div>
-        </div>
-        <div class="w-200">
-            <div id="gitalk"></div>
-<script>
-    var gitalk = new Gitalk({
-        clientID: '9a04c6b451fbce76511d',
-        clientSecret: '430c540c77ecd6b59749c60f0341c057bd5320a0',
-        repo: 'Causa1ity.github.io',
-        owner: 'Causa1ity',
-        admin: 'Causa1ity',
-        id: 'https:\/\/causality.top\/security\/javasec\/java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E\/',
-        distractionFreeMode: false
-    })
-
-    gitalk.render('gitalk')
-</script>
-        </div>
-    </div>
 </div>
-<script>
-    CodeLine.initOnPageLoad({
-        copyBtn: {show: true, position: 'top'},
-        toggleBtn: {show: false}
-    })
-</script>
+</div>
+<div class=w-200>
+<div id=gitalk></div>
+<script>var gitalk=new Gitalk({clientID:'9a04c6b451fbce76511d',clientSecret:'430c540c77ecd6b59749c60f0341c057bd5320a0',repo:'Causa1ity.github.io',owner:'Causa1ity',admin:'Causa1ity',id:'https://causality.top/security/javasec/java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/',distractionFreeMode:!1});gitalk.render('gitalk')</script>
+</div>
+</div>
+</div>
+<script>CodeLine.initOnPageLoad({copyBtn:{show:!0,position:'top'},toggleBtn:{show:!1}})</script>
 <div class="text-center my-8">
-    <span class="font-serif text-lg">
-        Powered By <a href="https://gohugo.io/" class="font-bold hover:text-blue-400">Hugo</a>
-        with theme <a href="https://github.com/causa1ity/hugo-theme-noth/" class="font-bold hover:text-blue-400">Noth</a>
-    </span>
+<span class="font-serif text-lg">
+Powered By <a href=https://gohugo.io/ class="font-bold hover:text-blue-400">Hugo</a>
+with theme <a href=https://github.com/causa1ity/hugo-theme-noth/ class="font-bold hover:text-blue-400">Noth</a>
+</span>
 </div></body>
 </html>
