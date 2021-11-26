@@ -1,0 +1,163 @@
+<!doctype html><html lang=zh>
+<head><meta http-equiv=content-type content="text/html" charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge,chrome=1">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel=stylesheet href="/css/main.min.603bdac5a514a018c8a598608c9559e9356dee22c6203eb4ba7ad06c438010c7.css" integrity="sha256-YDvaxaUUoBjIpZhgjJVZ6TVt7iLGID60unrQbEOAEMc=">
+<link rel=preconnect href=https://fonts.googleapis.com>
+<link rel=preconnect href=https://fonts.gstatic.com crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Lora&display=swap" rel=stylesheet>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css>
+<script src=https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/code-line></script><title>Font Family 学习</title>
+</head>
+<body class="flex flex-col bg-gray-100">
+<div class="flex my-8 font-serif">
+<div class="flex-auto w-1/3">
+<div class="w-64 h-full mr-2 ml-auto">
+<div class=mb-8><div class="border rounded-lg shadow-md">
+<div class="h-32 flex rounded-t-lg text-white" style=background-image:url(/images/background-1.jpg)>
+<div class=m-auto>
+<div class="text-center font-serif text-3xl my-2"><a href=/>Noth</a></div>
+<div class="text-center font-serif">去码头整点薯条</div>
+</div>
+</div>
+<nav class="rounded-b-lg bg-white">
+<ul class="py-2 ml-8">
+<li class="my-2 content-center">
+<a href=/ class=hover:text-red-300><i class="fas fa-home"></i>&nbsp;&nbsp;&nbsp;主页</a>
+</li>
+<li class="my-2 content-center">
+<a href=/metapages/archive/ class=hover:text-red-300><i class="fas fa-scroll"></i>&nbsp;&nbsp;归档</a>
+</li>
+<li class="my-2 content-center">
+<a href=/categories/ class=hover:text-red-300><i class="fas fa-th"></i>&nbsp;&nbsp;&nbsp;分类</a>
+</li>
+<li class="my-2 content-center">
+<a href=/tags/ class=hover:text-red-300><i class="fas fa-tags"></i>&nbsp;&nbsp;标签</a>
+</li>
+<li class="my-2 content-center">
+<a href=/metapages/link/ class=hover:text-red-300><i class="fas fa-link"></i>&nbsp;&nbsp;&nbsp;链接</a>
+</li>
+<li class="my-2 content-center">
+<a href=/metapages/message/ class=hover:text-red-300><i class="fas fa-comment-alt"></i>&nbsp;&nbsp;&nbsp;留言</a>
+</li>
+</ul>
+</nav>
+</div></div>
+<div class="sticky top-2">
+<div class="border-2 rounded-lg shadow-md bg-white py-4">
+<div class="w-28 mx-auto py-2">
+<img src=/images/avatar.jpg class=rounded-full alt=avatar>
+<div class="text-center my-2">Causality</div>
+</div>
+<div class="flex justify-center font-mono py-4">
+<a href=/metapages/archive/ class="px-4 text-center hover:text-red-300">
+<p class=text-lg>文章</p>
+<p>34</p>
+</a>
+<a href=/categories/ class="px-4 text-center border-l border-r hover:text-red-300">
+<p class=text-lg>分类</p>
+<p>0</p>
+</a>
+<a href=/tags/ class="px-4 text-center hover:text-red-300">
+<p class=text-lg>标签</p>
+<p>14</p>
+</a>
+</div>
+<div class="flex justify-center mt-4 py-2">
+<a href=https://github.com/causa1ity>
+<i class="fab fa-github text-2xl mx-2"></i>
+</a>
+<a href=mailto:yeqiu.play@gmail.com>
+<i class="fas fa-envelope text-2xl mx-2"></i>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="flex-auto w-2/3">
+<div class="w-200 border rounded-lg bg-white ml-2 mr-auto px-4">
+<h1 class="font-serif text-4xl text-center mt-8 mb-2">Font Family 学习</h1>
+<div class="text-right text-gray-500 mr-20">
+<span>
+Apr. 14, 2021 |
+<i class="far fa-bookmark"></i>
+</span>
+</div>
+<div class="content px-6 mb-8">
+<h2 id=font-family>font-family</h2>
+<ul>
+<li>应当至少在使用的 <code>font-family</code> 列表中添加一个通用的字体族名，因为无法保证用户的计算机内已经安装了指定的字体，也不能保证使用 <a href=https://developer.mozilla.org/zh-CN/docs/Web/CSS/@font-face><code>@font-face</code></a> 提供的字体移动能够正确地下载。提供通用的字体族使得浏览器可以在无法得到最佳字体的情况下使用一个相对接近的备选字体。</li>
+<li>属性 <code>font-family</code> 列举一个或多个由逗号隔开的字体族。每个字体族由 <code>&lt;family-name></code> 或 <code>&lt;generic-name></code> 值指定
+<ul>
+<li><code>&lt;family-name></code>：一个字体族的名字。例如"Times" 和 &ldquo;Helvetica&rdquo; 都是字体族名。字体族名可以包含空格，但包含空格时应该用引号。</li>
+<li><code>&lt;generic-name></code>：通用字体族名是一种备选机制，用于在指定的字体不可用时给出较好的字体。通用字体族名都是关键字，所以不可以加引号。 在列表的末尾应该至少有一个通用字体族名。以下是该属性可能的取值以及他们的定义：
+<ul>
+<li><code>serif</code>：带衬线字体，笔画结尾有特殊的装饰线或衬线。
+例如： Lucida Bright, Lucida Fax, Palatino, &ldquo;Palatino Linotype&rdquo;, Palladio, &ldquo;URW Palladio&rdquo;, serif.</li>
+<li><code>sans-serif</code>：无衬线字体，即笔画结尾是平滑的字体。
+例如， &ldquo;Open Sans&rdquo;, &ldquo;Fira Sans&rdquo;, &ldquo;Lucida Sans&rdquo;, &ldquo;Lucida Sans Unicode&rdquo;, &ldquo;Trebuchet MS&rdquo;, &ldquo;Liberation Sans&rdquo;, &ldquo;Nimbus Sans L&rdquo;, sans-serif.</li>
+<li><code>monospace</code>：等宽字体，即字体中每个字宽度相同。
+例如， &ldquo;Fira Mono&rdquo;, &ldquo;DejaVu Sans Mono&rdquo;, Menlo, Consolas, &ldquo;Liberation Mono&rdquo;, Monaco, &ldquo;Lucida Console&rdquo;, monospace.</li>
+<li><code>cursive</code>：草书字体。这种字体有的有连笔，有的还有特殊的斜体效果。因为一般这种字体都有一点连笔效果，所以会给人一种手写的感觉。
+例如，&ldquo;Brush Script MT&rdquo;, &ldquo;Brush Script Std&rdquo;, &ldquo;Lucida Calligraphy&rdquo;, &ldquo;Lucida Handwriting&rdquo;, &ldquo;Apple Chancery&rdquo;, cursive.</li>
+<li><code>fantasy</code>：Fantasy 字体主要是那些具有特殊艺术效果的字体。
+例如，Papyrus, Herculanum, Party LET, Curlz MT, Harrington, fantasy.</li>
+<li><code>system-ui</code>：从浏览器所处平台处获取的默认用户界面字体。由于世界各地的排版习惯之间有很大的差异，这个通用选项 is provided for typefaces that don&rsquo;t map cleanly into the other generics.</li>
+<li><code>math</code>：针对显示数学相关字符的特殊样式问题而设计的字体：支持上标和下标、跨行括号、嵌套表达式和具有不同含义的double struck glyphs。</li>
+<li><code>emoji</code>：专门用于呈现 Emoji 表情符号的字体。</li>
+<li><code>fangsong</code>：一种汉字字体，介于宋体和楷体之间。这种字体常用于某些政府文件。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id=font-face>font-face</h3>
+<p><code>@font-face</code> 指定一个用于显示文本的自定义字体；字体能从远程服务器或者用户本地安装的字体加载。如果提供了local()函数，从用户本地查找指定的字体名称，并且找到了一个匹配项，本地字体就会被使用。否则，字体就会使用url()函数下载的资源。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-css data-lang=css>@<span style=color:#66d9ef>font-face</span> {
+  <span style=color:#f92672>[</span> <span style=color:#f92672>font-family</span><span style=color:#f92672>:</span> <span style=color:#f92672>&lt;</span><span style=color:#f92672>family-name</span><span style=color:#f92672>&gt;;</span> <span style=color:#f92672>]</span> <span style=color:#f92672>||</span>
+  <span style=color:#f92672>[</span> <span style=color:#f92672>src</span><span style=color:#f92672>:</span> <span style=color:#f92672>&lt;</span><span style=color:#f92672>src</span><span style=color:#f92672>&gt;;</span> <span style=color:#f92672>]</span> <span style=color:#f92672>||</span>
+  <span style=color:#f92672>[</span> <span style=color:#f92672>unicode-range</span><span style=color:#f92672>:</span> <span style=color:#f92672>&lt;</span><span style=color:#f92672>unicode-range</span><span style=color:#f92672>&gt;;</span> <span style=color:#f92672>]</span> <span style=color:#f92672>||</span>
+  <span style=color:#f92672>[</span> <span style=color:#f92672>font-variant</span><span style=color:#f92672>:</span> <span style=color:#f92672>&lt;</span><span style=color:#f92672>font-variant</span><span style=color:#f92672>&gt;;</span> <span style=color:#f92672>]</span> <span style=color:#f92672>||</span>
+  <span style=color:#f92672>[</span> <span style=color:#f92672>font-feature-settings</span><span style=color:#f92672>:</span> <span style=color:#f92672>&lt;</span><span style=color:#f92672>font-feature-settings</span><span style=color:#f92672>&gt;;</span> <span style=color:#f92672>]</span> <span style=color:#f92672>||</span>
+  <span style=color:#f92672>[</span> <span style=color:#f92672>font-variation-settings</span><span style=color:#f92672>:</span> <span style=color:#f92672>&lt;</span><span style=color:#f92672>font-variation-settings</span><span style=color:#f92672>&gt;;</span> <span style=color:#f92672>]</span> <span style=color:#f92672>||</span>
+  <span style=color:#f92672>[</span> <span style=color:#f92672>font-stretch</span><span style=color:#f92672>:</span> <span style=color:#f92672>&lt;</span><span style=color:#f92672>font-stretch</span><span style=color:#f92672>&gt;;</span> <span style=color:#f92672>]</span> <span style=color:#f92672>||</span>
+  <span style=color:#f92672>[</span> <span style=color:#f92672>font-weight</span><span style=color:#f92672>:</span> <span style=color:#f92672>&lt;</span><span style=color:#f92672>font-weight</span><span style=color:#f92672>&gt;;</span> <span style=color:#f92672>]</span> <span style=color:#f92672>||</span>
+  <span style=color:#f92672>[</span> <span style=color:#f92672>font-style</span><span style=color:#f92672>:</span> <span style=color:#f92672>&lt;</span><span style=color:#f92672>font-style</span><span style=color:#f92672>&gt;;</span> <span style=color:#f92672>]</span>
+}
+</code></pre></div><p>一般来说至少要包含<code>font-family</code>和<code>src</code>两个属性：</p>
+<ul>
+<li><a href=https://developer.mozilla.org/zh-CN/docs/Web/CSS/@font-face/font-family><code>font-family</code></a>：所指定的字体名字将会被用于font或font-family属性</li>
+<li><a href=https://developer.mozilla.org/zh-CN/docs/Web/CSS/@font-face/src><code>src</code></a>：远程字体文件位置的URL或者用户计算机上的字体名称</li>
+<li><a href=https://developer.mozilla.org/zh-CN/docs/Web/CSS/@font-face/font-style><code>font-style</code></a>：对于src所指字体的描述。如果所需字体符合描述，则采用本font-face所定义的字体。</li>
+<li><a href=https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/unicode-range><code>unicode-range</code></a>：在该@font-face中定义的unicode字体范围</li>
+</ul>
+<h2 id=自用-font-family>自用 font-family</h2>
+<ul>
+<li>标题：font-family: &lsquo;Lora&rsquo;, &lsquo;KaiTi&rsquo;, serif;</li>
+<li>正文：font-family: &lsquo;Fira Code&rsquo;, serif;</li>
+<li>代码：font-family: &lsquo;Fira Code&rsquo;, &lsquo;KaiTi&rsquo;, monospace;</li>
+<li>衬线字体：font-family: &lsquo;Times New Roman&rsquo;, &lsquo;KaiTi&rsquo;, serif;</li>
+<li>等宽字体：font-family: &lsquo;Fira Code&rsquo;, &lsquo;KaiTi&rsquo;, monospace;</li>
+</ul>
+<blockquote>
+<p>Lora 和 Fira Code 可以从 Google Fonts 获得</p>
+</blockquote>
+</div>
+</div>
+<div class=w-200>
+<div id=gitalk></div>
+<script>var gitalk=new Gitalk({clientID:'9a04c6b451fbce76511d',clientSecret:'430c540c77ecd6b59749c60f0341c057bd5320a0',repo:'Causa1ity.github.io',owner:'Causa1ity',admin:'Causa1ity',id:'/misc/misc/font-family/',distractionFreeMode:!1});gitalk.render('gitalk')</script>
+</div>
+</div>
+</div>
+<script>CodeLine.initOnPageLoad({copyBtn:{show:!0,position:'top'},toggleBtn:{show:!1}})</script>
+<div class="text-center my-8">
+<span class="font-serif text-lg">
+Powered By <a href=https://gohugo.io/ class="font-bold hover:text-blue-400">Hugo</a>
+with theme <a href=https://github.com/causa1ity/hugo-theme-noth/ class="font-bold hover:text-blue-400">Noth</a>
+</span>
+</div></body>
+</html>
